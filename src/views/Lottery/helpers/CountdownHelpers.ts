@@ -3,13 +3,14 @@ import getTimePeriods from 'utils/getTimePeriods'
 
 export const getUtcTimeNow = (date: Date) => {
   const utcTimeStamp = Date.UTC(
-    date.getFullYear(),
-    date.getMonth(),
-    date.getDate(),
-    date.getHours(),
-    date.getMinutes(),
-    date.getSeconds(),
-    date.getMilliseconds())
+    date.getUTCFullYear(),
+    date.getUTCMonth(),
+    date.getUTCDate(),
+    date.getUTCHours(),
+    date.getUTCMinutes(),
+    date.getUTCSeconds(),
+    date.getUTCMilliseconds()) 
+    debugger;
   return utcTimeStamp
 } 
 
