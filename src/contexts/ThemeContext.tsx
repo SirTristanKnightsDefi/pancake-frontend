@@ -70,6 +70,9 @@ milkLight.colors = milkColors
 milkLight.button.primary.background = '#5dc4d9'
 milkLight.button.primary.backgroundHover = '#7BCFE0'
 
+// TODO: Improve this box shadow
+milkLight.card.boxShadow = '5px 5px 20px rgba(0, 0, 0, 0.2)'
+
 const ThemeContextProvider = ({ children }) => {
   const [isDark, setIsDark] = useState(() => {
     const isDarkUserSetting = localStorage.getItem(CACHE_KEY)

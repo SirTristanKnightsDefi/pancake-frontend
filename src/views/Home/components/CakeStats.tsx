@@ -31,7 +31,9 @@ const CakeStats = () => {
   return (
     <StyledCakeStats>
       <CardBodyExtended>
-        <Heading size="xl" mb="24px">
+        <Heading size="xl" mb="24px" style={{
+          fontWeight: 700,
+        }}>
           MILK Stats
         </Heading>
         <Row>
