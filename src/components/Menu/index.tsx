@@ -10,7 +10,6 @@ import config from './config'
 const Menu = (props) => {
   const { account, connect, reset } = useWallet()
   const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
-  const { isDark, toggleTheme } = useTheme()
   const cakePriceUsd = usePriceCakeBusd()
   const { profile } = useProfile()
 
@@ -19,8 +18,9 @@ const Menu = (props) => {
       account={account}
       login={connect}
       logout={reset}
-      isDark={isDark}
-      toggleTheme={toggleTheme}
+      isDark={false}
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      toggleTheme={() => {}}
       currentLang={selectedLanguage && selectedLanguage.code}
       langs={allLanguages}
       setLang={setSelectedLanguage}

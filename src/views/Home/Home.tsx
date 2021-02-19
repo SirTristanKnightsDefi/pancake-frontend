@@ -25,8 +25,9 @@ const Hero = styled.div`
   text-align: center;
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    background-image: url('/images/pan-bg2.svg'), url('/images/pan-bg.svg');
+    background-image: url('/images/milk.png'), url('/images/milk.png');
     background-position: left center, right center;
+    background-size: contain;
     height: 165px;
     padding-top: 0;
   }
@@ -83,24 +84,24 @@ const Home: React.FC = () => {
     <Page>
       <Hero>
         <Heading as="h1" size="xl" mb="24px" color="secondary">
-          {TranslateString(576, 'PancakeSwap')}
+          {/* TranslateString(576, 'PancakeSwap') */}
+          MilkSwap
         </Heading>
-        <Text>{TranslateString(578, 'The #1 AMM and yield farm on Binance Smart Chain.')}</Text>
+        <Text>
+          {/* TranslateString(578, 'The #1 AMM and yield farm on Binance Smart Chain.') */}
+          The milkiest AMM and yield farm on Binance Smart Chain.
+        </Text>
       </Hero>
       <div>
         <Cards>
           <FarmStakingCard />
-          <LotteryCard />
+          <EarnAssetCard />
         </Cards>
         <CTACards>
           <EarnAPYCard />
-          <EarnAssetCard />
-          <WinCard />
-        </CTACards>
-        <Cards>
           <CakeStats />
           <TotalValueLockedCard />
-        </Cards>
+        </CTACards>
       </div>
     </Page>
   )
