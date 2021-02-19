@@ -9,8 +9,8 @@ import CardBusdValue from './CardBusdValue'
 
 const Block = styled.div`
   margin-bottom: 24px;
- }
 `
+
 const CakeWinnings = () => {
   const { claimAmount } = useTotalClaim()
   const claimAmountBusd = new BigNumber(claimAmount).multipliedBy(usePriceCakeBusd()).toNumber()

@@ -35,6 +35,7 @@ const getUsername = async (address: string): Promise<string> => {
 
 const getProfile = async (address: string): Promise<GetProfileResponse> => {
   try {
+    /*
     const hasRegistered = (await profileContract.methods.hasRegistered(address).call()) as boolean
 
     if (!hasRegistered) {
@@ -74,8 +75,9 @@ const getProfile = async (address: string): Promise<GetProfileResponse> => {
       nft,
       team,
     } as Profile
+    */
 
-    return { hasRegistered, profile }
+    return { hasRegistered: false, profile: null }
   } catch (error) {
     return null
   }

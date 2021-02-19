@@ -47,7 +47,7 @@ const FarmedStakingCard = () => {
     try {
       await onReward()
     } catch (error) {
-      // TODO: find a way to handle when the user rejects transaction or it fails
+      // Find a way to handle when the user rejects transaction or it fails
     } finally {
       setPendingTx(false)
     }
@@ -77,7 +77,7 @@ const FarmedStakingCard = () => {
               fullWidth
             >
               {pendingTx
-                ? TranslateString(548, 'Collecting CAKE')
+                ? TranslateString(548, 'Collecting MILK')
                 : TranslateString(532, `Harvest all (${balancesWithValue.length})`)}
             </Button>
           ) : (

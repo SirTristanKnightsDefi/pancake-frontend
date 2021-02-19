@@ -40,16 +40,17 @@ interface Colors {
 // #4e5e6e
 // #f1f6f8
 
+// TODO: Update these colors
 const milkColors: Colors = {
   binance: '#F0B90B',
   failure: "#ED4B9E",
-  primary: "#1FC7D4",
+  primary: "#5dc4d9",
   primaryBright: "#53DEE9",
-  primaryDark: "#0098A1",
+  primaryDark: "#5dc4d9",
   secondary: "#5dc4d9",
   success: "#31D0AA",
   warning: "#FFB237",
-  background: "#b7eaff",
+  background: "#EBF9FF",
   backgroundDisabled: "#E9EAEB",
   contrast: "#191326",
   invertedContrast: "#FFFFFF",
@@ -66,6 +67,8 @@ const milkColors: Colors = {
 }
 
 milkLight.colors = milkColors
+milkLight.button.primary.background = '#5dc4d9'
+milkLight.button.primary.backgroundHover = '#7BCFE0'
 
 const ThemeContextProvider = ({ children }) => {
   const [isDark, setIsDark] = useState(() => {

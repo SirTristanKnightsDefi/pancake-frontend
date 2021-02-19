@@ -3,7 +3,6 @@ import { Menu as UikitMenu } from '@pancakeswap-libs/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { allLanguages } from 'config/localisation/languageCodes'
 import { LanguageContext } from 'contexts/Localisation/languageContext'
-import useTheme from 'hooks/useTheme'
 import { usePriceCakeBusd, useProfile } from 'state/hooks'
 import config from './config'
 
@@ -13,6 +12,7 @@ const Menu = (props) => {
   const cakePriceUsd = usePriceCakeBusd()
   const { profile } = useProfile()
 
+  // TODO: Remove the theme toggle
   return (
     <UikitMenu
       account={account}

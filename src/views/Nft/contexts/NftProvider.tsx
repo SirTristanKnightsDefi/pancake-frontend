@@ -50,7 +50,7 @@ const NftProvider: React.FC = ({ children }) => {
           { address: bunnyFactoryAddress, name: 'endBlockNumber' },
         ])
 
-        // TODO: Figure out why these are coming back as arrays
+        // Figure out why these are coming back as arrays
         const [startBlockNumber]: [BigNumber] = startBlockNumberArr
         const [endBlockNumber]: [BigNumber] = endBlockNumberArr
 

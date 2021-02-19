@@ -42,7 +42,7 @@ const AvatarWrapper = styled.div<{ bg: string }>`
     width: 128px;
   }
 `
-// TODO: replace with no provile avatar icon
+// Replace with no provile avatar icon
 const AvatarInactive = styled(NoProfileAvatarIcon)`
   height: 64px;
   width: 64px;

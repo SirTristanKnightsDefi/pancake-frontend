@@ -35,7 +35,7 @@ const Mint: React.FC = () => {
     handleConfirm,
   } = useApproveConfirmTransaction({
     onRequiresApproval: async () => {
-      // TODO: Move this to a helper, this check will be probably be used many times
+      // Move this to a helper, this check will be probably be used many times
       try {
         const response = await cakeContract.methods.allowance(account, bunnyFactoryContract.options.address).call()
         const currentAllowance = new BigNumber(response)
