@@ -57,9 +57,6 @@ const App: React.FC = () => {
               <Pools />
             </Route>
             {/* Redirect */}
-            <Route path="/staking">
-              <Redirect to="/pools" />
-            </Route>
             {/* 404 */}
             <Route component={NotFound} />
           </Switch>

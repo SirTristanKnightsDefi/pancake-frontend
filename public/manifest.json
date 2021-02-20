@@ -1,11 +1,11 @@
 {
-  "short_name": "PancakeSwap",
-  "name": "PancakeSwap",
-  "description": "Farm CAKE with Pancake LP Tokens",
+  "short_name": "MilkSwap",
+  "name": "MilkSwap",
+  "description": "MilkSwap, the milkiest exchange on Binance Smart Chain.",
   "icons": [
     {
-      "src": "favicon.ico",
-      "type": "image/x-icon",
+      "src": "favicon.png",
+      "type": "image/png",
       "sizes": "256x256"
     }
   ],
