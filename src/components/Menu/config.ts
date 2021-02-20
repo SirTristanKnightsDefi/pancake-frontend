@@ -36,14 +36,12 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'Github',
+        // TODO: Change this link
         href: 'https://github.com/pancakeswap',
       },
       {
-        label: 'Docs',
-        href: 'https://docs.pancakeswap.finance',
-      },
-      {
         label: 'Blog',
+        // TODO: Change this link
         href: 'https://pancakeswap.medium.com',
       },
     ],

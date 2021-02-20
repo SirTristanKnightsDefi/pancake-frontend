@@ -9,7 +9,7 @@ import NoPrizesContent from './NoPrizesContent'
 const StyledCard = styled(Card)`
   ${(props) =>
     props.isDisabled
-      ? `  
+      ? `
         margin-top: 16px;
         background-color: unset;
         box-shadow: unset;
