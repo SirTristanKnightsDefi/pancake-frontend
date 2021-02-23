@@ -9,10 +9,15 @@ declare module 'styled-components' {
 
 const GlobalStyle = createGlobalStyle`
   * {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
+
   body {
     background-color: ${({ theme }) => theme.colors.background};
+    background-image: url('./images/arch-light.svg');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: contain;
 
     img {
       height: auto;
