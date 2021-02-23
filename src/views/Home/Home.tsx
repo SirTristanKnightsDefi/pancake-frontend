@@ -21,7 +21,7 @@ const Hero = styled.div`
   text-align: center;
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    background-image: url('/images/cup.svg'), url('/images/bowl.svg');
+    background-image: url('/images/bucket.svg'), url('/images/bowl.svg');
     background-position: left center, right center;
     background-size: contain;
     height: 165px;
@@ -73,23 +73,12 @@ const Home: React.FC = () => {
           The milkiest AMM and yield farm on Binance Smart Chain.
         </FatText>
       </Hero>
-      <div>
-        <Cards>
-          <FarmStakingCard />
-          <div style={{
-            display: 'grid',
-            gridRowGap: 'inherit',
-          }}>
-            <TotalValueLockedCard />
-            <CakeStats />
-          </div>
-        </Cards>
-      </div>
-      <div>
-        <Cards>
+      <Cards>
+        <FarmStakingCard />
           <TwitterCard />
-        </Cards>
-      </div>
+          <CakeStats />
+        <TotalValueLockedCard />
+      </Cards>
     </Page>
   )
 }

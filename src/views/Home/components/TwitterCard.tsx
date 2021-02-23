@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Card, CardBody, Heading } from '@pancakeswap-libs/uikit'
+import { Timeline } from 'react-twitter-widgets';
 
 const StyledTwitterCard = styled(Card)`
   align-items: center;
@@ -15,8 +16,17 @@ const TwitterCard = () => {
         <Heading size="lg" mb="24px">
           Our latest news
         </Heading>
-          <a className="twitter-timeline" href="https://twitter.com/milkswap_bsc?ref_src=twsrc%5Etfw">Tweets by milkswap_bsc</a>
-          <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8" />
+        <Timeline
+          dataSource={{
+            sourceType: 'profile',
+            screenName: 'milkswap_bsc'
+          }}
+          options={{
+            chrome: 'noheader, nofooter',
+            width: '400',
+            height: '250',
+          }}
+        />
       </CardBody>
     </StyledTwitterCard>
   )
