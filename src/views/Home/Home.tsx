@@ -5,6 +5,7 @@ import Page from 'components/layout/Page'
 import FarmStakingCard from 'views/Home/components/FarmStakingCard'
 import CakeStats from 'views/Home/components/CakeStats'
 import TotalValueLockedCard from 'views/Home/components/TotalValueLockedCard'
+import TwitterCard from './components/TwitterCard';
 
 const Hero = styled.div`
   align-items: center;
@@ -20,7 +21,7 @@ const Hero = styled.div`
   text-align: center;
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    background-image: url('/images/milk.png'), url('/images/milk.png');
+    background-image: url('/images/cup.svg'), url('/images/bowl.svg');
     background-position: left center, right center;
     background-size: contain;
     height: 165px;
@@ -82,6 +83,11 @@ const Home: React.FC = () => {
             <TotalValueLockedCard />
             <CakeStats />
           </div>
+        </Cards>
+      </div>
+      <div>
+        <Cards>
+          <TwitterCard />
         </Cards>
       </div>
     </Page>

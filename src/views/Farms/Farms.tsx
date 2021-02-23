@@ -1,10 +1,11 @@
 import React, { useEffect, useCallback, useState } from 'react'
 import { Route, useRouteMatch } from 'react-router-dom'
+import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 import BigNumber from 'bignumber.js'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { provider } from 'web3-core'
-import { Heading } from '@pancakeswap-libs/uikit'
+import { Heading, Text } from '@pancakeswap-libs/uikit'
 import { BLOCKS_PER_YEAR, CAKE_PER_BLOCK, CAKE_POOL_PID } from 'config'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
@@ -12,14 +13,12 @@ import { useFarms, usePriceBnbBusd, usePriceCakeBusd, usePriceEthBusd } from 'st
 import useRefresh from 'hooks/useRefresh'
 import { fetchFarmUserDataAsync } from 'state/actions'
 import { QuoteToken } from 'config/constants/types'
-import useI18n from 'hooks/useI18n'
 import FarmCard, { FarmWithStakedValue } from './components/FarmCard/FarmCard'
 import FarmTabButtons from './components/FarmTabButtons'
 import Divider from './components/Divider'
 
 const Farms: React.FC = () => {
   const { path } = useRouteMatch()
-  const TranslateString = useI18n()
   const farmsLP = useFarms()
   const cakePrice = usePriceCakeBusd()
   const bnbPrice = usePriceBnbBusd()
@@ -96,9 +95,24 @@ const Farms: React.FC = () => {
 
   return (
     <Page>
-      <Heading as="h1" size="lg" color="secondary" mb="50px" style={{ textAlign: 'center' }}>
-        Stake LP tokens to earn MILK
-      </Heading>
+      <Hero>
+        <img
+          src="/images/bucket.svg"
+          alt="Bucket icon"
+          style={{
+            height: '190px',
+            marginRight: '48px',
+          }}
+        />
+        <div>
+          <Heading as="h1" size="xxl" mb="16px">
+            Farms
+          </Heading>
+          <Text>
+            Stake LP tokens to earn MILK. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus nobis quasi molestias voluptas perferendis.
+          </Text>
+        </div>
+      </Hero>
       <FarmTabButtons stackedOnly={stackedOnly} setStackedOnly={setStackedOnly} />
       <div>
         <Divider />
@@ -114,5 +128,25 @@ const Farms: React.FC = () => {
     </Page>
   )
 }
+
+const Hero = styled.div`
+  align-items: center;
+  color: ${({ theme }) => theme.colors.primary};
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  justify-content: center;
+  padding: 48px 0;
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    font-size: 16px;
+    li {
+      margin-bottom: 4px;
+    }
+  }
+`
 
 export default Farms

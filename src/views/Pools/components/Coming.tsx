@@ -49,6 +49,7 @@ const Coming: React.FC = () => {
         <Button
           variant="secondary"
           as="a"
+          /* TODO: This link needs to be changed */
           href="https://docs.google.com/forms/d/e/1FAIpQLScGdT5rrVMr4WOWr08pvcroSeuIOtEJf1sVdQGVdcAOqryigQ/viewform"
           external
           fullWidth
@@ -63,11 +64,11 @@ const Coming: React.FC = () => {
         <DetailPlaceholder>
           <div style={{ flex: 1 }}>
             <span role="img" aria-label="syrup">
-              🥞{' '}
+              🥛{' '}
             </span>
             {TranslateString(384, 'Your Stake')}:
           </div>
-          <Value>??? CAKE</Value>
+          <Value>??? MILK</Value>
         </DetailPlaceholder>
       </div>
       <Footer>

@@ -3,7 +3,7 @@ import { Route, useRouteMatch } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
-import { Heading } from '@pancakeswap-libs/uikit'
+import { Heading, Text } from '@pancakeswap-libs/uikit'
 import { BLOCKS_PER_YEAR } from 'config'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
@@ -79,17 +79,22 @@ const Farm: React.FC = () => {
   return (
     <Page>
       <Hero>
+        <img
+          src="/images/bowl.svg"
+          alt="Bowl POOL icon"
+          style={{
+            height: '190px',
+            marginRight: '48px',
+          }}
+        />
         <div>
           <Heading as="h1" size="xxl" mb="16px">
             Pools
           </Heading>
-          <ul>
-            <li>Stake MILK to earn new tokens.</li>
-            <li>{TranslateString(486, 'You can unstake at any time.')}</li>
-            <li>{TranslateString(406, 'Rewards are calculated per block.')}</li>
-          </ul>
+          <Text>
+            Stake MILK to earn new tokens. You can unstake at any time. Rewards are calculated per block.
+          </Text>
         </div>
-        <img src="/images/syrup.png" alt="SYRUP POOL icon" width={410} height={191} />
       </Hero>
       <PoolTabButtons stackedOnly={stackedOnly} setStackedOnly={setStackedOnly} />
       <Divider />
@@ -115,12 +120,11 @@ const Farm: React.FC = () => {
 const Hero = styled.div`
   align-items: center;
   color: ${({ theme }) => theme.colors.primary};
-  display: grid;
-  grid-gap: 32px;
-  grid-template-columns: 1fr;
+  display: flex;
   margin-left: auto;
   margin-right: auto;
-  max-width: 250px;
+  width: 100%;
+  justify-content: center;
   padding: 48px 0;
   ul {
     margin: 0;
@@ -130,15 +134,6 @@ const Hero = styled.div`
     li {
       margin-bottom: 4px;
     }
-  }
-  img {
-    height: auto;
-    max-width: 100%;
-  }
-  @media (min-width: 576px) {
-    grid-template-columns: 1fr 1fr;
-    margin: 0;
-    max-width: none;
   }
 `
 
