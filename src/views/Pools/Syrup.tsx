@@ -96,8 +96,6 @@ const Farm: React.FC = () => {
           </Text>
         </div>
       </Hero>
-      <PoolTabButtons stackedOnly={stackedOnly} setStackedOnly={setStackedOnly} />
-      <Divider />
       <FlexLayout>
         <Route exact path={`${path}`}>
           <>

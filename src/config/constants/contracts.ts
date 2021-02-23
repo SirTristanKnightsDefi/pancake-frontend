@@ -1,19 +1,19 @@
 // TODO: Update the addresses
 export default {
   cake: {
-    97: '0xa35062141Fa33BCA92Ce69FeD37D0E8908868AAe',
+    97: '0x8399E869Cf18A4a55ecd935054f28295eFdeaCe2',
     56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
   },
   syrup: {
-    97: '0xfE1e507CeB712BDe086f3579d2c03248b2dB77f9',
+    97: '0xE52C3bEf19eE3F7F82a14AD2d0373544BF2E8C9E',
     56: '0x009cF7bC57584b7998236eff51b98A168DceA9B0',
   },
   masterChef: {
-    97: '0x1d32c2945C8FDCBc7156c553B7cEa4325a17f4f9',
+    97: '0xA1E4F26c0726e873094488315715D10d9848d3AA',
     56: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
   },
   sousChef: {
-    97: '0xd3af5fe61dbaf8f73149bfcfa9fb653ff096029a',
+    97: '0x6Bc1f818b0FA9fA4cB9fF1Bc36722771Dc2ff139',
     56: '0x6ab8463a4185b80905e05a9ff80a2d6b714b9e95',
   },
   wbnb: {

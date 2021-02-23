@@ -4,6 +4,21 @@ import { FarmConfig, QuoteToken } from './types'
 // TODO: Update the farms
 const farms: FarmConfig[] = [
   {
+    pid: 3,
+    lpSymbol: 'MILK-BNB LP',
+    lpAddresses: {
+      97: '0xAE954715BDE6E3Db412e6E20AD2284b311600669',
+      56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
+    },
+    tokenSymbol: 'MILK',
+    tokenAddresses: {
+      97: '0x8399e869cf18a4a55ecd935054f28295efdeace2',
+      56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
     pid: 0,
     lpSymbol: 'CAKE',
     lpAddresses: {
