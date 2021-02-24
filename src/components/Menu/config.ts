@@ -12,11 +12,11 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'Exchange',
-        href: 'https://exchange-milkswap.netlify.app/',
+        href: 'https://exchange.milkswap.app/',
       },
       {
         label: 'Liquidity',
-        href: 'https://exchange-milkswap.netlify.app//#/pool',
+        href: 'https://exchange.milkswap.app//#/pool',
       },
     ],
   },
@@ -40,7 +40,7 @@ const config: MenuEntry[] = [
       },
       {
         label: 'Blog',
-        href: 'https://milkswap.medium.com',
+        href: 'https://milk-swap.medium.com/',
       },
     ],
   },

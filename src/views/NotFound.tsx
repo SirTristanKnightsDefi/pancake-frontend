@@ -20,7 +20,7 @@ const NotFound = () => {
       <StyledNotFound>
         <img src="/images/milk.png" width="64px" alt="logo" />
         <Heading size="xxl">404</Heading>
-        <Text mb="16px">{TranslateString(1122, 'Oops, page not found.')}</Text>
+        <Text mb="16px">{TranslateString(1122, 'Oops, milk not found.')}</Text>
         <Button as="a" href="/" size="sm">
           {TranslateString(1124, 'Back Home')}
         </Button>
