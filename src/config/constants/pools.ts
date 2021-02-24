@@ -2,15 +2,14 @@ import { PoolConfig, QuoteToken, PoolCategory } from './types'
 
 // TODO: Update the address of the pools
 const pools: PoolConfig[] = [
-  /*
   {
     sousId: 0,
     tokenName: 'MILK',
     stakingTokenName: QuoteToken.MILK,
-    stakingTokenAddress: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
+    stakingTokenAddress: '0xb321921Df9C4D4790d54d2B6E4DD93C5Cd4d061A', // MILK
     contractAddress: {
-      97: '0xd3af5fe61dbaf8f73149bfcfa9fb653ff096029a',
-      56: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
+      97: '0xd3F6239Dd84893FFB94ccd57e1c4dB0408108509', // MasterChef
+      56: '0xd3F6239Dd84893FFB94ccd57e1c4dB0408108509', // MasterChef
     },
     poolCategory: PoolCategory.CORE,
     projectLink: 'https://milkswap.app',
@@ -20,7 +19,6 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
-  */
 ]
 
 export default pools
