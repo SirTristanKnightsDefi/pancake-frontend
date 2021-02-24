@@ -50,7 +50,7 @@ const Coming: React.FC = () => {
           variant="secondary"
           as="a"
           /* TODO: This link needs to be changed */
-          href="https://docs.google.com/forms/d/e/1FAIpQLScGdT5rrVMr4WOWr08pvcroSeuIOtEJf1sVdQGVdcAOqryigQ/viewform"
+          href="#"
           external
           fullWidth
           mb="16px"

@@ -40,7 +40,7 @@ const config: MenuEntry[] = [
       },
       {
         label: 'Blog',
-        href: 'https://milkswap.medium.com',
+        href: 'https://milk-swap.medium.com/',
       },
     ],
   },
