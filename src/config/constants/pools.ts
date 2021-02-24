@@ -2,6 +2,7 @@ import { PoolConfig, QuoteToken, PoolCategory } from './types'
 
 // TODO: Update the address of the pools
 const pools: PoolConfig[] = [
+  /*
   {
     sousId: 0,
     tokenName: 'MILK',
@@ -19,6 +20,7 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  */
 ]
 
 export default pools
