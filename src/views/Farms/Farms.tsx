@@ -111,7 +111,7 @@ const Farms: React.FC = () => {
             Farms
           </Heading>
           <Text>
-            Stake LP tokens to earn MILK. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus nobis quasi molestias voluptas perferendis.
+            Stake LP tokens to earn MILK.
           </Text>
         </div>
       </Hero>

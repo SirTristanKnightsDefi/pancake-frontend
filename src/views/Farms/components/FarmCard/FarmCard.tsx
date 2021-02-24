@@ -46,6 +46,7 @@ const StyledCardAccent = styled.div`
   border-radius: 16px;
   filter: blur(8px);
   position: absolute;
+  display: none;
   top: -2px;
   right: -2px;
   bottom: -2px;
