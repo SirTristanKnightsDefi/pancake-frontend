@@ -44,7 +44,7 @@ const CakeStats = () => {
         </Row>
         <Row>
           <Text fontSize="14px">New MILK/block</Text>
-          <CardValue fontSize="14px" decimals={0} value={1} />
+          <CardValue fontSize="14px" decimals={0} value={4} />
         </Row>
       </CardBodyExtended>
     </StyledCakeStats>
