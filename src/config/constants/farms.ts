@@ -44,8 +44,8 @@ const farms: FarmConfig[] = [
       97: '0xe9e7cea3dedca5984780bafc599bd69add087d56', // BUSD
       56: '0xe9e7cea3dedca5984780bafc599bd69add087d56', // BUSD
     },
-    quoteTokenSymbol: QuoteToken.BNB,
-    quoteTokenAdresses: contracts.wbnb,
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
   },
   {
     pid: 3,
@@ -59,8 +59,8 @@ const farms: FarmConfig[] = [
       97: '0x26aB5131DD666B4179aC909926ee3C18eE05E470', // MILK
       56: '0x26aB5131DD666B4179aC909926ee3C18eE05E470', // MILK
     },
-    quoteTokenSymbol: QuoteToken.BNB,
-    quoteTokenAdresses: contracts.wbnb,
+    quoteTokenSymbol: QuoteToken.MILK,
+    quoteTokenAdresses: contracts.milk,
   },
   {
     pid: 4,
