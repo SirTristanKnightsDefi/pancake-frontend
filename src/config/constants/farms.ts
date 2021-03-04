@@ -21,8 +21,8 @@ const farms: FarmConfig[] = [
     pid: 1,
     lpSymbol: 'TABLE-BNB LP',
     lpAddresses: {
-      97: '0x3468eac4eFB3e1FCeB3229Bc86F35da7749b0bCa', // KNIGHT-BNB LP
-      56: '0x3468eac4eFB3e1FCeB3229Bc86F35da7749b0bCa', // KNIGHT-BNB LP
+      97: '0x3468eac4eFB3e1FCeB3229Bc86F35da7749b0bCa', // TABLE-BNB LP
+      56: '0x3468eac4eFB3e1FCeB3229Bc86F35da7749b0bCa', // TABLE-BNB LP
     },
     tokenSymbol: 'TABLE',
     tokenAddresses: {
