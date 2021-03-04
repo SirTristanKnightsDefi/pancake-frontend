@@ -19,15 +19,15 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 1,
-    lpSymbol: 'KNIGHT-BNB LP',
+    lpSymbol: 'TABLE-BNB LP',
     lpAddresses: {
-      97: '0x85CAf926427B9B930Bc858ADD1CCC15cE1581Db0', // TABLE-BNB LP
-      56: '0x85CAf926427B9B930Bc858ADD1CCC15cE1581Db0', // TABLE-BNB LP
+      97: '0x3468eac4eFB3e1FCeB3229Bc86F35da7749b0bCa', // TABLE-BNB LP
+      56: '0x3468eac4eFB3e1FCeB3229Bc86F35da7749b0bCa', // TABLE-BNB LP
     },
-    tokenSymbol: 'KNIGHT',
+    tokenSymbol: 'TABLE',
     tokenAddresses: {
-      97: '0xa828ED8000B0B7e881DAC3922D4c9bB1b0BA92a9', // KNIGHT
-      56: '0xa828ED8000B0B7e881DAC3922D4c9bB1b0BA92a9', // KNIGHT
+      97: '0xf5a2f7418035ce76967f515f39d65719bb0453b6', // TABLE
+      56: '0xf5a2f7418035ce76967f515f39d65719bb0453b6', // TABLE
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
