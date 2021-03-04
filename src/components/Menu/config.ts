@@ -12,11 +12,11 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'Exchange',
-        href: 'https://exchange.milkswap.app/',
+        href: 'https://exchange.knightswap.app/',
       },
       {
         label: 'Liquidity',
-        href: 'https://exchange.milkswap.app//#/pool',
+        href: 'https://exchange.knightswap.app//#/pool',
       },
     ],
   },
@@ -36,11 +36,11 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'Github',
-        href: 'https://github.com/milkswap',
+        href: 'https://github.com/knightswap',
       },
       {
         label: 'Blog',
-        href: 'https://milk-swap.medium.com/',
+        href: 'https://knight-swap.medium.com/',
       },
     ],
   },

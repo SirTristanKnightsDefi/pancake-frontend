@@ -11,7 +11,7 @@ const Wrapper = styled(Page)`
 const PageLoader: React.FC = () => {
   return (
     <Wrapper>
-      <img src="/images/milk.png" width="64px" alt="logo" />
+      <img src="/images/knight.png" width="64px" alt="logo" />
     </Wrapper>
   )
 }

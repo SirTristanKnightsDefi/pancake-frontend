@@ -240,7 +240,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "accMilkPerShare",
+        "name": "accKnightPerShare",
         "type": "uint256"
       }
     ],
@@ -437,7 +437,7 @@
         "type": "address"
       }
     ],
-    "name": "pendingMilk",
+    "name": "pendingKnight",
     "outputs": [
       {
         "internalType": "uint256",
