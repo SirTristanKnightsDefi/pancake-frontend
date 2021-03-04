@@ -36,8 +36,8 @@ const farms: FarmConfig[] = [
     pid: 2,
     lpSymbol: 'KNIGHT-BUSD LP',
     lpAddresses: {
-      97: '0xDC6252e0D0C265edD682D482c1baf6F917796A04', // KNIGHT-BUSD LP
-      56: '0xDC6252e0D0C265edD682D482c1baf6F917796A04', // KNIGHT-BUSD LP
+      97: '0xe6437ae391b0437BA349BB25160E2Cb8D602C358', // KNIGHT-BUSD LP
+      56: '0xe6437ae391b0437BA349BB25160E2Cb8D602C358', // KNIGHT-BUSD LP
     },
     tokenSymbol: 'BUSD',
     tokenAddresses: {
