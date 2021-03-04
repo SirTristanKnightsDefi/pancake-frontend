@@ -48,21 +48,6 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.busd,
   },
   {
-    pid: 3,
-    lpSymbol: 'MILK-CAKE LP',
-    lpAddresses: {
-      97: '0xE2DD1214a65a173Dce04372930Fc0a22F8df7f23', // MILK-CAKE LP
-      56: '0xE2DD1214a65a173Dce04372930Fc0a22F8df7f23', // MILK-CAKE LP
-    },
-    tokenSymbol: 'MILK',
-    tokenAddresses: {
-      97: '0xa828ED8000B0B7e881DAC3922D4c9bB1b0BA92a9', // MILK
-      56: '0xa828ED8000B0B7e881DAC3922D4c9bB1b0BA92a9', // MILK
-    },
-    quoteTokenSymbol: QuoteToken.MILK,
-    quoteTokenAdresses: contracts.milk,
-  },
-  {
     pid: 4,
     lpSymbol: 'BUSD-BNB LP',
     lpAddresses: {
