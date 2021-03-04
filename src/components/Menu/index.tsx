@@ -9,8 +9,7 @@ import config from './config'
 const Menu = (props) => {
   const { account, connect, reset } = useWallet()
   const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
-  const knightPriceUsd = usePriceCakeBusd()
-  const tablePriceUsd = usePriceCakeBusd()
+  const cakePriceUsd = usePriceCakeBusd()
 
   return (
     <UikitMenu
