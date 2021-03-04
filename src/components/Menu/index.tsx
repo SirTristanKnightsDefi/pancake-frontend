@@ -9,7 +9,8 @@ import config from './config'
 const Menu = (props) => {
   const { account, connect, reset } = useWallet()
   const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
-  const cakePriceUsd = usePriceCakeBusd()
+  const knightPriceUsd = usePriceCakeBusd()
+  const tablePriceUsd = usePriceCakeBusd()
 
   return (
     <UikitMenu
@@ -22,7 +23,8 @@ const Menu = (props) => {
       currentLang={selectedLanguage && selectedLanguage.code}
       langs={allLanguages}
       setLang={setSelectedLanguage}
-      cakePriceUsd={cakePriceUsd.toNumber()}
+      knightPriceUsd={cakePriceUsd.toNumber()}
+      tablePriceUsd={cakePriceUsd.toNumber()}
       links={config}
       {...props}
     />

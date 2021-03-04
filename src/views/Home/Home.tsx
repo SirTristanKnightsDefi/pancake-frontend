@@ -65,11 +65,11 @@ const Home: React.FC = () => {
     <Page>
       <Hero>
         <FatHeading as="h1" size="xl" mb="24px" color="secondary">
-          {/* TranslateString(576, 'PancakeSwap') */}
+          {/* TranslateString(576, 'Knights of the Round Table') */}
           KnightSwap
         </FatHeading>
         <FatText>
-          {/* TranslateString(578, 'The #1 AMM and yield farm on Binance Smart Chain.') */}
+          {/* TranslateString(578, 'A new approach to DeFi with Integrity.') */}
           The knightiest AMM and yield farm on Binance Smart Chain.
         </FatText>
       </Hero>
