@@ -49,15 +49,15 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 3,
-    lpSymbol: 'KNIGHT-BUSD LP',
+    lpSymbol: 'TABLE-KNIGHT LP',
     lpAddresses: {
-      97: '0xe6437ae391b0437BA349BB25160E2Cb8D602C358', // KNIGHT-BUSD LP
-      56: '0xe6437ae391b0437BA349BB25160E2Cb8D602C358', // KNIGHT-BUSD LP
+      97: '', // TABLE-KNIGHT LP
+      56: '', // TABLE-KNIGHT LP
     },
-    tokenSymbol: 'BUSD',
+    tokenSymbol: 'TABLE',
     tokenAddresses: {
-      97: '0xe9e7cea3dedca5984780bafc599bd69add087d56', // BUSD
-      56: '0xe9e7cea3dedca5984780bafc599bd69add087d56', // BUSD
+      97: '0xf5a2f7418035ce76967f515f39d65719bb0453b6', // TABLE
+      56: '0xf5a2f7418035ce76967f515f39d65719bb0453b6', // TABLE
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
