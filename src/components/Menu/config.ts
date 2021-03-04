@@ -7,20 +7,6 @@ const config: MenuEntry[] = [
     href: '/',
   },
   {
-    label: 'Trade',
-    icon: 'TradeIcon',
-    items: [
-      {
-        label: 'Exchange',
-        href: 'https://exchange.pancakeswap.finance/',
-      },
-      {
-        label: 'Liquidity',
-        href: 'https://exchange.pancakeswap.finance//#/pool',
-      },
-    ],
-  },
-  {
     label: 'Farms',
     icon: 'FarmIcon',
     href: '/farms',
@@ -35,12 +21,8 @@ const config: MenuEntry[] = [
     icon: 'MoreIcon',
     items: [
       {
-        label: 'Github',
-        href: 'https://github.com/knightswap',
-      },
-      {
         label: 'Blog',
-        href: 'https://knight-swap.medium.com/',
+        href: 'https://knightsoftheroundtable-bsc.medium.com/',
       },
     ],
   },
