@@ -12,11 +12,11 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'Exchange',
-        href: 'https://exchange.knightswap.app/',
+        href: 'https://exchange.pancakeswap.finance/',
       },
       {
         label: 'Liquidity',
-        href: 'https://exchange.knightswap.app//#/pool',
+        href: 'https://exchange.pancakeswap.finance//#/pool',
       },
     ],
   },
