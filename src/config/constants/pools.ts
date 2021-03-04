@@ -5,10 +5,10 @@ const pools: PoolConfig[] = [
     sousId: 0,
     tokenName: 'MILK',
     stakingTokenName: QuoteToken.MILK,
-    stakingTokenAddress: '0x26aB5131DD666B4179aC909926ee3C18eE05E470', // MILK
+    stakingTokenAddress: '0xa828ED8000B0B7e881DAC3922D4c9bB1b0BA92a9', // MILK
     contractAddress: {
-      97: '0xD3C61Cf8dE84E6b4B5dB7E25739b8435860b84e3', // MasterChef
-      56: '0xD3C61Cf8dE84E6b4B5dB7E25739b8435860b84e3', // MasterChef
+      97: '0x46D121E50e04A9F52Ab8A71523FCB84FbA36D27a', // MasterChef
+      56: '0x46D121E50e04A9F52Ab8A71523FCB84FbA36D27a', // MasterChef
     },
     poolCategory: PoolCategory.CORE,
     projectLink: 'https://milkswap.app',

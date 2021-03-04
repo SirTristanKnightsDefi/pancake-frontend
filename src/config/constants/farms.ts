@@ -4,30 +4,30 @@ import { FarmConfig, QuoteToken } from './types'
 const farms: FarmConfig[] = [
   {
     pid: 0,
-    lpSymbol: 'MILK',
+    lpSymbol: 'KNIGHT',
     lpAddresses: {
-      97: '0x26aB5131DD666B4179aC909926ee3C18eE05E470', // MILK
-      56: '0x26aB5131DD666B4179aC909926ee3C18eE05E470', // MILK
+      97: '0xa828ED8000B0B7e881DAC3922D4c9bB1b0BA92a9', // MILK
+      56: '0xa828ED8000B0B7e881DAC3922D4c9bB1b0BA92a9', // MILK
     },
-    tokenSymbol: 'FOAM',
+    tokenSymbol: 'HONOR',
     tokenAddresses: {
-      97: '0x26aB5131DD666B4179aC909926ee3C18eE05E470', // MILK
-      56: '0x26aB5131DD666B4179aC909926ee3C18eE05E470', // MILK
+      97: '0xa828ED8000B0B7e881DAC3922D4c9bB1b0BA92a9', // MILK
+      56: '0xa828ED8000B0B7e881DAC3922D4c9bB1b0BA92a9', // MILK
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
   },
   {
     pid: 1,
-    lpSymbol: 'MILK-BNB LP',
+    lpSymbol: 'TABLE-BNB LP',
     lpAddresses: {
-      97: '0xDAC965EcF6f44C95e1934Ce311438C3eFF2a17e6', // MILK-BNB LP
-      56: '0xDAC965EcF6f44C95e1934Ce311438C3eFF2a17e6', // MILK-BNB LP
+      97: '0x3468eac4eFB3e1FCeB3229Bc86F35da7749b0bCa', // MILK-BNB LP
+      56: '0x3468eac4eFB3e1FCeB3229Bc86F35da7749b0bCa', // MILK-BNB LP
     },
-    tokenSymbol: 'MILK',
+    tokenSymbol: 'TABLE',
     tokenAddresses: {
-      97: '0x26aB5131DD666B4179aC909926ee3C18eE05E470', // MILK
-      56: '0x26aB5131DD666B4179aC909926ee3C18eE05E470', // MILK
+      97: '0xa828ED8000B0B7e881DAC3922D4c9bB1b0BA92a9', // MILK
+      56: '0xa828ED8000B0B7e881DAC3922D4c9bB1b0BA92a9', // MILK
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
@@ -56,8 +56,8 @@ const farms: FarmConfig[] = [
     },
     tokenSymbol: 'MILK',
     tokenAddresses: {
-      97: '0x26aB5131DD666B4179aC909926ee3C18eE05E470', // MILK
-      56: '0x26aB5131DD666B4179aC909926ee3C18eE05E470', // MILK
+      97: '0xa828ED8000B0B7e881DAC3922D4c9bB1b0BA92a9', // MILK
+      56: '0xa828ED8000B0B7e881DAC3922D4c9bB1b0BA92a9', // MILK
     },
     quoteTokenSymbol: QuoteToken.MILK,
     quoteTokenAdresses: contracts.milk,
