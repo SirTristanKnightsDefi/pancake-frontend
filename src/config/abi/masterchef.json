@@ -2,13 +2,13 @@
   {
     "inputs": [
       {
-        "internalType": "contract MilkToken",
-        "name": "_milk",
+        "internalType": "contract KnightToken",
+        "name": "_knight",
         "type": "address"
       },
       {
-        "internalType": "contract FoamBar",
-        "name": "_foam",
+        "internalType": "contract HonorBar",
+        "name": "_honor",
         "type": "address"
       },
       {
@@ -18,7 +18,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "_milkPerBlock",
+        "name": "_knightPerBlock",
         "type": "uint256"
       },
       {
@@ -159,10 +159,10 @@
   },
   {
     "inputs": [],
-    "name": "foam",
+    "name": "honor",
     "outputs": [
       {
-        "internalType": "contract FoamBar",
+        "internalType": "contract HonorBar",
         "name": "",
         "type": "address"
       }
@@ -173,7 +173,7 @@
   },
   {
     "inputs": [],
-    "name": "milk",
+    "name": "knight",
     "outputs": [
       {
         "internalType": "contract MilkToken",
@@ -187,7 +187,7 @@
   },
   {
     "inputs": [],
-    "name": "milkPerBlock",
+    "name": "knightPerBlock",
     "outputs": [
       {
         "internalType": "uint256",
