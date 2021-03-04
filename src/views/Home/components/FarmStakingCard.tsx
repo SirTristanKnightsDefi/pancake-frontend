@@ -60,11 +60,11 @@ const FarmedStakingCard = () => {
           {TranslateString(542, 'Farms & Staking')}
         </Heading>
         <Block>
-          <Label>MILK to Harvest:</Label>
+          <Label>KNIGHT to Harvest:</Label>
           <CakeHarvestBalance />
         </Block>
         <Block>
-          <Label>MILK in Wallet:</Label>
+          <Label>KNIGHT in Wallet:</Label>
           <CakeWalletBalance />
         </Block>
         <Actions>
@@ -76,7 +76,7 @@ const FarmedStakingCard = () => {
               fullWidth
             >
               {pendingTx
-                ? TranslateString(548, 'Collecting MILK')
+                ? TranslateString(548, 'Collecting KNIGHT')
                 : TranslateString(532, `Harvest all (${balancesWithValue.length})`)}
             </Button>
           ) : (

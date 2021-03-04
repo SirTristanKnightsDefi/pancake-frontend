@@ -92,7 +92,7 @@ const Farm: React.FC = () => {
             Pools
           </Heading>
           <Text>
-            Stake MILK to earn new tokens. You can unstake at any time. Rewards are calculated per block.
+            Stake KNIGHT to earn new tokens. You can unstake at any time. Rewards are calculated per block.
           </Text>
         </div>
       </Hero>

@@ -1,6 +1,6 @@
 export default {
   cake: {
-    97: '0xa828ED8000B0B7e881DAC3922D4c9bB1b0BA92a9', // Same as MILK
+    97: '0xa828ED8000B0B7e881DAC3922D4c9bB1b0BA92a9', // Same as KNIGHT
     56: '0xa828ED8000B0B7e881DAC3922D4c9bB1b0BA92a9',
   },
   knight: {

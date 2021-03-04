@@ -176,7 +176,7 @@
     "name": "knight",
     "outputs": [
       {
-        "internalType": "contract MilkToken",
+        "internalType": "contract KnightToken",
         "name": "",
         "type": "address"
       }

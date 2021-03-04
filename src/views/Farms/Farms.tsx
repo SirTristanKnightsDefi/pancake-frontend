@@ -62,7 +62,7 @@ const Farms: React.FC = () => {
           apy = cakePrice.div(ethPriceUsd).times(cakeRewardPerYear).div(farm.lpTotalInQuoteToken)
         } else if (farm.quoteTokenSymbol === QuoteToken.CAKE) {
           apy = cakeRewardPerYear.div(farm.lpTotalInQuoteToken)
-        } else if (farm.quoteTokenSymbol === QuoteToken.MILK) {
+        } else if (farm.quoteTokenSymbol === QuoteToken.KNIGHT) {
           apy = cakeRewardPerYear.div(farm.lpTotalInQuoteToken)
         } else if (farm.dual) {
           const cakeApy =
@@ -111,7 +111,7 @@ const Farms: React.FC = () => {
             Farms
           </Heading>
           <Text>
-            Stake LP tokens to earn MILK.
+            Stake LP tokens to earn KNIGHT.
           </Text>
         </div>
       </Hero>
