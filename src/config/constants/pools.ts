@@ -5,10 +5,10 @@ const pools: PoolConfig[] = [
     sousId: 0,
     tokenName: 'KNIGHT',
     stakingTokenName: QuoteToken.KNIGHT,
-    stakingTokenAddress: '0xa828ED8000B0B7e881DAC3922D4c9bB1b0BA92a9', // KNIGHT
+    stakingTokenAddress: '0xC36649fF473e0a558eC50b0F8ce650940B9BA701', // KNIGHT
     contractAddress: {
-      97: '0x46D121E50e04A9F52Ab8A71523FCB84FbA36D27a', // MasterChef
-      56: '0x46D121E50e04A9F52Ab8A71523FCB84FbA36D27a', // MasterChef
+      97: '0xdf79B790f18CCe224d4d2DB7Fa6835c50BCF2C89', // MasterChef
+      56: '0xdf79B790f18CCe224d4d2DB7Fa6835c50BCF2C89', // MasterChef
     },
     poolCategory: PoolCategory.CORE,
     projectLink: 'https://pancakeswap.finance',

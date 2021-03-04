@@ -6,13 +6,13 @@ const farms: FarmConfig[] = [
     pid: 0,
     lpSymbol: 'KNIGHT',
     lpAddresses: {
-      97: '0xa828ED8000B0B7e881DAC3922D4c9bB1b0BA92a9', // KNIGHT
-      56: '0xa828ED8000B0B7e881DAC3922D4c9bB1b0BA92a9', // KNIGHT
+      97: '0xC36649fF473e0a558eC50b0F8ce650940B9BA701', // KNIGHT
+      56: '0xC36649fF473e0a558eC50b0F8ce650940B9BA701', // KNIGHT
     },
     tokenSymbol: 'HONOR',
     tokenAddresses: {
-      97: '0xa828ED8000B0B7e881DAC3922D4c9bB1b0BA92a9', // KNIGHT
-      56: '0xa828ED8000B0B7e881DAC3922D4c9bB1b0BA92a9', // KNIGHT
+      97: '0xC36649fF473e0a558eC50b0F8ce650940B9BA701', // KNIGHT
+      56: '0xC36649fF473e0a558eC50b0F8ce650940B9BA701', // KNIGHT
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
@@ -21,13 +21,13 @@ const farms: FarmConfig[] = [
     pid: 1,
     lpSymbol: 'KNIGHT-BNB LP',
     lpAddresses: {
-      97: '0x85CAf926427B9B930Bc858ADD1CCC15cE1581Db0', // KNIGHT-BNB LP
-      56: '0x85CAf926427B9B930Bc858ADD1CCC15cE1581Db0', // KNIGHT-BNB LP
+      97: '0x1317b02f2bad31E2E52c38438db4f9eafA8d7B4b', // KNIGHT-BNB LP
+      56: '0x1317b02f2bad31E2E52c38438db4f9eafA8d7B4b', // KNIGHT-BNB LP
     },
     tokenSymbol: 'KNIGHT',
     tokenAddresses: {
-      97: '0xa828ED8000B0B7e881DAC3922D4c9bB1b0BA92a9', // KNIGHT
-      56: '0xa828ED8000B0B7e881DAC3922D4c9bB1b0BA92a9', // KNIGHT
+      97: '0xC36649fF473e0a558eC50b0F8ce650940B9BA701', // KNIGHT
+      56: '0xC36649fF473e0a558eC50b0F8ce650940B9BA701', // KNIGHT
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
@@ -51,8 +51,8 @@ const farms: FarmConfig[] = [
     pid: 3,
     lpSymbol: 'TABLE-KNIGHT LP',
     lpAddresses: {
-      97: '', // TABLE-KNIGHT LP
-      56: '', // TABLE-KNIGHT LP
+      97: '0x98CEFEBE13eB3F66965e30C57db1cA45C8D554b7', // TABLE-KNIGHT LP
+      56: '0x98CEFEBE13eB3F66965e30C57db1cA45C8D554b7', // TABLE-KNIGHT LP
     },
     tokenSymbol: 'TABLE',
     tokenAddresses: {
