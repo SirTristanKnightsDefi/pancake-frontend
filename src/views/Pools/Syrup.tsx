@@ -3,7 +3,7 @@ import { Route, useRouteMatch } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
-import { Heading, Text } from '@pancakeswap-libs/uikit'
+import { Heading, Text } from '@Huwonk/KnightsOfTheRoundTableBSC-uikit'
 import { BLOCKS_PER_YEAR } from 'config'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
@@ -80,7 +80,7 @@ const Farm: React.FC = () => {
     <Page>
       <Hero>
         <img
-          src="/images/bowl.svg"
+          src="/images/table.svg"
           alt="Bowl POOL icon"
           style={{
             height: '190px',

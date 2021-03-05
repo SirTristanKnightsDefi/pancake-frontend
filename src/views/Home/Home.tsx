@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, Text, BaseLayout } from '@pancakeswap-libs/uikit'
+import { Heading, Text, BaseLayout } from '@Huwonk/KnightsOfTheRoundTableBSC-uikit'
 import Page from 'components/layout/Page'
 import FarmStakingCard from 'views/Home/components/FarmStakingCard'
 import CakeStats from 'views/Home/components/CakeStats'
@@ -21,7 +21,7 @@ const Hero = styled.div`
   text-align: center;
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    background-image: url('/images/bucket.svg'), url('/images/bowl.svg');
+    background-image: url('/images/excalibur.png'), url('/images/excalibur.png');
     background-position: left center, right center;
     background-size: contain;
     height: 165px;
@@ -66,11 +66,11 @@ const Home: React.FC = () => {
       <Hero>
         <FatHeading as="h1" size="xl" mb="24px" color="secondary">
           {/* TranslateString(576, 'Knights of the Round Table') */}
-          KnightSwap
+          Knights of the Round Table DeFi
         </FatHeading>
         <FatText>
           {/* TranslateString(578, 'A new approach to DeFi with Integrity.') */}
-          The knightiest AMM and yield farm on Binance Smart Chain.
+          A new approach to DeFi with Integrity, Honor, and Nobility.
         </FatText>
       </Hero>
       <Cards>
