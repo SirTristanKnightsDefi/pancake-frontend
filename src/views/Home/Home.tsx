@@ -66,11 +66,11 @@ const Home: React.FC = () => {
       <Hero>
         <FatHeading as="h1" size="xl" mb="24px" color="secondary">
           {/* TranslateString(576, 'Knights of the Round Table') */}
-          KnightSwap
+          Knights of the Round Table DeFi
         </FatHeading>
         <FatText>
           {/* TranslateString(578, 'A new approach to DeFi with Integrity.') */}
-          The knightiest AMM and yield farm on Binance Smart Chain.
+          A new approach to DeFi with Integrity, Honor, and Nobility.
         </FatText>
       </Hero>
       <Cards>
