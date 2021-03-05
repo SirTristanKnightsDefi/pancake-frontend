@@ -99,7 +99,7 @@ const Farms: React.FC = () => {
     <Page>
       <Hero>
         <img
-          src="/images/bucket.svg"
+          src="/images/table.svg"
           alt="Bucket icon"
           style={{
             height: '190px',

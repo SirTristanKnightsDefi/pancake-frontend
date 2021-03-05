@@ -21,7 +21,7 @@ const Hero = styled.div`
   text-align: center;
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    background-image: url('/images/bucket.svg'), url('/images/bowl.svg');
+    background-image: url('/images/table.svg'), url('/images/table.svg');
     background-position: left center, right center;
     background-size: contain;
     height: 165px;
