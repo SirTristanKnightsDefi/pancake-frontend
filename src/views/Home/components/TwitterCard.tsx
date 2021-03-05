@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Card, CardBody, Heading } from '@pancakeswap-libs/uikit'
+import { Card, CardBody, Heading } from '@Huwonk/KnightsOfTheRoundTableBSC-uikit'
 import { Timeline } from 'react-twitter-widgets';
 
 const StyledTwitterCard = styled(Card)`
