@@ -25,7 +25,7 @@
     ]
   },
   "dependencies": {
-    "@Huwonk/KnightsOfTheRoundTableBSC-uikit": "https://github.com/Pancakeswap/pancake-uikit.git",
+    "@Huwonk/KnightsOfTheRoundTableBSC-uikit": "https://github.com/Huwonk/KnightsOfTheRoundTableBSC-uikit.git",
     "@binance-chain/bsc-use-wallet": "^0.8.1",
     "@crowdin/crowdin-api-client": "^1.10.4",
     "@ethersproject/abi": "^5.0.7",
