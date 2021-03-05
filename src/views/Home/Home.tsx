@@ -9,7 +9,7 @@ import TwitterCard from './components/TwitterCard';
 
 const Hero = styled.div`
   align-items: center;
-  background-image: url('/images/pan-bg-mobile.svg');
+  background-image: url('/images/excalibur.png');
   background-repeat: no-repeat;
   background-position: top center;
   display: flex;
@@ -21,7 +21,7 @@ const Hero = styled.div`
   text-align: center;
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    background-image: url('/images/excalibur.png'), url('/images/excalibur.png');
+    background-image: url('/images/excalibur.png'), url('/images/grail.png');
     background-position: left center, right center;
     background-size: contain;
     height: 165px;
