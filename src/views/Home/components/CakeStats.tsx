@@ -44,7 +44,7 @@ const CakeStats = () => {
         </Row>
         <Row>
           <Text fontSize="14px">New KNIGHT/block</Text>
-          <CardValue fontSize="14px" decimals={0} value={1} />
+          <CardValue fontSize="14px" decimals={0} value={20} />
         </Row>
       </CardBodyExtended>
     </StyledCakeStats>
