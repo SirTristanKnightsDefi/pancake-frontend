@@ -107,6 +107,13 @@ export const usePriceEthBnb = (): BigNumber => {
   return priceEthBusd.div(priceBnbBusd)
 }
 
+export const usePriceTableBusd = (): BigNumber => {
+  const pid = 2 // TABLE-BNB LP
+  const bnbPriceUSD = usePriceBnbBusd()
+  const farm = useFarmFromPid(pid)
+  return farm.tokenPriceVsQuote ? bnbPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
+}
+
 // Toasts
 export const useToast = () => {
   const dispatch = useDispatch()
