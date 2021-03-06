@@ -80,7 +80,7 @@ const Farm: React.FC = () => {
     <Page>
       <Hero>
         <img
-          src="/images/table.svg"
+          src="/images/excalibur.png"
           alt="Knight POOL icon"
           style={{
             height: '190px',
