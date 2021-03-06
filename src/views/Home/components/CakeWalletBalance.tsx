@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text } from '@Huwonk/KnightsOfTheRoundTableBSC-uikit'
+import { Text } from '@pancakeswap-libs/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import useTokenBalance from 'hooks/useTokenBalance'
 import useI18n from 'hooks/useI18n'

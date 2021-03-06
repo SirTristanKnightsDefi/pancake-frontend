@@ -1,4 +1,4 @@
-import { MenuEntry } from '@Huwonk/KnightsOfTheRoundTableBSC-uikit'
+import { MenuEntry } from '@pancakeswap-libs/uikit'
 
 const config: MenuEntry[] = [
   {

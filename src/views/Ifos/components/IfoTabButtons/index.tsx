@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useRouteMatch, Link } from 'react-router-dom'
-import { ButtonMenu, ButtonMenuItem } from '@Huwonk/KnightsOfTheRoundTableBSC-uikit'
+import { ButtonMenu, ButtonMenuItem } from '@pancakeswap-libs/uikit'
 
 const Wrapper = styled.div`
   display: flex;

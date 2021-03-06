@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { ThemeProvider as SCThemeProvider } from 'styled-components'
-import { light } from '@Huwonk/KnightsOfTheRoundTableBSC-uikit'
+import { light } from '@pancakeswap-libs/uikit'
 
 const CACHE_KEY = 'IS_DARK'
 
