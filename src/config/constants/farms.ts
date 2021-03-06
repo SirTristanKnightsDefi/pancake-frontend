@@ -59,8 +59,8 @@ const farms: FarmConfig[] = [
       97: '0xf5a2f7418035ce76967f515f39d65719bb0453b6', // TABLE
       56: '0xf5a2f7418035ce76967f515f39d65719bb0453b6', // TABLE
     },
-    quoteTokenSymbol: QuoteToken.TABLE,
-    quoteTokenAdresses: contracts.table,
+    quoteTokenSymbol: QuoteToken.KNIGHT,
+    quoteTokenAdresses: contracts.knight,
   },
   {
     pid: 4,
