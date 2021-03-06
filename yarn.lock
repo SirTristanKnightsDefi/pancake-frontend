@@ -1903,7 +1903,7 @@
 
 "@pancakeswap-libs/uikit@https://github.com/Huwonk/KnightsOfTheRoundTableBSC-uikit.git":
   version "0.12.0"
-  resolved "https://github.com/Huwonk/KnightsOfTheRoundTableBSC-uikit.git"
+  resolved "https://github.com/Huwonk/KnightsOfTheRoundTableBSC-uikit.git#123b30ae60b002dc23559dbfe203af33bc0cfc99"
   dependencies:
     "@rollup/plugin-image" "^2.0.6"
     "@types/lodash" "^4.14.162"
