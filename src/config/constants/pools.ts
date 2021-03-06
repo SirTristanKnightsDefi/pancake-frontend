@@ -11,7 +11,7 @@ const pools: PoolConfig[] = [
       56: '0x0E9b7E13a543b7F1651A6BB03a47900515eBceCf', // MasterChef
     },
     poolCategory: PoolCategory.CORE,
-    projectLink: 'https://pancakeswap.finance',
+    projectLink: 'https://www.knightsdefi.com',
     harvest: true,
     tokenPerBlock: '1',
     sortOrder: 1,
