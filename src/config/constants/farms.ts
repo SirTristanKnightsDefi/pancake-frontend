@@ -74,8 +74,8 @@ const farms: FarmConfig[] = [
       97: '0xe9e7cea3dedca5984780bafc599bd69add087d56', // BUSD
       56: '0xe9e7cea3dedca5984780bafc599bd69add087d56', // BUSD
     },
-    quoteTokenSymbol: QuoteToken.BUSD,
-    quoteTokenAdresses: contracts.busd,
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
   },
 ]
 
