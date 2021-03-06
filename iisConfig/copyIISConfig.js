@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 
-const webConfigPath = './build/web.config';
+const webConfigPath = './dist/web.config';
 
 if (fs.existsSync(webConfigPath)) {
     fs.unlinkSync(webConfigPath);
