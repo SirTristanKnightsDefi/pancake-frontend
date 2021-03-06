@@ -2,17 +2,6 @@
 # yarn lockfile v1
 
 
-"@pancakeswap-libs/uikit@https://github.com/Huwonk/KnightsOfTheRoundTableBSC-uikit.git":
-  version "0.12.0"
-  resolved "https://github.com/Huwonk/KnightsOfTheRoundTableBSC-uikit.git#d23457d0302dc294c02b631ef92b70d2ee577e2a"
-  dependencies:
-    "@rollup/plugin-image" "^2.0.6"
-    "@types/lodash" "^4.14.162"
-    "@types/styled-system" "^5.1.10"
-    lodash "^4.17.20"
-    react-transition-group "^4.4.1"
-    styled-system "^5.1.5"
-
 "@aragon/provided-connector@^6.0.7":
   version "6.0.8"
   resolved "https://registry.yarnpkg.com/@aragon/provided-connector/-/provided-connector-6.0.8.tgz#5d22ccb2a0ff599fbe6c23fdf96cb06d59ff2716"
@@ -1874,20 +1863,9 @@
     eslint-plugin-react "^7.21.5"
     eslint-plugin-react-hooks "^4.0.0"
 
-"@pancakeswap-libs/uikit@^0.13.1":
-  version "0.13.1"
-  resolved "https://registry.yarnpkg.com/@pancakeswap-libs/uikit/-/uikit-0.13.1.tgz#75e9feaa46ea9e195381c5a218b7652f08b19c5e"
-  integrity sha512-1Fs0mAFK3xRLYw9elSv3lvDDDnLJlv8bNWMug/Z29jCIoKBRM83P9TeijB8vj6dLhu6srs9p9NYTixgxURGDpQ==
-  dependencies:
-    "@types/lodash" "^4.14.162"
-    "@types/styled-system" "^5.1.10"
-    lodash "^4.17.20"
-    react-transition-group "^4.4.1"
-    styled-system "^5.1.5"
-
 "@pancakeswap-libs/uikit@https://github.com/Huwonk/KnightsOfTheRoundTableBSC-uikit.git":
   version "0.12.0"
-  resolved "https://github.com/Huwonk/KnightsOfTheRoundTableBSC-uikit.git#3e5a26f0b8e1140cb5e9beabda482f4c2f900422"
+  resolved "https://github.com/Huwonk/KnightsOfTheRoundTableBSC-uikit.git#714b2c1b7c9d0a203eaef8545f10ee9c0d49615b"
   dependencies:
     "@rollup/plugin-image" "^2.0.6"
     "@types/lodash" "^4.14.162"
@@ -4999,6 +4977,11 @@ ci-info@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-2.0.0.tgz#67a9e964be31a51e15e5010d58e6f12834002f46"
   integrity sha512-5tK7EtrZ0N+OLFMthtqOj4fI2Jeb88C4CAZPu25LDVUgXJ0A3Js4PMGqrn0JU1W0Mh1/Z8wZzYPxqUrXeBboCQ==
+
+ci@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ci/-/ci-2.0.0.tgz#a8a1dba0858a407bed00959ba16484754d8e0bca"
+  integrity sha512-AF1LGjZzq/BLdEvY7hUBb5ZSicjIB6NuzaOSyTfeUWthBuaNI4o4z0UQKIpLSJMfIjIfRXHR9nK3L7QGJjYJUA==
 
 cids@^0.7.1:
   version "0.7.5"

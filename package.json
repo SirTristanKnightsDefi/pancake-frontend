@@ -25,10 +25,10 @@
     ]
   },
   "dependencies": {
-    "@pancakeswap-libs/uikit": "https://github.com/Huwonk/KnightsOfTheRoundTableBSC-uikit.git",
     "@binance-chain/bsc-use-wallet": "^0.8.1",
     "@crowdin/crowdin-api-client": "^1.10.4",
     "@ethersproject/abi": "^5.0.7",
+    "@pancakeswap-libs/uikit": "https://github.com/Huwonk/KnightsOfTheRoundTableBSC-uikit.git",
     "@reduxjs/toolkit": "^1.5.0",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
@@ -36,6 +36,7 @@
     "@types/styled-components": "^5.1.7",
     "bignumber.js": "^9.0.0",
     "chart.js": "^2.9.4",
+    "ci": "^2.0.0",
     "date-fns": "^2.17.0",
     "git": "^0.1.5",
     "lodash": "^4.17.20",
