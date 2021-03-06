@@ -50,10 +50,10 @@ const App: React.FC = () => {
             <Route path="/" exact>
               <Home />
             </Route>
-            <Route exact path="/farms" component={farms}>
+            <Route path="/farms">
               <Farms />
             </Route>
-            <Route exact path="/pools" component={pools}>
+            <Route path="/pools">
               <Pools />
             </Route>
             {/* Redirect */}
