@@ -4,6 +4,7 @@ import { Heading, Text, BaseLayout } from '@pancakeswap-libs/uikit'
 import Page from 'components/layout/Page'
 import FarmStakingCard from 'views/Home/components/FarmStakingCard'
 import CakeStats from 'views/Home/components/CakeStats'
+import TableStats from 'views/Home/components/TableStats'
 import TotalValueLockedCard from 'views/Home/components/TotalValueLockedCard'
 import TwitterCard from './components/TwitterCard';
 
@@ -77,6 +78,7 @@ const Home: React.FC = () => {
         <FarmStakingCard />
           <TwitterCard />
           <CakeStats />
+          <TableStats />
         <TotalValueLockedCard />
       </Cards>
     </Page>

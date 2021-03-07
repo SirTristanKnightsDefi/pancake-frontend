@@ -10,6 +10,9 @@ export const getAddress = (address: Address): string => {
 export const getCakeAddress = () => {
   return getAddress(addresses.cake) // Returns KNIGHT
 }
+export const getTableAddress = () => {
+  return getAddress(addresses.table) // Returns TABLE
+}
 export const getMasterChefAddress = () => {
   return getAddress(addresses.masterChef)
 }
