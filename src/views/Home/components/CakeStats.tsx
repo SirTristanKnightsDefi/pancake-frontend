@@ -5,6 +5,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
 import { getCakeAddress } from 'utils/addressHelpers'
 import CardValue from './CardValue'
+import CAKE_PER_BLOCK from './config'
 
 const StyledCakeStats = styled(Card)`
   align-items: center;
@@ -27,6 +28,7 @@ const CakeStats = () => {
   const totalSupply = useTotalSupply()
   const burnedBalance = useBurnedBalance(getCakeAddress())
   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
+  const cakePerBlock = CAKE_PER_BLOCK
 
   return (
     <StyledCakeStats>
@@ -44,7 +46,7 @@ const CakeStats = () => {
         </Row>
         <Row>
           <Text fontSize="14px">New KNIGHT/block</Text>
-          <CardValue fontSize="14px" decimals={0} value={20} />
+          <CardValue fontSize="14px" decimals={0} value={cakePerBlock} />
         </Row>
       </CardBodyExtended>
     </StyledCakeStats>
