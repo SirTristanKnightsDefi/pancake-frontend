@@ -1,0 +1,17 @@
+{ 
+    "navigationFallback": {
+      "rewrite": "/",
+      "exclude": ["/images/*.{png,jpg,gif,svg}", "/css/*"]
+    },
+    "responseOverrides": {
+        "400" : {
+            "rewrite": "/"
+        },
+        "404": {
+            "rewrite": "/"
+        }
+    },
+    "mimeTypes": {
+        ".json": "text/json"
+        }
+}
