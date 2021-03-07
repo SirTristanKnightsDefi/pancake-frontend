@@ -5,6 +5,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
 import { getCakeAddress } from 'utils/addressHelpers'
 import CardValue from './CardValue'
+import { usePriceCakeBusd } from 'state/hooks'
 
 const StyledCakeStats = styled(Card)`
   align-items: center;
@@ -27,6 +28,7 @@ const CakeStats = () => {
   const totalSupply = useTotalSupply()
   const burnedBalance = useBurnedBalance(getCakeAddress())
   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
+  const knightMarketCap = usePriceCakeBusd().toNumber() * cakeSupply 
 
   return (
     <StyledCakeStats>
@@ -36,15 +38,19 @@ const CakeStats = () => {
         </Heading>
         <Row>
           <Text fontSize="14px">Total KNIGHT Supply</Text>
-          {cakeSupply && <CardValue fontSize="14px" value={cakeSupply} />}
+          {cakeSupply && <CardValue fontSize="14px" decimals={1} value={cakeSupply} />}
         </Row>
         <Row>
           <Text fontSize="14px">Total KNIGHT Burned</Text>
-          <CardValue fontSize="14px" value={getBalanceNumber(burnedBalance)} />
+          <CardValue fontSize="14px" decimals={1}value={getBalanceNumber(burnedBalance)} />
         </Row>
         <Row>
           <Text fontSize="14px">New KNIGHT/block</Text>
           <CardValue fontSize="14px" decimals={0} value={15} />
+        </Row>
+        <Row>
+          <Text fontSize="14px">Knight Market Cap</Text>
+          <CardValue fontSize="14px" decimals={0} value={knightMarketCap} />
         </Row>
       </CardBodyExtended>
     </StyledCakeStats>
