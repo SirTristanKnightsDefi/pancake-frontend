@@ -5,7 +5,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
 import { getCakeAddress } from 'utils/addressHelpers'
 import CardValue from './CardValue'
-import CAKE_PER_BLOCK from './config'
+import CAKE_PER_BLOCK from '../../../config'
 
 const StyledCakeStats = styled(Card)`
   align-items: center;
