@@ -50,7 +50,7 @@ const CakeStats = () => {
           <CardValue fontSize="14px" decimals={0} value={15} />
         </Row>
         <Row>
-          <Text fontSize="14px">Knight Market Cap</Text>
+          <Text fontSize="14px">KNIGHT Market Cap</Text>
           <CardValue fontSize="14px" decimals={0} value={knightMarketCap} />
         </Row>
       </CardBodyExtended>

@@ -76,10 +76,10 @@ const Home: React.FC = () => {
       </Hero>
       <Cards>
         <FarmStakingCard />
-          <TwitterCard />
-          <CakeStats />
-          <TableStats />
+        <TwitterCard />
+        <CakeStats />
         <TotalValueLockedCard />
+        <TableStats />
       </Cards>
     </Page>
   )

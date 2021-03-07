@@ -49,6 +49,9 @@ const TableStats = () => {
           <Text fontSize="14px">TABLE Market Cap</Text>
           <CardValue fontSize="14px" decimals={0} value={tableMarketCap} />
         </Row>
+        <Row>
+          <Text fontSize="14px">{"\n"}</Text>
+        </Row>
       </CardBodyExtended>
     </StyledCakeStats>
   )
