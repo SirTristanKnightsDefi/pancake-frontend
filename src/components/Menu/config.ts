@@ -17,7 +17,7 @@ const config: MenuEntry[] = [
     href: '/pools',
   },
   {
-    label: 'More',
+    label: 'Info',
     icon: 'MoreIcon',
     items: [
       {
