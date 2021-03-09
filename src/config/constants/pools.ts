@@ -20,7 +20,7 @@ const pools: PoolConfig[] = [
   },
   {
     sousId: 5,
-    tokenName: 'TABLE',
+    tokenName: 'KNIGHT',
     stakingTokenName: QuoteToken.TABLE,
     stakingTokenAddress: '0xf5a2f7418035ce76967f515f39d65719bb0453b6', // TABLE
     contractAddress: {
