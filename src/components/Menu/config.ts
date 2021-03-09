@@ -1,5 +1,6 @@
 import { MenuEntry } from '@pancakeswap-libs/uikit'
 
+
 const config: MenuEntry[] = [
   {
     label: 'Home',
@@ -23,7 +24,7 @@ const config: MenuEntry[] = [
   },
   {
     label: 'KNIGHT Info',
-    icon: 'MoreIcon',
+    icon: 'InfoIcon',
     items: [
       
       {
@@ -38,7 +39,7 @@ const config: MenuEntry[] = [
   },
   {
     label: 'TABLE Info',
-    icon: 'MoreIcon',
+    icon: 'InfoIcon',
     items: [
       {
         label: 'TABLE Contract',

@@ -1903,11 +1903,13 @@
 
 "@pancakeswap-libs/uikit@https://github.com/Huwonk/KnightsOfTheRoundTableBSC-uikit.git":
   version "0.12.0"
-  resolved "https://github.com/Huwonk/KnightsOfTheRoundTableBSC-uikit.git#fd88078164c459281486eed8b30c6c1f606c4fe9"
+  resolved "https://github.com/Huwonk/KnightsOfTheRoundTableBSC-uikit.git#5b91b2af658e9c46a143314b22389571b394a82a"
   dependencies:
     "@rollup/plugin-image" "^2.0.6"
     "@types/lodash" "^4.14.162"
     "@types/styled-system" "^5.1.10"
+    global "^4.4.0"
+    http-server "^0.12.3"
     lodash "^4.17.20"
     react-transition-group "^4.4.1"
     styled-system "^5.1.5"
@@ -8190,7 +8192,7 @@ global-prefix@^3.0.0:
     kind-of "^6.0.2"
     which "^1.3.1"
 
-global@~4.4.0:
+global@^4.4.0, global@~4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/global/-/global-4.4.0.tgz#3e7b105179006a323ed71aafca3e9c57a5cc6406"
   integrity sha512-wv/LAoHdRE3BeTGz53FAamhGlPLhlssK45usmGFThIi4XqnBmjKQ16u+RNbP7WvigRZDxUsM0J3gcQ5yicaL0w==
