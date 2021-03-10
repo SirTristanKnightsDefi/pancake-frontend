@@ -35,6 +35,10 @@ const config: MenuEntry[] = [
         label: 'Buy KNIGHT',
         href: 'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30',
       },
+      {
+        label: 'KNIGHT Chart',
+        href: 'https://goswapp-bsc.web.app/0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30',
+      },
     ]
   },
   {
@@ -48,6 +52,24 @@ const config: MenuEntry[] = [
       {
         label: 'Buy TABLE',
         href: 'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0xf5a2f7418035ce76967f515f39d65719bb0453b6',
+      },
+      {
+        label: 'TABLE Chart',
+        href: 'https://goswapp-bsc.web.app/0xf5a2f7418035ce76967f515f39d65719bb0453b6',
+      },
+    ],
+  },
+  {
+    label: 'LEGEND Info',
+    icon: 'InfoIcon',
+    items: [
+      {
+        label: 'LEGEND Contract - COMING SOON',
+        href: '',
+      },
+      {
+        label: 'Buy LEGEND - COMING SOON',
+        href: '',
       },
     ],
   },
