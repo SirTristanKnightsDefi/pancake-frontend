@@ -227,7 +227,7 @@ export const useTotalValue = (): BigNumber => {
   }
 
   // Add pool as well! -- Sir Tris
-  let val = cakePrice.times(pool.totalStaked)
+  const val = cakePrice.times(pool.totalStaked).div(1e18)
   value = value.plus(val)
 
   return value
