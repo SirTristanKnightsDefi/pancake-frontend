@@ -29,7 +29,8 @@ const CakeStats = () => {
   const totalSupply = useTotalSupply()
   const burnedBalance = useBurnedBalance(getCakeAddress())
   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
-  const knightMarketCap = usePriceCakeBusd().toNumber() * cakeSupply 
+  const knightMarketCap = usePriceCakeBusd().toNumber() * cakeSupply
+  const knightPerBlock = 5
 
   return (
     <StyledCakeStats>
@@ -47,7 +48,7 @@ const CakeStats = () => {
         </Row>
         <Row>
           <Text fontSize="14px">New KNIGHT/block</Text>
-          <CardValue fontSize="14px" decimals={0} value={10} />
+          <CardValue fontSize="14px" decimals={0} value={knightPerBlock} />
         </Row>
         <Row>
           <Text fontSize="14px">KNIGHT Market Cap</Text>
