@@ -202,10 +202,12 @@ export const useAchievements = () => {
 
 export const useTotalValue = (): BigNumber => {
   const farms = useFarms()
+  const pool = usePoolFromPid(0)
   const bnbPrice = usePriceBnbBusd()
   const ethPrice = usePriceEthBusd()
   const cakePrice = usePriceCakeBusd()
 
+  // Add Farms
   let value = new BigNumber(0)
   for (let i = 0; i < farms.length; i++) {
     const farm = farms[i]
@@ -223,5 +225,10 @@ export const useTotalValue = (): BigNumber => {
       value = value.plus(val)
     }
   }
+
+  // Add pool as well! -- Sir Tris
+  let val = cakePrice.times(pool.totalStaked)
+  value = value.plus(val)
+
   return value
 }
