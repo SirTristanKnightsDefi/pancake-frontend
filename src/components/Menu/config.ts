@@ -19,7 +19,7 @@ const config: MenuEntry[] = [
   },
   {
     label: 'Blog / Roadmap',
-    icon: 'MoreIcon',
+    icon: 'RoadmapIcon',
     href: 'https://knightsoftheroundtable-bsc.medium.com/',
   },
   {
@@ -74,6 +74,16 @@ const config: MenuEntry[] = [
       {
         label: 'LEGEND Chart',
         href: 'https://goswapp-bsc.web.app/0xDc661984735b535210CB1f52f86cc58616024192',
+      },
+    ],
+  },
+  {
+    label: 'Audit',
+    icon: 'AuditIcon',
+    items: [
+      {
+        label: 'TechRate - Coming Soon',
+        href: '',
       },
     ],
   },
