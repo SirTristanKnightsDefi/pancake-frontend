@@ -114,6 +114,13 @@ export const usePriceTableBusd = (): BigNumber => {
   return farm.tokenPriceVsQuote ? bnbPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
 }
 
+export const usePriceLegendBusd = (): BigNumber => {
+  const pid = 5 // LEGEND-BNB LP
+  const bnbPriceUSD = usePriceBnbBusd()
+  const farm = useFarmFromPid(pid)
+  return farm.tokenPriceVsQuote ? bnbPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
+}
+
 // Toasts
 export const useToast = () => {
   const dispatch = useDispatch()

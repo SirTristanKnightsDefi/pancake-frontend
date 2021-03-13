@@ -18,7 +18,7 @@ const config: MenuEntry[] = [
     href: '/pools',
   },
   {
-    label: 'Blog',
+    label: 'Blog / Roadmap',
     icon: 'MoreIcon',
     href: 'https://knightsoftheroundtable-bsc.medium.com/',
   },
@@ -64,12 +64,16 @@ const config: MenuEntry[] = [
     icon: 'InfoIcon',
     items: [
       {
-        label: 'LEGEND Contract - COMING SOON',
-        href: '',
+        label: 'LEGEND Contract',
+        href: 'https://bscscan.com/address/0xDc661984735b535210CB1f52f86cc58616024192',
       },
       {
-        label: 'Buy LEGEND - COMING SOON',
-        href: '',
+        label: 'Buy LEGEND',
+        href: 'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0xDc661984735b535210CB1f52f86cc58616024192',
+      },
+      {
+        label: 'LEGEND Chart',
+        href: 'https://goswapp-bsc.web.app/0xDc661984735b535210CB1f52f86cc58616024192',
       },
     ],
   },
