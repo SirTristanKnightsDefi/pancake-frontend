@@ -4,9 +4,10 @@ import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { provider } from 'web3-core'
 import cakeABI from 'config/abi/cake.json'
 import tableABI from 'config/abi/table.json'
+import legendABI from 'config/abi/legend.json'
 import { getContract } from 'utils/web3'
 import { getTokenBalance } from 'utils/erc20'
-import { getCakeAddress, getTableAddress } from 'utils/addressHelpers'
+import { getCakeAddress, getTableAddress, getLegendAddress } from 'utils/addressHelpers'
 import useRefresh from './useRefresh'
 
 const useTokenBalance = (tokenAddress: string) => {
@@ -53,6 +54,23 @@ export const useTotalSupplyTable = () => {
     async function fetchTotalSupply() {
       const tableContract = getContract(tableABI, getTableAddress())
       const supply = await tableContract.methods.totalSupply().call()
+      setTotalSupply(new BigNumber(supply))
+    }
+
+    fetchTotalSupply()
+  }, [slowRefresh])
+
+  return totalSupply
+}
+
+export const useTotalSupplyLegend = () => {
+  const { slowRefresh } = useRefresh()
+  const [totalSupply, setTotalSupply] = useState<BigNumber>()
+
+  useEffect(() => {
+    async function fetchTotalSupply() {
+      const legendContract = getContract(legendABI, getLegendAddress())
+      const supply = await legendContract.methods.totalSupply().call()
       setTotalSupply(new BigNumber(supply))
     }
 

@@ -11,6 +11,7 @@ const Menu = (props) => {
   const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
   const cakePriceUsd = usePriceCakeBusd()
   const tablePriceUsd = usePriceTableBusd()
+  const legendPriceUsd = usePriceLegendBusd()
 
   return (
     <UikitMenu
@@ -25,6 +26,7 @@ const Menu = (props) => {
       setLang={setSelectedLanguage}
       cakePriceUsd={cakePriceUsd.toNumber()}
       tablePriceUsd={tablePriceUsd.toNumber()}
+      legendPriceUsd={legendPriceUsd.toNumber()}
       links={config}
       {...props}
     />

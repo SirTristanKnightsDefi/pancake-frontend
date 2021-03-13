@@ -13,6 +13,9 @@ export const getCakeAddress = () => {
 export const getTableAddress = () => {
   return getAddress(addresses.table) // Returns TABLE
 }
+export const getLegendAddress = () => {
+  return getAddress(addresses.legend) // Returns TABLE
+}
 export const getMasterChefAddress = () => {
   return getAddress(addresses.masterChef)
 }

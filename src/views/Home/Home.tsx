@@ -5,6 +5,7 @@ import Page from 'components/layout/Page'
 import FarmStakingCard from 'views/Home/components/FarmStakingCard'
 import CakeStats from 'views/Home/components/CakeStats'
 import TableStats from 'views/Home/components/TableStats'
+import LegendStats from 'views/Home/components/LegendStats'
 import TotalValueLockedCard from 'views/Home/components/TotalValueLockedCard'
 import TwitterCard from './components/TwitterCard';
 
@@ -80,6 +81,7 @@ const Home: React.FC = () => {
         <CakeStats />
         <TotalValueLockedCard />
         <TableStats />
+        <LegendStats />
       </Cards>
     </Page>
   )
