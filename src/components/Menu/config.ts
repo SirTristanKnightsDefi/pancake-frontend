@@ -82,8 +82,8 @@ const config: MenuEntry[] = [
     icon: 'AuditIcon',
     items: [
       {
-        label: 'TechRate - Coming Soon',
-        href: '',
+        label: 'TechRate',
+        href: 'https://www.knightsdefi.com/Knights%20Defi%20TechRate%20Audit.pdf',
       },
     ],
   },
