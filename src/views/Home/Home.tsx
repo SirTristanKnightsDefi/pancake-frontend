@@ -66,20 +66,20 @@ const Home: React.FC = () => {
   return (
     <Page>
       <Hero>
-        <FatHeading as="h1" size="xl" mb="24px" color="secondary">
+        <FatHeading as="h1" size="xl" mb="24px" color="primary">
           {/* TranslateString(576, 'Knights of the Round Table') */}
           Knights of the Round Table DeFi
         </FatHeading>
         <FatText>
           {/* TranslateString(578, 'A new approach to DeFi with Integrity.') */}
-          A new approach to DeFi with Integrity, Honor, and Nobility.
+          A new approach to DeFi with Integrity and Honor.
         </FatText>
       </Hero>
       <Cards>
         <FarmStakingCard />
         <TwitterCard />
-        <CakeStats />
         <TotalValueLockedCard />
+        <CakeStats />
         <TableStats />
         <LegendStats />
       </Cards>

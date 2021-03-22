@@ -6,6 +6,7 @@ import {
   getAddress,
   getMasterChefAddress,
   getCakeAddress,
+  getBattlefieldAddress,
   getLotteryAddress,
   getLotteryTicketAddress,
   getBunnyFactoryAddress,
@@ -22,6 +23,7 @@ import pancakeRabbits from 'config/abi/pancakeRabbits.json'
 import lottery from 'config/abi/lottery.json'
 import lotteryTicket from 'config/abi/lotteryNft.json'
 import masterChef from 'config/abi/masterchef.json'
+import battlefield from 'config/abi/battlefield.json'
 import sousChef from 'config/abi/sousChef.json'
 import sousChefBnb from 'config/abi/sousChefBnb.json'
 import profile from 'config/abi/pancakeProfile.json'
@@ -84,6 +86,11 @@ export const useLotteryTicket = () => {
 export const useMasterchef = () => {
   const abi = (masterChef as unknown) as AbiItem
   return useContract(abi, getMasterChefAddress())
+}
+
+export const useBattlefield = () => {
+  const abi = (battlefield as unknown) as AbiItem
+  return useContract(abi, getBattlefieldAddress())
 }
 
 export const useSousChef = (id) => {

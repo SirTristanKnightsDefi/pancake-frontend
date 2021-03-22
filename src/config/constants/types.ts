@@ -63,6 +63,23 @@ export interface FarmConfig {
   }
 }
 
+export interface BattlefieldConfig {
+  pid: number
+  lpSymbol: string
+  lpAddresses: Address
+  tokenSymbol: string
+  tokenAddresses: Address
+  quoteTokenSymbol: QuoteToken
+  quoteTokenAdresses: Address
+  multiplier?: string
+  isCommunity?: boolean
+  dual?: {
+    rewardPerBlock: number
+    earnLabel: string
+    endBlock: number
+  }
+}
+
 export interface PoolConfig {
   sousId: number
   image?: string

@@ -3,6 +3,10 @@ export default {
     97: '0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30', // Same as KNIGHT
     56: '0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30',
   },
+  battlefield: {
+    97: '0x441eefbaC2Dc9E2c469ed9966A8a2F7fD0672e3D',
+    56: '0x441eefbaC2Dc9E2c469ed9966A8a2F7fD0672e3D',
+  },
   knight: {
     97: '0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30',
     56: '0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30',
