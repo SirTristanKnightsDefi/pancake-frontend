@@ -1,16 +1,16 @@
 import BigNumber from 'bignumber.js'
 import erc20ABI from 'config/abi/erc20.json'
-import masterchefABI from 'config/abi/masterchef.json'
+import battlefieldABI from 'config/abi/battlefield.json'
 import multicall from 'utils/multicall'
 import battlefieldsConfig from 'config/constants/battlefield'
-import { getAddress, getMasterChefAddress } from 'utils/addressHelpers'
+import { getAddress, getBattlefieldAddress } from 'utils/addressHelpers'
 
 export const fetchBattlefieldUserAllowances = async (account: string) => {
-  const masterChefAdress = getMasterChefAddress()
+  const battlefieldAddress = getBattlefieldAddress()
 
   const calls = battlefieldsConfig.map((battlefield) => {
     const lpContractAddress = getAddress(battlefield.lpAddresses)
-    return { address: lpContractAddress, name: 'allowance', params: [account, masterChefAdress] }
+    return { address: lpContractAddress, name: 'allowance', params: [account, battlefieldAddress] }
   })
 
   const rawLpAllowances = await multicall(erc20ABI, calls)
@@ -38,17 +38,17 @@ export const fetchBattlefieldUserTokenBalances = async (account: string) => {
 }
 
 export const fetchBattlefieldUserStakedBalances = async (account: string) => {
-  const masterChefAdress = getMasterChefAddress()
+  const battlefieldAddress = getBattlefieldAddress()
 
   const calls = battlefieldsConfig.map((battlefield) => {
     return {
-      address: masterChefAdress,
-      name: 'userInfo',
-      params: [battlefield.pid, account],
+      address: battlefieldAddress,
+      name: 'userHoldings',
+      params: [account, battlefield.pid],
     }
   })
 
-  const rawStakedBalances = await multicall(masterchefABI, calls)
+  const rawStakedBalances = await multicall(battlefieldABI, calls)
   const parsedStakedBalances = rawStakedBalances.map((stakedBalance) => {
     return new BigNumber(stakedBalance[0]._hex).toJSON()
   })
@@ -56,17 +56,17 @@ export const fetchBattlefieldUserStakedBalances = async (account: string) => {
 }
 
 export const fetchBattlefieldUserEarnings = async (account: string) => {
-  const masterChefAdress = getMasterChefAddress()
+  const battlefieldAddress = getBattlefieldAddress()
 
   const calls = battlefieldsConfig.map((battlefield) => {
     return {
-      address: masterChefAdress,
-      name: 'pendingKnight',
-      params: [battlefield.pid, account],
+      address: battlefieldAddress,
+      name: 'getUserCurrentRewards',
+      params: [account, battlefield.pid],
     }
   })
 
-  const rawEarnings = await multicall(masterchefABI, calls)
+  const rawEarnings = await multicall(battlefieldABI, calls)
   const parsedEarnings = rawEarnings.map((earnings) => {
     return new BigNumber(earnings).toJSON()
   })

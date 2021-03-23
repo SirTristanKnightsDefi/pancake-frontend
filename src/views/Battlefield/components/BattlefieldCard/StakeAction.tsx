@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { Button, Flex, Heading, IconButton, AddIcon, MinusIcon, useModal } from '@pancakeswap-libs/uikit'
 import useI18n from 'hooks/useI18n'
-import useBattlefieldStake from 'hooks/useStake'
-import useUnstake from 'hooks/useUnstake'
+import { useBattlefieldStake } from 'hooks/useStake'
+import { useBattlefieldUnstake } from 'hooks/useUnstake'
 import { getBalanceNumber } from 'utils/formatBalance'
 import DepositModal from '../DepositModal'
 import WithdrawModal from '../WithdrawModal'
@@ -33,7 +33,7 @@ const StakeAction: React.FC<BattlefieldCardActionsProps> = ({
 }) => {
   const TranslateString = useI18n()
   const { onStake } = useBattlefieldStake(pid)
-  const { onUnstake } = useUnstake(pid)
+  const { onUnstake } = useBattlefieldUnstake(pid)
 
   const rawStakedBalance = getBalanceNumber(stakedBalance)
   const displayBalance = rawStakedBalance.toLocaleString()
@@ -47,7 +47,7 @@ const StakeAction: React.FC<BattlefieldCardActionsProps> = ({
 
   const renderStakingButtons = () => {
     return rawStakedBalance === 0 ? (
-      <Button onClick={onPresentDeposit}>{TranslateString(999, 'Stake LP')}</Button>
+      <Button onClick={onPresentDeposit}>{TranslateString(999, 'Stake')}</Button>
     ) : (
       <IconButtonWrapper>
         <IconButton variant="tertiary" onClick={onPresentWithdraw} mr="6px">

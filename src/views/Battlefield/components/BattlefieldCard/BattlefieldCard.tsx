@@ -123,7 +123,6 @@ const BattlefieldCard: React.FC<BattlefieldCardProps> = ({ battlefield, removed,
     : '-'
 
   const lpLabel = battlefield.lpSymbol && battlefield.lpSymbol.toUpperCase().replace('PANCAKE', '')
-  const earnLabel = battlefield.dual ? battlefield.dual.earnLabel : 'KNIGHT'
   const battlefieldAPY = battlefield.apy && battlefield.apy.times(new BigNumber(100)).toNumber().toLocaleString('en-US').slice(0, -1)
 
   const { quoteTokenAdresses, quoteTokenSymbol, tokenAddresses } = battlefield
@@ -140,25 +139,6 @@ const BattlefieldCard: React.FC<BattlefieldCardProps> = ({ battlefield, removed,
         battlefieldImage={battlefieldImage}
         tokenSymbol={battlefield.tokenSymbol}
       />
-      {!removed && (
-        <Flex justifyContent="space-between" alignItems="center">
-          <Text>{TranslateString(736, 'APR')}:</Text>
-          <Text bold style={{ display: 'flex', alignItems: 'center' }}>
-            {battlefield.apy ? (
-              <>
-                <ApyButton lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} cakePrice={cakePrice} apy={battlefield.apy} />
-                {battlefieldAPY}%
-              </>
-            ) : (
-              <Skeleton height={24} width={80} />
-            )}
-          </Text>
-        </Flex>
-      )}
-      <Flex justifyContent="space-between">
-        <Text>{TranslateString(318, 'Earn')}:</Text>
-        <Text bold>{earnLabel}</Text>
-      </Flex>
       <CardActionsContainer battlefield={battlefield} ethereum={ethereum} account={account} addLiquidityUrl={addLiquidityUrl} />
       <Divider />
       <ExpandableSectionButton

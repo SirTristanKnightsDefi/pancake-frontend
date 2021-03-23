@@ -1,9 +1,9 @@
 import { useCallback } from 'react'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { useDispatch } from 'react-redux'
-import { fetchFarmUserDataAsync, updateUserBalance, updateUserPendingReward } from 'state/actions'
-import { soushHarvest, soushHarvestBnb, harvest } from 'utils/callHelpers'
-import { useMasterchef, useSousChef } from './useContract'
+import { fetchFarmUserDataAsync, fetchBattlefieldUserDataAsync, updateUserBalance, updateUserPendingReward } from 'state/actions'
+import { soushHarvest, soushHarvestBnb, harvest, battlefieldWithdrawReward, battlefieldWithdrawAllRewards } from 'utils/callHelpers'
+import { useMasterchef, useSousChef, useBattlefield } from './useContract'
 
 export const useHarvest = (farmPid: number) => {
   const dispatch = useDispatch()
@@ -15,6 +15,20 @@ export const useHarvest = (farmPid: number) => {
     dispatch(fetchFarmUserDataAsync(account))
     return txHash
   }, [account, dispatch, farmPid, masterChefContract])
+
+  return { onReward: handleHarvest }
+}
+
+export const useBattlefieldHarvest = (battlefieldPid: number) => {
+  const dispatch = useDispatch()
+  const { account } = useWallet()
+  const battlefieldContract = useBattlefield()
+
+  const handleHarvest = useCallback(async () => {
+    const txHash = await battlefieldWithdrawReward(battlefieldContract, battlefieldPid, account)
+    dispatch(fetchFarmUserDataAsync(account))
+    return txHash
+  }, [account, dispatch, battlefieldPid, battlefieldContract])
 
   return { onReward: handleHarvest }
 }

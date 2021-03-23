@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import multicall from 'utils/multicall'
-import { getMasterChefAddress } from 'utils/addressHelpers'
+import { getBattlefieldAddress } from 'utils/addressHelpers'
 import masterChefABI from 'config/abi/masterchef.json'
 import { battlefieldConfig } from 'config/constants'
 import { BattlefieldConfig } from 'config/constants/types'
@@ -20,7 +20,7 @@ const useBattlefieldWithBalance = () => {
   useEffect(() => {
     const fetchBalances = async () => {
       const calls = battlefieldConfig.map((battlefield) => ({
-        address: getMasterChefAddress(),
+        address: getBattlefieldAddress(),
         name: 'pendingKnight',
         params: [battlefield.pid, account],
       }))

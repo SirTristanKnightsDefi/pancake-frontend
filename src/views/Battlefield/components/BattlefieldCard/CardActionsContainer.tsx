@@ -9,7 +9,7 @@ import { Battlefield} from 'state/types'
 import { useBattlefieldFromSymbol, useBattlefieldUser } from 'state/hooks'
 import useI18n from 'hooks/useI18n'
 import UnlockButton from 'components/UnlockButton'
-import { useApprove } from 'hooks/useApprove'
+import { useBattlefieldApprove } from 'hooks/useApprove'
 import StakeAction from './StakeAction'
 import HarvestAction from './HarvestAction'
 
@@ -40,7 +40,7 @@ const CardActions: React.FC<BattlefieldCardActionsProps> = ({ battlefield, ether
     return getContract(ethereum as provider, lpAddress)
   }, [ethereum, lpAddress])
 
-  const { onApprove } = useApprove(lpContract)
+  const { onApprove } = useBattlefieldApprove(lpContract)
 
   const handleApprove = useCallback(async () => {
     try {

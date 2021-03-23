@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js'
 import erc20 from 'config/abi/erc20.json'
-import masterchefABI from 'config/abi/masterchef.json'
+import battlefieldABI from 'config/abi/battlefield.json'
 import multicall from 'utils/multicall'
 import { getAddress, getBattlefieldAddress } from 'utils/addressHelpers'
 import battlefieldConfig from 'config/constants/battlefield'
@@ -69,7 +69,7 @@ const fetchBattlefield = async () => {
         .div(new BigNumber(10).pow(quoteTokenDecimals))
         .times(lpTokenRatio)
 
-      const [info, totalAllocPoint] = await multicall(masterchefABI, [
+      const [info, totalArmyStrength] = await multicall(battlefieldABI, [
         {
           address: getBattlefieldAddress(),
           name: 'stakingTokens',
@@ -77,13 +77,12 @@ const fetchBattlefield = async () => {
         },
         {
           address: getBattlefieldAddress(),
-          name: 'stakingTokens',
-          params: [bfConfig.pid]
+          name: 'totalArmyStrength',
         },
       ])
 
       const allocPoint = new BigNumber(info.allocPoint._hex)
-      const poolWeight = allocPoint.div(new BigNumber(totalAllocPoint))
+      const poolWeight = allocPoint.div(new BigNumber(totalArmyStrength))
 
       return {
         ...bfConfig,
