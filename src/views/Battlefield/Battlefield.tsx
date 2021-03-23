@@ -118,6 +118,13 @@ const Battlefield: React.FC = () => {
       <div>
         <FlexLayout>
           <Route exact path={`${path}`}>
+            Compound All and Harvest All Buttons Go Here!
+          </Route>
+        </FlexLayout>
+      </div>
+      <div>
+        <FlexLayout>
+          <Route exact path={`${path}`}>
             {stackedOnly ? battlefieldList(stackedOnlyBattlefields, false) : battlefieldList(activeBattlefields, false)}
           </Route>
           <Route exact path={`${path}/history`}>

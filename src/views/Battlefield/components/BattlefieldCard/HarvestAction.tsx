@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { Button, Flex, Heading } from '@pancakeswap-libs/uikit'
 import useI18n from 'hooks/useI18n'
-import { useHarvest } from 'hooks/useHarvest'
+import { useBattlefieldHarvest } from 'hooks/useHarvest'
 import { getBalanceNumber } from 'utils/formatBalance'
 
 interface BattlefieldCardActionsProps {
@@ -13,7 +13,7 @@ interface BattlefieldCardActionsProps {
 const HarvestAction: React.FC<BattlefieldCardActionsProps> = ({ earnings, pid }) => {
   const TranslateString = useI18n()
   const [pendingTx, setPendingTx] = useState(false)
-  const { onReward } = useHarvest(pid)
+  const { onReward } = useBattlefieldHarvest(pid)
 
   const rawEarningsBalance = getBalanceNumber(earnings)
   const displayBalance = rawEarningsBalance.toLocaleString()

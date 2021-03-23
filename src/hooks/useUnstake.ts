@@ -42,7 +42,7 @@ export const useBattlefieldUnstake = (pid: number) => {
     [account, dispatch, battlefieldContract, pid],
   )
 
-  return { onUnstake: handleUnstake }
+  return {onUnstake: handleUnstake}
 }
 
 const SYRUPIDS = [5, 6, 3, 1, 22, 23]

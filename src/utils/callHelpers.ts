@@ -67,7 +67,7 @@ export const unstake = async (masterChefContract, pid, amount, account) => {
 export const battlefieldStake = async (battlefieldContract, pid, amount, account) => {
   return battlefieldContract.methods
     .stake(pid, new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
-    .send({ from: account, gas: 200000 })
+    .send({ from: account })
     .on('transactionHash', (tx) => {
       return tx.transactionHash
     })
@@ -76,7 +76,7 @@ export const battlefieldStake = async (battlefieldContract, pid, amount, account
 export const battlefieldWithdraw = async (battlefieldContract, pid, amount, account) => {
   return battlefieldContract.methods
     .withdraw(pid, new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
-    .send({ from: account, gas: 200000 })
+    .send({ from: account })
     .on('transactionHash', (tx) => {
       return tx.transactionHash
     })
@@ -85,7 +85,7 @@ export const battlefieldWithdraw = async (battlefieldContract, pid, amount, acco
 export const battlefieldWithdrawReward = async (battlefieldContract, pid, account) => {
   return battlefieldContract.methods
     .withdrawReward(pid)
-    .send({ from: account, gas: 200000 })
+    .send({ from: account })
     .on('transactionHash', (tx) => {
       return tx.transactionHash
     })
@@ -94,7 +94,7 @@ export const battlefieldWithdrawReward = async (battlefieldContract, pid, accoun
 export const battlefieldWithdrawAllRewards = async (battlefieldContract, account) => {
   return battlefieldContract.methods
     .exit(false)
-    .send({ from: account, gas: 200000 })
+    .send({ from: account })
     .on('transactionHash', (tx) => {
       return tx.transactionHash
     })
@@ -103,7 +103,7 @@ export const battlefieldWithdrawAllRewards = async (battlefieldContract, account
 export const battlefieldCompound = async (battlefieldContract, pid, account) => {
   return battlefieldContract.methods
     .compound(pid)
-    .send({ from: account, gas: 200000 })
+    .send({ from: account })
     .on('transactionHash', (tx) => {
       return tx.transactionHash
     })
@@ -112,7 +112,7 @@ export const battlefieldCompound = async (battlefieldContract, pid, account) => 
 export const battlefieldCompoundAll = async (battlefieldContract, account) => {
   return battlefieldContract.methods
     .compoundAll()
-    .send({ from: account, gas: 200000 })
+    .send({ from: account })
     .on('transactionHash', (tx) => {
       return tx.transactionHash
     })
