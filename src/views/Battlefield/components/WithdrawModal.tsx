@@ -2,7 +2,7 @@ import BigNumber from 'bignumber.js'
 import React, { useCallback, useMemo, useState } from 'react'
 import { Button, Modal } from '@pancakeswap-libs/uikit'
 import ModalActions from 'components/ModalActions'
-import ModalInput from 'components/ModalInput'
+import {BattlefieldModalInput} from 'components/ModalInput'
 import useI18n from 'hooks/useI18n'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 
@@ -33,14 +33,14 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
   }, [fullBalance, setVal])
 
   return (
-    <Modal title={TranslateString(1126, 'Unstake LP tokens')} onDismiss={onDismiss}>
-      <ModalInput
+    <Modal title={TranslateString(1126, 'Recall Troops')} onDismiss={onDismiss}>
+      <BattlefieldModalInput
         onSelectMax={handleSelectMax}
         onChange={handleChange}
         value={val}
         max={fullBalance}
         symbol={tokenName}
-        inputTitle={TranslateString(588, 'Unstake')}
+        inputTitle={TranslateString(588, 'Recall Troops')}
       />
       <ModalActions>
         <Button variant="secondary" onClick={onDismiss} fullWidth>

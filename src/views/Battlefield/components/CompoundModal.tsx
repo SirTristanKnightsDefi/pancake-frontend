@@ -2,7 +2,7 @@ import BigNumber from 'bignumber.js'
 import React, { useCallback, useMemo, useState } from 'react'
 import { Button, Modal, LinkExternal } from '@pancakeswap-libs/uikit'
 import ModalActions from 'components/ModalActions'
-import {BattlefieldModalInput} from 'components/ModalInput'
+import {CompoundModalInput} from 'components/ModalInput'
 import useI18n from 'hooks/useI18n'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 
@@ -34,15 +34,12 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
   }, [fullBalance, setVal])
 
   return (
-    <Modal title={TranslateString(1068, 'Send to War')} onDismiss={onDismiss}>
-      <BattlefieldModalInput
-        value={val}
-        onSelectMax={handleSelectMax}
-        onChange={handleChange}
-        max={fullBalance}
+    <Modal title={TranslateString(1068, 'Compound')} onDismiss={onDismiss}>
+      <CompoundModalInput
+        value={fullBalance}
         symbol={tokenName}
         addLiquidityUrl={addLiquidityUrl}
-        inputTitle={TranslateString(1070, 'Send to War')}
+        inputTitle={TranslateString(1070, '')}
       />
       <ModalActions>
         <Button variant="secondary" onClick={onDismiss} fullWidth>

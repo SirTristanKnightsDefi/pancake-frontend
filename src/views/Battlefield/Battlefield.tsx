@@ -102,18 +102,13 @@ const Battlefield: React.FC = () => {
           src="/images/battlefield/battlefield.png"
           alt="Battlefield icon"
           style={{
-            height: '190px',
+            height: '320px',
             marginRight: '48px',
           }}
         />
-        <div>
-          <Heading as="h1" size="xxl" mb="16px">
-            Battlefield
-          </Heading>
-          <Text>
-            Send your troops to battle for rewards!
-          </Text>
-        </div>
+        <Heading as="h1" size="xl" mb="16px">
+          Send your troops to battle for spoils of war!
+        </Heading>
       </Hero>
       <div>
         <FlexLayout>

@@ -1,13 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
-import { Button, Flex, Heading, IconButton, AddIcon, MinusIcon, useModal } from '@pancakeswap-libs/uikit'
+import { Button, Flex, Heading, IconButton, AddIcon, MinusIcon, useModal, ChevronLeftIcon } from '@pancakeswap-libs/uikit'
 import useI18n from 'hooks/useI18n'
 import {useBattlefieldStake} from 'hooks/useStake'
 import {useBattlefieldUnstake} from 'hooks/useUnstake'
+import {useBattlefieldCompound} from 'hooks/useCompound'
 import { getBalanceNumber } from 'utils/formatBalance'
 import DepositModal from '../DepositModal'
 import WithdrawModal from '../WithdrawModal'
+import CompoundModal from '../CompoundModal'
 
 interface BattlefieldCardActionsProps {
   stakedBalance?: BigNumber
@@ -34,6 +36,7 @@ const StakeAction: React.FC<BattlefieldCardActionsProps> = ({
   const TranslateString = useI18n()
   const { onStake } = useBattlefieldStake(pid)
   const { onUnstake } = useBattlefieldUnstake(pid)
+  const { onCompound } = useBattlefieldCompound(pid)
 
   const rawStakedBalance = getBalanceNumber(stakedBalance)
   const displayBalance = rawStakedBalance.toLocaleString()
@@ -45,6 +48,10 @@ const StakeAction: React.FC<BattlefieldCardActionsProps> = ({
     <WithdrawModal max={stakedBalance} onConfirm={onUnstake} tokenName={tokenName} />,
   )
 
+  const [onPresentCompound] = useModal(
+    <CompoundModal max={stakedBalance} onConfirm={onCompound} tokenName={tokenName} />,
+  )
+
   const renderStakingButtons = () => {
     return rawStakedBalance === 0 ? (
       <Button onClick={onPresentDeposit}>{TranslateString(999, 'Stake')}</Button>
@@ -53,8 +60,11 @@ const StakeAction: React.FC<BattlefieldCardActionsProps> = ({
         <IconButton variant="tertiary" onClick={onPresentWithdraw} mr="6px">
           <MinusIcon color="primary" />
         </IconButton>
-        <IconButton variant="tertiary" onClick={onPresentDeposit}>
+        <IconButton variant="tertiary" onClick={onPresentDeposit} mr="6px">
           <AddIcon color="primary" />
+        </IconButton>
+        <IconButton variant="tertiary" onClick={onPresentCompound}>
+          <ChevronLeftIcon color="primary" />
         </IconButton>
       </IconButtonWrapper>
     )

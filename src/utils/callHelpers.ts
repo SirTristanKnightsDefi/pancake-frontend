@@ -102,7 +102,7 @@ export const battlefieldWithdrawAllRewards = async (battlefieldContract, account
 
 export const battlefieldCompound = async (battlefieldContract, pid, account) => {
   return battlefieldContract.methods
-    .compound(pid)
+    .compoundReward(pid, pid)
     .send({ from: account })
     .on('transactionHash', (tx) => {
       return tx.transactionHash
@@ -111,7 +111,7 @@ export const battlefieldCompound = async (battlefieldContract, pid, account) => 
 
 export const battlefieldCompoundAll = async (battlefieldContract, account) => {
   return battlefieldContract.methods
-    .compoundAll()
+    .compoundAllRewards()
     .send({ from: account })
     .on('transactionHash', (tx) => {
       return tx.transactionHash
