@@ -99,8 +99,8 @@ const Battlefield: React.FC = () => {
     <Page>
       <Hero>
         <img
-          src="/images/legend.png"
-          alt="LEGEND icon"
+          src="/images/battlefield/battlefield.png"
+          alt="Battlefield icon"
           style={{
             height: '190px',
             marginRight: '48px',

@@ -72,8 +72,7 @@ const CardActions: React.FC<BattlefieldCardActionsProps> = ({ battlefield, ether
     <Action>
       <Flex>
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="3px">
-          {/* Is there a way to get a dynamic value here from useBattlefieldFromSymbol? */}
-          KNIGHT
+          {lpName}
         </Text>
         <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
           {TranslateString(1072, 'Earned')}

@@ -118,7 +118,7 @@ const BattlefieldCard: React.FC<BattlefieldCardProps> = ({ battlefield, removed,
     return battlefield.lpTotalInQuoteToken
   }, [bnbPrice, cakePrice, ethPrice, battlefield.lpTotalInQuoteToken, battlefield.quoteTokenSymbol])
 
-  const totalValueFormated = totalValue
+  const totalBalanceFormatted = totalValue
     ? `$${Number(totalValue).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
     : '-'
 
@@ -149,7 +149,7 @@ const BattlefieldCard: React.FC<BattlefieldCardProps> = ({ battlefield, removed,
         <DetailsSection
           removed={removed}
           bscScanAddress={`https://bscscan.com/address/${battlefield.lpAddresses[process.env.REACT_APP_CHAIN_ID]}`}
-          totalValueFormated={totalValueFormated}
+          totalBalanceFormatted={totalBalanceFormatted}
           lpLabel={lpLabel}
           addLiquidityUrl={addLiquidityUrl}
         />
