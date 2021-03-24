@@ -1,4 +1,5 @@
 export { fetchFarmsPublicDataAsync, fetchFarmUserDataAsync } from './farms'
+export { fetchBattlefieldPublicDataAsync, fetchBattlefieldUserDataAsync } from './battlefield'
 export { clear, remove, push } from './toasts'
 export {
   fetchPoolsPublicDataAsync,

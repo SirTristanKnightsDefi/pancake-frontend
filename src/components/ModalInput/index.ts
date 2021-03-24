@@ -1,1 +1,1 @@
-export { default } from './ModalInput'
+export { default, CompoundModalInput, BattlefieldModalInput, CompoundAllModalInput } from './ModalInput'

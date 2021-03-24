@@ -14,6 +14,7 @@ import Pools from './views/Pools'
 // Only pool is included in the main bundle because of it's the most visited page'
 const Home = lazy(() => import('./views/Home'))
 const Farms = lazy(() => import('./views/Farms'))
+const Battlefield = lazy(() => import('./views/Battlefield'))
 const NotFound = lazy(() => import('./views/NotFound'))
 
 // This config is required for number formating
@@ -49,6 +50,9 @@ const App: React.FC = () => {
           <Switch>
             <Route path="/" exact>
               <Home />
+            </Route>
+            <Route path="/battlefield">
+              <Battlefield />
             </Route>
             <Route path="/farms">
               <Farms />

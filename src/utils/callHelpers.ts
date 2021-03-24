@@ -34,6 +34,7 @@ export const sousStake = async (sousChefContract, amount, account) => {
     })
 }
 
+
 export const sousStakeBnb = async (sousChefContract, amount, account) => {
   return sousChefContract.methods
     .deposit()
@@ -60,6 +61,64 @@ export const unstake = async (masterChefContract, pid, amount, account) => {
       return tx.transactionHash
     })
 }
+
+// Battlefield Helper Methods
+
+export const battlefieldStake = async (battlefieldContract, pid, amount, account) => {
+  return battlefieldContract.methods
+    .stake(pid, new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const battlefieldWithdraw = async (battlefieldContract, pid, amount, account) => {
+  return battlefieldContract.methods
+    .withdraw(pid, new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const battlefieldWithdrawReward = async (battlefieldContract, pid, account) => {
+  return battlefieldContract.methods
+    .withdrawReward(pid)
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const battlefieldWithdrawAllRewards = async (battlefieldContract, account) => {
+  return battlefieldContract.methods
+    .withdrawAllRewards()
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const battlefieldCompound = async (battlefieldContract, pid, account) => {
+  return battlefieldContract.methods
+    .compoundReward(pid, pid)
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const battlefieldCompoundAll = async (battlefieldContract, account) => {
+  return battlefieldContract.methods
+    .compoundAllRewards()
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+// End Battlefield Methods
 
 export const sousUnstake = async (sousChefContract, amount, account) => {
   // shit code: hard fix for old CTK and BLK

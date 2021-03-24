@@ -3,9 +3,28 @@ import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { Contract } from 'web3-eth-contract'
 import { ethers } from 'ethers'
 import { useDispatch } from 'react-redux'
-import { updateUserAllowance, fetchFarmUserDataAsync } from 'state/actions'
+import { updateUserAllowance, fetchFarmUserDataAsync, fetchBattlefieldUserDataAsync } from 'state/actions'
 import { approve } from 'utils/callHelpers'
-import { useMasterchef, useCake, useSousChef, useLottery } from './useContract'
+import { useMasterchef, useCake, useSousChef, useLottery, useBattlefield } from './useContract'
+
+// Approve a Battlefield
+export const useBattlefieldApprove = (lpContract: Contract) => {
+  const dispatch = useDispatch()
+  const { account }: { account: string } = useWallet()
+  const battlefieldContract = useBattlefield()
+
+  const handleApprove = useCallback(async () => {
+    try {
+      const tx = await approve(lpContract, battlefieldContract, account)
+      dispatch(fetchBattlefieldUserDataAsync(account))
+      return tx
+    } catch (e) {
+      return false
+    }
+  }, [account, dispatch, lpContract, battlefieldContract])
+
+  return { onApprove: handleApprove }
+}
 
 // Approve a Farm
 export const useApprove = (lpContract: Contract) => {
@@ -25,6 +44,7 @@ export const useApprove = (lpContract: Contract) => {
 
   return { onApprove: handleApprove }
 }
+
 
 // Approve a Pool
 export const useSousApprove = (lpContract: Contract, sousId) => {

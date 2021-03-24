@@ -8,6 +8,11 @@ const config: MenuEntry[] = [
     href: '/',
   },
   {
+    label: 'Battlefield',
+    icon: 'GroupsIcon',
+    href: '/Battlefield',
+  },
+  {
     label: 'Farms',
     icon: 'FarmIcon',
     href: '/farms',

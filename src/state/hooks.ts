@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import useRefresh from 'hooks/useRefresh'
 import { QuoteToken, Team } from 'config/constants/types'
 import {
+  fetchBattlefieldPublicDataAsync,
   fetchFarmsPublicDataAsync,
   fetchPoolsPublicDataAsync,
   fetchPoolsUserDataAsync,
@@ -14,7 +15,7 @@ import {
   remove as removeToast,
   clear as clearToast,
 } from './actions'
-import { State, Farm, Pool, ProfileState, TeamsState, AchievementState } from './types'
+import { State, Farm, Pool, Battlefield, ProfileState, TeamsState, AchievementState } from './types'
 import { fetchProfile } from './profile'
 import { fetchTeam, fetchTeams } from './teams'
 import { fetchAchievements } from './achievements'
@@ -27,8 +28,39 @@ export const useFetchPublicData = () => {
   const { slowRefresh } = useRefresh()
   useEffect(() => {
     dispatch(fetchFarmsPublicDataAsync())
+    dispatch(fetchBattlefieldPublicDataAsync())
     dispatch(fetchPoolsPublicDataAsync())
   }, [dispatch, slowRefresh])
+}
+
+// Battlefield
+
+export const useBattlefield = (): Battlefield[] => {
+  const battlefield = useSelector((state: State) => state.battlefield.data)
+  return battlefield
+}
+
+export const useBattlefieldFromPid = (pid): Battlefield => {
+  const battlefield = useSelector((state: State) => state.battlefield.data.find((f) => f.pid === pid))
+  return battlefield
+}
+
+export const useBattlefieldFromSymbol = (lpSymbol: string): Battlefield => {
+  const battlefield = useSelector((state: State) => state.battlefield.data.find((f) => f.lpSymbol === lpSymbol))
+  return battlefield
+}
+
+export const useBattlefieldUser = (pid) => {
+  const battlefield = useBattlefieldFromPid(pid)
+
+  return {
+    allowance: battlefield.userData ? new BigNumber(battlefield.userData.allowance) : new BigNumber(0),
+    tokenBalance: battlefield.userData ? new BigNumber(battlefield.userData.tokenBalance) : new BigNumber(0),
+    stakedBalance: battlefield.userData ? new BigNumber(battlefield.userData.stakedBalance) : new BigNumber(0),
+    earnings: battlefield.userData ? new BigNumber(battlefield.userData.earnings) : new BigNumber(0),
+    userArmyStrength: battlefield.userData ? new BigNumber(battlefield.userData.userArmyStrength) : new BigNumber(0),
+    userArmyPercent: battlefield.userData ? new BigNumber(battlefield.userData.userArmyPercent) : new BigNumber(0),
+  }
 }
 
 // Farms

@@ -1901,9 +1901,10 @@
     eslint-plugin-react "^7.21.5"
     eslint-plugin-react-hooks "^4.0.0"
 
-"@pancakeswap-libs/uikit@https://github.com/Huwonk/KnightsOfTheRoundTableBSC-uikit.git":
+"@pancakeswap-libs/uikit@https://github.com/SirTristanKnightsDefi/KnightsOfTheRoundTableBSC-uikit":
   version "0.12.0"
-  resolved "https://github.com/Huwonk/KnightsOfTheRoundTableBSC-uikit.git#c686ef628ef2985f8ab3cc6c6b2cefefb8133bbf"
+  uid c686ef628ef2985f8ab3cc6c6b2cefefb8133bbf
+  resolved "https://github.com/SirTristanKnightsDefi/KnightsOfTheRoundTableBSC-uikit#e7f9c70815acc8d1b385a08484662a5a1f228b34"
   dependencies:
     "@rollup/plugin-image" "^2.0.6"
     "@types/lodash" "^4.14.162"

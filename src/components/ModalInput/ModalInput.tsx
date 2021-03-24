@@ -14,6 +14,18 @@ interface ModalInputProps {
   inputTitle?: string
 }
 
+interface CompoundModalInputProps {
+  symbol: string
+  placeholder?: string
+  value: string
+  addLiquidityUrl?: string
+  inputTitle?: string
+}
+
+interface CompoundAllModalInputProps {
+  symbol: string
+}
+
 const getBoxShadow = ({ isWarning = false, theme }) => {
   if (isWarning) {
     return theme.shadows.warning
@@ -95,6 +107,82 @@ const ModalInput: React.FC<ModalInputProps> = ({
           </Link>
         </StyledErrorMessage>
       )}
+    </div>
+  )
+}
+
+export const BattlefieldModalInput: React.FC<ModalInputProps> = ({
+  max,
+  symbol,
+  onChange,
+  onSelectMax,
+  value,
+  addLiquidityUrl,
+  inputTitle,
+}) => {
+  const TranslateString = useI18n()
+  const isBalanceZero = max === '0' || !max
+
+  const displayBalance = isBalanceZero ? '0' : parseFloat(max).toFixed(4)
+
+  return (
+    <div style={{ position: 'relative' }}>
+      <StyledTokenInput isWarning={isBalanceZero}>
+        <Flex justifyContent="space-between" pl="16px">
+          <Text fontSize="14px">{inputTitle}</Text>
+          <Text fontSize="14px">
+            {TranslateString(1120, 'Balance')}: {displayBalance.toLocaleString()}
+          </Text>
+        </Flex>
+        <Flex alignItems="flex-end" justifyContent="space-around">
+          <StyledInput onChange={onChange} placeholder="0" value={value} />
+          <Button size="sm" onClick={onSelectMax} mr="8px">
+            {TranslateString(452, 'Max')}
+          </Button>
+          <Text fontSize="16px">{symbol}</Text>
+        </Flex>
+      </StyledTokenInput>
+      {isBalanceZero && (
+        <StyledErrorMessage fontSize="14px" color="failure">
+          No tokens to stake:{' '}
+        </StyledErrorMessage>
+      )}
+    </div>
+  )
+}
+
+export const CompoundModalInput: React.FC<CompoundModalInputProps> = ({
+  symbol,
+  value,
+  addLiquidityUrl,
+  inputTitle,
+}) => {
+  const TranslateString = useI18n()
+
+  return (
+    <div style={{ position: 'relative' }}>
+      <StyledTokenInput>
+        <Flex justifyContent="center">
+          <Text fontSize="14px">Compound{inputTitle}</Text>
+        </Flex>
+        <Flex alignItems="flex-end" justifyContent="center">
+          <Text fontSize="16px">{symbol}</Text>
+        </Flex>
+      </StyledTokenInput>
+    </div>
+  )
+}
+
+export const CompoundAllModalInput: React.FC<CompoundAllModalInputProps> = () => {
+  const TranslateString = useI18n()
+
+  return (
+    <div style={{ position: 'relative' }}>
+      <StyledTokenInput>
+        <Flex justifyContent="center">
+          <Text fontSize="14px">Compound All</Text>
+        </Flex>
+      </StyledTokenInput>
     </div>
   )
 }

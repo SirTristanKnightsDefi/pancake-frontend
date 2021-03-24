@@ -19,6 +19,9 @@ export const getLegendAddress = () => {
 export const getMasterChefAddress = () => {
   return getAddress(addresses.masterChef)
 }
+export const getBattlefieldAddress = () => {
+  return getAddress(addresses.battlefield)
+}
 export const getMulticallAddress = () => {
   return getAddress(addresses.mulltiCall)
 }
