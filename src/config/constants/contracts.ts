@@ -4,8 +4,8 @@ export default {
     56: '0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30',
   },
   battlefield: {
-    97: '0xf66686f25D3F996F9dcb4778589d9D21765Fce54',
-    56: '0xf66686f25D3F996F9dcb4778589d9D21765Fce54',
+    97: '0x29edd493511E415989189eE65acdf4cd1Ae445D9',
+    56: '0x29edd493511E415989189eE65acdf4cd1Ae445D9',
   },
   knight: {
     97: '0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30',
