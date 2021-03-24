@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
-import { Button, Flex, Heading, IconButton, AddIcon, MinusIcon, useModal, ChevronLeftIcon } from '@pancakeswap-libs/uikit'
+import { Button, Flex, Heading, IconButton, AddIcon, MinusIcon, useModal, AutoRenewIcon } from '@pancakeswap-libs/uikit'
 import useI18n from 'hooks/useI18n'
 import {useBattlefieldStake} from 'hooks/useStake'
 import {useBattlefieldUnstake} from 'hooks/useUnstake'
@@ -64,7 +64,7 @@ const StakeAction: React.FC<BattlefieldCardActionsProps> = ({
           <AddIcon color="primary" />
         </IconButton>
         <IconButton variant="tertiary" onClick={onPresentCompound}>
-          <ChevronLeftIcon color="primary" />
+          <AutoRenewIcon color="primary" />
         </IconButton>
       </IconButtonWrapper>
     )
