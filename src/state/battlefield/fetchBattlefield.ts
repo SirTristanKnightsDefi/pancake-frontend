@@ -63,6 +63,7 @@ const fetchBattlefield = async () => {
         .times(new BigNumber(2))
         .times(lpTokenRatio)
 
+
       // Amount of token in the LP that are considered staking (i.e amount of token * lp ratio)
       const tokenAmount = new BigNumber(tokenBalanceLP).div(new BigNumber(10).pow(tokenDecimals)).times(lpTokenRatio)
       const quoteTokenAmount = new BigNumber(quoteTokenBlanceLP)
@@ -77,21 +78,17 @@ const fetchBattlefield = async () => {
         },
         {
           address: getBattlefieldAddress(),
-          name: 'totalArmyStrength',
+          name: 'getTotalArmyStrength',
         },
       ])
-
-      const allocPoint = new BigNumber(info.allocPoint._hex)
-      const poolWeight = allocPoint.div(new BigNumber(totalArmyStrength))
-
+      
       return {
         ...bfConfig,
         tokenAmount: tokenAmount.toJSON(),
         quoteTokenAmount: quoteTokenAmount.toJSON(),
         lpTotalInQuoteToken: lpTotalInQuoteToken.toJSON(),
         tokenPriceVsQuote: quoteTokenAmount.div(tokenAmount).toJSON(),
-        poolWeight: poolWeight.toJSON(),
-        multiplier: `${allocPoint.div(100).toString()}X`,
+        totalArmyStrength: new BigNumber(new BigNumber(totalArmyStrength).div(1e18).toFixed(2)).toJSON()
       }
     }),
   )

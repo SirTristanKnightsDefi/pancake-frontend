@@ -33,6 +33,20 @@ export const useBattlefieldHarvest = (battlefieldPid: number) => {
   return { onReward: handleHarvest }
 }
 
+export const useBattlefieldHarvestAll = () => {
+  const dispatch = useDispatch()
+  const { account } = useWallet()
+  const battlefieldContract = useBattlefield()
+
+  const handleHarvest = useCallback(async () => {
+    const txHash = await battlefieldWithdrawAllRewards(battlefieldContract, account)
+    dispatch(fetchFarmUserDataAsync(account))
+    return txHash
+  }, [account, dispatch, battlefieldContract])
+
+  return { onWithdrawAllRewards: handleHarvest }
+}
+
 export const useAllHarvest = (farmPids: number[]) => {
   const { account } = useWallet()
   const masterChefContract = useMasterchef()

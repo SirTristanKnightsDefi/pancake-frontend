@@ -22,6 +22,10 @@ interface CompoundModalInputProps {
   inputTitle?: string
 }
 
+interface CompoundAllModalInputProps {
+  symbol: string
+}
+
 const getBoxShadow = ({ isWarning = false, theme }) => {
   if (isWarning) {
     return theme.shadows.warning
@@ -163,6 +167,20 @@ export const CompoundModalInput: React.FC<CompoundModalInputProps> = ({
         </Flex>
         <Flex alignItems="flex-end" justifyContent="center">
           <Text fontSize="16px">{symbol}</Text>
+        </Flex>
+      </StyledTokenInput>
+    </div>
+  )
+}
+
+export const CompoundAllModalInput: React.FC<CompoundAllModalInputProps> = () => {
+  const TranslateString = useI18n()
+
+  return (
+    <div style={{ position: 'relative' }}>
+      <StyledTokenInput>
+        <Flex justifyContent="center">
+          <Text fontSize="14px">Compound All</Text>
         </Flex>
       </StyledTokenInput>
     </div>

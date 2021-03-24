@@ -73,11 +73,15 @@ export interface BattlefieldConfig {
   quoteTokenAdresses: Address
   multiplier?: string
   isCommunity?: boolean
+  burnPct: number
+  rewardPoolPct: number
+  externalFeePct: number
   dual?: {
     rewardPerBlock: number
     earnLabel: string
     endBlock: number
   }
+  
 }
 
 export interface PoolConfig {

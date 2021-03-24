@@ -19,7 +19,7 @@ export const useBattlefieldCompound = (battlefieldPid: number) => {
   return { onCompound: handleCompound }
 }
 
-export const useBattlefieldCompoundAll = (battlefieldPid: number) => {
+export const useBattlefieldCompoundAll = () => {
   const dispatch = useDispatch()
   const { account } = useWallet()
   const battlefieldContract = useBattlefield()
@@ -30,6 +30,6 @@ export const useBattlefieldCompoundAll = (battlefieldPid: number) => {
     return txHash
   }, [account, dispatch, battlefieldContract])
 
-  return { onCompound: handleCompound }
+  return { onCompoundAll: handleCompound }
 }
 

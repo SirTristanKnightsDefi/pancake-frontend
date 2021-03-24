@@ -32,6 +32,7 @@ export interface Battlefield extends BattlefieldConfig {
   lpTotalInQuoteToken?: BigNumber
   tokenPriceVsQuote?: BigNumber
   poolWeight?: BigNumber
+  totalArmyStrength?: BigNumber
   userData?: {
     allowance: BigNumber
     tokenBalance: BigNumber

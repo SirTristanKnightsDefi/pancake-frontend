@@ -16,6 +16,7 @@ import { QuoteToken } from 'config/constants/types'
 import BattlefieldCard, { BattlefieldWithStakedValue } from './components/BattlefieldCard/BattlefieldCard'
 import BattlefieldTabButtons from './components/BattlefieldTabButtons'
 import Divider from './components/Divider'
+import AllAction from './components/AllAction'
 
 const Battlefield: React.FC = () => {
   const { path } = useRouteMatch()
@@ -24,7 +25,6 @@ const Battlefield: React.FC = () => {
   const bnbPrice = usePriceBnbBusd()
   const { account, ethereum }: { account: string; ethereum: provider } = useWallet()
   const ethPriceUsd = usePriceEthBusd()
-
   const dispatch = useDispatch()
   const { fastRefresh } = useRefresh()
   useEffect(() => {
@@ -34,6 +34,10 @@ const Battlefield: React.FC = () => {
   }, [account, dispatch, fastRefresh])
 
   const [stackedOnly, setStackedOnly] = useState(false)
+  
+  const Action = styled.div`
+  padding-top: 16px;
+`
 
   const activeBattlefields = battlefieldLP.filter((battlefield) => battlefield.multiplier !== '0X')
   const inactiveBattlefields = battlefieldLP.filter((battlefield) => battlefield.multiplier === '0X')
@@ -113,7 +117,7 @@ const Battlefield: React.FC = () => {
       <div>
         <FlexLayout>
           <Route exact path={`${path}`}>
-            Compound All and Harvest All Buttons Go Here!
+              <AllAction />
           </Route>
         </FlexLayout>
       </div>

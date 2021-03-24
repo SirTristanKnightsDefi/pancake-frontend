@@ -55,6 +55,22 @@ export const fetchBattlefieldUserStakedBalances = async (account: string) => {
   return parsedStakedBalances
 }
 
+export const fetchBattlefieldUserArmyStrength = async (account: string) => {
+  const battlefieldAddress = getBattlefieldAddress()
+
+  const calls = battlefieldsConfig.map((battlefield) => {
+    return {
+      address: battlefieldAddress,
+      name: 'getHolderArmyStrength',
+      params: [account],
+    }
+  })
+
+  const userArmyStrength = await multicall(battlefieldABI, calls)
+
+  return userArmyStrength
+}
+
 export const fetchBattlefieldUserEarnings = async (account: string) => {
   const battlefieldAddress = getBattlefieldAddress()
 

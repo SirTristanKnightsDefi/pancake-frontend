@@ -10,6 +10,8 @@ import ExpandableSectionButton from 'components/ExpandableSectionButton'
 import { QuoteToken } from 'config/constants/types'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
+import { fetchBattlefieldUserArmyStrength } from 'state/battlefield/fetchBattlefieldUser'
+import {fetchBattlefieldPublicDataAsync} from 'state/battlefield'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import CardActionsContainer from './CardActionsContainer'
@@ -98,6 +100,8 @@ const BattlefieldCard: React.FC<BattlefieldCardProps> = ({ battlefield, removed,
   // We assume the token name is coin pair + lp e.g. CAKE-BNB LP, LINK-BNB LP,
   // NAR-CAKE LP. The images should be cake-bnb.svg, link-bnb.svg, nar-cake.svg
   const battlefieldImage = battlefield.lpSymbol.split(' ')[0].toLocaleLowerCase()
+  
+  // const userArmyStrength = fetchBattlefieldUserArmyStrength(account)
 
   const totalValue: BigNumber = useMemo(() => {
     if (!battlefield.lpTotalInQuoteToken) {
@@ -132,12 +136,16 @@ const BattlefieldCard: React.FC<BattlefieldCardProps> = ({ battlefield, removed,
   return (
     <FCard>
       {battlefield.tokenSymbol === 'KNIGHT' && <StyledCardAccent />}
+      <Text> {battlefield.totalArmyStrength} </Text>
       <CardHeading
         lpLabel={lpLabel}
         multiplier={battlefield.multiplier}
         isCommunityBattlefield={isCommunityBattlefield}
         battlefieldImage={battlefieldImage}
         tokenSymbol={battlefield.tokenSymbol}
+        burnPct = {battlefield.burnPct}
+        rewardPoolPct = {battlefield.rewardPoolPct}
+        externalFeePct = {battlefield.externalFeePct}
       />
       <CardActionsContainer battlefield={battlefield} ethereum={ethereum} account={account} addLiquidityUrl={addLiquidityUrl} />
       <Divider />

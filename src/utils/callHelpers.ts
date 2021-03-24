@@ -93,7 +93,7 @@ export const battlefieldWithdrawReward = async (battlefieldContract, pid, accoun
 
 export const battlefieldWithdrawAllRewards = async (battlefieldContract, account) => {
   return battlefieldContract.methods
-    .exit(false)
+    .withdrawAllRewards()
     .send({ from: account })
     .on('transactionHash', (tx) => {
       return tx.transactionHash
