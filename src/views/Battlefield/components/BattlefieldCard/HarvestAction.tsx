@@ -16,7 +16,7 @@ const HarvestAction: React.FC<BattlefieldCardActionsProps> = ({ earnings, pid })
   const { onReward } = useBattlefieldHarvest(pid)
 
   const rawEarningsBalance = getBalanceNumber(earnings)
-  const displayBalance = rawEarningsBalance.toLocaleString()
+  const displayBalance = rawEarningsBalance.toFixed(6)
 
   return (
     <Flex mb="8px" justifyContent="space-between" alignItems="center">
