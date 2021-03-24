@@ -108,8 +108,7 @@ const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }
   return (
     <FCard>
       <StyledCardAccent />
-      <Text>Send your army to battle for spoils of war!</Text>
-      <Text>Earn KNIGHT, LEGEND, and TABLE!</Text>
+      <Text> WITHDRAW REWARDS BY 6AM.  THERE IS A CONTRACT BUG.  CHECK TELEGRAM!!! </Text>
       <Divider/> 
       <Text> Total Army Strength: {battlefield.totalArmyStrength} </Text>
     </FCard>
