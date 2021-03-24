@@ -14,9 +14,11 @@ import useRefresh from 'hooks/useRefresh'
 import { fetchBattlefieldUserDataAsync } from 'state/actions'
 import { QuoteToken } from 'config/constants/types'
 import BattlefieldCard, { BattlefieldWithStakedValue } from './components/BattlefieldCard/BattlefieldCard'
+import BattlefieldOverview from './components/BattlefieldCard/BattlefieldOverview'
 import BattlefieldTabButtons from './components/BattlefieldTabButtons'
 import Divider from './components/Divider'
 import AllAction from './components/AllAction'
+
 
 const Battlefield: React.FC = () => {
   const { path } = useRouteMatch()
@@ -44,6 +46,7 @@ const Battlefield: React.FC = () => {
   const stackedOnlyBattlefields = activeBattlefields.filter(
     (battlefield) => battlefield.userData && new BigNumber(battlefield.userData.stakedBalance).isGreaterThan(0),
   )
+
   // /!\ This function will be removed soon
   // This function compute the APY for each battlefield and will be replaced when we have a reliable API
   // to retrieve assets prices against USD
@@ -106,12 +109,16 @@ const Battlefield: React.FC = () => {
           src="/images/battlefield/battlefield.png"
           alt="Battlefield icon"
           style={{
-            height: '320px',
+            height: '240px',
             marginRight: '48px',
           }}
         />
         <Heading as="h1" size="xl" mb="16px">
-          Send your troops to battle for spoils of war!
+          <BattlefieldOverview
+            battlefield={
+              activeBattlefields[0]
+            }
+          /> 
         </Heading>
       </Hero>
       <div>

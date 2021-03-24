@@ -70,7 +70,7 @@ const fetchBattlefield = async () => {
         .div(new BigNumber(10).pow(quoteTokenDecimals))
         .times(lpTokenRatio)
 
-      const [info, totalArmyStrength] = await multicall(battlefieldABI, [
+      const [info, totalArmyStrength, totalHeld] = await multicall(battlefieldABI, [
         {
           address: getBattlefieldAddress(),
           name: 'stakingTokens',
@@ -85,7 +85,7 @@ const fetchBattlefield = async () => {
       return {
         ...bfConfig,
         tokenAmount: tokenAmount.toJSON(),
-        quoteTokenAmount: quoteTokenAmount.toJSON(),
+        quoteTokenAmount: new BigNumber(new BigNumber(lpTokenBalanceMC).div(1e18).toFixed(2)).toJSON(),
         lpTotalInQuoteToken: lpTotalInQuoteToken.toJSON(),
         tokenPriceVsQuote: quoteTokenAmount.div(tokenAmount).toJSON(),
         totalArmyStrength: new BigNumber(new BigNumber(totalArmyStrength).div(1e18).toFixed(2)).toJSON()

@@ -38,6 +38,8 @@ export interface Battlefield extends BattlefieldConfig {
     tokenBalance: BigNumber
     stakedBalance: BigNumber
     earnings: BigNumber
+    userArmyStrength: BigNumber
+    userArmyPercent: BigNumber
   }
 }
 

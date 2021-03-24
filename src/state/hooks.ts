@@ -58,6 +58,8 @@ export const useBattlefieldUser = (pid) => {
     tokenBalance: battlefield.userData ? new BigNumber(battlefield.userData.tokenBalance) : new BigNumber(0),
     stakedBalance: battlefield.userData ? new BigNumber(battlefield.userData.stakedBalance) : new BigNumber(0),
     earnings: battlefield.userData ? new BigNumber(battlefield.userData.earnings) : new BigNumber(0),
+    userArmyStrength: battlefield.userData ? new BigNumber(battlefield.userData.userArmyStrength) : new BigNumber(0),
+    userArmyPercent: battlefield.userData ? new BigNumber(battlefield.userData.userArmyPercent) : new BigNumber(0),
   }
 }
 

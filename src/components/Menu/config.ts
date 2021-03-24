@@ -9,7 +9,7 @@ const config: MenuEntry[] = [
   },
   {
     label: 'Battlefield',
-    icon: 'FarmIcon',
+    icon: 'GroupsIcon',
     href: '/Battlefield',
   },
   {

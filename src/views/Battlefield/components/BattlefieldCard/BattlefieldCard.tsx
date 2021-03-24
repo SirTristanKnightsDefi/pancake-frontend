@@ -136,7 +136,7 @@ const BattlefieldCard: React.FC<BattlefieldCardProps> = ({ battlefield, removed,
   return (
     <FCard>
       {battlefield.tokenSymbol === 'KNIGHT' && <StyledCardAccent />}
-      <Text> {battlefield.totalArmyStrength} </Text>
+
       <CardHeading
         lpLabel={lpLabel}
         multiplier={battlefield.multiplier}
@@ -149,19 +149,8 @@ const BattlefieldCard: React.FC<BattlefieldCardProps> = ({ battlefield, removed,
       />
       <CardActionsContainer battlefield={battlefield} ethereum={ethereum} account={account} addLiquidityUrl={addLiquidityUrl} />
       <Divider />
-      <ExpandableSectionButton
-        onClick={() => setShowExpandableSection(!showExpandableSection)}
-        expanded={showExpandableSection}
-      />
-      <ExpandingWrapper expanded={showExpandableSection}>
-        <DetailsSection
-          removed={removed}
-          bscScanAddress={`https://bscscan.com/address/${battlefield.lpAddresses[process.env.REACT_APP_CHAIN_ID]}`}
-          totalBalanceFormatted={totalBalanceFormatted}
-          lpLabel={lpLabel}
-          addLiquidityUrl={addLiquidityUrl}
-        />
-      </ExpandingWrapper>
+      <Text>Total at War:</Text> 
+      <Text>{battlefield.quoteTokenAmount}</Text>
     </FCard>
   )
 }

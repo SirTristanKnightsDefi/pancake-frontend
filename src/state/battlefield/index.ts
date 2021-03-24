@@ -7,7 +7,8 @@ import {
   fetchBattlefieldUserAllowances,
   fetchBattlefieldUserTokenBalances,
   fetchBattlefieldUserStakedBalances,
-  fetchBattlefieldUserArmyStrength
+  fetchBattlefieldUserArmyStrength,
+  fetchBattlefieldUserArmyPercent
 } from './fetchBattlefieldUser'
 import { BattlefieldState, Battlefield } from '../types'
 
@@ -48,6 +49,7 @@ export const fetchBattlefieldUserDataAsync = (account) => async (dispatch) => {
   const userStakedBalances = await fetchBattlefieldUserStakedBalances(account)
   const userBattlefieldEarnings = await fetchBattlefieldUserEarnings(account)
   const userArmyStrength = await fetchBattlefieldUserArmyStrength(account)
+  const userArmyPercent = await fetchBattlefieldUserArmyPercent(account)
 
   const arrayOfUserDataObjects = userBattlefieldAllowances.map((battlefieldAllowance, index) => {
     return {
@@ -56,7 +58,8 @@ export const fetchBattlefieldUserDataAsync = (account) => async (dispatch) => {
       tokenBalance: userBattlefieldTokenBalances[index],
       stakedBalance: userStakedBalances[index],
       earnings: userBattlefieldEarnings[index],
-      userArmyStrength: userArmyStrength[index]
+      userArmyStrength: userArmyStrength[index],
+      userArmyPercent: userArmyPercent[index]
     }
   })
 
