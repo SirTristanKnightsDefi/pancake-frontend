@@ -33,6 +33,7 @@ export enum QuoteToken {
   'COMP' = 'COMP',
   'KNIGHT' = 'KNIGHT',
   'TABLE' = 'TABLE',
+  'LEGEND' = 'LEGEND'
 }
 
 export enum PoolCategory {

@@ -28,7 +28,7 @@ const TotalValueLockedCard = () => {
         {tvl ? (
           <>
             <Heading size="xl">${tvl.toNumber().toLocaleString('en-US', { maximumFractionDigits: 0 })}</Heading>
-            <Text color="textSubtle">{TranslateString(764, 'Across all Farms and Pools')}</Text>
+            <Text color="textSubtle">{TranslateString(764, 'Across all Farms, Pools, and Battlefield')}</Text>
           </>
         ) : (
           <>

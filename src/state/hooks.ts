@@ -241,10 +241,13 @@ export const useAchievements = () => {
 
 export const useTotalValue = (): BigNumber => {
   const farms = useFarms()
+  const battlefield = useBattlefield()
   const pool = usePoolFromPid(0)
   const bnbPrice = usePriceBnbBusd()
   const ethPrice = usePriceEthBusd()
   const cakePrice = usePriceCakeBusd()
+  const legendPrice = usePriceLegendBusd()
+  const tablePrice = usePriceTableBusd()
 
   // Add Farms
   let value = new BigNumber(0)
@@ -262,6 +265,20 @@ export const useTotalValue = (): BigNumber => {
         val = farm.lpTotalInQuoteToken
       }
       value = value.plus(val)
+    }
+  }
+  for (let i = 0; i < battlefield.length; i++) {
+    const bf = battlefield[i]
+    if (bf.quoteTokenAmount) {
+      if (bf.tokenSymbol === QuoteToken.KNIGHT){
+        value = value.plus(cakePrice.times(bf.quoteTokenAmount))
+      }
+      if (bf.tokenSymbol === QuoteToken.LEGEND){
+        value = value.plus(legendPrice.times(bf.quoteTokenAmount))
+      }
+      if (bf.tokenSymbol === QuoteToken.TABLE){
+        value = value.plus(tablePrice.times(bf.quoteTokenAmount))
+      }
     }
   }
 
