@@ -112,8 +112,6 @@ const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }
       <Text>Earn KNIGHT, LEGEND, and TABLE!</Text>
       <Divider/> 
       <Text> Total Army Strength: {battlefield.totalArmyStrength} </Text>
-      <Text> Your Army Strength: </Text>
-      <Text> Your Army Percentage: </Text>
     </FCard>
   )
 }
