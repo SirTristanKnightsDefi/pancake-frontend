@@ -74,8 +74,10 @@ export const battlefieldStake = async (battlefieldContract, pid, amount, account
 }
 
 export const battlefieldWithdraw = async (battlefieldContract, pid, amount, account) => {
+  const ignoreRewards = false;
+
   return battlefieldContract.methods
-    .withdraw(pid, new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
+    .withdraw(pid, new BigNumber(amount).times(new BigNumber(10).pow(18)).toString(), ignoreRewards)
     .send({ from: account })
     .on('transactionHash', (tx) => {
       return tx.transactionHash

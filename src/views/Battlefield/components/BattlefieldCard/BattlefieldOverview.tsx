@@ -108,7 +108,7 @@ const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }
   return (
     <FCard>
       <StyledCardAccent />
-      <Text> WITHDRAW REWARDS BY 6AM.  THERE IS A CONTRACT BUG.  CHECK TELEGRAM!!! </Text>
+      <Text> Battle for rewards by sending KNIGHT, TABLE, and LEGEND to war!</Text>
       <Divider/> 
       <Text> Total Army Strength: {battlefield.totalArmyStrength} </Text>
     </FCard>
