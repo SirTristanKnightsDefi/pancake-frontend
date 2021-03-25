@@ -8,9 +8,9 @@ const config: MenuEntry[] = [
     href: '/',
   },
   {
-    label: 'Battlefield - Coming Back Soon!',
+    label: 'Battlefield',
     icon: 'GroupsIcon',
-    href: '',
+    href: '/Battlefield',
   },
   {
     label: 'Farms',
