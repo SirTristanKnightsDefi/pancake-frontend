@@ -113,19 +113,20 @@ const Battlefield: React.FC = () => {
             marginRight: '48px',
           }}
         />
-        <Heading as="h1" size="xl" mb="16px">
-          <BattlefieldOverview
-            battlefield={
-              activeBattlefields[0]
-            }
-          /> 
-        </Heading>
+
       </Hero>
       <div>
-        <FlexLayout>
-          <Route exact path={`${path}`}>
+      <FlexLayout>
+        <Route exact path={`${path}`}>
+          <Heading as="h1" size="xl" mb="16px">
+            <BattlefieldOverview
+              battlefield={
+                activeBattlefields[0]
+              }
+            /> 
+          </Heading>
               <AllAction />
-          </Route>
+        </Route>
         </FlexLayout>
       </div>
       <div>
