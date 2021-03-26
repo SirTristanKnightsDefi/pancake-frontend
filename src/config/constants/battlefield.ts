@@ -16,8 +16,8 @@ const battlefield: BattlefieldConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
-    burnPct:0,
-    rewardPoolPct:0,
+    burnPct:5,
+    rewardPoolPct:5,
     externalFeePct:0
   },
   {
