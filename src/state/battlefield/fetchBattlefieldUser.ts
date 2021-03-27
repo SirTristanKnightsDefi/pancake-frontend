@@ -82,9 +82,9 @@ export const fetchBattlefieldUserArmyPercent = async (account: string) => {
     }
   })
 
-  const userArmyStrength = await multicall(battlefieldABI, calls)
+  const userArmyPercent = await multicall(battlefieldABI, calls)
 
-  return userArmyStrength
+  return userArmyPercent
 }
 
 export const fetchBattlefieldUserEarnings = async (account: string) => {

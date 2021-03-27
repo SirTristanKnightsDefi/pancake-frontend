@@ -33,6 +33,7 @@ export interface Battlefield extends BattlefieldConfig {
   tokenPriceVsQuote?: BigNumber
   poolWeight?: BigNumber
   totalArmyStrength?: BigNumber
+  rewardsBalance?: BigNumber
   userData?: {
     allowance: BigNumber
     tokenBalance: BigNumber
