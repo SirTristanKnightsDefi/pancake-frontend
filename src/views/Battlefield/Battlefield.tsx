@@ -110,7 +110,7 @@ const Battlefield: React.FC = () => {
           alt="Battlefield icon"
           style={{
             height: '240px',
-            marginRight: '48px',
+            marginRight: '0px',
           }}
         />
 
@@ -118,19 +118,26 @@ const Battlefield: React.FC = () => {
       <div>
       <FlexLayout>
         <Route exact path={`${path}`}>
-          <Heading as="h1" size="xl" mb="16px">
+          <Heading as="h1" size="xl">
             <BattlefieldOverview
               battlefield={
                 activeBattlefields[0]
               }
             /> 
           </Heading>
-              <AllAction />
+              
         </Route>
+        </FlexLayout>
+        
+      </div>
+      <div>
+        <FlexLayout>
+          <AllAction />
         </FlexLayout>
       </div>
       <div>
         <FlexLayout>
+        
           <Route exact path={`${path}`}>
             {stackedOnly ? battlefieldList(stackedOnlyBattlefields, false) : battlefieldList(activeBattlefields, false)}
           </Route>
