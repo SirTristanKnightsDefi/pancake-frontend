@@ -151,6 +151,9 @@ const BattlefieldCard: React.FC<BattlefieldCardProps> = ({ battlefield, removed,
       <Divider />
       <Text>Total at War:</Text> 
       <Text>{battlefield.quoteTokenAmount}</Text>
+      <Text>Total Rewards Remaining:</Text> 
+      <Text>{battlefield.rewardsBalance}</Text>
+
     </FCard>
   )
 }

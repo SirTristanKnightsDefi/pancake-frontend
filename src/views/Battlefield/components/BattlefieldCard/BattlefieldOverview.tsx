@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo, useState, useCallback } from 'react'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
 import { Flex, Text, Skeleton } from '@pancakeswap-libs/uikit'
@@ -11,14 +11,18 @@ import { QuoteToken } from 'config/constants/types'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import {fetchBattlefieldPublicDataAsync} from 'state/battlefield'
-import { useBattlefieldUser } from 'state/hooks'
+import { useBattlefieldUser, useBattlefieldFromSymbol } from 'state/hooks'
+import { getBalanceNumber } from 'utils/formatBalance'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import CardActionsContainer from './CardActionsContainer'
 import ApyButton from './ApyButton'
 
+
 export interface BattlefieldOverviewWithStakedValue extends Battlefield {
   apy?: BigNumber
+  userArmyStrength?: BigNumber
+  userArmyPercent?: BigNumber
 }
 
 const RainbowLight = keyframes`
@@ -95,8 +99,11 @@ const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }
   // NAR-CAKE LP. The images should be cake-bnb.svg, link-bnb.svg, nar-cake.svg
   const battlefieldImage = battlefield.lpSymbol.split(' ')[0].toLocaleLowerCase()
   
-  const userArmyStrength = useBattlefieldUser(0).userArmyStrength
-  const userArmyPercent = useBattlefieldUser(0).userArmyPercent
+  const { pid, lpAddresses } = useBattlefieldFromSymbol(battlefield.lpSymbol)
+  const { allowance, tokenBalance, stakedBalance, earnings, userArmyStrength, userArmyPercent } = useBattlefieldUser(pid)
+  const rawArmyStrength = getBalanceNumber(userArmyStrength)
+  const rawArmyPercent = new BigNumber(getBalanceNumber(userArmyPercent)).multipliedBy(100).toFixed(6)
+  const rawTotalArmyStrength = new BigNumber(battlefield.totalArmyStrength).toFixed(0)
 
   const lpLabel = battlefield.lpSymbol && battlefield.lpSymbol.toUpperCase().replace('PANCAKE', '')
   const battlefieldAPY = battlefield.apy && battlefield.apy.times(new BigNumber(100)).toNumber().toLocaleString('en-US').slice(0, -1)
@@ -111,6 +118,10 @@ const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }
       <Text> Battle for rewards by sending KNIGHT, TABLE, and LEGEND to war!</Text>
       <Divider/> 
       <Text> Total Army Strength: {battlefield.totalArmyStrength} </Text>
+      <Divider/> 
+      <Text> Your Army Strength: {rawArmyStrength} </Text>
+      <Text> Your Army Percent: {rawArmyPercent}% </Text>
+
     </FCard>
   )
 }
