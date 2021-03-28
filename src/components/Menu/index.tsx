@@ -3,7 +3,7 @@ import { Menu as UikitMenu } from '@pancakeswap-libs/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { allLanguages } from 'config/localisation/languageCodes'
 import { LanguageContext } from 'contexts/Localisation/languageContext'
-import { usePriceCakeBusd, usePriceTableBusd, usePriceLegendBusd } from 'state/hooks'
+import { usePriceCakeBusd, usePriceTableBusd, usePriceLegendBusd, usePriceSquireBusd } from 'state/hooks'
 import config from './config'
 
 const Menu = (props) => {
@@ -12,6 +12,7 @@ const Menu = (props) => {
   const cakePriceUsd = usePriceCakeBusd()
   const tablePriceUsd = usePriceTableBusd()
   const legendPriceUsd = usePriceLegendBusd()
+  const squirePriceUsd = usePriceSquireBusd()
 
   return (
     <UikitMenu
@@ -27,6 +28,7 @@ const Menu = (props) => {
       cakePriceUsd={cakePriceUsd.toNumber()}
       tablePriceUsd={tablePriceUsd.toNumber()}
       legendPriceUsd={legendPriceUsd.toNumber()}
+      squirePriceUsd={squirePriceUsd.toNumber()}
       links={config}
       {...props}
     />

@@ -1903,8 +1903,7 @@
 
 "@pancakeswap-libs/uikit@https://github.com/SirTristanKnightsDefi/KnightsOfTheRoundTableBSC-uikit":
   version "0.12.0"
-  uid c686ef628ef2985f8ab3cc6c6b2cefefb8133bbf
-  resolved "https://github.com/SirTristanKnightsDefi/KnightsOfTheRoundTableBSC-uikit#e7f9c70815acc8d1b385a08484662a5a1f228b34"
+  resolved "https://github.com/SirTristanKnightsDefi/KnightsOfTheRoundTableBSC-uikit#1dab51b3e3514630eb7b476512ec8213a926ebda"
   dependencies:
     "@rollup/plugin-image" "^2.0.6"
     "@types/lodash" "^4.14.162"
@@ -4438,6 +4437,11 @@ bignumber.js@^9.0.0:
   version "9.0.1"
   resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-9.0.1.tgz#8d7ba124c882bfd8e43260c67475518d0689e4e5"
   integrity sha512-IdZR9mh6ahOBv/hYGiXyVuyCetmGJhtYkqLBpTStdhEGjegpPlUawydyaF3pbIOFynJTpllEs+NP+CS9jKFLjA==
+
+bignumber@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/bignumber/-/bignumber-1.1.0.tgz#e6ab0a743da5f3ea018e5c17597d121f7868c159"
+  integrity sha1-5qsKdD2l8+oBjlwXWX0SH3howVk=
 
 binary-extensions@^1.0.0:
   version "1.13.1"

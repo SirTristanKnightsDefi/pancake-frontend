@@ -6,6 +6,7 @@ import FarmStakingCard from 'views/Home/components/FarmStakingCard'
 import CakeStats from 'views/Home/components/CakeStats'
 import TableStats from 'views/Home/components/TableStats'
 import LegendStats from 'views/Home/components/LegendStats'
+import SquireStats from 'views/Home/components/SquireStats'
 import TotalValueLockedCard from 'views/Home/components/TotalValueLockedCard'
 import TwitterCard from './components/TwitterCard';
 
@@ -79,9 +80,10 @@ const Home: React.FC = () => {
         <FarmStakingCard />
         <TwitterCard />
         <TotalValueLockedCard />
+        <SquireStats />
         <CakeStats />
-        <TableStats />
         <LegendStats />
+        <TableStats />
       </Cards>
     </Page>
   )

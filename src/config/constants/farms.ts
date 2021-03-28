@@ -63,6 +63,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
   },
   {
+    pid: 6,
+    lpSymbol: 'SQUIRE-BNB LP',
+    lpAddresses: {
+      97: '0x1ef4674486e066515fa57e9c75e372e7e4f10fdc', // SQUIRE-BNB LP
+      56: '0x1ef4674486e066515fa57e9c75e372e7e4f10fdc', // SQUIRE-BNB LP
+    },
+    tokenSymbol: 'SQUIRE',
+    tokenAddresses: {
+      97: '0x2F0D21f1B84F03fB9D60004fc206C86Be6902a32', // SQUIRE
+      56: '0x2F0D21f1B84F03fB9D60004fc206C86Be6902a32', // SQUIRE
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
     pid: 3,
     lpSymbol: 'TABLE-KNIGHT LP',
     lpAddresses: {
