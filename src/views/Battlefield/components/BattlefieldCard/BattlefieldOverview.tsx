@@ -115,7 +115,7 @@ const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }
   return (
     <FCard>
       <StyledCardAccent />
-      <Text> Battle for rewards by sending KNIGHT, TABLE, and LEGEND to war!</Text>
+      <Text> Battle for rewards by sending SQUIRE, KNIGHT, LEGEND, and TABLE to war!</Text>
       <Divider/> 
       <Text> Total Army Strength: {battlefield.totalArmyStrength} </Text>
       <Divider/> 

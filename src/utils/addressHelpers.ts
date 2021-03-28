@@ -14,7 +14,10 @@ export const getTableAddress = () => {
   return getAddress(addresses.table) // Returns TABLE
 }
 export const getLegendAddress = () => {
-  return getAddress(addresses.legend) // Returns TABLE
+  return getAddress(addresses.legend) // Returns LEGEND
+}
+export const getSquireAddress = () => {
+  return getAddress(addresses.squire) // Returns SQUIRE
 }
 export const getMasterChefAddress = () => {
   return getAddress(addresses.masterChef)

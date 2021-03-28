@@ -153,6 +153,13 @@ export const usePriceLegendBusd = (): BigNumber => {
   return farm.tokenPriceVsQuote ? bnbPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
 }
 
+export const usePriceSquireBusd = (): BigNumber => {
+  const pid = 6 // SQUIRE-BNB LP
+  const bnbPriceUSD = usePriceBnbBusd()
+  const farm = useFarmFromPid(pid)
+  return farm.tokenPriceVsQuote ? bnbPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
+}
+
 // Toasts
 export const useToast = () => {
   const dispatch = useDispatch()
@@ -248,6 +255,7 @@ export const useTotalValue = (): BigNumber => {
   const cakePrice = usePriceCakeBusd()
   const legendPrice = usePriceLegendBusd()
   const tablePrice = usePriceTableBusd()
+  const squirePrice = usePriceSquireBusd()
 
   // Add Farms
   let value = new BigNumber(0)
@@ -278,6 +286,9 @@ export const useTotalValue = (): BigNumber => {
       }
       if (bf.tokenSymbol === QuoteToken.TABLE){
         value = value.plus(tablePrice.times(bf.quoteTokenAmount))
+      }
+      if (bf.tokenSymbol === QuoteToken.SQUIRE){
+        value = value.plus(squirePrice.times(bf.quoteTokenAmount))
       }
     }
   }
