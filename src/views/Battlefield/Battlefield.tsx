@@ -145,6 +145,7 @@ const Battlefield: React.FC = () => {
             {battlefieldList(inactiveBattlefields, true)}
           </Route>
         </FlexLayout>
+        <Divider/>
         <Text>*Army Strength is calculated as follows:</Text>
       <Text>(SQUIRE + (KNIGHT * 100)) * e^(log10((TABLE * 5) * LEGEND))</Text>
       </div>
