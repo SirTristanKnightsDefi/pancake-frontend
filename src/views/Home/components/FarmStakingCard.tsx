@@ -98,8 +98,14 @@ const FarmedStakingCard = () => {
         </Actions>
         <Heading size="xl" mb="24px">
           {TranslateString(542, 'Battlefield Rewards')}
-        </Heading>        
-        <AllAction/>
+        </Heading>   
+        {account ? (
+            <AllAction/>
+            
+          ) : (
+            <UnlockButton fullWidth />
+          )}     
+        
       </CardBody>
     </StyledFarmStakingCard>
   )
