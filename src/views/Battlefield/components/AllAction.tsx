@@ -1,14 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
-import { Text, Button, Flex, Heading, IconButton, AddIcon, MinusIcon, useModal, AutoRenewIcon } from '@pancakeswap-libs/uikit'
+import { Text, Button, Flex } from '@pancakeswap-libs/uikit'
 import useI18n from 'hooks/useI18n'
 import { useBattlefieldCompoundAll} from 'hooks/useCompound'
 import { useBattlefieldHarvestAll } from 'hooks/useHarvest'
-import { getBalanceNumber } from 'utils/formatBalance'
-import DepositModal from './DepositModal'
-import WithdrawModal from './WithdrawModal'
-import CompoundAllModal from './CompoundAllModal'
+
 
 interface BattlefieldCardActionsProps {
   stakedBalance?: BigNumber

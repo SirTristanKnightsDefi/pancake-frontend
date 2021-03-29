@@ -21,8 +21,8 @@ const useBattlefieldWithBalance = () => {
     const fetchBalances = async () => {
       const calls = battlefieldConfig.map((battlefield) => ({
         address: getBattlefieldAddress(),
-        name: 'pendingKnight',
-        params: [battlefield.pid, account],
+        name: 'getUserCurrentRewards',
+        params: [account, battlefield.pid],
       }))
 
       const rawResults = await multicall(masterChefABI, calls)

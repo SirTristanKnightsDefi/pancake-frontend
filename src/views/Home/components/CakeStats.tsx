@@ -30,7 +30,7 @@ const CakeStats = () => {
   const burnedBalance = useBurnedBalance(getCakeAddress())
   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
   const knightMarketCap = usePriceCakeBusd().toNumber() * cakeSupply
-  const knightPerBlock = 3
+  const knightPerBlock = 2
 
   return (
     <StyledCakeStats>
