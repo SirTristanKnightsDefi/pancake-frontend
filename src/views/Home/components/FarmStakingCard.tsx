@@ -1,11 +1,15 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useMemo} from 'react'
+import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
-import { Heading, Card, CardBody, Button } from '@pancakeswap-libs/uikit'
+import { Heading, Card, CardBody, Button, Text } from '@pancakeswap-libs/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import useI18n from 'hooks/useI18n'
 import { useAllHarvest } from 'hooks/useHarvest'
+import { usePriceCakeBusd, usePriceLegendBusd, usePriceTableBusd, usePriceSquireBusd, useBattlefieldUser } from 'state/hooks'
 import useFarmsWithBalance from 'hooks/useFarmsWithBalance'
 import UnlockButton from 'components/UnlockButton'
+import AllAction from 'views/Battlefield/components/AllAction'
+import { getBalanceNumber } from 'utils/formatBalance'
 import CakeHarvestBalance from './CakeHarvestBalance'
 import CakeWalletBalance from './CakeWalletBalance'
 
@@ -34,11 +38,18 @@ const Actions = styled.div`
 `
 
 const FarmedStakingCard = () => {
+
   const [pendingTx, setPendingTx] = useState(false)
   const { account } = useWallet()
   const TranslateString = useI18n()
   const farmsWithBalance = useFarmsWithBalance()
   const balancesWithValue = farmsWithBalance.filter((balanceType) => balanceType.balance.toNumber() > 0)
+  const knightPrice = getBalanceNumber(usePriceCakeBusd())
+  const legendPrice = getBalanceNumber(usePriceLegendBusd())
+  const tablePrice = getBalanceNumber(usePriceTableBusd())
+  const squirePrice = getBalanceNumber(usePriceSquireBusd())
+  const { earnings } = useBattlefieldUser(0)
+  const knightEarnings = new BigNumber(getBalanceNumber(earnings.multipliedBy(1e18)) * knightPrice).toFixed(2)
 
   const { onReward } = useAllHarvest(balancesWithValue.map((farmWithBalance) => farmWithBalance.pid))
 
@@ -74,15 +85,21 @@ const FarmedStakingCard = () => {
               disabled={balancesWithValue.length <= 0 || pendingTx}
               onClick={harvestAllFarms}
               fullWidth
+              mb="24px"
             >
               {pendingTx
                 ? TranslateString(548, 'Collecting KNIGHT')
                 : TranslateString(532, `Harvest all (${balancesWithValue.length})`)}
             </Button>
+            
           ) : (
             <UnlockButton fullWidth />
           )}
         </Actions>
+        <Heading size="xl" mb="24px">
+          {TranslateString(542, 'Battlefield Rewards')}
+        </Heading>        
+        <AllAction/>
       </CardBody>
     </StyledFarmStakingCard>
   )
