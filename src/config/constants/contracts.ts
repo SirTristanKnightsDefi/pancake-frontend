@@ -1,4 +1,8 @@
 export default {
+  donateaddress:{
+    97: '0xb017c481575318017DC2122b59759B25d21f6721',
+    56: '0xb017c481575318017DC2122b59759B25d21f6721',
+  },
   cake: {
     97: '0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30', // Same as KNIGHT to ensure all internal calculations work
     56: '0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30',

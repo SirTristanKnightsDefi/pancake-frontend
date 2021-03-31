@@ -88,6 +88,9 @@ const Home: React.FC = () => {
         <LegendStats />
         <TableStats />
       </Cards>
+      <Hero>
+        <Text>Donate to Sir Tris - BSC / ETH / Harmony: 0xb017c481575318017DC2122b59759B25d21f6721</Text>
+      </Hero>
     </Page>
   )
 }
