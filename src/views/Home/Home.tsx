@@ -22,7 +22,7 @@ const Hero = styled.div`
   flex-direction: column;
   margin: auto;
   margin-bottom: 32px;
-  padding-top: 116px;
+  padding-top: 60px;
   text-align: center;
 
   ${({ theme }) => theme.mediaQueries.lg} {
@@ -69,7 +69,7 @@ const Home: React.FC = () => {
   return (
     <Page>
       <Hero>
-        <FatHeading as="h1" size="xl" mb="24px" color="primary">
+        <FatHeading as="h1" size="xl" mb="50px" color="primary">
           {/* TranslateString(576, 'Knights of the Round Table') */}
           Knights of the Round Table DeFi
         </FatHeading>
