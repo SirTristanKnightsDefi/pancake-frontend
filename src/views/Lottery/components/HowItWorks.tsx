@@ -34,7 +34,7 @@ const HowItWorks = () => {
       <Text fontSize="16px">
         {TranslateString(
           999,
-          'Spend KNIGHT to buy tickets, contributing to the lottery pot. Win prizes if 2, 3, or 4 of your ticket numbers match the winning numbers and their exact order!  Numbers are between 1-6, which gives odds of 2.7% chance to Match 2, .46% to Match 3, and .077% to Match 4',
+          'Spend KNIGHT to buy tickets, contributing to the lottery pot. Win prizes if 2, 3, or 4 of your ticket numbers match the winning numbers and their exact order!  Numbers are between 1-6, which gives odds of 2.7% chance to Match 2, .46% to Match 3, and .077% to Match 4.  Draw times are at 7AM and 7PM Eastern Standard Time Each Day',
         )}
       </Text>
     </LayoutWrapper>
