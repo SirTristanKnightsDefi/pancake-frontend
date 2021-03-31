@@ -40,9 +40,6 @@ const PastDrawsPage: React.FC = () => {
   return (
     <Cards>
       <PastLotteryRoundViewer />
-      <SecondCardColumnWrapper>
-        <PastDrawsHistoryCard />
-      </SecondCardColumnWrapper>
     </Cards>
   )
 }
