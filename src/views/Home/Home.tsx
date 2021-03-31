@@ -8,7 +8,9 @@ import TableStats from 'views/Home/components/TableStats'
 import LegendStats from 'views/Home/components/LegendStats'
 import SquireStats from 'views/Home/components/SquireStats'
 import TotalValueLockedCard from 'views/Home/components/TotalValueLockedCard'
-import TwitterCard from './components/TwitterCard';
+
+import LotteryCard from 'views/Home/components/LotteryCard'
+import TwitterCard from './components/TwitterCard'
 
 const Hero = styled.div`
   align-items: center;
@@ -78,6 +80,7 @@ const Home: React.FC = () => {
       </Hero>
       <Cards>
         <FarmStakingCard />
+        <LotteryCard />
         <TwitterCard />
         <TotalValueLockedCard />
         <SquireStats />
