@@ -1,6 +1,10 @@
 export default {
+  donateaddress:{
+    97: '0xb017c481575318017DC2122b59759B25d21f6721',
+    56: '0xb017c481575318017DC2122b59759B25d21f6721',
+  },
   cake: {
-    97: '0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30', // Same as KNIGHT
+    97: '0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30', // Same as KNIGHT to ensure all internal calculations work
     56: '0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30',
   },
   battlefield: {
@@ -12,7 +16,7 @@ export default {
     56: '0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30',
   },
   syrup: {
-    97: '0xB02cD9CEBD3c9a5e1EFAe855Acb991B3143C021c', // Same as HONOR
+    97: '0xB02cD9CEBD3c9a5e1EFAe855Acb991B3143C021c', // Same as HONOR to ensure all internal calculations work
     56: '0xB02cD9CEBD3c9a5e1EFAe855Acb991B3143C021c',
   },
   honor: {
@@ -44,12 +48,12 @@ export default {
     56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
   },
   lottery: {
-    97: '0x99c2EcD51d52c036B00130d882Bc65f20Fdecf9f', // We don't use it
-    56: '0x3C3f2049cc17C136a604bE23cF7E42745edf3b91', // We don't use it
+    97: '0x99c2EcD51d52c036B00130d882Bc65f20Fdecf9f',
+    56: '0x96Eb852eef3382f57746C6fFc2e0836B07fF7a1F', 
   },
   lotteryNFT: {
-    97: '0x8175c10383511b3a1C68f9dB222dc14A19CC950e', // We don't use it
-    56: '0x5e74094Cd416f55179DBd0E45b1a8ED030e396A1', // We don't use it
+    97: '0x8175c10383511b3a1C68f9dB222dc14A19CC950e',
+    56: '0x0dF0aF4117Ec4E642531F7df5390b6F34a95F0B6', 
   },
   mulltiCall: {
     56: '0x1ee38d535d541c55c9dae27b12edf090c608e6fb',

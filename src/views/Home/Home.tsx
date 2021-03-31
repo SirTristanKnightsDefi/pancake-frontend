@@ -8,7 +8,9 @@ import TableStats from 'views/Home/components/TableStats'
 import LegendStats from 'views/Home/components/LegendStats'
 import SquireStats from 'views/Home/components/SquireStats'
 import TotalValueLockedCard from 'views/Home/components/TotalValueLockedCard'
-import TwitterCard from './components/TwitterCard';
+
+import LotteryCard from 'views/Home/components/LotteryCard'
+import TwitterCard from './components/TwitterCard'
 
 const Hero = styled.div`
   align-items: center;
@@ -20,7 +22,7 @@ const Hero = styled.div`
   flex-direction: column;
   margin: auto;
   margin-bottom: 32px;
-  padding-top: 116px;
+  padding-top: 60px;
   text-align: center;
 
   ${({ theme }) => theme.mediaQueries.lg} {
@@ -67,7 +69,7 @@ const Home: React.FC = () => {
   return (
     <Page>
       <Hero>
-        <FatHeading as="h1" size="xl" mb="24px" color="primary">
+        <FatHeading as="h1" size="xl" mb="50px" color="primary">
           {/* TranslateString(576, 'Knights of the Round Table') */}
           Knights of the Round Table DeFi
         </FatHeading>
@@ -78,6 +80,7 @@ const Home: React.FC = () => {
       </Hero>
       <Cards>
         <FarmStakingCard />
+        <LotteryCard />
         <TwitterCard />
         <TotalValueLockedCard />
         <SquireStats />
@@ -85,6 +88,9 @@ const Home: React.FC = () => {
         <LegendStats />
         <TableStats />
       </Cards>
+      <Hero>
+        <Text>Donate to Sir Tris - BSC / ETH / Harmony: 0xb017c481575318017DC2122b59759B25d21f6721</Text>
+      </Hero>
     </Page>
   )
 }

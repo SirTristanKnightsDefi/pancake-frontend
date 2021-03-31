@@ -15,9 +15,9 @@ const Blurb = styled(Text)`
   font-size: 20px;
   font-weight: 600;
 `
-
-const StyledHero = styled.div`
-  background-image: linear-gradient(180deg, #53dee9 0%, #1fc7d4 100%);
+// This sets the top color for the Lotto Card
+const StyledHero = styled.div` 
+  background-image: linear-gradient(180deg, #3868b5 0%, #353547 100%);
   padding-bottom: 40px;
   padding-top: 40px;
 `
@@ -70,8 +70,8 @@ const Hero = () => {
     <StyledHero>
       <StyledContainer>
         <LeftWrapper>
-          <Title>{TranslateString(708, 'The CAKE Lottery')}</Title>
-          <Blurb>{TranslateString(710, 'Buy tickets with CAKE')}</Blurb>
+          <Title>{TranslateString(708, 'The King\'s Chance Lottery')}</Title>
+          <Blurb>{TranslateString(710, 'Buy tickets with KNIGHT')}</Blurb>
           <Blurb>{TranslateString(712, 'Win if 2, 3, or 4 of your ticket numbers match!')}</Blurb>
         </LeftWrapper>
         <RightWrapper>

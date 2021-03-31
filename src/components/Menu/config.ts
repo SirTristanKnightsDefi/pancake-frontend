@@ -23,6 +23,11 @@ const config: MenuEntry[] = [
     href: '/pools',
   },
   {
+    label: 'King\'s Chance',
+    icon: 'TicketIcon',
+    href: '/lottery',
+  },
+  {
     label: 'Blog / Roadmap',
     icon: 'RoadmapIcon',
     href: 'https://knightsoftheroundtable-bsc.medium.com/',
