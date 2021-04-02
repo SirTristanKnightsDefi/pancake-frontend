@@ -13,7 +13,7 @@ const Block = styled.div`
 
 const CakeWinnings = () => {
   const { claimAmount } = useTotalClaim()
-  const claimAmountBusd = new BigNumber(claimAmount).multipliedBy(usePriceCakeBusd()).toNumber()
+  const claimAmountBusd = new BigNumber(claimAmount).multipliedBy(usePriceCakeBusd().dividedBy(1e18)).toNumber()
 
   return (
     <Block>
