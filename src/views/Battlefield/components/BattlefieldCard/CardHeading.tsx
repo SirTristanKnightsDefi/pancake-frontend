@@ -12,6 +12,7 @@ export interface ExpandableSectionProps {
   burnPct?: number
   rewardPoolPct?:number
   externalFeePct?:number
+  rewardRate?:number
 }
 
 const Wrapper = styled(Flex)`
@@ -32,7 +33,8 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   tokenSymbol,
   burnPct,
   rewardPoolPct,
-  externalFeePct
+  externalFeePct,
+  rewardRate
 }) => {
   return (
     <Wrapper justifyContent="space-between" alignItems="center" mb="12px">
@@ -42,6 +44,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
         <Text mb="0px">Burn: {burnPct}%</Text>
         <Text mb="0px">Reward Pool: {rewardPoolPct}%</Text>
         <Text mb="0px">External Fees: {externalFeePct}%</Text>
+        <Text mb="0px">Rate: {rewardRate} / Blk.</Text>
       </Flex>
     </Wrapper>
   )

@@ -78,6 +78,7 @@ export interface BattlefieldConfig {
   burnPct: number
   rewardPoolPct: number
   externalFeePct: number
+  rewardRate: number
   dual?: {
     rewardPerBlock: number
     earnLabel: string
