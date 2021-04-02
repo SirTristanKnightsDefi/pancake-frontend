@@ -11,7 +11,7 @@ import { QuoteToken } from 'config/constants/types'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import {fetchBattlefieldPublicDataAsync} from 'state/battlefield'
-import { useBattlefieldUser, useBattlefieldFromSymbol } from 'state/hooks'
+import { useBattlefieldUser, useBattlefieldFromSymbol, usePriceCakeBusd, usePriceSquireBusd, usePriceLegendBusd, usePriceTableBusd } from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
@@ -91,6 +91,10 @@ interface BattlefieldOverviewProps {
 
 const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }) => {
   const TranslateString = useI18n()
+  const knightPrice = usePriceCakeBusd();
+  const squirePrice = usePriceSquireBusd();
+  const legendPrice = usePriceLegendBusd();
+  const tablePrice = usePriceTableBusd();
 
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
@@ -112,6 +116,18 @@ const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }
   const liquidityUrlPathParts = getLiquidityUrlPathParts({ quoteTokenAdresses, quoteTokenSymbol, tokenAddresses })
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
 
+  // Hardcoded values on rewards per day, update these.  It beats making a separate call to each Battlefield for an overview card... maybe.
+  const squireRewards = new BigNumber(getBalanceNumber(new BigNumber(rawArmyPercent).dividedBy(100).multipliedBy(1152000).multipliedBy(1e18))).toFixed(1);
+  const knightRewards = new BigNumber(getBalanceNumber(new BigNumber(rawArmyPercent).dividedBy(100).multipliedBy(7200).multipliedBy(1e18))).toFixed(2);
+  const legendRewards = new BigNumber(getBalanceNumber(new BigNumber(rawArmyPercent).dividedBy(100).multipliedBy(2).multipliedBy(1e18))).toFixed(4);
+  const tableRewards = new BigNumber(getBalanceNumber(new BigNumber(rawArmyPercent).dividedBy(100).multipliedBy(.0288).multipliedBy(1e18))).toFixed(6);
+
+  const squireRewardValue = new BigNumber(squireRewards).multipliedBy(squirePrice).toFixed(2);
+  const knightRewardValue = new BigNumber(knightRewards).multipliedBy(knightPrice).toFixed(2);
+  const legendRewardValue = new BigNumber(legendRewards).multipliedBy(legendPrice).toFixed(2);
+  const tableRewardValue = new BigNumber(tableRewards).multipliedBy(tablePrice).toFixed(2);
+  const totalRewardValue = (Number(squireRewardValue)+Number(knightRewardValue)+Number(legendRewardValue)+Number(tableRewardValue)).toFixed(2);
+
   return (
     <FCard>
       <StyledCardAccent />
@@ -121,7 +137,13 @@ const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }
       <Divider/> 
       <Text> Your Army Strength: {rawArmyStrength} </Text>
       <Text> Your Army Percent: {rawArmyPercent}% </Text>
-
+      <Divider/> 
+      <Text> Your <b>Estimated</b> Daily Spoils:</Text>
+      <Text> SQUIRE: {squireRewards} - ${squireRewardValue}</Text>
+      <Text> KNIGHT: {knightRewards} - ${knightRewardValue}</Text>
+      <Text> LEGEND: {legendRewards} - ${legendRewardValue}</Text>
+      <Text> TABLE: {tableRewards} - ${tableRewardValue}</Text>
+      <Text> Total: ${totalRewardValue} </Text>
     </FCard>
   )
 }

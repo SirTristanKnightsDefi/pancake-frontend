@@ -15,7 +15,6 @@ import { fetchBattlefieldUserDataAsync } from 'state/actions'
 import { QuoteToken } from 'config/constants/types'
 import BattlefieldCard, { BattlefieldWithStakedValue } from './components/BattlefieldCard/BattlefieldCard'
 import BattlefieldOverview from './components/BattlefieldCard/BattlefieldOverview'
-import BattlefieldTabButtons from './components/BattlefieldTabButtons'
 import Divider from './components/Divider'
 import AllAction from './components/AllAction'
 

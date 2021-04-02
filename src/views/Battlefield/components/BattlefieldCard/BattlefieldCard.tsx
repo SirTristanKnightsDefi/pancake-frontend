@@ -146,6 +146,7 @@ const BattlefieldCard: React.FC<BattlefieldCardProps> = ({ battlefield, removed,
         burnPct = {battlefield.burnPct}
         rewardPoolPct = {battlefield.rewardPoolPct}
         externalFeePct = {battlefield.externalFeePct}
+        rewardRate = {battlefield.rewardRate}
       />
       <CardActionsContainer battlefield={battlefield} ethereum={ethereum} account={account} addLiquidityUrl={addLiquidityUrl} />
       <Divider />
@@ -153,7 +154,6 @@ const BattlefieldCard: React.FC<BattlefieldCardProps> = ({ battlefield, removed,
       <Text>{battlefield.quoteTokenAmount}</Text>
       <Text>Total Rewards Remaining:</Text> 
       <Text>{battlefield.rewardsBalance}</Text>
-
     </FCard>
   )
 }
