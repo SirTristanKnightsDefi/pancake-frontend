@@ -105,7 +105,7 @@ const Battlefield: React.FC = () => {
     <Page>
       <Hero>
         <img
-          src="/images/battlefield/battlefield.png"
+          src="https://ipfs.io/ipfs/QmVfZmVEcSs5LYfRGc3BcCpNZu48eC2dVXAg6PPyqsWc4T?filename=BattlefieldLogo.PNG"
           alt="Battlefield icon"
           style={{
             height: '240px',
