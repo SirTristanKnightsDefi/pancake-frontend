@@ -47,7 +47,7 @@ const config: MenuEntry[] = [
       },
       {
         label: 'SQUIRE Chart',
-        href: 'https://goswapp-bsc.web.app/0x2F0D21f1B84F03fB9D60004fc206C86Be6902a32',
+        href: 'https://dex.guru/token/0x2F0D21f1B84F03fB9D60004fc206C86Be6902a32',
       },
     ]
   },
@@ -66,7 +66,7 @@ const config: MenuEntry[] = [
       },
       {
         label: 'KNIGHT Chart',
-        href: 'https://goswapp-bsc.web.app/0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30',
+        href: 'https://dex.guru/token/0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30',
       },
     ]
   },  
@@ -84,7 +84,7 @@ const config: MenuEntry[] = [
       },
       {
         label: 'LEGEND Chart',
-        href: 'https://goswapp-bsc.web.app/0xDc661984735b535210CB1f52f86cc58616024192',
+        href: 'https://dex.guru/token/0xDc661984735b535210CB1f52f86cc58616024192',
       },
     ],
   },
@@ -102,7 +102,7 @@ const config: MenuEntry[] = [
       },
       {
         label: 'TABLE Chart',
-        href: 'https://goswapp-bsc.web.app/0xf5a2f7418035ce76967f515f39d65719bb0453b6',
+        href: 'https://dex.guru/token/0xf5a2f7418035ce76967f515f39d65719bb0453b6',
       },
     ],
   },
