@@ -57,7 +57,7 @@ const battlefield: BattlefieldConfig[] = [
     burnPct:0,
     rewardPoolPct:0,
     externalFeePct:3,
-    rewardRate: .000069
+    rewardRate: .000017
   },
   {
     pid: 1,
