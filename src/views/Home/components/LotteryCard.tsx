@@ -71,7 +71,7 @@ const FarmedStakingCard = () => {
   const renderLotteryTicketButtonBuyOrApprove = () => {
     if (!allowance.toNumber()) {
       return (
-        <Button fullWidth disabled={requestedApproval} onClick={handleApprove}>
+        <Button  disabled={requestedApproval} onClick={handleApprove}>
           {TranslateString(494, 'Approve KNIGHT')}
         </Button>
       )

@@ -38,10 +38,10 @@ const TicketCard: React.FC = () => {
     if (!allowance.toNumber()) {
       return (
         <>
-          <Button fullWidth disabled>
+          <Button  disabled>
             {TranslateString(432, 'View your tickets')}
           </Button>
-          <Button fullWidth disabled={requestedApproval} onClick={handleApprove}>
+          <Button  disabled={requestedApproval} onClick={handleApprove}>
             {TranslateString(494, 'Approve KNIGHT')}
           </Button>
         </>
@@ -51,14 +51,14 @@ const TicketCard: React.FC = () => {
       <>
         <Button
           style={{ marginRight: '8px' }}
-          fullWidth
+          
           disabled={ticketsLength === 0}
           variant="secondary"
           onClick={onPresentMyTickets}
         >
           {TranslateString(432, 'View your tickets')}
         </Button>
-        <Button id="lottery-buy-start" fullWidth onClick={onPresentBuy}>
+        <Button id="lottery-buy-start"  onClick={onPresentBuy}>
           {TranslateString(430, 'Buy ticket')}
         </Button>
       </>

@@ -19,7 +19,7 @@ interface StartPageProps extends InjectedModalProps {
   goToApprove: UseEditProfileResponse['goToApprove']
 }
 
-const DangerOutline = styled(Button).attrs({ variant: 'secondary', fullWidth: true })`
+const DangerOutline = styled(Button).attrs({ variant: 'secondary', fullWidth : true })`
   border-color: ${({ theme }) => theme.colors.failure};
   color: ${({ theme }) => theme.colors.failure};
   margin-bottom: 24px;
@@ -72,7 +72,7 @@ const StartPage: React.FC<StartPageProps> = ({ goToApprove, goToChange, goToRemo
       {profile.isActive ? (
         <>
           <Button
-            fullWidth
+            
             mb="8px"
             onClick={needsApproval === true ? goToApprove : goToChange}
             disabled={!hasMinimumCakeRequired || needsApproval === null}
@@ -83,7 +83,7 @@ const StartPage: React.FC<StartPageProps> = ({ goToApprove, goToChange, goToRemo
         </>
       ) : (
         <Button
-          fullWidth
+          
           mb="8px"
           onClick={needsApproval === true ? goToApprove : goToChange}
           disabled={!hasMinimumCakeRequired || needsApproval === null}
@@ -91,7 +91,7 @@ const StartPage: React.FC<StartPageProps> = ({ goToApprove, goToChange, goToRemo
           {TranslateString(999, 'Reactivate Profile')}
         </Button>
       )}
-      <Button variant="text" fullWidth onClick={onDismiss}>
+      <Button variant="text"  onClick={onDismiss}>
         {TranslateString(999, 'Close Window')}
       </Button>
     </Flex>

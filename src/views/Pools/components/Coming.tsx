@@ -52,7 +52,7 @@ const Coming: React.FC = () => {
           /* TODO: This link needs to be changed */
           href="#"
           external
-          fullWidth
+          
           mb="16px"
         >
           {TranslateString(418, 'Apply Now')}

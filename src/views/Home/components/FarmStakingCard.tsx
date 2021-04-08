@@ -84,7 +84,7 @@ const FarmedStakingCard = () => {
               id="harvest-all"
               disabled={balancesWithValue.length <= 0 || pendingTx}
               onClick={harvestAllFarms}
-              fullWidth
+              
               mb="24px"
             >
               {pendingTx
@@ -93,7 +93,7 @@ const FarmedStakingCard = () => {
             </Button>
             
           ) : (
-            <UnlockButton fullWidth />
+            <UnlockButton  />
           )}
         </Actions>
         <Heading size="xl" mb="24px">
@@ -103,7 +103,7 @@ const FarmedStakingCard = () => {
             <AllAction/>
             
           ) : (
-            <UnlockButton fullWidth />
+            <UnlockButton  />
           )}     
         
       </CardBody>

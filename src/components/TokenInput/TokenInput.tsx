@@ -23,7 +23,7 @@ const TokenInput: React.FC<TokenInputProps> = ({ max, symbol, onChange, onSelect
             <StyledTokenSymbol>{symbol}</StyledTokenSymbol>
             <StyledSpacer />
             <div>
-              <Button size="sm" onClick={onSelectMax}>
+              <Button onClick={onSelectMax}>
                 {TranslateString(452, 'Max')}
               </Button>
             </div>
