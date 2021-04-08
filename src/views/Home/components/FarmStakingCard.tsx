@@ -88,9 +88,10 @@ const FarmedStakingCard = () => {
               mb="24px"
             >
               {pendingTx
-                ? TranslateString(548, 'Collecting KNIGHT')
-                : TranslateString(532, `Harvest all (${balancesWithValue.length})`)}
-            </Button>
+                ? <Text color="tertiary">Collecting KNIGHT</Text>
+                : <Text color="tertiary">Harvest all ({balancesWithValue.length})</Text>
+              }
+          </Button>
             
           ) : (
             <UnlockButton  />

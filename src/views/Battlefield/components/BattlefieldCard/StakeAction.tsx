@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
-import { Button, Flex, Heading, IconButton, AddIcon, MinusIcon, useModal, AutoRenewIcon } from '@pancakeswap-libs/uikit'
+import { Button, Flex, Heading, IconButton, AddIcon, MinusIcon, useModal, Text } from '@pancakeswap-libs/uikit'
 import useI18n from 'hooks/useI18n'
 import {useBattlefieldStake} from 'hooks/useStake'
 import {useBattlefieldUnstake} from 'hooks/useUnstake'
@@ -54,7 +54,7 @@ const StakeAction: React.FC<BattlefieldCardActionsProps> = ({
 
   const renderStakingButtons = () => {
     return rawStakedBalance === 0 ? (
-      <Button onClick={onPresentDeposit}>{TranslateString(999, 'Stake')}</Button>
+      <Button onClick={onPresentDeposit}><Text color="tertiary">Stake</Text></Button>
     ) : (
       <IconButtonWrapper>
         <IconButton variant="tertiary" onClick={onPresentWithdraw} mr="6px">
@@ -62,9 +62,6 @@ const StakeAction: React.FC<BattlefieldCardActionsProps> = ({
         </IconButton>
         <IconButton variant="tertiary" onClick={onPresentDeposit} mr="6px">
           <AddIcon color="primary" />
-        </IconButton>
-        <IconButton variant="tertiary" onClick={onPresentCompound}>
-          <AutoRenewIcon color="primary" />
         </IconButton>
       </IconButtonWrapper>
     )

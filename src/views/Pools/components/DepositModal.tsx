@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js'
 import React, { useCallback, useMemo, useState } from 'react'
-import { Button, Modal } from '@pancakeswap-libs/uikit'
+import { Button, Modal, Text } from '@pancakeswap-libs/uikit'
 import ModalActions from 'components/ModalActions'
 import TokenInput from '../../../components/TokenInput'
 import useI18n from '../../../hooks/useI18n'
@@ -55,7 +55,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
             onDismiss()
           }}
         >
-          {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
+          {pendingTx ? <Text color='tertiary'>Pending Confirmation</Text>: <Text color='tertiary'>Confirm</Text>}
         </Button>
       </ModalActions>
     </Modal>
