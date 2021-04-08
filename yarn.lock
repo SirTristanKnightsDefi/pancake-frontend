@@ -1901,15 +1901,12 @@
     eslint-plugin-react "^7.21.5"
     eslint-plugin-react-hooks "^4.0.0"
 
-"@pancakeswap-libs/uikit@https://github.com/SirTristanKnightsDefi/KnightsOfTheRoundTableBSC-uikit":
-  version "0.12.0"
-  resolved "https://github.com/SirTristanKnightsDefi/KnightsOfTheRoundTableBSC-uikit#1dab51b3e3514630eb7b476512ec8213a926ebda"
+"@pancakeswap-libs/uikit@https://github.com/SirTristanKnightsDefi/knightsdefi-uikit":
+  version "0.15.0"
+  resolved "https://github.com/SirTristanKnightsDefi/knightsdefi-uikit#a416a24412d820f52484a854ca0652c352e18501"
   dependencies:
-    "@rollup/plugin-image" "^2.0.6"
     "@types/lodash" "^4.14.162"
     "@types/styled-system" "^5.1.10"
-    global "^4.4.0"
-    http-server "^0.12.3"
     lodash "^4.17.20"
     react-transition-group "^4.4.1"
     styled-system "^5.1.5"
@@ -1983,14 +1980,6 @@
     redux "^4.0.0"
     redux-thunk "^2.3.0"
     reselect "^4.0.0"
-
-"@rollup/plugin-image@^2.0.6":
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/@rollup/plugin-image/-/plugin-image-2.0.6.tgz#2e6d7a72b25df81aa80c8c0866d45a45c1e6a265"
-  integrity sha512-bB+spXogbPiFjhBS7i8ajUOgOnVwWK3bnJ6VroxKey/q8/EPRkoSh+4O1qPCw97qMIDspF4TlzXVBhZ7nojIPw==
-  dependencies:
-    "@rollup/pluginutils" "^3.1.0"
-    mini-svg-data-uri "^1.2.3"
 
 "@rollup/plugin-node-resolve@^7.1.1":
   version "7.1.3"
@@ -8197,7 +8186,7 @@ global-prefix@^3.0.0:
     kind-of "^6.0.2"
     which "^1.3.1"
 
-global@^4.4.0, global@~4.4.0:
+global@~4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/global/-/global-4.4.0.tgz#3e7b105179006a323ed71aafca3e9c57a5cc6406"
   integrity sha512-wv/LAoHdRE3BeTGz53FAamhGlPLhlssK45usmGFThIi4XqnBmjKQ16u+RNbP7WvigRZDxUsM0J3gcQ5yicaL0w==
@@ -10779,11 +10768,6 @@ mini-css-extract-plugin@0.11.3:
     normalize-url "1.9.1"
     schema-utils "^1.0.0"
     webpack-sources "^1.1.0"
-
-mini-svg-data-uri@^1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/mini-svg-data-uri/-/mini-svg-data-uri-1.2.3.tgz#e16baa92ad55ddaa1c2c135759129f41910bc39f"
-  integrity sha512-zd6KCAyXgmq6FV1mR10oKXYtvmA9vRoB6xPSTUJTbFApCtkefDnYueVR1gkof3KcdLZo1Y8mjF2DFmQMIxsHNQ==
 
 minimalistic-assert@^1.0.0, minimalistic-assert@^1.0.1:
   version "1.0.1"
