@@ -14,7 +14,6 @@ import TwitterCard from './components/TwitterCard'
 
 const Hero = styled.div`
   align-items: center;
-  background-image: url('/images/excalibur.png');
   background-repeat: no-repeat;
   background-position: top center;
   display: flex;
@@ -89,8 +88,10 @@ const Home: React.FC = () => {
         <TableStats />
       </Cards>
       <Hero>
-        <Text>Donate to Sir Tris - BSC / ETH / Harmony: 0xb017c481575318017DC2122b59759B25d21f6721</Text>
+        <Text>Donate to Community Fund - BSC: 0x97e09Ed54d038295a8D6e6e77524328d7d9D3fca</Text>
+        <Text>Donate to Sir Tris - BSC / ETH: 0xb017c481575318017DC2122b59759B25d21f6721</Text>
       </Hero>
+        
     </Page>
   )
 }

@@ -84,16 +84,17 @@ const FarmedStakingCard = () => {
               id="harvest-all"
               disabled={balancesWithValue.length <= 0 || pendingTx}
               onClick={harvestAllFarms}
-              fullWidth
+              
               mb="24px"
             >
               {pendingTx
-                ? TranslateString(548, 'Collecting KNIGHT')
-                : TranslateString(532, `Harvest all (${balancesWithValue.length})`)}
-            </Button>
+                ? <Text color="tertiary">Collecting KNIGHT</Text>
+                : <Text color="tertiary">Harvest all ({balancesWithValue.length})</Text>
+              }
+          </Button>
             
           ) : (
-            <UnlockButton fullWidth />
+            <UnlockButton  />
           )}
         </Actions>
         <Heading size="xl" mb="24px">
@@ -103,7 +104,7 @@ const FarmedStakingCard = () => {
             <AllAction/>
             
           ) : (
-            <UnlockButton fullWidth />
+            <UnlockButton  />
           )}     
         
       </CardBody>

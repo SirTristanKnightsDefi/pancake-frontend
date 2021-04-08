@@ -62,7 +62,7 @@ const CardActions: React.FC<BattlefieldCardActionsProps> = ({ battlefield, ether
         addLiquidityUrl={addLiquidityUrl}
       />
     ) : (
-      <Button mt="8px" fullWidth disabled={requestedApproval} onClick={handleApprove}>
+      <Button mt="8px" disabled={requestedApproval} onClick={handleApprove}>
         {TranslateString(758, 'Approve Contract')}
       </Button>
     )
@@ -87,7 +87,7 @@ const CardActions: React.FC<BattlefieldCardActionsProps> = ({ battlefield, ether
           {TranslateString(1074, 'Staked')}
         </Text>
       </Flex>
-      {!account ? <UnlockButton mt="8px" fullWidth /> : renderApprovalOrStakeButton()}
+      {!account ? <UnlockButton mt="8px"  /> : renderApprovalOrStakeButton()}
     </Action>
   )
 }

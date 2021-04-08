@@ -102,10 +102,10 @@ const TransferNftModal: React.FC<TransferNftModalProps> = ({ nft, tokenIds, onSu
         />
       </ModalContent>
       <Actions>
-        <Button fullWidth variant="secondary" onClick={onDismiss}>
+        <Button  variant="secondary" onClick={onDismiss}>
           {TranslateString(462, 'Cancel')}
         </Button>
-        <Button fullWidth onClick={handleConfirm} disabled={!account || isLoading || !value}>
+        <Button  onClick={handleConfirm} disabled={!account || isLoading || !value}>
           {TranslateString(464, 'Confirm')}
         </Button>
       </Actions>

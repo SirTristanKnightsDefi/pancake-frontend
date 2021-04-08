@@ -85,7 +85,7 @@ const NftCard: React.FC<NftCardProps> = ({ nft }) => {
           )}
         </Header>
         {isInitialized && walletOwnsNft && (
-          <Button fullWidth variant="secondary" mt="24px" onClick={onPresentTransferModal}>
+          <Button  variant="secondary" mt="24px" onClick={onPresentTransferModal}>
             {TranslateString(999, 'Transfer')}
           </Button>
         )}

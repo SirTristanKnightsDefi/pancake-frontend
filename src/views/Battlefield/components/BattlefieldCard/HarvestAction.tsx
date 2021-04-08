@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
-import { Button, Flex, Heading } from '@pancakeswap-libs/uikit'
+import { Button, Flex, Heading, Text } from '@pancakeswap-libs/uikit'
 import useI18n from 'hooks/useI18n'
 import { useBattlefieldHarvest } from 'hooks/useHarvest'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -29,7 +29,7 @@ const HarvestAction: React.FC<BattlefieldCardActionsProps> = ({ earnings, pid })
           setPendingTx(false)
         }}
       >
-        {TranslateString(562, 'Harvest')}
+        <Text color="tertiary">Harvest</Text>
       </Button>
     </Flex>
   )

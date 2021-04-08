@@ -27,11 +27,10 @@ const CompoundAllModal: React.FC<CompoundAllModalProps> = ({ onConfirm, onDismis
     <Modal title={TranslateString(1068, 'Compound')} onDismiss={onDismiss}>
       <CompoundAllModalInput symbol='Test'/>
       <ModalActions>
-        <Button variant="secondary" onClick={onDismiss} fullWidth>
+        <Button variant="secondary" onClick={onDismiss}>
           {TranslateString(462, 'Cancel')}
         </Button>
         <Button
-          fullWidth
           onClick={async () => {
             setPendingTx(true)
             await onConfirm()
