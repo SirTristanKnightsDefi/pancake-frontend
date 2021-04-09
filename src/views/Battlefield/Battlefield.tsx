@@ -13,6 +13,7 @@ import { useBattlefield, usePriceBnbBusd, usePriceCakeBusd, usePriceEthBusd } fr
 import useRefresh from 'hooks/useRefresh'
 import { fetchBattlefieldUserDataAsync } from 'state/actions'
 import { QuoteToken } from 'config/constants/types'
+import useTheme from 'hooks/useTheme'
 import BattlefieldCard, { BattlefieldWithStakedValue } from './components/BattlefieldCard/BattlefieldCard'
 import BattlefieldOverview from './components/BattlefieldCard/BattlefieldOverview'
 import Divider from './components/Divider'
@@ -45,6 +46,10 @@ const Battlefield: React.FC = () => {
   const stackedOnlyBattlefields = activeBattlefields.filter(
     (battlefield) => battlefield.userData && new BigNumber(battlefield.userData.stakedBalance).isGreaterThan(0),
   )
+  
+  const { isDark } = useTheme();
+  const battleFieldDarkImage = "https://ipfs.io/ipfs/QmPxSu2ABG4Z3mZkYb4kHwc8RqYwZVKwXoaz8isAPxpF1x?filename=BattlefieldDark.png";
+  const battleFieldLightImage = "https://ipfs.io/ipfs/QmVfZmVEcSs5LYfRGc3BcCpNZu48eC2dVXAg6PPyqsWc4T?filename=BattlefieldLogo.PNG";
 
   // /!\ This function will be removed soon
   // This function compute the APY for each battlefield and will be replaced when we have a reliable API
@@ -105,7 +110,7 @@ const Battlefield: React.FC = () => {
     <Page>
       <Hero>
         <img
-          src="https://ipfs.io/ipfs/QmVfZmVEcSs5LYfRGc3BcCpNZu48eC2dVXAg6PPyqsWc4T?filename=BattlefieldLogo.PNG"
+          src={isDark ? battleFieldDarkImage : battleFieldLightImage}
           alt="Battlefield icon"
           style={{
             height: '240px',
