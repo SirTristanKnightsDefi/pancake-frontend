@@ -34,7 +34,8 @@ export enum QuoteToken {
   'KNIGHT' = 'KNIGHT',
   'TABLE' = 'TABLE',
   'LEGEND' = 'LEGEND',
-  'SQUIRE' = 'SQUIRE'
+  'SQUIRE' = 'SQUIRE',
+  'RBT' = 'RBT'
 }
 
 export enum PoolCategory {
