@@ -106,6 +106,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.SQUIRE,
     quoteTokenAdresses: contracts.squire,
+    isCommunity: true,
   },
   {
     pid: 4,
