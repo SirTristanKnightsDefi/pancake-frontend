@@ -28,6 +28,11 @@ const config: MenuEntry[] = [
     href: '/lottery',
   },
   {
+    label: 'The Queen\'s Gallery',
+    icon: 'NftIcon',
+    href: '/nft',
+  },
+  {
     label: 'Blog / Roadmap',
     icon: 'RoadmapIcon',
     href: 'https://knightsoftheroundtable-bsc.medium.com/',

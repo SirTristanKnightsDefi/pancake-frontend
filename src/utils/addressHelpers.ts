@@ -19,6 +19,9 @@ export const getLegendAddress = () => {
 export const getSquireAddress = () => {
   return getAddress(addresses.squire) // Returns SQUIRE
 }
+export const getTheGrailNFTsAddress = () => {
+  return getAddress(addresses.thegrailnfts) // Returns TheGrailNFTs
+}
 export const getMasterChefAddress = () => {
   return getAddress(addresses.masterChef)
 }

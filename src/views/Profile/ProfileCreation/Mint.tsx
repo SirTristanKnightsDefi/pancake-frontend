@@ -12,13 +12,13 @@ import NextStepButton from '../components/NextStepButton'
 import ApproveConfirmButtons from '../components/ApproveConfirmButtons'
 import useProfileCreation from './contexts/hook'
 
-const starterBunnyIds = [5, 6, 7, 8, 9]
-const nfts = nftList.filter((nft) => starterBunnyIds.includes(nft.bunnyId))
+const startertokenIds = [5, 6, 7, 8, 9]
+const nfts = nftList.filter((nft) => startertokenIds.includes(nft.tokenId))
 const cakeCostToMint = 4
 const minimumCakeBalanceToMint = new BigNumber(cakeCostToMint).multipliedBy(new BigNumber(10).pow(18))
 
 const Mint: React.FC = () => {
-  const [bunnyId, setBunnyId] = useState(null)
+  const [tokenId, settokenId] = useState(null)
   const { actions, minimumCakeRequired, allowance } = useProfileCreation()
 
   const { account } = useWallet()
@@ -50,7 +50,7 @@ const Mint: React.FC = () => {
         .send({ from: account })
     },
     onConfirm: () => {
-      return bunnyFactoryContract.methods.mintNFT(bunnyId).send({ from: account })
+      return bunnyFactoryContract.methods.mintNFT(tokenId).send({ from: account })
     },
     onSuccess: () => actions.nextStep(),
   })
@@ -80,15 +80,15 @@ const Mint: React.FC = () => {
             {TranslateString(999, 'Cost: 4 CAKE')}
           </Text>
           {nfts.map((nft) => {
-            const handleChange = (value: string) => setBunnyId(parseInt(value, 10))
+            const handleChange = (value: string) => settokenId(parseInt(value, 10))
 
             return (
               <SelectionCard
-                key={nft.bunnyId}
+                key={nft.tokenId}
                 name="mintStarter"
-                value={nft.bunnyId}
+                value={nft.tokenId}
                 image={`/images/nfts/${nft.images.md}`}
-                isChecked={bunnyId === nft.bunnyId}
+                isChecked={tokenId === nft.tokenId}
                 onChange={handleChange}
                 disabled={isApproving || isConfirming || isConfirmed || !hasMinimumCakeRequired}
               >
@@ -102,7 +102,7 @@ const Mint: React.FC = () => {
             </Text>
           )}
           <ApproveConfirmButtons
-            isApproveDisabled={bunnyId === null || isConfirmed || isConfirming || isApproved}
+            isApproveDisabled={tokenId === null || isConfirmed || isConfirming || isApproved}
             isApproving={isApproving}
             isConfirmDisabled={!isApproved || isConfirmed || !hasMinimumCakeRequired}
             isConfirming={isConfirming}

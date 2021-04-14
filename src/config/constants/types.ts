@@ -121,7 +121,7 @@ export type Nft = {
   description: string
   images: NftImages
   sortOrder: number
-  bunnyId: number
+  tokenId: number
 }
 
 export type TeamImages = {

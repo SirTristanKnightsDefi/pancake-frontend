@@ -3,12 +3,11 @@ import BigNumber from 'bignumber.js'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import useBlock from 'hooks/useBlock'
 import useGetWalletNfts, { NftMap } from 'hooks/useGetWalletNfts'
-import { getBunnyFactoryAddress } from 'utils/addressHelpers'
-import { getPancakeRabbitContract } from 'utils/contractHelpers'
+import { getTheGrailNFTsAddress } from 'utils/addressHelpers'
+import { getTheGrailNFTsContract } from 'utils/contractHelpers'
 import multicall from 'utils/multicall'
-import bunnyFactory from 'config/abi/bunnyFactory.json'
 
-const bunnyFactoryAddress = getBunnyFactoryAddress()
+const theGrailNFTsAddress = getTheGrailNFTsAddress()
 
 type State = {
   isInitialized: boolean
@@ -21,7 +20,7 @@ type State = {
 type Context = {
   nfts: NftMap
   canBurnNft: boolean
-  getTokenIds: (bunnyId: number) => number[]
+  getTokenIds: (tokenId: number) => number[]
   reInitialize: () => void
 } & State
 
@@ -41,48 +40,16 @@ const NftProvider: React.FC = ({ children }) => {
   const { nfts: nftList } = useGetWalletNfts()
   const { isInitialized } = state
 
-  // Static data
-  useEffect(() => {
-    const fetchContractData = async () => {
-      try {
-        const [startBlockNumberArr, endBlockNumberArr] = await multicall(bunnyFactory, [
-          { address: bunnyFactoryAddress, name: 'startBlockNumber' },
-          { address: bunnyFactoryAddress, name: 'endBlockNumber' },
-        ])
-
-        // Figure out why these are coming back as arrays
-        const [startBlockNumber]: [BigNumber] = startBlockNumberArr
-        const [endBlockNumber]: [BigNumber] = endBlockNumberArr
-
-        setState((prevState) => ({
-          ...prevState,
-          isInitialized: true,
-          startBlockNumber: startBlockNumber.toNumber(),
-          endBlockNumber: endBlockNumber.toNumber(),
-        }))
-      } catch (error) {
-        console.error('an error occured', error)
-      }
-    }
-
-    fetchContractData()
-  }, [isInitialized, setState])
-
   // Data from the contract that needs an account
   useEffect(() => {
     const fetchContractData = async () => {
       try {
-        const pancakeRabbitsContract = getPancakeRabbitContract()
-        const [hasClaimedArr] = await multicall(bunnyFactory, [
-          { address: bunnyFactoryAddress, name: 'hasClaimed', params: [account] },
-        ])
-        const balanceOf = await pancakeRabbitsContract.methods.balanceOf(account).call()
-        const [hasClaimed]: [boolean] = hasClaimedArr
+        const theGrailNFTsContract = getTheGrailNFTsContract()
+        const balanceOf = await theGrailNFTsContract.methods.balanceOf(account).call()
 
         setState((prevState) => ({
           ...prevState,
           isInitialized: true,
-          hasClaimed,
           balanceOf,
         }))
       } catch (error) {
@@ -102,7 +69,7 @@ const NftProvider: React.FC = ({ children }) => {
   }, [isMounted])
 
   const canBurnNft = currentBlock <= state.endBlockNumber
-  const getTokenIds = (bunnyId: number) => nftList[bunnyId]?.tokenIds
+  const getTokenIds = (tokenId: number) => nftList[tokenId]?.tokenIds
 
   /**
    * Allows consumers to re-fetch all data from the contract. Triggers the effects.
