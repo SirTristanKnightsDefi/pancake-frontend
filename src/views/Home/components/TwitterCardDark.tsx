@@ -23,7 +23,7 @@ const TwitterCard = () => {
             screenName: 'KnightsBSC'
           }}
           options={{
-            chrome: 'noheader, nofooter, transparent',
+            chrome: 'noheader, nofooter, transparent, noborders, noscrollbar',
             width: '400',
             height: '250',
             theme: 'dark'
