@@ -8,9 +8,13 @@ import TableStats from 'views/Home/components/TableStats'
 import LegendStats from 'views/Home/components/LegendStats'
 import SquireStats from 'views/Home/components/SquireStats'
 import TotalValueLockedCard from 'views/Home/components/TotalValueLockedCard'
-
+import useTheme from 'hooks/useTheme'
 import LotteryCard from 'views/Home/components/LotteryCard'
 import TwitterCard from './components/TwitterCard'
+import TwitterCardDark from './components/TwitterCardDark'
+
+
+
 
 const Hero = styled.div`
   align-items: center;
@@ -65,6 +69,9 @@ const FatText = styled(Text)`
 `
 
 const Home: React.FC = () => {
+  const { isDark } = useTheme();
+  
+
   return (
     <Page>
       <Hero>
@@ -80,7 +87,8 @@ const Home: React.FC = () => {
       <Cards>
         <FarmStakingCard />
         <LotteryCard />
-        <TwitterCard />
+        {isDark ? <TwitterCardDark /> : <TwitterCard />}
+        
         <TotalValueLockedCard />
         <SquireStats />
         <CakeStats />

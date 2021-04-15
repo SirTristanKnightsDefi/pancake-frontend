@@ -9,7 +9,8 @@ const StyledTwitterCard = styled(Card)`
   flex: 1;
 `
 
-const TwitterCardDark = () => {
+const TwitterCard = () => {
+
   return (
     <StyledTwitterCard>
       <CardBody>
@@ -25,7 +26,7 @@ const TwitterCardDark = () => {
             chrome: 'noheader, nofooter',
             width: '400',
             height: '250',
-            theme: 'light'
+            theme: 'dark'
           }}
         />
       </CardBody>
@@ -33,4 +34,4 @@ const TwitterCardDark = () => {
   )
 }
 
-export default TwitterCardDark
+export default TwitterCard
