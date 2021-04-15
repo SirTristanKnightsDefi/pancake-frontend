@@ -109,6 +109,22 @@ const farms: FarmConfig[] = [
     isCommunity: true,
   },
   {
+    pid: 8,
+    lpSymbol: 'SQUIRE-MIST LP',
+    lpAddresses: {
+      97: '0x73b46497e9992fab410dd25b3785aded4f8ccb47', // SQUIRE-MIST LP
+      56: '0x73b46497e9992fab410dd25b3785aded4f8ccb47', // SQUIRE-MIST LP
+    },
+    tokenSymbol: 'MIST',
+    tokenAddresses: {
+      97: '0x6f8FE12CC34398d15b7D5A5BA933E550DA1D099f', // MIST
+      56: '0x6f8FE12CC34398d15b7D5A5BA933E550DA1D099f', // MIST
+    },
+    quoteTokenSymbol: QuoteToken.SQUIRE,
+    quoteTokenAdresses: contracts.squire,
+    isCommunity: true,
+  },
+  {
     pid: 4,
     lpSymbol: 'BUSD-BNB LP',
     lpAddresses: {
