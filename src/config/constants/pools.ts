@@ -13,7 +13,7 @@ const pools: PoolConfig[] = [
     poolCategory: PoolCategory.CORE,
     projectLink: 'https://www.knightsdefi.com',
     harvest: true,
-    tokenPerBlock: '1',
+    tokenPerBlock: '.2',
     sortOrder: 1,
     isFinished: false,
     tokenDecimals: 18,

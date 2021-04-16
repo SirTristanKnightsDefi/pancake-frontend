@@ -47,7 +47,7 @@ const SquireStats = () => {
         </Row>
         <Row>
           <Text fontSize="14px">SQUIRE Market Cap</Text>
-          <CardValue fontSize="14px" decimals={0} value={squireMarketCap} />
+          <CardValue fontSize="14px" decimals={0} value={squireMarketCap} prefix='$'/>
         </Row>
         <Row>
           <Text fontSize="14px">{"\n"}</Text>

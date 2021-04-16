@@ -10,6 +10,7 @@ export interface CardValueProps {
   prefix?: string
   bold?: boolean
   color?: string
+  dollars?: boolean
 }
 
 const CardValue: React.FC<CardValueProps> = ({
@@ -17,7 +18,7 @@ const CardValue: React.FC<CardValueProps> = ({
   decimals,
   fontSize = '40px',
   lineHeight = '1',
-  prefix = '',
+  prefix,
   bold = true,
   color = 'text',
 }) => {

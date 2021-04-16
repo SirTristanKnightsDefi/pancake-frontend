@@ -5,6 +5,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
 import { getCakeAddress } from 'utils/addressHelpers'
 import { usePriceCakeBusd } from 'state/hooks'
+import { CAKE_PER_BLOCK } from 'config'
 import CardValue from './CardValue'
 
 
@@ -30,8 +31,7 @@ const CakeStats = () => {
   const burnedBalance = useBurnedBalance(getCakeAddress())
   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
   const knightMarketCap = usePriceCakeBusd().toNumber() * cakeSupply
-  const knightPerBlock = 2
-
+  const knightPerBlock = CAKE_PER_BLOCK.toNumber() * 1
   return (
     <StyledCakeStats>
       <CardBodyExtended>
@@ -52,7 +52,7 @@ const CakeStats = () => {
         </Row>
         <Row>
           <Text fontSize="14px">KNIGHT Market Cap</Text>
-          <CardValue fontSize="14px" decimals={0} value={knightMarketCap} />
+          <CardValue fontSize="14px" decimals={0} value={knightMarketCap} prefix='$'/>
         </Row>
       </CardBodyExtended>
     </StyledCakeStats>

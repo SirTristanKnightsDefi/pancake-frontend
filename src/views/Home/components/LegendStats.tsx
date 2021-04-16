@@ -47,7 +47,7 @@ const LegendStats = () => {
         </Row>
         <Row>
           <Text fontSize="14px">LEGEND Market Cap</Text>
-          <CardValue fontSize="14px" decimals={0} value={legendMarketCap} />
+          <CardValue fontSize="14px" decimals={0} value={legendMarketCap} prefix='$'/>
         </Row>
         <Row>
           <Text fontSize="14px">{"\n"}</Text>
