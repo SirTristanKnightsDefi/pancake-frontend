@@ -66,6 +66,19 @@ const KotrtNfts: Nft[] = [
     sortOrder: 999,
     tokenId: 5,
   },
+  {
+    name: 'Sir Urien',
+    description: 'Sir Urien - #6',
+    images: {
+      lg: 'SirUrien.png',
+      md: 'SirUrien.png',
+      sm: 'SirUrien.png',
+      ipfs: 'https://ipfs.io/ipfs/QmX8NSChQYKfcRKf7CJBC2FCzNsaPxBgCef8aJ3cqQYytK?filename=SirUrien.png',
+      blur: 'SirUrien.png',
+    },
+    sortOrder: 999,
+    tokenId: 6,
+  },
 ]
 
 export default KotrtNfts
