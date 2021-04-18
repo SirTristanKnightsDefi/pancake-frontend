@@ -1,9 +1,10 @@
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { useEffect, useReducer } from 'react'
-import { getTheGrailNFTsContract } from 'utils/contractHelpers'
+import { getTheGrailNFTsContract, getKotrtNFTsContract } from 'utils/contractHelpers'
 import makeBatchRequest from 'utils/makeBatchRequest'
 
 const theGrailContract = getTheGrailNFTsContract()
+const kotrtContract = getKotrtNFTsContract()
 
 export type NftMap = {
   [key: number]: {
@@ -57,6 +58,72 @@ const useGetWalletNfts = () => {
           const getTokenIdAndBunnyId = async (index: number) => {
             try {
               const { tokenOfOwnerByIndex, tokenURI } = theGrailContract.methods
+              const tokenId = await tokenOfOwnerByIndex(account, index).call()
+              const [tokenUri] = await makeBatchRequest([tokenURI(tokenId).call])
+
+              return [Number(tokenId), tokenUri]
+            } catch (error) {
+              return null
+            }
+          }
+
+          const tokenIdPromises = []
+
+          for (let i = 0; i < balanceOf; i++) {
+            tokenIdPromises.push(getTokenIdAndBunnyId(i))
+          }
+
+          const tokenIdsOwnedByWallet = await Promise.all(tokenIdPromises)
+
+          nfts = tokenIdsOwnedByWallet.reduce((accum, association) => {
+            if (!association) {
+              return accum
+            }
+
+            const [bunnyId, tokenId, tokenUri] = association
+
+            return {
+              ...accum,
+              [bunnyId]: {
+                tokenUri,
+                tokenIds: accum[bunnyId] ? [...accum[bunnyId].tokenIds, tokenId] : [tokenId],
+              },
+            }
+          }, {})
+
+          dispatch({ type: 'set_nfts', data: nfts })
+        } else {
+          // Reset it in case of wallet change
+          dispatch({ type: 'reset' })
+        }
+      } catch (error) {
+        dispatch({ type: 'reset' })
+      }
+    }
+
+    if (account) {
+      fetchNfts()
+    }
+  }, [account, dispatch])
+
+  return state
+}
+
+export const useGetWalletKotrtNfts = () => {
+  const [state, dispatch] = useReducer(reducer, initialState)
+  const { account } = useWallet()
+
+  useEffect(() => {
+    const fetchNfts = async () => {
+      try {
+        const balanceOf = await kotrtContract.methods.balanceOf(account).call()
+
+        if (balanceOf > 0) {
+          let nfts: NftMap = {}
+
+          const getTokenIdAndBunnyId = async (index: number) => {
+            try {
+              const { tokenOfOwnerByIndex, tokenURI } = kotrtContract.methods
               const tokenId = await tokenOfOwnerByIndex(account, index).call()
               const [tokenUri] = await makeBatchRequest([tokenURI(tokenId).call])
 
