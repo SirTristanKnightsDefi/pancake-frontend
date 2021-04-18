@@ -79,6 +79,19 @@ const KotrtNfts: Nft[] = [
     sortOrder: 999,
     tokenId: 6,
   },
+  {
+    name: 'Sir Coyote',
+    description: 'Sir Coyote - #7',
+    images: {
+      lg: 'SirCoyote.png',
+      md: 'SirCoyote.png',
+      sm: 'SirCoyote.png',
+      ipfs: 'https://ipfs.io/ipfs/QmecstG4sNuheN8W6MboSXe9Cr6jVnPPZR9XpSxkHwMJkF?filename=SirCoyote.png',
+      blur: 'SirCoyote.png',
+    },
+    sortOrder: 999,
+    tokenId: 7,
+  },
 ]
 
 export default KotrtNfts
