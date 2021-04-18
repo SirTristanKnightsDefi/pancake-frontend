@@ -53,6 +53,19 @@ const KotrtNfts: Nft[] = [
     sortOrder: 999,
     tokenId: 4,
   },
+  {
+    name: 'Sir Gawain',
+    description: 'Sir Gawain - #5',
+    images: {
+      lg: 'SirGawain.png',
+      md: 'SirGawain.png',
+      sm: 'SirGawain.png',
+      ipfs: 'https://ipfs.io/ipfs/QmXYhVY6Djg8MGpHV8rRCKQK2ikmHo4Df2EpSpvz9cz6Pe?filename=SirGawain.png',
+      blur: 'SirGawain.png',
+    },
+    sortOrder: 999,
+    tokenId: 5,
+  },
 ]
 
 export default KotrtNfts
