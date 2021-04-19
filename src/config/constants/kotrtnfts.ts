@@ -103,7 +103,7 @@ const KotrtNfts: Nft[] = [
       blur: 'SirGoku.png',
     },
     sortOrder: 999,
-    tokenId: 7,
+    tokenId: 8,
   },
 ]
 
