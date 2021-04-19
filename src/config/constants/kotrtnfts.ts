@@ -92,6 +92,19 @@ const KotrtNfts: Nft[] = [
     sortOrder: 999,
     tokenId: 7,
   },
+  {
+    name: 'Sir Goku',
+    description: 'Sir Goku - #8',
+    images: {
+      lg: 'SirGoku.png',
+      md: 'SirGoku.png',
+      sm: 'SirGoku.png',
+      ipfs: 'https://ipfs.io/ipfs/QmUx9FS8NpMDKdCDBUXqA7ADTnRWQkHCQ4v3QTnhr74YdN?filename=SirGoku.png',
+      blur: 'SirGoku.png',
+    },
+    sortOrder: 999,
+    tokenId: 7,
+  },
 ]
 
 export default KotrtNfts
