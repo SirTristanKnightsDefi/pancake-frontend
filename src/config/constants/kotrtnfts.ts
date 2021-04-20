@@ -105,6 +105,19 @@ const KotrtNfts: Nft[] = [
     sortOrder: 999,
     tokenId: 8,
   },
+  {
+    name: 'Sir Balin',
+    description: 'Sir Balin - #9',
+    images: {
+      lg: 'SirBalin.png',
+      md: 'SirBalin.png',
+      sm: 'SirBalin.png',
+      ipfs: 'https://ipfs.io/ipfs/QmWp9KM9YyG4PL8hkUBy7Fk7UxHoeZR9ZP4R564DeoJQQ2?filename=SirBalin.png',
+      blur: 'SirBalin.png',
+    },
+    sortOrder: 999,
+    tokenId: 9,
+  },
 ]
 
 export default KotrtNfts
