@@ -118,6 +118,31 @@ const KotrtNfts: Nft[] = [
     sortOrder: 999,
     tokenId: 9,
   },
+  {
+    name: 'Sir Neuromancer',
+    description: 'Sir Neuromancer - #10',
+    images: {
+      lg: 'SirNeuromancer.png',
+      md: 'SirNeuromancer.png',
+      sm: 'SirNeuromancer.png',
+      ipfs: 'https://ipfs.io/ipfs/QmUjFeC4vsF4iY6uD6qwaguTvzAxBE68QJ5VnDL5TeEotq?filename=SirNeuromancer.png',
+      blur: 'SirNeuromancer.png',
+    },
+    sortOrder: 999,
+    tokenId: 10,
+  },
+  {
+    name: 'Sir Meme-Lord',
+    description: 'Sir Meme-Lord - #11',
+    images: {
+      lg: 'SirMeme-Lord.png',
+      md: 'SirMeme-Lord.png',
+      sm: 'SirMeme-Lord.png',
+      ipfs: 'https://ipfs.io/ipfs/QmcCXymgiAEGDEbyDGjcqnmvsy51RmifWaNkV2Le6hmjnX?filename=SirMeme-Lord.png',
+      blur: 'SirMeme-Lord.png',
+    },
+    sortOrder: 999,
+    tokenId: 11,
 ]
 
 export default KotrtNfts
