@@ -143,6 +143,7 @@ const KotrtNfts: Nft[] = [
     },
     sortOrder: 999,
     tokenId: 11,
+  }
 ]
 
 export default KotrtNfts
