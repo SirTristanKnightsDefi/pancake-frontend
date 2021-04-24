@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import Web3 from 'web3'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
-import { Button, Input, Modal, Text } from '@pancakeswap-libs/uikit'
+import { Button, Modal, Text } from '@pancakeswap-libs/uikit'
 import { Nft } from 'config/constants/types'
 import useI18n from 'hooks/useI18n'
-import { usePancakeRabbits, useKnightsDefiNFTs} from 'hooks/useContract'
+import { useKnightsDefiNFTs} from 'hooks/useContract'
 import InfoRow from './InfoRow'
 
 

@@ -15,13 +15,16 @@ import {
 import { useProfile } from 'state/hooks'
 import useI18n from 'hooks/useI18n'
 import { Nft } from 'config/constants/types'
-import { useSquire } from 'hooks/useContract'
+import { useSquire, useKnightsDefiNFTs } from 'hooks/useContract'
+import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { useKdfnNftPurchaseApprove } from 'hooks/useApprove'
+import UnlockButton from 'components/UnlockButton'
 import InfoRow from '../InfoRow'
 import Image from '../Image'
 import { KdfnNftProviderContext } from '../../contexts/NftProvider'
 import TransferNftModal from '../TransferNftModal'
 import PurchaseNftModal from '../PurchaseNftModal'
+
 
 interface NftCardProps {
   nft: Nft
@@ -49,6 +52,9 @@ const InfoBlock = styled.div`
 `
 
 const KdfnNftCard: React.FC<NftCardProps> = ({ nft }) => {
+  const [isLoading, setIsLoading] = useState(false)
+  const [value, setValue] = useState('')
+  const [error, setError] = useState(null)
   const [isOpen, setIsOpen] = useState(false)
   const TranslateString = useI18n()
   const { isInitialized, getTokenIds, reInitialize } = useContext(KdfnNftProviderContext)
@@ -58,6 +64,13 @@ const KdfnNftCard: React.FC<NftCardProps> = ({ nft }) => {
   const walletOwnsNft = tokenIds && tokenIds.length > 0
   const Icon = isOpen ? ChevronUpIcon : ChevronDownIcon
   const squireContract = useSquire()
+  const { account } = useWallet()
+  const kdfnContract = useKnightsDefiNFTs()
+
+  const mintCap = (
+    kdfnContract.methods
+      .purchaseNft(nft.nftId)
+  )
 
   const handleClick = async () => {
     setIsOpen(!isOpen)
@@ -100,13 +113,26 @@ const KdfnNftCard: React.FC<NftCardProps> = ({ nft }) => {
             {TranslateString(999, 'Transfer')}
           </Button>
         )}
-        
-        <Button  variant="secondary" mt="24px" onClick={onPresentPurchaseModal}>
-            {TranslateString(999, 'Purchase')}
-        </Button>
-        <Button  variant="secondary" mt="24px" onClick={onApprove}>
+        {account ? (
+            <Button variant="secondary" mt="24px" onClick={onPresentPurchaseModal}>
+              {TranslateString(999, 'Purchase')}
+            </Button>            
+          ) : (
+            <UnlockButton  />
+          )}
+        {account ? (
+            <Button  variant="secondary" mt="24px" onClick={onApprove}>
             {TranslateString(999, 'Approve')}
-        </Button>
+            </Button>          
+          ) : (
+            <Text />
+          )}
+
+
+
+
+
+        
       </CardBody>
       <CardFooter p="0">
         <DetailsButton endIcon={<Icon width="24px" color="primary" />} onClick={handleClick}>
