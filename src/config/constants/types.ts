@@ -123,7 +123,7 @@ export type Nft = {
   sortOrder: number
   tokenId: number
   nftId?: number
-  purchaseTokenId?: number
+  purchaseTokenName?: string
   purchaseTokenPrice?: number
 }
 

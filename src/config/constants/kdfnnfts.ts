@@ -14,8 +14,8 @@ const KotrtNfts: Nft[] = [
     sortOrder: 999,
     tokenId: 0,
     nftId: 0,
-    purchaseTokenId: 0,
-    purchaseTokenPrice: 10000
+    purchaseTokenName: 'SQUIRE',
+    purchaseTokenPrice: 1000
   },
 ]
 

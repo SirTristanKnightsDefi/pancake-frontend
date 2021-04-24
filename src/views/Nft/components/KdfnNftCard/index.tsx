@@ -94,6 +94,7 @@ const KdfnNftCard: React.FC<NftCardProps> = ({ nft }) => {
             </Tag>
           )}
         </Header>
+        <Text>Price: {nft.purchaseTokenPrice} {nft.purchaseTokenName}</Text>
         {isInitialized && walletOwnsNft && (
           <Button  variant="secondary" mt="24px" onClick={onPresentTransferModal}>
             {TranslateString(999, 'Transfer')}
