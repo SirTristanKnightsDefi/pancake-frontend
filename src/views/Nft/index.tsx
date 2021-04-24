@@ -23,10 +23,7 @@ const Nft = () => {
         <Page>
           <StyledHero>
             <Heading as="h1" size="xxl" color="secondary" mb="24px">
-              NFTs for Purchase
-            </Heading>
-            <Heading as="h2" size="lg" color="secondary">
-              {TranslateString(999, 'NFTs for Sale!')}
+              Purchase NFTs - BETA
             </Heading>
           </StyledHero>
           <KdfnNftList />
