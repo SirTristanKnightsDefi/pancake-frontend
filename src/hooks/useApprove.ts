@@ -5,7 +5,7 @@ import { ethers } from 'ethers'
 import { useDispatch } from 'react-redux'
 import { updateUserAllowance, fetchFarmUserDataAsync, fetchBattlefieldUserDataAsync } from 'state/actions'
 import { approve } from 'utils/callHelpers'
-import { useMasterchef, useCake, useSousChef, useLottery, useBattlefield } from './useContract'
+import { useMasterchef, useCake, useSousChef, useLottery, useBattlefield, useKnightsDefiNFTs } from './useContract'
 
 // Approve a Battlefield
 export const useBattlefieldApprove = (lpContract: Contract) => {
@@ -22,6 +22,23 @@ export const useBattlefieldApprove = (lpContract: Contract) => {
       return false
     }
   }, [account, dispatch, lpContract, battlefieldContract])
+
+  return { onApprove: handleApprove }
+}
+
+// Approve Kdfn Nft Purchase
+export const useKdfnNftPurchaseApprove = (contract: Contract) => {
+  const { account }: { account: string } = useWallet()
+  const kdfnContract = useKnightsDefiNFTs()
+
+  const handleApprove = useCallback(async () => {
+    try {
+      const tx = await approve(contract, kdfnContract, account)
+      return tx
+    } catch (e) {
+      return false
+    }
+  }, [account, contract, kdfnContract])
 
   return { onApprove: handleApprove }
 }

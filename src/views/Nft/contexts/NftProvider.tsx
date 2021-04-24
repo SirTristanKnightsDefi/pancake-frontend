@@ -2,8 +2,8 @@ import React, { createContext, useEffect, useRef, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import useBlock from 'hooks/useBlock'
-import useGetWalletNfts, { NftMap, useGetWalletKotrtNfts } from 'hooks/useGetWalletNfts'
-import { getTheGrailNFTsContract, getKotrtNFTsContract } from 'utils/contractHelpers'
+import useGetWalletNfts, { NftMap, useGetWalletKotrtNfts, useGetWalletKdfnNfts } from 'hooks/useGetWalletNfts'
+import { getTheGrailNFTsContract, getKotrtNFTsContract, getKdfnNFTsContract } from 'utils/contractHelpers'
 
 
 type State = {
@@ -149,10 +149,81 @@ export const KotrtNftProvider: React.FC = ({ children }) => {
     }
   }
 
+  
+
   return (
     <KotrtNftProviderContext.Provider value={{ ...state, nfts: nftList, canBurnNft, getTokenIds, reInitialize }}>
       {children}
     </KotrtNftProviderContext.Provider>
+  )
+}
+
+export const KdfnNftProviderContext = createContext<Context | null>(null)
+
+export const KdfnNftProvider: React.FC = ({ children }) => {
+  const isMounted = useRef(true)
+  const [state, setState] = useState<State>({
+    isInitialized: false,
+    hasClaimed: false,
+    startBlockNumber: 0,
+    endBlockNumber: 0,
+    balanceOf: 0,
+  })
+  const { account } = useWallet()
+  const currentBlock = useBlock()
+  const { nfts: nftList } = useGetWalletKdfnNfts()
+  const { isInitialized } = state
+
+  // Data from the contract that needs an account
+  useEffect(() => {
+    const fetchContractData = async () => {
+      try {
+        const kdfnNFTsContract = getKdfnNFTsContract()
+        const balanceOf = await kdfnNFTsContract.methods.balanceOf(account).call()
+
+        setState((prevState) => ({
+          ...prevState,
+          isInitialized: true,
+          balanceOf,
+        }))
+      } catch (error) {
+        console.error('an error occured', error)
+      }
+    }
+
+    if (account) {
+      fetchContractData()
+    }
+  }, [isInitialized, account, setState])
+
+  useEffect(() => {
+    return () => {
+      isMounted.current = false
+    }
+  }, [isMounted])
+
+  const canBurnNft = currentBlock <= state.endBlockNumber
+  const getTokenIds = (tokenId: number) => nftList[tokenId]?.tokenIds
+
+  /**
+   * Allows consumers to re-fetch all data from the contract. Triggers the effects.
+   * For example when a transaction has been completed
+   */
+  const reInitialize = () => {
+    // Only attempt to re-initialize if the component is still mounted
+    // Transactions can take awhile so it is likely some users will navigate to another page
+    // before the transaction is finished
+    if (isMounted.current) {
+      setState((prevState) => ({ ...prevState, isInitialized: false }))
+    }
+  }
+
+  
+
+  return (
+    <KdfnNftProviderContext.Provider value={{ ...state, nfts: nftList, canBurnNft, getTokenIds, reInitialize }}>
+      {children}
+    </KdfnNftProviderContext.Provider>
   )
 }
 

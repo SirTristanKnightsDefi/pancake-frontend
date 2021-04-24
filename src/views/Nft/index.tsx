@@ -4,8 +4,9 @@ import { Heading } from '@pancakeswap-libs/uikit'
 import useI18n from 'hooks/useI18n'
 import Page from 'components/layout/Page'
 import NftList from './components/NftList'
-import NftProvider, {KotrtNftProvider} from './contexts/NftProvider'
+import NftProvider, {KotrtNftProvider, KdfnNftProvider} from './contexts/NftProvider'
 import KotrtNftList from './components/KotrtNftList'
+import KdfnNftList from './components/KdfnNftList'
 
 const StyledHero = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.colors.textSubtle};
@@ -18,6 +19,19 @@ const Nft = () => {
 
   return (
     <StyledHero>
+      <KdfnNftProvider>
+        <Page>
+          <StyledHero>
+            <Heading as="h1" size="xxl" color="secondary" mb="24px">
+              NFTs for Purchase
+            </Heading>
+            <Heading as="h2" size="lg" color="secondary">
+              {TranslateString(999, 'NFTs for Sale!')}
+            </Heading>
+          </StyledHero>
+          <KdfnNftList />
+        </Page>
+      </KdfnNftProvider>
       <KotrtNftProvider>
         <Page>
           <StyledHero>

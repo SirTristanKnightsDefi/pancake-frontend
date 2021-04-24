@@ -20,10 +20,13 @@ export const getSquireAddress = () => {
   return getAddress(addresses.squire) // Returns SQUIRE
 }
 export const getTheGrailNFTsAddress = () => {
-  return getAddress(addresses.thegrailnfts) // Returns TheGrailNFTs
+  return getAddress(addresses.thegrailnfts) // Returns The Grail NFTs
 }
 export const getKotrtNFTsAddress = () => {
-  return getAddress(addresses.kotrtnfts) // Returns TheGrailNFTs
+  return getAddress(addresses.kotrtnfts) // Returns KOTRT NFTs
+}
+export const getKdfnNFTsAddress = () => {
+  return getAddress(addresses.kdfnnfts) // Returns Knights Defi NFTs
 }
 export const getMasterChefAddress = () => {
   return getAddress(addresses.masterChef)

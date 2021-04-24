@@ -122,6 +122,9 @@ export type Nft = {
   images: NftImages
   sortOrder: number
   tokenId: number
+  nftId?: number
+  purchaseTokenId?: number
+  purchaseTokenPrice?: number
 }
 
 export type TeamImages = {

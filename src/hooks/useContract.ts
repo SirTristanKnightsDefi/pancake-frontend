@@ -13,6 +13,10 @@ import {
   getPancakeProfileAddress,
   getPancakeRabbitsAddress,
   getPointCenterIfoAddress,
+  getKdfnNFTsAddress,
+  getSquireAddress,
+  getTableAddress,
+  getLegendAddress
 } from 'utils/addressHelpers'
 import { poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
@@ -28,6 +32,8 @@ import sousChef from 'config/abi/sousChef.json'
 import sousChefBnb from 'config/abi/sousChefBnb.json'
 import profile from 'config/abi/pancakeProfile.json'
 import pointCenterIfo from 'config/abi/pointCenterIfo.json'
+import kdfnNFTsAbi from 'config/abi/kdfnnfts.json'
+import squireAbi from 'config/abi/squire.json'
 
 const useContract = (abi: AbiItem, address: string, contractOptions?: ContractOptions) => {
   const web3 = useWeb3()
@@ -66,6 +72,16 @@ export const useBunnyFactory = () => {
 export const usePancakeRabbits = () => {
   const pancakeRabbitsAbi = (pancakeRabbits as unknown) as AbiItem
   return useContract(pancakeRabbitsAbi, getPancakeRabbitsAddress())
+}
+
+export const useKnightsDefiNFTs = () => {
+  const kdfnNFTAbi = (kdfnNFTsAbi as unknown) as AbiItem
+  return useContract(kdfnNFTAbi, getKdfnNFTsAddress())
+}
+
+export const useSquire = () => {
+  const abi = (squireAbi as unknown) as AbiItem
+  return useContract(abi, getSquireAddress())
 }
 
 export const useProfile = () => {

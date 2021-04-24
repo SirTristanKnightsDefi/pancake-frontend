@@ -1,10 +1,11 @@
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { useEffect, useReducer } from 'react'
-import { getTheGrailNFTsContract, getKotrtNFTsContract } from 'utils/contractHelpers'
+import { getTheGrailNFTsContract, getKotrtNFTsContract, getKdfnNFTsContract } from 'utils/contractHelpers'
 import makeBatchRequest from 'utils/makeBatchRequest'
 
 const theGrailContract = getTheGrailNFTsContract()
 const kotrtContract = getKotrtNFTsContract()
+const kdfnContract = getKdfnNFTsContract()
 
 export type NftMap = {
   [key: number]: {
@@ -124,6 +125,72 @@ export const useGetWalletKotrtNfts = () => {
           const getTokenIdAndBunnyId = async (index: number) => {
             try {
               const { tokenOfOwnerByIndex, tokenURI } = kotrtContract.methods
+              const tokenId = await tokenOfOwnerByIndex(account, index).call()
+              const [tokenUri] = await makeBatchRequest([tokenURI(tokenId).call])
+
+              return [Number(tokenId), tokenUri]
+            } catch (error) {
+              return null
+            }
+          }
+
+          const tokenIdPromises = []
+
+          for (let i = 0; i < balanceOf; i++) {
+            tokenIdPromises.push(getTokenIdAndBunnyId(i))
+          }
+
+          const tokenIdsOwnedByWallet = await Promise.all(tokenIdPromises)
+
+          nfts = tokenIdsOwnedByWallet.reduce((accum, association) => {
+            if (!association) {
+              return accum
+            }
+
+            const [nftId, tokenId, tokenUri] = association
+
+            return {
+              ...accum,
+              [nftId]: {
+                tokenUri,
+                tokenIds: accum[nftId] ? [...accum[nftId].tokenIds, tokenId] : [tokenId],
+              },
+            }
+          }, {})
+
+          dispatch({ type: 'set_nfts', data: nfts })
+        } else {
+          // Reset it in case of wallet change
+          dispatch({ type: 'reset' })
+        }
+      } catch (error) {
+        dispatch({ type: 'reset' })
+      }
+    }
+
+    if (account) {
+      fetchNfts()
+    }
+  }, [account, dispatch])
+
+  return state
+}
+
+export const useGetWalletKdfnNfts = () => {
+  const [state, dispatch] = useReducer(reducer, initialState)
+  const { account } = useWallet()
+
+  useEffect(() => {
+    const fetchNfts = async () => {
+      try {
+        const balanceOf = await kdfnContract.methods.balanceOf(account).call()
+
+        if (balanceOf > 0) {
+          let nfts: NftMap = {}
+
+          const getTokenIdAndBunnyId = async (index: number) => {
+            try {
+              const { tokenOfOwnerByIndex, tokenURI } = kdfnContract.methods
               const tokenId = await tokenOfOwnerByIndex(account, index).call()
               const [tokenUri] = await makeBatchRequest([tokenURI(tokenId).call])
 
