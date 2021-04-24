@@ -125,6 +125,7 @@ export type Nft = {
   nftId?: number
   purchaseTokenName?: string
   purchaseTokenPrice?: number
+  maximumMinted?: number
 }
 
 export type TeamImages = {

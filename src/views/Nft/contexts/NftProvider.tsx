@@ -17,9 +17,11 @@ type State = {
 type Context = {
   nfts: NftMap
   canBurnNft: boolean
+  nftBalance?: number
   getTokenIds: (tokenId: number) => number[]
   getNftIds?: (nftId: number) => number[]
   reInitialize: () => void
+  getNftMinted?:(nftId:number) => number
 } & State
 
 export const NftProviderContext = createContext<Context | null>(null)
@@ -171,10 +173,13 @@ export const KdfnNftProvider: React.FC = ({ children }) => {
     endBlockNumber: 0,
     balanceOf: 0,
   })
+
+  
   const { account } = useWallet()
   const currentBlock = useBlock()
   const { nfts: nftList } = useGetWalletKdfnNfts()
   const { isInitialized } = state
+  
 
   // Data from the contract that needs an account
   useEffect(() => {
@@ -204,9 +209,11 @@ export const KdfnNftProvider: React.FC = ({ children }) => {
     }
   }, [isMounted])
 
+    
   const canBurnNft = currentBlock <= state.endBlockNumber
   const getTokenIds = (tokenId: number) => nftList[tokenId]?.tokenIds
   const getNftIds = (nftId: number) => nftList[nftId]?.tokenIds
+  
 
   /**
    * Allows consumers to re-fetch all data from the contract. Triggers the effects.
@@ -224,7 +231,7 @@ export const KdfnNftProvider: React.FC = ({ children }) => {
   
 
   return (
-    <KdfnNftProviderContext.Provider value={{ ...state, nfts: nftList, canBurnNft, getTokenIds, getNftIds, reInitialize }}>
+    <KdfnNftProviderContext.Provider value={{ ...state, nfts: nftList, canBurnNft, getTokenIds, getNftIds, reInitialize}}>
       {children}
     </KdfnNftProviderContext.Provider>
   )
