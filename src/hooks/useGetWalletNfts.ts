@@ -11,6 +11,7 @@ export type NftMap = {
   [key: number]: {
     tokenUri: string
     tokenIds: number[]
+    nftIds?: number[]
   }
 }
 
@@ -188,13 +189,13 @@ export const useGetWalletKdfnNfts = () => {
         if (balanceOf > 0) {
           let nfts: NftMap = {}
 
-          const getTokenIdAndBunnyId = async (index: number) => {
+          const getTokenIdAndNftId = async (index: number) => {
             try {
-              const { tokenOfOwnerByIndex, tokenURI } = kdfnContract.methods
+              const { tokenOfOwnerByIndex, tokenURI, tokenNftID } = kdfnContract.methods
               const tokenId = await tokenOfOwnerByIndex(account, index).call()
-              const [tokenUri] = await makeBatchRequest([tokenURI(tokenId).call])
+              const [nftId, tokenUri] = await makeBatchRequest([tokenNftID(tokenId).call, tokenURI(tokenId).call])
 
-              return [Number(tokenId), tokenUri]
+              return [Number(nftId), Number(tokenId), [tokenUri]]
             } catch (error) {
               return null
             }
@@ -203,7 +204,7 @@ export const useGetWalletKdfnNfts = () => {
           const tokenIdPromises = []
 
           for (let i = 0; i < balanceOf; i++) {
-            tokenIdPromises.push(getTokenIdAndBunnyId(i))
+            tokenIdPromises.push(getTokenIdAndNftId(i))
           }
 
           const tokenIdsOwnedByWallet = await Promise.all(tokenIdPromises)
@@ -213,13 +214,13 @@ export const useGetWalletKdfnNfts = () => {
               return accum
             }
 
-            const [bunnyId, tokenId, tokenUri] = association
+            const [nftId, tokenId, tokenUri] = association
 
             return {
               ...accum,
-              [bunnyId]: {
+              [nftId]: {
                 tokenUri,
-                tokenIds: accum[bunnyId] ? [...accum[bunnyId].tokenIds, tokenId] : [tokenId],
+                tokenIds: accum[nftId] ? [...accum[nftId].tokenIds, tokenId] : [tokenId],
               },
             }
           }, {})

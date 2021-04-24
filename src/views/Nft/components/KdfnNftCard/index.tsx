@@ -57,20 +57,16 @@ const KdfnNftCard: React.FC<NftCardProps> = ({ nft }) => {
   const [error, setError] = useState(null)
   const [isOpen, setIsOpen] = useState(false)
   const TranslateString = useI18n()
-  const { isInitialized, getTokenIds, reInitialize } = useContext(KdfnNftProviderContext)
+  const { isInitialized, getTokenIds, getNftIds, reInitialize } = useContext(KdfnNftProviderContext)
   const { profile } = useProfile()
-  const { tokenId, name, images, description } = nft
+  const { tokenId, nftId, name, images, description } = nft
   const tokenIds = getTokenIds(tokenId)
-  const walletOwnsNft = tokenIds && tokenIds.length > 0
+  const nftIds = getNftIds(nftId)
+  const walletOwnsNft = nftIds && nftIds.length > 0
   const Icon = isOpen ? ChevronUpIcon : ChevronDownIcon
   const squireContract = useSquire()
   const { account } = useWallet()
-  const kdfnContract = useKnightsDefiNFTs()
-
-  const mintCap = (
-    kdfnContract.methods
-      .purchaseNft(nft.nftId)
-  )
+  const showTransferButton = 0
 
   const handleClick = async () => {
     setIsOpen(!isOpen)
@@ -96,43 +92,33 @@ const KdfnNftCard: React.FC<NftCardProps> = ({ nft }) => {
       <CardBody>
         <Header>
           <Heading>{name}</Heading>
-          {isInitialized && tokenIds && (
+          {isInitialized && walletOwnsNft && (
             <Tag outline variant="secondary">
               {TranslateString(999, 'In Wallet')}
             </Tag>
           )}
-          {profile?.nft?.tokenId === tokenId && (
-            <Tag outline variant="success">
-              {TranslateString(999, 'Profile Pic')}
-            </Tag>
-          )}
         </Header>
         <Text>Price: {nft.purchaseTokenPrice} {nft.purchaseTokenName}</Text>
-        {isInitialized && walletOwnsNft && (
+        {/* {isInitialized && walletOwnsNft (
           <Button  variant="secondary" mt="24px" onClick={onPresentTransferModal}>
             {TranslateString(999, 'Transfer')}
           </Button>
-        )}
+        )} */}
+        
+        {account ? (
+            <Button  variant="secondary" mt="24px" onClick={onApprove}>
+            {TranslateString(999, 'Approve')}
+            </Button>          
+          ) : (
+            <Text>{tokenIds}</Text>
+          )}
         {account ? (
             <Button variant="secondary" mt="24px" onClick={onPresentPurchaseModal}>
               {TranslateString(999, 'Purchase')}
             </Button>            
           ) : (
             <UnlockButton  />
-          )}
-        {account ? (
-            <Button  variant="secondary" mt="24px" onClick={onApprove}>
-            {TranslateString(999, 'Approve')}
-            </Button>          
-          ) : (
-            <Text />
-          )}
-
-
-
-
-
-        
+          )}  
       </CardBody>
       <CardFooter p="0">
         <DetailsButton endIcon={<Icon width="24px" color="primary" />} onClick={handleClick}>
