@@ -53,7 +53,7 @@ const KotrtNfts: Nft[] = [
       lg: 'Knights_DeFi_NFT_Beta_Tester_4.png',
       md: 'Knights_DeFi_NFT_Beta_Tester_4.png',
       sm: 'Knights_DeFi_NFT_Beta_Tester_4.png',
-      ipfs: 'https://ipfs.io/ipfs/QmdN4r6WynyvU4u4M32NY3zqLjJZYYxZwtBFbmRJTzsMEc?filename=Knights_DeFi_NFT_Beta_Tester_3.png',
+      ipfs: 'https://ipfs.io/ipfs/QmfLMbNwVkL55uBBY63VDLP3sFs4veJdEZGCYUULbQ4cwc?filename=Knights_DeFi_NFT_Beta_Tester_4.png',
       blur: 'Knights_DeFi_NFT_Beta_Tester_4.png',
     },
     sortOrder: 999,
