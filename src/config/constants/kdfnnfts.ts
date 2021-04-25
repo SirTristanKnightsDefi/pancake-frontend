@@ -14,9 +14,7 @@ const KotrtNfts: Nft[] = [
     sortOrder: 999,
     tokenId: 0,
     nftId: 0,
-    purchaseTokenName: 'SQUIRE',
-    purchaseTokenPrice: 1000,
-    maximumMinted: 50
+    purchaseTokenName: "SQUIRE",
   },
   {
     name: 'Knights DeFi Beta Tester #2',
@@ -31,9 +29,7 @@ const KotrtNfts: Nft[] = [
     sortOrder: 999,
     tokenId: 0,
     nftId: 1,
-    purchaseTokenName: 'SQUIRE',
-    purchaseTokenPrice: 1000,
-    maximumMinted: 250
+    purchaseTokenName: "SQUIRE",
   },
   {
     name: 'Knights DeFi Beta Tester #3',
@@ -48,9 +44,22 @@ const KotrtNfts: Nft[] = [
     sortOrder: 999,
     tokenId: 0,
     nftId: 2,
-    purchaseTokenName: 'SQUIRE',
-    purchaseTokenPrice: 1000,
-    maximumMinted: 250
+    purchaseTokenName: "SQUIRE",
+  },
+  {
+    name: 'Knights DeFi Beta Tester #4',
+    description: 'Token for NFT Marketplace Beta Testers',
+    images: {
+      lg: 'Knights_DeFi_NFT_Beta_Tester_4.png',
+      md: 'Knights_DeFi_NFT_Beta_Tester_4.png',
+      sm: 'Knights_DeFi_NFT_Beta_Tester_4.png',
+      ipfs: 'https://ipfs.io/ipfs/QmdN4r6WynyvU4u4M32NY3zqLjJZYYxZwtBFbmRJTzsMEc?filename=Knights_DeFi_NFT_Beta_Tester_3.png',
+      blur: 'Knights_DeFi_NFT_Beta_Tester_4.png',
+    },
+    sortOrder: 999,
+    tokenId: 0,
+    nftId: 3,
+    purchaseTokenName: "KNIGHT",
   },
 ]
 

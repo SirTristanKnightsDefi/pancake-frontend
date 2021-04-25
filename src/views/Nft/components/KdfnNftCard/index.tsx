@@ -16,10 +16,14 @@ import { getKdfnNFTsContract } from 'utils/contractHelpers'
 import { useProfile } from 'state/hooks'
 import useI18n from 'hooks/useI18n'
 import { Nft } from 'config/constants/types'
-import { useSquire, useKnightsDefiNFTs } from 'hooks/useContract'
+import { useSquire, useKnight, useLegend, useTable } from 'hooks/useContract'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
-import { useKdfnNftPurchaseApprove } from 'hooks/useApprove'
+import { useKdfnNftPurchaseApprove, useKdfnSquireApprove } from 'hooks/useApprove'
 import UnlockButton from 'components/UnlockButton'
+import ApproveSquireButton from 'components/ApproveSquireButton'
+import ApproveKnightButton from 'components/ApproveKnightButton'
+import ApproveLegendButton from 'components/ApproveLegendButton'
+import ApproveTableButton from 'components/ApproveTableButton'
 import InfoRow from '../InfoRow'
 import Image from '../Image'
 import { KdfnNftProviderContext } from '../../contexts/NftProvider'
@@ -83,9 +87,16 @@ const KdfnNftCard: React.FC<NftCardProps> = ({ nft }) => {
   const nftIds = getNftIds(nftId)
   const walletOwnsNft = nftIds && nftIds.length > 0
   const Icon = isOpen ? ChevronUpIcon : ChevronDownIcon
+  
   const squireContract = useSquire()
+  const knightContract = useKnight()
+  const legendContract = useLegend()
+  const tableContract = useTable()
   const { account } = useWallet()
   const showTransferButton = 0
+
+ 
+  
 
   const handleClick = async () => {
     setIsOpen(!isOpen)
@@ -115,7 +126,6 @@ const KdfnNftCard: React.FC<NftCardProps> = ({ nft }) => {
     fetchNftData(nft.nftId) 
   }, [nft.nftId])
 
-
   const [onPresentTransferModal] = useModal(
     <TransferNftModal nft={nft} tokenIds={tokenIds} onSuccess={handleSuccess} />,
   )
@@ -124,7 +134,7 @@ const KdfnNftCard: React.FC<NftCardProps> = ({ nft }) => {
     <PurchaseNftModal nft={nft} tokenIds={tokenIds} onSuccess={handleSuccess} />,
   )
   
-  const { onApprove } = useKdfnNftPurchaseApprove(squireContract)
+  const purchaseToken = state.purchaseTokenID
 
   return (
     <Card isActive={walletOwnsNft}>
@@ -138,7 +148,8 @@ const KdfnNftCard: React.FC<NftCardProps> = ({ nft }) => {
             </Tag>
           )}
         </Header>
-        <Text>Price: {state.purchaseTokenAmount/1e18} {nft.purchaseTokenName}</Text>
+        <Text>Price: {state.purchaseTokenAmount/1e18} {nft.purchaseTokenName} </Text>
+        {state.mintable ? (<Text>Artist Earnings: {state.adminCut}%</Text>) : (<Text />)}
         <Text>Total Sold: {state.numberMinted}/{state.mintCap}</Text>
         {/* {isInitialized && walletOwnsNft (
           <Button  variant="secondary" mt="24px" onClick={onPresentTransferModal}>
@@ -149,13 +160,31 @@ const KdfnNftCard: React.FC<NftCardProps> = ({ nft }) => {
         {
           state.mintable ? (<Text/>) : (<Text>Sold Out!</Text>)
         }
-        {account && state.mintable ? (
-            <Button  variant="secondary" mt="24px" onClick={onApprove}>
-            {TranslateString(999, 'Approve')}
-            </Button>          
+        {account && state.mintable && nft.purchaseTokenName === "SQUIRE" ? (
+            <ApproveSquireButton />      
           ) : (
             <Text/>
         )}
+        {account && state.mintable && nft.purchaseTokenName === "KNIGHT" ? (
+            <ApproveKnightButton />      
+          ) : (
+            <Text/>
+        )}
+        {account && state.mintable && nft.purchaseTokenName === "LEGEND" ? (
+            <ApproveLegendButton />      
+          ) : (
+            <Text/>
+        )}
+
+        {account && state.mintable && nft.purchaseTokenName === "TABLE" ? (
+            <ApproveTableButton />      
+          ) : (
+            <Text/>
+        )}
+
+
+
+
         {account && state.mintable ? (
             <Button variant="secondary" mt="24px" onClick={onPresentPurchaseModal}>
               {TranslateString(999, 'Purchase')}
@@ -163,6 +192,7 @@ const KdfnNftCard: React.FC<NftCardProps> = ({ nft }) => {
           ) : (
             <Text />
           )}
+
           {!account && state.mintable ? (
             <UnlockButton />            
           ) : (

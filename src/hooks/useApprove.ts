@@ -5,7 +5,7 @@ import { ethers } from 'ethers'
 import { useDispatch } from 'react-redux'
 import { updateUserAllowance, fetchFarmUserDataAsync, fetchBattlefieldUserDataAsync } from 'state/actions'
 import { approve } from 'utils/callHelpers'
-import { useMasterchef, useCake, useSousChef, useLottery, useBattlefield, useKnightsDefiNFTs } from './useContract'
+import { useMasterchef, useCake, useSousChef, useLottery, useBattlefield, useKnightsDefiNFTs, useSquire, useKnight, useLegend, useTable } from './useContract'
 
 // Approve a Battlefield
 export const useBattlefieldApprove = (lpContract: Contract) => {
@@ -27,6 +27,73 @@ export const useBattlefieldApprove = (lpContract: Contract) => {
 }
 
 // Approve Kdfn Nft Purchase
+export const useKdfnSquireApprove = () => {
+  const { account }: { account: string } = useWallet()
+  const kdfnContract = useKnightsDefiNFTs()
+  const contract = useSquire()
+
+  const handleApprove = useCallback(async () => {
+    try {
+      const tx = await approve(contract, kdfnContract, account)
+      return tx
+    } catch (e) {
+      return false
+    }
+  }, [account, contract, kdfnContract])
+
+  return { onApprove: handleApprove }
+}
+
+export const useKdfnKnightApprove = () => {
+  const { account }: { account: string } = useWallet()
+  const kdfnContract = useKnightsDefiNFTs()
+  const contract = useKnight()
+
+  const handleApprove = useCallback(async () => {
+    try {
+      const tx = await approve(contract, kdfnContract, account)
+      return tx
+    } catch (e) {
+      return false
+    }
+  }, [account, contract, kdfnContract])
+
+  return { onApprove: handleApprove }
+}
+
+export const useKdfnLegendApprove = () => {
+  const { account }: { account: string } = useWallet()
+  const kdfnContract = useKnightsDefiNFTs()
+  const contract = useLegend()
+
+  const handleApprove = useCallback(async () => {
+    try {
+      const tx = await approve(contract, kdfnContract, account)
+      return tx
+    } catch (e) {
+      return false
+    }
+  }, [account, contract, kdfnContract])
+
+  return { onApprove: handleApprove }
+}
+export const useKdfnTableApprove = () => {
+  const { account }: { account: string } = useWallet()
+  const kdfnContract = useKnightsDefiNFTs()
+  const contract = useTable()
+
+  const handleApprove = useCallback(async () => {
+    try {
+      const tx = await approve(contract, kdfnContract, account)
+      return tx
+    } catch (e) {
+      return false
+    }
+  }, [account, contract, kdfnContract])
+
+  return { onApprove: handleApprove }
+}
+
 export const useKdfnNftPurchaseApprove = (contract: Contract) => {
   const { account }: { account: string } = useWallet()
   const kdfnContract = useKnightsDefiNFTs()

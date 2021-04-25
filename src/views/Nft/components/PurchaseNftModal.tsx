@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { Button, Modal, Text } from '@pancakeswap-libs/uikit'
 import { Nft } from 'config/constants/types'
 import useI18n from 'hooks/useI18n'
-import { useKnightsDefiNFTs} from 'hooks/useContract'
+import { useKnightsDefiNFTs,useSquire, useKnight, useLegend, useTable } from 'hooks/useContract'
 import InfoRow from './InfoRow'
 
+type State = {
+  balanceSufficient: boolean
+}
 
 interface PurchaseNftModalProps {
   nft: Nft
@@ -36,6 +39,8 @@ const Label = styled.label`
   margin-top: 24px;
 `
 
+
+
 const PurchaseNftModal: React.FC<PurchaseNftModalProps> = ({ nft, tokenIds, onSuccess, onDismiss }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [value, setValue] = useState('')
@@ -43,6 +48,14 @@ const PurchaseNftModal: React.FC<PurchaseNftModalProps> = ({ nft, tokenIds, onSu
   const TranslateString = useI18n()
   const { account } = useWallet()
   const kdfnContract = useKnightsDefiNFTs()
+  const squireContract = useSquire()
+  const knightContract = useKnight()
+  const legendContract = useLegend()
+  const tableContract = useTable()
+
+  const [state, setState] = useState<State>({
+    balanceSufficient: false
+  })
 
   const handleConfirm = async () => {
     try {
@@ -65,6 +78,29 @@ const PurchaseNftModal: React.FC<PurchaseNftModalProps> = ({ nft, tokenIds, onSu
       console.error('Unable to purchase NFT:', err)
     }
   }
+
+  useEffect(() => {
+    const fetchBalanceData = async () => {
+      
+      const squireBalanceOf = await squireContract.methods.balanceOf(account).call()
+      const knightBalanceOf = await knightContract.methods.balanceOf(account).call()
+      const legendBalanceOf = await legendContract.methods.balanceOf(account).call()
+      const tableeBalanceOf = await tableContract.methods.balanceOf(account).call()
+      let balanceSufficient = false
+      if(nft.purchaseTokenName === "SQUIRE"){
+         if(squireBalanceOf > nft.purchaseTokenPrice * 1e18) {
+          balanceSufficient = true
+         }
+      }
+      
+    
+    setState((prevState) => ({
+      ...prevState, 
+      balanceSufficient
+    }))
+    }
+    fetchBalanceData() 
+  }, [account, squireContract, knightContract, legendContract, tableContract, nft.purchaseTokenName, nft.purchaseTokenPrice])
 
   return (
     <Modal title={TranslateString(999, 'Purchase NFT')} onDismiss={onDismiss}>

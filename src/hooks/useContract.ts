@@ -34,6 +34,9 @@ import profile from 'config/abi/pancakeProfile.json'
 import pointCenterIfo from 'config/abi/pointCenterIfo.json'
 import kdfnNFTsAbi from 'config/abi/kdfnnfts.json'
 import squireAbi from 'config/abi/squire.json'
+import legendAbi from 'config/abi/legend.json'
+import tableAbi from 'config/abi/table.json'
+import knightAbi from 'config/abi/cake.json'
 
 const useContract = (abi: AbiItem, address: string, contractOptions?: ContractOptions) => {
   const web3 = useWeb3()
@@ -82,6 +85,21 @@ export const useKnightsDefiNFTs = () => {
 export const useSquire = () => {
   const abi = (squireAbi as unknown) as AbiItem
   return useContract(abi, getSquireAddress())
+}
+
+export const useLegend = () => {
+  const abi = (legendAbi as unknown) as AbiItem
+  return useContract(abi, getLegendAddress())
+}
+
+export const useTable = () => {
+  const abi = (tableAbi as unknown) as AbiItem
+  return useContract(abi, getTableAddress())
+}
+
+export const useKnight = () => {
+  const abi = (knightAbi as unknown) as AbiItem
+  return useContract(abi, getCakeAddress())
 }
 
 export const useProfile = () => {
