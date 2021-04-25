@@ -17,6 +17,7 @@ import { useProfile } from 'state/hooks'
 import useI18n from 'hooks/useI18n'
 import { Nft } from 'config/constants/types'
 import { useSquire, useKnight, useLegend, useTable } from 'hooks/useContract'
+import useRefresh from 'hooks/useRefresh'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { useKdfnNftPurchaseApprove, useKdfnSquireApprove } from 'hooks/useApprove'
 import UnlockButton from 'components/UnlockButton'
@@ -70,6 +71,7 @@ const KdfnNftCard: React.FC<NftCardProps> = ({ nft }) => {
   const [value, setValue] = useState('')
   const [error, setError] = useState(null)
   const [isOpen, setIsOpen] = useState(false)
+  const { fastRefresh } = useRefresh()
   const [state, setState] = useState<State>({
     mintCap: 0,
     numberMinted: 0,
@@ -124,7 +126,7 @@ const KdfnNftCard: React.FC<NftCardProps> = ({ nft }) => {
     }))
     }
     fetchNftData(nft.nftId) 
-  }, [nft.nftId])
+  }, [nft.nftId, fastRefresh])
 
   const [onPresentTransferModal] = useModal(
     <TransferNftModal nft={nft} tokenIds={tokenIds} onSuccess={handleSuccess} />,
@@ -210,7 +212,7 @@ const KdfnNftCard: React.FC<NftCardProps> = ({ nft }) => {
             </Text>
           </InfoBlock>
         )}
-      </CardFooter>s
+      </CardFooter>
     </Card>
   )
 }

@@ -1,8 +1,11 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import { Heading } from '@pancakeswap-libs/uikit'
+import { useWallet } from '@binance-chain/bsc-use-wallet'
 import useI18n from 'hooks/useI18n'
 import Page from 'components/layout/Page'
+import useRefresh from 'hooks/useRefresh'
 import NftList from './components/NftList'
 import NftProvider, {KotrtNftProvider, KdfnNftProvider} from './contexts/NftProvider'
 import KotrtNftList from './components/KotrtNftList'
@@ -16,6 +19,14 @@ const StyledHero = styled.div`
 
 const Nft = () => {
   const TranslateString = useI18n()
+  const dispatch = useDispatch()
+  const { fastRefresh } = useRefresh()
+  
+  const { account} = useWallet()
+
+  useEffect(() => {
+    const refresh = true
+  }, [account, dispatch, fastRefresh])
 
   return (
     <StyledHero>

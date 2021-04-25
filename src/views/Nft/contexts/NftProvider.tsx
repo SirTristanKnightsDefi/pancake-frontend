@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useRef, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
+import useRefresh from 'hooks/useRefresh'
 import useBlock from 'hooks/useBlock'
 import useGetWalletNfts, { NftMap, useGetWalletKotrtNfts, useGetWalletKdfnNfts } from 'hooks/useGetWalletNfts'
 import { getTheGrailNFTsContract, getKotrtNFTsContract, getKdfnNFTsContract } from 'utils/contractHelpers'
@@ -39,6 +40,7 @@ const NftProvider: React.FC = ({ children }) => {
   const currentBlock = useBlock()
   const { nfts: nftList } = useGetWalletNfts()
   const { isInitialized } = state
+  const { fastRefresh } = useRefresh()
 
   // Data from the contract that needs an account
   useEffect(() => {
@@ -60,13 +62,13 @@ const NftProvider: React.FC = ({ children }) => {
     if (account) {
       fetchContractData()
     }
-  }, [isInitialized, account, setState])
+  }, [isInitialized, account, setState, fastRefresh])
 
   useEffect(() => {
     return () => {
       isMounted.current = false
     }
-  }, [isMounted])
+  }, [isMounted, fastRefresh])
 
   const canBurnNft = currentBlock <= state.endBlockNumber
   const getTokenIds = (tokenId: number) => nftList[tokenId]?.tokenIds
@@ -107,6 +109,7 @@ export const KotrtNftProvider: React.FC = ({ children }) => {
   const currentBlock = useBlock()
   const { nfts: nftList } = useGetWalletKotrtNfts()
   const { isInitialized } = state
+  const { fastRefresh } = useRefresh()
 
   // Data from the contract that needs an account
   useEffect(() => {
@@ -128,13 +131,13 @@ export const KotrtNftProvider: React.FC = ({ children }) => {
     if (account) {
       fetchContractData()
     }
-  }, [isInitialized, account, setState])
+  }, [isInitialized, account, setState, fastRefresh])
 
   useEffect(() => {
     return () => {
       isMounted.current = false
     }
-  }, [isMounted])
+  }, [isMounted, fastRefresh])
 
   const canBurnNft = currentBlock <= state.endBlockNumber
   const getTokenIds = (tokenId: number) => nftList[tokenId]?.tokenIds
@@ -177,6 +180,7 @@ export const KdfnNftProvider: React.FC = ({ children }) => {
   const currentBlock = useBlock()
   const { nfts: nftList } = useGetWalletKdfnNfts()
   const { isInitialized } = state
+  const { fastRefresh } = useRefresh()
   
 
   // Data from the contract that needs an account
@@ -199,13 +203,13 @@ export const KdfnNftProvider: React.FC = ({ children }) => {
     if (account) {
       fetchContractData()
     }
-  }, [isInitialized, account, setState])
+  }, [isInitialized, account, setState, fastRefresh])
 
   useEffect(() => {
     return () => {
       isMounted.current = false
     }
-  }, [isMounted])
+  }, [isMounted, fastRefresh])
 
     
   const canBurnNft = currentBlock <= state.endBlockNumber
