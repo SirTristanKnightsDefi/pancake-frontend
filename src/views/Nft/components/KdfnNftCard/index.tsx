@@ -29,6 +29,11 @@ import PurchaseNftModal from '../PurchaseNftModal'
 type State = {
   mintCap: number
   numberMinted: number
+  description: string
+  purchaseTokenAmount: number
+  purchaseTokenID: number
+  adminCut: number
+  mintable: boolean
 }
 
 interface NftCardProps {
@@ -64,11 +69,16 @@ const KdfnNftCard: React.FC<NftCardProps> = ({ nft }) => {
   const [state, setState] = useState<State>({
     mintCap: 0,
     numberMinted: 0,
+    description: '',
+    purchaseTokenAmount: 0,
+    purchaseTokenID: -1,
+    adminCut: 0,
+    mintable: false
   })
   const TranslateString = useI18n()
   const { isInitialized, getTokenIds, getNftIds, reInitialize } = useContext(KdfnNftProviderContext)
   const { profile } = useProfile()
-  const { tokenId, nftId, name, images, description } = nft
+  const { tokenId, nftId, name, images } = nft
   const tokenIds = getTokenIds(tokenId)
   const nftIds = getNftIds(nftId)
   const walletOwnsNft = nftIds && nftIds.length > 0
@@ -89,16 +99,22 @@ const KdfnNftCard: React.FC<NftCardProps> = ({ nft }) => {
     const fetchNftData = async (id: number) => {
       const kdfnNFTsContract = getKdfnNFTsContract()
     
-      const {mintCap, numberMinted} = await kdfnNFTsContract.methods.nfts(id).call()
+      const {mintCap, numberMinted, description, purchaseTokenAmount, purchaseTokenID, adminCut, mintable} = await kdfnNFTsContract.methods.nfts(id).call()
     
     setState((prevState) => ({
       ...prevState, 
       mintCap,
-      numberMinted
+      numberMinted,
+      description,
+      purchaseTokenAmount,
+      purchaseTokenID,
+      adminCut,
+      mintable
     }))
     }
     fetchNftData(nft.nftId) 
   }, [nft.nftId])
+
 
   const [onPresentTransferModal] = useModal(
     <TransferNftModal nft={nft} tokenIds={tokenIds} onSuccess={handleSuccess} />,
@@ -115,14 +131,14 @@ const KdfnNftCard: React.FC<NftCardProps> = ({ nft }) => {
       <Image src={`/images/nfts/${images.lg}`} alt={name} originalLink={walletOwnsNft ? images.ipfs : null} />
       <CardBody>
         <Header>
-          <Heading>{name}</Heading>
+          <Heading>{state.description}</Heading>
           {isInitialized && walletOwnsNft && (
             <Tag outline variant="secondary">
               {TranslateString(999, 'In Wallet')}
             </Tag>
           )}
         </Header>
-        <Text>Price: {nft.purchaseTokenPrice} {nft.purchaseTokenName}</Text>
+        <Text>Price: {state.purchaseTokenAmount/1e18} {nft.purchaseTokenName}</Text>
         <Text>Total Sold: {state.numberMinted}/{state.mintCap}</Text>
         {/* {isInitialized && walletOwnsNft (
           <Button  variant="secondary" mt="24px" onClick={onPresentTransferModal}>
@@ -130,20 +146,28 @@ const KdfnNftCard: React.FC<NftCardProps> = ({ nft }) => {
           </Button>
         )} */}
         
-        {account ? (
+        {
+          state.mintable ? (<Text/>) : (<Text>Sold Out!</Text>)
+        }
+        {account && state.mintable ? (
             <Button  variant="secondary" mt="24px" onClick={onApprove}>
             {TranslateString(999, 'Approve')}
             </Button>          
           ) : (
-            <Text>{tokenIds}</Text>
-          )}
-        {account ? (
+            <Text/>
+        )}
+        {account && state.mintable ? (
             <Button variant="secondary" mt="24px" onClick={onPresentPurchaseModal}>
               {TranslateString(999, 'Purchase')}
             </Button>            
           ) : (
-            <UnlockButton  />
-          )}  
+            <Text />
+          )}
+          {!account && state.mintable ? (
+            <UnlockButton />            
+          ) : (
+            <Text />
+          )} 
       </CardBody>
       <CardFooter p="0">
         <DetailsButton endIcon={<Icon width="24px" color="primary" />} onClick={handleClick}>
@@ -152,7 +176,7 @@ const KdfnNftCard: React.FC<NftCardProps> = ({ nft }) => {
         {isOpen && (
           <InfoBlock>
             <Text as="p" color="textSubtle" style={{ textAlign: 'center' }}>
-              {description}
+              {state.description}
             </Text>
           </InfoBlock>
         )}
