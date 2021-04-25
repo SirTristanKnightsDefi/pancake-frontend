@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import styled from 'styled-components'
 import {
   Card,
@@ -12,6 +12,7 @@ import {
   CardFooter,
   useModal,
 } from '@pancakeswap-libs/uikit'
+import { getKdfnNFTsContract } from 'utils/contractHelpers'
 import { useProfile } from 'state/hooks'
 import useI18n from 'hooks/useI18n'
 import { Nft } from 'config/constants/types'
@@ -25,6 +26,10 @@ import { KdfnNftProviderContext } from '../../contexts/NftProvider'
 import TransferNftModal from '../TransferNftModal'
 import PurchaseNftModal from '../PurchaseNftModal'
 
+type State = {
+  mintCap: number
+  numberMinted: number
+}
 
 interface NftCardProps {
   nft: Nft
@@ -56,6 +61,10 @@ const KdfnNftCard: React.FC<NftCardProps> = ({ nft }) => {
   const [value, setValue] = useState('')
   const [error, setError] = useState(null)
   const [isOpen, setIsOpen] = useState(false)
+  const [state, setState] = useState<State>({
+    mintCap: 0,
+    numberMinted: 0,
+  })
   const TranslateString = useI18n()
   const { isInitialized, getTokenIds, getNftIds, reInitialize } = useContext(KdfnNftProviderContext)
   const { profile } = useProfile()
@@ -75,6 +84,21 @@ const KdfnNftCard: React.FC<NftCardProps> = ({ nft }) => {
   const handleSuccess = () => {
     reInitialize()
   }
+
+  useEffect(() => {
+    const fetchNftData = async (id: number) => {
+      const kdfnNFTsContract = getKdfnNFTsContract()
+    
+      const {mintCap, numberMinted} = await kdfnNFTsContract.methods.nfts(id).call()
+    
+    setState((prevState) => ({
+      ...prevState, 
+      mintCap,
+      numberMinted
+    }))
+    }
+    fetchNftData(nft.nftId) 
+  }, [nft.nftId])
 
   const [onPresentTransferModal] = useModal(
     <TransferNftModal nft={nft} tokenIds={tokenIds} onSuccess={handleSuccess} />,
@@ -99,7 +123,7 @@ const KdfnNftCard: React.FC<NftCardProps> = ({ nft }) => {
           )}
         </Header>
         <Text>Price: {nft.purchaseTokenPrice} {nft.purchaseTokenName}</Text>
-        <Text>Total Supply: {nft.maximumMinted}</Text>
+        <Text>Total Sold: {state.numberMinted}/{state.mintCap}</Text>
         {/* {isInitialized && walletOwnsNft (
           <Button  variant="secondary" mt="24px" onClick={onPresentTransferModal}>
             {TranslateString(999, 'Transfer')}

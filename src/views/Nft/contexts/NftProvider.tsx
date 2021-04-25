@@ -153,8 +153,6 @@ export const KotrtNftProvider: React.FC = ({ children }) => {
     }
   }
 
-  
-
   return (
     <KotrtNftProviderContext.Provider value={{ ...state, nfts: nftList, canBurnNft, getTokenIds, reInitialize }}>
       {children}
