@@ -68,10 +68,11 @@ const PurchaseNftModal: React.FC<PurchaseNftModalProps> = ({ nft, tokenIds, onSu
           .on('receipt', () => {
             onDismiss()
             onSuccess()
+            window.location.reload(false)
           })
           .on('error', () => {
             console.error(error)
-            setError('Unable to transfer NFT')
+            setError('Unable to purchase NFT')
             setIsLoading(false)
           })
     } catch (err) {
