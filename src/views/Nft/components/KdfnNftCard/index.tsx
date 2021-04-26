@@ -296,19 +296,43 @@ const KdfnNftCard: React.FC<NftCardProps> = ({ nft }) => {
             <Text/>
         )}
 
-        {account && state.mintable ? (
+        {account && state.mintable && nft.purchaseTokenName === "SQUIRE" && state.squireAllowance > 0 ? (
             <Button variant="secondary" mt="24px" onClick={onPresentPurchaseModal}>
               {TranslateString(999, 'Purchase')}
             </Button>            
           ) : (
             <Text />
-          )}
+        )}
 
-          {!account && state.mintable ? (
-            <UnlockButton />            
+        {account && state.mintable && nft.purchaseTokenName === "KNIGHT" && state.knightAllowance > 0 ? (
+            <Button variant="secondary" mt="24px" onClick={onPresentPurchaseModal}>
+              {TranslateString(999, 'Purchase')}
+            </Button>            
           ) : (
             <Text />
-          )} 
+        )}
+
+        {account && state.mintable && nft.purchaseTokenName === "LEGEND" && state.legendAllowance > 0 ? (
+            <Button variant="secondary" mt="24px" onClick={onPresentPurchaseModal}>
+              {TranslateString(999, 'Purchase')}
+            </Button>            
+          ) : (
+            <Text />
+        )}
+
+        {account && state.mintable && nft.purchaseTokenName === "TABLE" && state.tableAllowance > 0 ? (
+            <Button variant="secondary" mt="24px" onClick={onPresentPurchaseModal}>
+              {TranslateString(999, 'Purchase')}
+            </Button>            
+          ) : (
+            <Text />
+        )}
+
+        {!account && state.mintable ? (
+          <UnlockButton />            
+        ) : (
+          <Text />
+        )} 
       </CardBody>
       <CardFooter p="0">
         <DetailsButton endIcon={<Icon width="24px" color="primary" />} onClick={handleClick}>
