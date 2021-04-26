@@ -32,6 +32,10 @@ export const getKotrtNFTsAddress = () => {
 export const getKdfnNFTsAddress = () => {
   return getAddress(addresses.kdfnnfts) // Returns Knights Defi NFTs
 }
+
+export const getKdfnNFTsBetaAddress = () => {
+  return getAddress(addresses.kdfnnftsbeta) // Returns Knights Defi Beta NFTs
+}
 export const getMasterChefAddress = () => {
   return getAddress(addresses.masterChef)
 }

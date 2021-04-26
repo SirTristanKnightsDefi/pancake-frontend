@@ -7,9 +7,10 @@ import useI18n from 'hooks/useI18n'
 import Page from 'components/layout/Page'
 import useRefresh from 'hooks/useRefresh'
 import NftList from './components/NftList'
-import NftProvider, {KotrtNftProvider, KdfnNftProvider} from './contexts/NftProvider'
+import NftProvider, {KotrtNftProvider, KdfnNftProvider, KdfnNftBetaProvider} from './contexts/NftProvider'
 import KotrtNftList from './components/KotrtNftList'
 import KdfnNftList from './components/KdfnNftList'
+import KdfnNftBetaList from './components/KdfnNftBetaList'
 
 const StyledHero = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.colors.textSubtle};
@@ -34,12 +35,22 @@ const Nft = () => {
         <Page>
           <StyledHero>
             <Heading as="h1" size="xxl" color="secondary" mb="24px">
-              Purchase NFTs - BETA
+              The NFT Marketplace!
             </Heading>
           </StyledHero>
           <KdfnNftList />
         </Page>
       </KdfnNftProvider>
+      <KdfnNftBetaProvider>
+        <Page>
+          <StyledHero>
+            <Heading as="h1" size="xxl" color="secondary" mb="24px">
+              Beta NFTs
+            </Heading>
+          </StyledHero>
+          <KdfnNftBetaList />
+        </Page>
+      </KdfnNftBetaProvider>
       <KotrtNftProvider>
         <Page>
           <StyledHero>

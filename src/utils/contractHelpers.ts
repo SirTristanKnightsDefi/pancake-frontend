@@ -1,4 +1,4 @@
-import { getPancakeProfileAddress, getPancakeRabbitsAddress, getBunnyFactoryAddress, getTheGrailNFTsAddress, getKotrtNFTsAddress, getKdfnNFTsAddress, getSquireAddress, getCakeAddress, getLegendAddress, getTableAddress, getKnightAddress } from 'utils/addressHelpers'
+import { getPancakeProfileAddress, getPancakeRabbitsAddress, getBunnyFactoryAddress, getTheGrailNFTsAddress, getKotrtNFTsAddress, getKdfnNFTsAddress, getKdfnNFTsBetaAddress, getSquireAddress, getLegendAddress, getTableAddress, getKnightAddress } from 'utils/addressHelpers'
 import { getContract } from 'utils/web3'
 import profileABI from 'config/abi/pancakeProfile.json'
 import pancakeRabbitsAbi from 'config/abi/pancakeRabbits.json'
@@ -6,6 +6,7 @@ import bunnyFactoryAbi from 'config/abi/bunnyFactory.json'
 import theGrailNFTsAbi from 'config/abi/thegrailnfts.json'
 import kotrtNFTsAbi from 'config/abi/kotrtnfts.json'
 import kdfnNFTsAbi from 'config/abi/kdfnnfts.json'
+import kdfnNFTsBetaAbi from 'config/abi/kdfnnftsbeta.json'
 import knightAbi from 'config/abi/knight.json'
 import squireAbi from 'config/abi/squire.json'
 import legendAbi from 'config/abi/legend.json'
@@ -33,6 +34,10 @@ export const getKotrtNFTsContract= () => {
 
 export const getKdfnNFTsContract= () => {
   return getContract(kdfnNFTsAbi, getKdfnNFTsAddress())
+}
+
+export const getKdfnNFTsBetaContract= () => {
+  return getContract(kdfnNFTsBetaAbi, getKdfnNFTsBetaAddress())
 }
 
 export const getSquireContract= () => {

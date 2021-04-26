@@ -8,7 +8,11 @@ export default {
     56: '0xfffcb1Dbd1733B66D04F3de72AA65583a4dD50A6',
   },
   kdfnnfts:{
-    97: '0xfA0f28c684C2F19dA7de2b065d35a367cABF8500',
+    97: '0xf812C8D2433B110d9bec52c3425fA90f1bD76d47', // Prod NFTs
+    56: '0xf812C8D2433B110d9bec52c3425fA90f1bD76d47',
+  },
+  kdfnnftsbeta:{
+    97: '0xfA0f28c684C2F19dA7de2b065d35a367cABF8500', // Beta NFTs
     56: '0xfA0f28c684C2F19dA7de2b065d35a367cABF8500',
   },
   donateaddress:{
