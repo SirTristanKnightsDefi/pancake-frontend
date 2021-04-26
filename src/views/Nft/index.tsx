@@ -35,7 +35,10 @@ const Nft = () => {
         <Page>
           <StyledHero>
             <Heading as="h1" size="xxl" color="secondary" mb="24px">
-              The NFT Marketplace!
+              Knights DeFi Marketplace 
+            </Heading>
+            <Heading as="h2" size="lg" color="primary">
+              NFTs for Purchase
             </Heading>
           </StyledHero>
           <KdfnNftList />
@@ -47,6 +50,9 @@ const Nft = () => {
             <Heading as="h1" size="xxl" color="secondary" mb="24px">
               Beta NFTs
             </Heading>
+            <Heading as="h2" size="lg" color="primary">
+              NFTs exclusive for Beta Testers
+            </Heading>
           </StyledHero>
           <KdfnNftBetaList />
         </Page>
@@ -57,7 +63,7 @@ const Nft = () => {
             <Heading as="h1" size="xxl" color="secondary" mb="24px">
               Knights of the Round Table
             </Heading>
-            <Heading as="h2" size="lg" color="secondary">
+            <Heading as="h2" size="lg" color="primary">
               {TranslateString(999, 'Unique NFTs for Knights of the Round Table!')}
             </Heading>
           </StyledHero>
@@ -70,7 +76,7 @@ const Nft = () => {
             <Heading as="h1" size="xxl" color="secondary" mb="24px">
               The Grail Team
             </Heading>
-            <Heading as="h2" size="lg" color="secondary">
+            <Heading as="h2" size="lg" color="primary">
               {TranslateString(999, 'Unique NFTs for The Grail Team!')}
             </Heading>
           </StyledHero>
