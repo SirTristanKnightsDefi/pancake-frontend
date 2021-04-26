@@ -60,7 +60,6 @@ const PurchaseNftModal: React.FC<PurchaseNftModalProps> = ({ nft, onSuccess, onD
           .on('receipt', () => {
             onDismiss()
             onSuccess()
-            window.location.reload(false)
           })
           .on('error', () => {
             console.error(error)
