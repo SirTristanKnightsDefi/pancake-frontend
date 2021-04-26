@@ -7,10 +7,6 @@ import useI18n from 'hooks/useI18n'
 import { useKnightsDefiNFTs,useSquire, useKnight, useLegend, useTable } from 'hooks/useContract'
 import InfoRow from './InfoRow'
 
-type State = {
-  balanceSufficient: boolean
-}
-
 interface PurchaseNftModalProps {
   nft: Nft
   tokenIds: number[]
@@ -41,7 +37,7 @@ const Label = styled.label`
 
 
 
-const PurchaseNftModal: React.FC<PurchaseNftModalProps> = ({ nft, tokenIds, onSuccess, onDismiss }) => {
+const PurchaseNftModal: React.FC<PurchaseNftModalProps> = ({ nft, onSuccess, onDismiss }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [value, setValue] = useState('')
   const [error, setError] = useState(null)
@@ -52,10 +48,6 @@ const PurchaseNftModal: React.FC<PurchaseNftModalProps> = ({ nft, tokenIds, onSu
   const knightContract = useKnight()
   const legendContract = useLegend()
   const tableContract = useTable()
-
-  const [state, setState] = useState<State>({
-    balanceSufficient: false
-  })
 
   const handleConfirm = async () => {
     try {
@@ -80,28 +72,6 @@ const PurchaseNftModal: React.FC<PurchaseNftModalProps> = ({ nft, tokenIds, onSu
     }
   }
 
-  useEffect(() => {
-    const fetchBalanceData = async () => {
-      
-      const squireBalanceOf = await squireContract.methods.balanceOf(account).call()
-      const knightBalanceOf = await knightContract.methods.balanceOf(account).call()
-      const legendBalanceOf = await legendContract.methods.balanceOf(account).call()
-      const tableeBalanceOf = await tableContract.methods.balanceOf(account).call()
-      let balanceSufficient = false
-      if(nft.purchaseTokenName === "SQUIRE"){
-         if(squireBalanceOf > nft.purchaseTokenPrice * 1e18) {
-          balanceSufficient = true
-         }
-      }
-      
-    
-    setState((prevState) => ({
-      ...prevState, 
-      balanceSufficient
-    }))
-    }
-    fetchBalanceData() 
-  }, [account, squireContract, knightContract, legendContract, tableContract, nft.purchaseTokenName, nft.purchaseTokenPrice])
 
   return (
     <Modal title={TranslateString(999, 'Purchase NFT')} onDismiss={onDismiss}>
@@ -115,6 +85,7 @@ const PurchaseNftModal: React.FC<PurchaseNftModalProps> = ({ nft, tokenIds, onSu
           <Text>{TranslateString(999, 'Purchasing')}:</Text>
           <Value>{`1x "${nft.name}" NFT`}</Value>
         </InfoRow>
+        <Text>Ensure you have enough tokens to complete purchase</Text>
       </ModalContent>
       <Actions>
         <Button  variant="secondary" onClick={onDismiss}>

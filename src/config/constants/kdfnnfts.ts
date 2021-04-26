@@ -1,6 +1,6 @@
 import { Nft } from './types'
 
-const KotrtNfts: Nft[] = [
+const KdfnNfts: Nft[] = [
   {
     name: 'Knights DeFi Beta Tester',
     description: 'Token for NFT Marketplace Beta Testers',
@@ -63,4 +63,4 @@ const KotrtNfts: Nft[] = [
   },
 ]
 
-export default KotrtNfts
+export default KdfnNfts
