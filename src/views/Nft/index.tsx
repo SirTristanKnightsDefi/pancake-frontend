@@ -133,7 +133,6 @@ const Nft = () => {
             </Button>)
             }
           </StyledHero>
-          
           <KdfnNftList />
         </Page>
       </KdfnNftProvider>
