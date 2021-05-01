@@ -13,11 +13,11 @@ const config: MenuEntry[] = [
     items: [
       {
         label: "Exchange",
-        href: "https://v1exchange.pancakeswap.finance",
+        href: "https://exchange.alchemistdefi.com",
       },
       {
         label: "Liquidity",
-        href: "https://v1exchange.pancakeswap.finance/#/pool",
+        href: "https://exchange.alchemistdefi.com/#/pool",
       },
     ],
   },
@@ -47,11 +47,6 @@ const config: MenuEntry[] = [
     href: '/nft',
   },
   {
-    label: 'Blog / Roadmap',
-    icon: 'RoadmapIcon',
-    href: 'https://knightsoftheroundtable-bsc.medium.com/',
-  },
-  {
     label: 'Buy Tokens',
     icon: 'InfoIcon',
     items: [
@@ -74,7 +69,7 @@ const config: MenuEntry[] = [
     ],
   },
   {
-    label: 'Tokens Info',
+    label: 'Contracts / Charts',
     icon: 'InfoIcon',
     items: [
       {
@@ -108,6 +103,24 @@ const config: MenuEntry[] = [
       {
         label: 'TABLE Chart',
         href: 'https://dex.guru/token/0xf5a2f7418035ce76967f515f39d65719bb0453b6',
+      },
+    ],
+  },
+  {
+    label: 'Learn More',
+    icon: 'RoadmapIcon',
+    items: [
+      {
+        label: 'Blog',
+        href: 'https://knightsoftheroundtable-bsc.medium.com/',
+      },
+      {
+        label: 'Roadmap and Documentation',
+        href: 'https://docs.knightsdefi.com/',
+      },
+      {
+        label: 'Reddit',
+        href: 'https://www.reddit.com/r/KnightsDeFi',
       },
     ],
   },
