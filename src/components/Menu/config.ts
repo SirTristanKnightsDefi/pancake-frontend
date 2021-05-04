@@ -51,6 +51,10 @@ const config: MenuEntry[] = [
     icon: 'InfoIcon',
     items: [
       {
+        label: 'Buy SHILLING - Coming Soon',
+        href: '',
+      },
+      {
         label: 'Buy SQUIRE',
         href: 'https://exchange.alchemistdefi.com/#/swap?outputCurrency=0x2F0D21f1B84F03fB9D60004fc206C86Be6902a32',
       },
@@ -72,6 +76,14 @@ const config: MenuEntry[] = [
     label: 'Contracts / Charts',
     icon: 'InfoIcon',
     items: [
+      {
+        label: 'SHILLING Contract - Coming Soon',
+        href: '',
+      },
+      {
+        label: 'SHILLING Chart - Coming Soon',
+        href: '',
+      },
       {
         label: 'SQUIRE Contract',
         href: 'https://bscscan.com/address/0x2F0D21f1B84F03fB9D60004fc206C86Be6902a32',

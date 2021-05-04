@@ -143,6 +143,19 @@ const KotrtNfts: Nft[] = [
     },
     sortOrder: 999,
     tokenId: 11,
+  },
+  {
+    name: 'Sir Carti',
+    description: 'Sir Carti - #12',
+    images: {
+      lg: 'SirCarti.png',
+      md: 'SirCarti.png',
+      sm: 'SirCarti.png',
+      ipfs: 'https://ipfs.io/ipfs/QmVR9e4KDEt71Fq7K1TmYyzQMQXTAMzEAd86M41fi8VgqX?filename=SirCarti.png',
+      blur: 'SirCarti.png',
+    },
+    sortOrder: 999,
+    tokenId: 12,
   }
 ]
 

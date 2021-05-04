@@ -206,7 +206,7 @@ export const ShillingRewardsCard = () => {
         }
         <Divider />
         <Button as="a" variant="secondary" href="https://docs.knightsdefi.com/shilling" target="_blank">
-            Click to Read More about SHILLING
+            Read More
         </Button>
       </FCard>
         
