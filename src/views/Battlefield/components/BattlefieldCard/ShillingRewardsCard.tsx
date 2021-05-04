@@ -221,7 +221,7 @@ export const ShillingRewardsCard = () => {
       <Heading size='lg' mb="12px">{formattedShillingLaunchDate}</Heading>
       <Heading mb="12px">{timeToLaunch.days} Days {timeToLaunch.hours} Hours {timeToLaunch.minutes} Minutes</Heading>
       <Button as="a" variant="secondary" href="https://docs.knightsdefi.com/shilling" target="_blank">
-            Click to Read More about SHILLING
+            Read More
       </Button>
   </FCard>
   )
@@ -230,7 +230,7 @@ export const ShillingRewardsCard = () => {
     <FCard>
       <StyledCardAccent />
           <Heading mb="12px">
-            SHILLING
+            SHILLING Token
           </Heading>
           <Heading mb="12px">  <img src="images/battlefield/shilling.svg" alt="Shilling Logo" style={{
               height: '48px'
