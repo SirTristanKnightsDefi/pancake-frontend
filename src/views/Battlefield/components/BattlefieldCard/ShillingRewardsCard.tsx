@@ -83,7 +83,6 @@ export const ShillingRewardsCard = () => {
   const shillingContract = getShillingContract()
   const shillingAddress = getShillingAddress()
   const shillingBFRewardsPid = 0
-  const dispatch = useDispatch()
   const { fastRefresh, slowRefresh } = useRefresh()
   const { account }: { account: string } = useWallet()
   const [state, setState] = useState<State>({
@@ -163,7 +162,7 @@ export const ShillingRewardsCard = () => {
       }
     }
     fetchShillingDetails(account)
-  }, [account, battlefieldContract, shillingLaunched, shillingContract, shillingBFRewardsPid])
+  }, [fastRefresh, account, battlefieldContract, shillingLaunched, shillingContract, shillingBFRewardsPid])
 
   const { onReward } = useBattlefieldHarvest(shillingBFRewardsPid)
   const { onBnbReward } = useShillingBnbHarvest()
@@ -182,14 +181,14 @@ export const ShillingRewardsCard = () => {
         <Divider />
         <Text mb="2px">Your Holdings </Text>
         <Text mb="2px">{(state.holdings/1e18).toFixed()} SHILLING</Text>
-        <Text mb="12px">~(${(state.holdings/1e25).toLocaleString()})</Text>
+        <Text mb="12px">~($ {"Value Coming Soon".toLocaleString()})</Text>
         <Button as="a" variant="secondary" href={`https://exchange.pancakeswap.finance/#/swap?outputCurrency=${shillingAddress}`} target="_blank">
             Buy Shilling
         </Button>
         <Divider />
         <Text mb="2px">Earned SHILLING from Battlefield</Text>
         <Text mb="2px">{(state.earnings/1e18).toLocaleString()} SHILLING</Text>
-        <Text mb="12px">~(${(state.earnings/1e18).toLocaleString()})</Text>
+        <Text mb="12px">~($ {"Value Coming Soon".toLocaleString()})</Text>
         <Button variant="secondary" onClick={onReward}> 
           Harvest Shilling
         </Button>
@@ -205,6 +204,10 @@ export const ShillingRewardsCard = () => {
           Cannot Claim BNB Until Claim Date
         </Button>
         }
+        <Divider />
+        <Button as="a" variant="secondary" href="https://docs.knightsdefi.com/shilling" target="_blank">
+            Click to Read More about SHILLING
+        </Button>
       </FCard>
         
     )
@@ -213,9 +216,13 @@ export const ShillingRewardsCard = () => {
   return (
   <FCard>
       <StyledCardAccent />
-      <Heading size='xl' mb="12px">Shilling Launch</Heading>
+      <Heading size='xl' mb="12px">SHILLING Token Launch</Heading>
+      <Divider />
       <Heading size='lg' mb="12px">{formattedShillingLaunchDate}</Heading>
-      <Heading>{timeToLaunch.days} Days {timeToLaunch.hours} Hours {timeToLaunch.minutes} Minutes {timeToLaunch.seconds} Seconds</Heading>
+      <Heading mb="12px">{timeToLaunch.days} Days {timeToLaunch.hours} Hours {timeToLaunch.minutes} Minutes</Heading>
+      <Button as="a" variant="secondary" href="https://docs.knightsdefi.com/shilling" target="_blank">
+            Click to Read More about SHILLING
+      </Button>
   </FCard>
   )
   }
