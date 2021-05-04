@@ -9,21 +9,16 @@ import { useWallet } from '@binance-chain/bsc-use-wallet'
 import UnlockButton from 'components/UnlockButton'
 import { useBattlefieldHarvest } from 'hooks/useHarvest'
 import { fetchFarmUserDataAsync } from 'state/actions'
-
-import Countdown from 'react-countdown';
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getBattlefieldContract, getShillingContract } from 'utils/contractHelpers'
 import { getShillingAddress } from 'utils/addressHelpers'
-import { now } from 'lodash'
 
 type State = {
   earnings: number
   holdings: number
   formattedClaimDate: string
   claimBnbAvailable: boolean
-  shillingLaunched: boolean
-  timeToLaunch: Record<string,any>
 }
 
 const RainbowLight = keyframes`
@@ -83,8 +78,6 @@ const Divider = styled.div`
 
 
 export const ShillingRewardsCard = () => {
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState(null)
   const battlefieldContract = getBattlefieldContract()
   const shillingContract = getShillingContract()
   const shillingAddress = getShillingAddress()
@@ -96,9 +89,7 @@ export const ShillingRewardsCard = () => {
     earnings: 0,
     holdings: 0,
     formattedClaimDate: "",
-    claimBnbAvailable: false,
-    shillingLaunched: false,
-    timeToLaunch: {days: 0, hours: 0, minutes: 0, seconds: 0}
+    claimBnbAvailable: false
     })
 
   const timeConverter = (timestamp: number) =>{
@@ -107,8 +98,8 @@ export const ShillingRewardsCard = () => {
     return time;
   }
 
-  const calculateTimeLeft = (date) => {
-    const difference = +date - +new Date();
+  const calculateTimeLeft = (date, now) => {
+    const difference = +date - +now;
     let timeLeft = {days: 0, hours: 0, minutes: 0, seconds: 0}
 
     if (difference > 0) {
@@ -124,66 +115,54 @@ export const ShillingRewardsCard = () => {
 
   }
 
-  const unformattedShillingLaunchDate = timeConverter(1620428400) // 7PM EDT on 5/7
+  const unformattedShillingLaunchDate = timeConverter(1620428400) // 7PM EDT on 5/7/2021
   const formattedShillingLaunchDate = unformattedShillingLaunchDate.toString()
+  const timeToLaunch = calculateTimeLeft(unformattedShillingLaunchDate, new Date())
   
+  let shillingLaunched = false
+  if(unformattedShillingLaunchDate <= new Date()){
+    shillingLaunched = true
+  }
+
 
   useEffect(() => {
-    let unmounted = false;
-    const fetchShillingDetails = async (acct: string) => {
-      let earnings = 0
-      let holdings = 0
-      let nextClaimDate = 0
-      let claimBnbAvailable = false
-      let shillingLaunched = false
-      let timeToLaunch = {}
+      const fetchShillingDetails = async (acct: string) => {
+      if(shillingLaunched){
+        let earnings = 0
+        let holdings = 0
+        let nextClaimDate = 0
+        let claimBnbAvailable = false
 
-      if(acct){
-        earnings = await battlefieldContract.methods.getUserCurrentRewards(acct, shillingBFRewardsPid).call()
-        holdings = await shillingContract.methods.balanceOf(acct).call()
-        nextClaimDate = await shillingContract.methods.nextAvailableClaimDate(acct).call()
-      }
+        if(acct){
+          earnings = await battlefieldContract.methods.getUserCurrentRewards(acct, shillingBFRewardsPid).call()
+          holdings = await shillingContract.methods.balanceOf(acct).call()
+          nextClaimDate = await shillingContract.methods.nextAvailableClaimDate(acct).call()
+        }
 
+        // get BNB Claim date
+        const unformattedClaimDate = timeConverter(nextClaimDate)
+
+        if(unformattedClaimDate <= new Date() && nextClaimDate > 0){
+          claimBnbAvailable = true
+        }
       
-      
-      const unformattedClaimDate = timeConverter(nextClaimDate)
+        const formattedClaimDate = unformattedClaimDate.toString()
 
-      if(unformattedClaimDate <= new Date()){
-        claimBnbAvailable = true
-      } else {
-        claimBnbAvailable = false
+        setState((prevState) => ({
+          ...prevState,
+          earnings,
+          holdings,
+          formattedClaimDate,
+          claimBnbAvailable
+        }))
       }
-
-      if(unformattedShillingLaunchDate <= new Date()){
-        shillingLaunched = true
-      } else {
-        shillingLaunched = false
-        timeToLaunch = calculateTimeLeft(unformattedShillingLaunchDate)
-      }
-
-      const formattedClaimDate = unformattedClaimDate.toString()
-
-
-
-      setState((prevState) => ({
-        ...prevState,
-        earnings,
-        holdings,
-        formattedClaimDate,
-        claimBnbAvailable,
-        shillingLaunched,
-        timeToLaunch
-      }))   
     }
-    if(!unmounted){
-      fetchShillingDetails(account)
-    }
-    return () => { unmounted = true };
-  }, [fastRefresh, account, battlefieldContract, shillingContract, shillingBFRewardsPid, unformattedShillingLaunchDate, formattedShillingLaunchDate])
+    fetchShillingDetails(account)
+  }, [account, battlefieldContract, shillingLaunched, shillingContract, shillingBFRewardsPid])
 
   const { onReward } = useBattlefieldHarvest(shillingBFRewardsPid)
 
-  if(state.shillingLaunched){
+  if(shillingLaunched){
     return (
       <FCard>
         <StyledCardAccent />
@@ -226,10 +205,10 @@ export const ShillingRewardsCard = () => {
   <FCard>
       <StyledCardAccent />
       <Heading size='xl' mb="12px">Shilling Launch</Heading>
-      <Heading size='lg' mb="12px"> {formattedShillingLaunchDate}</Heading>
-      <Heading>{state.timeToLaunch.days} Days {state.timeToLaunch.hours} Hours {state.timeToLaunch.minutes} Minutes {state.timeToLaunch.seconds} Seconds</Heading>
+      <Heading size='lg' mb="12px">{formattedShillingLaunchDate}</Heading>
+      <Heading>{timeToLaunch.days} Days {timeToLaunch.hours} Hours {timeToLaunch.minutes} Minutes {timeToLaunch.seconds} Seconds</Heading>
   </FCard>
-      )
+  )
 }
 
 export default ShillingRewardsCard
