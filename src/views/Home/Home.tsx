@@ -7,6 +7,7 @@ import CakeStats from 'views/Home/components/CakeStats'
 import TableStats from 'views/Home/components/TableStats'
 import LegendStats from 'views/Home/components/LegendStats'
 import SquireStats from 'views/Home/components/SquireStats'
+import { ShillingRewardsCard } from 'views/Battlefield/components/BattlefieldCard/ShillingRewardsCard'
 import TotalValueLockedCard from 'views/Home/components/TotalValueLockedCard'
 import useTheme from 'hooks/useTheme'
 import LotteryCard from 'views/Home/components/LotteryCard'
@@ -85,15 +86,15 @@ const Home: React.FC = () => {
         </FatText>
       </Hero>
       <Cards>
+        <ShillingRewardsCard />
         <FarmStakingCard />
         <LotteryCard />
         {isDark ? <TwitterCardDark /> : <TwitterCard />}
-        
-        <TotalValueLockedCard />
         <SquireStats />
         <CakeStats />
         <LegendStats />
         <TableStats />
+        <TotalValueLockedCard />
       </Cards>
       <Hero>
         <Text>Donate to Community Fund - BSC: 0x97e09Ed54d038295a8D6e6e77524328d7d9D3fca</Text>

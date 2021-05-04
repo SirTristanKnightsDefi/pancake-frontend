@@ -7,21 +7,16 @@ import { Heading, Text } from '@pancakeswap-libs/uikit'
 import { BLOCKS_PER_YEAR } from 'config'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
-import useI18n from 'hooks/useI18n'
 import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useFarms, usePriceBnbBusd, usePools, usePriceEthBnb } from 'state/hooks'
 import { QuoteToken, PoolCategory } from 'config/constants/types'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
-import Coming from './components/Coming'
 import PoolCard from './components/PoolCard'
-import PoolTabButtons from './components/PoolTabButtons'
-import Divider from './components/Divider'
 
 const Farm: React.FC = () => {
   const { path } = useRouteMatch()
-  const TranslateString = useI18n()
   const { account } = useWallet()
   const farms = useFarms()
   const pools = usePools(account)

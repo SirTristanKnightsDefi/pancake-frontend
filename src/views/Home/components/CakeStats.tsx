@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardBody, Heading, Text } from '@pancakeswap-libs/uikit'
+import { Card, CardBody, Heading, Text, Button } from '@pancakeswap-libs/uikit'
 import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
@@ -35,9 +35,12 @@ const CakeStats = () => {
   return (
     <StyledCakeStats>
       <CardBodyExtended>
-        <Heading size="xl" mb="24px">
-          KNIGHT Stats
+        <Heading size="lg" mb="12px">
+          KNIGHT Stats 
         </Heading>
+          <Button as="a" variant="secondary" mb="12px" href={`https://v1exchange.pancakeswap.finance/#/swap?outputCurrency=${getCakeAddress()}`} target="_blank">
+            Buy Knight
+          </Button>
         <Row>
           <Text fontSize="14px">Total KNIGHT Supply</Text>
           {cakeSupply && <CardValue fontSize="14px" decimals={1} value={cakeSupply} />}

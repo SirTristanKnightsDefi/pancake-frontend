@@ -1,22 +1,13 @@
-import React, { useMemo, useState, useCallback } from 'react'
+import React from 'react'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
-import { Flex, Text, Skeleton } from '@pancakeswap-libs/uikit'
-import { communityBattlefields } from 'config/constants'
+import { Text,} from '@pancakeswap-libs/uikit'
 import { Battlefield } from 'state/types'
-import { provider } from 'web3-core'
-import useI18n from 'hooks/useI18n'
-import ExpandableSectionButton from 'components/ExpandableSectionButton'
-import { QuoteToken } from 'config/constants/types'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
-import {fetchBattlefieldPublicDataAsync} from 'state/battlefield'
 import { useBattlefieldUser, useBattlefieldFromSymbol, usePriceCakeBusd, usePriceSquireBusd, usePriceLegendBusd, usePriceTableBusd } from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
-import DetailsSection from './DetailsSection'
-import CardHeading from './CardHeading'
-import CardActionsContainer from './CardActionsContainer'
-import ApyButton from './ApyButton'
+
 
 
 export interface BattlefieldOverviewWithStakedValue extends Battlefield {
@@ -80,28 +71,15 @@ const Divider = styled.div`
   width: 100%;
 `
 
-const ExpandingWrapper = styled.div<{ expanded: boolean }>`
-  height: ${(props) => (props.expanded ? '100%' : '0px')};
-  overflow: hidden;
-`
-
 interface BattlefieldOverviewProps {
   battlefield: BattlefieldOverviewWithStakedValue
 }
 
 const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }) => {
-  const TranslateString = useI18n()
   const knightPrice = usePriceCakeBusd();
   const squirePrice = usePriceSquireBusd();
   const legendPrice = usePriceLegendBusd();
   const tablePrice = usePriceTableBusd();
-
-  const [showExpandableSection, setShowExpandableSection] = useState(false)
-
-  const isCommunityBattlefield = communityBattlefields.includes(battlefield.tokenSymbol)
-  // We assume the token name is coin pair + lp e.g. CAKE-BNB LP, LINK-BNB LP,
-  // NAR-CAKE LP. The images should be cake-bnb.svg, link-bnb.svg, nar-cake.svg
-  const battlefieldImage = battlefield.lpSymbol.split(' ')[0].toLocaleLowerCase()
   
   const { pid, lpAddresses } = useBattlefieldFromSymbol(battlefield.lpSymbol)
   const { allowance, tokenBalance, stakedBalance, earnings, userArmyStrength, userArmyPercent } = useBattlefieldUser(pid)

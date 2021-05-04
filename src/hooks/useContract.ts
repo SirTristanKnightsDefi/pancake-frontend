@@ -16,7 +16,8 @@ import {
   getKdfnNFTsAddress,
   getSquireAddress,
   getTableAddress,
-  getLegendAddress
+  getLegendAddress,
+  getShillingAddress
 } from 'utils/addressHelpers'
 import { poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
@@ -37,6 +38,7 @@ import squireAbi from 'config/abi/squire.json'
 import legendAbi from 'config/abi/legend.json'
 import tableAbi from 'config/abi/table.json'
 import knightAbi from 'config/abi/cake.json'
+import shillingAbi from 'config/abi/shilling.json'
 
 const useContract = (abi: AbiItem, address: string, contractOptions?: ContractOptions) => {
   const web3 = useWeb3()
@@ -125,6 +127,11 @@ export const useMasterchef = () => {
 export const useBattlefield = () => {
   const abi = (battlefield as unknown) as AbiItem
   return useContract(abi, getBattlefieldAddress())
+}
+
+export const useShilling = () => {
+  const abi = (shillingAbi as unknown) as AbiItem
+  return useContract(abi, getShillingAddress())
 }
 
 export const useSousChef = (id) => {

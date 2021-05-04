@@ -14,6 +14,11 @@ export const getCakeAddress = () => {
 export const getKnightAddress = () => {
   return getAddress(addresses.knight) // Returns KNIGHT
 }
+
+export const getShillingAddress = () => {
+  return getAddress(addresses.shilling) // Returns SHILLING
+}
+
 export const getTableAddress = () => {
   return getAddress(addresses.table) // Returns TABLE
 }

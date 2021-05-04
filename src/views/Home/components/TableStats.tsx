@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardBody, Heading, Text } from '@pancakeswap-libs/uikit'
+import { Card, CardBody, Heading, Text, Button } from '@pancakeswap-libs/uikit'
 import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalSupplyTable, useBurnedBalance } from 'hooks/useTokenBalance'
@@ -34,9 +34,12 @@ const TableStats = () => {
   return (
     <StyledCakeStats>
       <CardBodyExtended>
-        <Heading size="xl" mb="24px">
+        <Heading size="lg" mb="12px">
           TABLE Stats
         </Heading>
+        <Button as="a" variant="secondary" mb="12px" href={`https://v1exchange.pancakeswap.finance/#/swap?outputCurrency=${getTableAddress()}`} target="_blank">
+            Buy Table
+        </Button>
         <Row>
           <Text fontSize="14px">Total TABLE Supply</Text>
           {tableSupply && <CardValue fontSize="14px" decimals={1} value={tableSupply} />}

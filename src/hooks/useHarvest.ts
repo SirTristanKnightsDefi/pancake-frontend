@@ -3,7 +3,7 @@ import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { useDispatch } from 'react-redux'
 import { fetchFarmUserDataAsync, fetchBattlefieldUserDataAsync, updateUserBalance, updateUserPendingReward } from 'state/actions'
 import { soushHarvest, soushHarvestBnb, harvest, battlefieldWithdrawReward, battlefieldWithdrawAllRewards } from 'utils/callHelpers'
-import { useMasterchef, useSousChef, useBattlefield } from './useContract'
+import { useMasterchef, useSousChef, useBattlefield, useShilling } from './useContract'
 
 export const useHarvest = (farmPid: number) => {
   const dispatch = useDispatch()

@@ -15,6 +15,7 @@ import { fetchBattlefieldUserDataAsync } from 'state/actions'
 import { QuoteToken } from 'config/constants/types'
 import useTheme from 'hooks/useTheme'
 import BattlefieldCard, { BattlefieldWithStakedValue } from './components/BattlefieldCard/BattlefieldCard'
+import { ShillingRewardsCard } from './components/BattlefieldCard/ShillingRewardsCard'
 import BattlefieldOverview from './components/BattlefieldCard/BattlefieldOverview'
 import Divider from './components/Divider'
 import AllAction from './components/AllAction'
@@ -127,8 +128,9 @@ const Battlefield: React.FC = () => {
               battlefield={
                 activeBattlefields[0]
               }
-            /> 
+            />
           </Heading>
+          <ShillingRewardsCard />
               
         </Route>
         </FlexLayout>

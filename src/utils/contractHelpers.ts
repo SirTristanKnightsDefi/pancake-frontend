@@ -1,4 +1,4 @@
-import { getPancakeProfileAddress, getPancakeRabbitsAddress, getBunnyFactoryAddress, getTheGrailNFTsAddress, getKotrtNFTsAddress, getKdfnNFTsAddress, getKdfnNFTsBetaAddress, getSquireAddress, getLegendAddress, getTableAddress, getKnightAddress } from 'utils/addressHelpers'
+import { getPancakeProfileAddress, getPancakeRabbitsAddress, getBunnyFactoryAddress, getTheGrailNFTsAddress, getKotrtNFTsAddress, getKdfnNFTsAddress, getKdfnNFTsBetaAddress, getSquireAddress, getLegendAddress, getTableAddress, getKnightAddress, getShillingAddress, getBattlefieldAddress } from 'utils/addressHelpers'
 import { getContract } from 'utils/web3'
 import profileABI from 'config/abi/pancakeProfile.json'
 import pancakeRabbitsAbi from 'config/abi/pancakeRabbits.json'
@@ -11,6 +11,8 @@ import knightAbi from 'config/abi/knight.json'
 import squireAbi from 'config/abi/squire.json'
 import legendAbi from 'config/abi/legend.json'
 import tableAbi from 'config/abi/table.json'
+import shillingAbi from 'config/abi/shilling.json'
+import battlefieldAbi from 'config/abi/battlefield.json'
 
 export const getProfileContract = () => {
   return getContract(profileABI, getPancakeProfileAddress())
@@ -44,6 +46,10 @@ export const getSquireContract= () => {
   return getContract(squireAbi, getSquireAddress())
 }
 
+export const getShillingContract= () => {
+  return getContract(shillingAbi, getShillingAddress())
+}
+
 export const getLegendContract= () => {
   return getContract(legendAbi, getLegendAddress())
 }
@@ -54,6 +60,10 @@ export const getKnightContract= () => {
 
 export const getTableContract= () => {
   return getContract(tableAbi, getTableAddress())
+}
+
+export const getBattlefieldContract= () => {
+  return getContract(battlefieldAbi, getBattlefieldAddress())
 }
 
 export default null

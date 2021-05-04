@@ -79,9 +79,6 @@ const InfoBlock = styled.div`
 `
 
 const KdfnNftCard: React.FC<NftCardProps> = ({ nft }) => {
-  const [isLoading, setIsLoading] = useState(false)
-  const [value, setValue] = useState('')
-  const [error, setError] = useState(null)
   const [isOpen, setIsOpen] = useState(false)
   const { fastRefresh } = useRefresh()
   const [state, setState] = useState<State>({
@@ -107,7 +104,6 @@ const KdfnNftCard: React.FC<NftCardProps> = ({ nft }) => {
   })
   const TranslateString = useI18n()
   const { isInitialized, getTokenIds, getNftIds, reInitialize } = useContext(KdfnNftProviderContext)
-  const { profile } = useProfile()
   const { tokenId, nftId, name, images } = nft
   const tokenIds = getTokenIds(tokenId)
   const nftIds = getNftIds(nftId)
@@ -119,7 +115,6 @@ const KdfnNftCard: React.FC<NftCardProps> = ({ nft }) => {
   const legendContract = useLegend()
   const tableContract = useTable()
   const { account } = useWallet()
-  const showTransferButton = 0
 
  
   

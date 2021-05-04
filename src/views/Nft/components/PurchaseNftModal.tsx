@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { Button, Modal, Text } from '@pancakeswap-libs/uikit'
 import { Nft } from 'config/constants/types'
 import useI18n from 'hooks/useI18n'
-import { useKnightsDefiNFTs,useSquire, useKnight, useLegend, useTable } from 'hooks/useContract'
+import { useKnightsDefiNFTs } from 'hooks/useContract'
 import InfoRow from './InfoRow'
 
 interface PurchaseNftModalProps {
@@ -39,15 +39,10 @@ const Label = styled.label`
 
 const PurchaseNftModal: React.FC<PurchaseNftModalProps> = ({ nft, onSuccess, onDismiss }) => {
   const [isLoading, setIsLoading] = useState(false)
-  const [value, setValue] = useState('')
   const [error, setError] = useState(null)
   const TranslateString = useI18n()
   const { account } = useWallet()
   const kdfnContract = useKnightsDefiNFTs()
-  const squireContract = useSquire()
-  const knightContract = useKnight()
-  const legendContract = useLegend()
-  const tableContract = useTable()
 
   const handleConfirm = async () => {
     try {

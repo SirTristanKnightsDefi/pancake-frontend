@@ -35,7 +35,8 @@ export enum QuoteToken {
   'TABLE' = 'TABLE',
   'LEGEND' = 'LEGEND',
   'SQUIRE' = 'SQUIRE',
-  'RBT' = 'RBT'
+  'RBT' = 'RBT',
+  'SHILLING' = 'SHILILNG',
 }
 
 export enum PoolCategory {
@@ -85,6 +86,7 @@ export interface BattlefieldConfig {
     earnLabel: string
     endBlock: number
   }
+  isRewardOnly?: boolean
   
 }
 
