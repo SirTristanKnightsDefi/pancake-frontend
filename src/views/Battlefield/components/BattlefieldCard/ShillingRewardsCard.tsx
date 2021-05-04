@@ -7,7 +7,7 @@ import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import useRefresh from 'hooks/useRefresh'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import UnlockButton from 'components/UnlockButton'
-import { useBattlefieldHarvest } from 'hooks/useHarvest'
+import { useBattlefieldHarvest, useShillingBnbHarvest } from 'hooks/useHarvest'
 import { fetchFarmUserDataAsync } from 'state/actions'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -19,6 +19,7 @@ type State = {
   holdings: number
   formattedClaimDate: string
   claimBnbAvailable: boolean
+  bnbToClaim: number
 }
 
 const RainbowLight = keyframes`
@@ -89,7 +90,8 @@ export const ShillingRewardsCard = () => {
     earnings: 0,
     holdings: 0,
     formattedClaimDate: "",
-    claimBnbAvailable: false
+    claimBnbAvailable: false,
+    bnbToClaim: 0
     })
 
   const timeConverter = (timestamp: number) =>{
@@ -108,10 +110,10 @@ export const ShillingRewardsCard = () => {
         hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
         minutes: Math.floor((difference / 1000 / 60) % 60),
         seconds: Math.floor((difference / 1000) % 60)
-    };
-  }
+      };
+    }
 
-  return timeLeft;
+    return timeLeft;
 
   }
 
@@ -132,11 +134,13 @@ export const ShillingRewardsCard = () => {
         let holdings = 0
         let nextClaimDate = 0
         let claimBnbAvailable = false
+        let bnbToClaim = 0
 
         if(acct){
           earnings = await battlefieldContract.methods.getUserCurrentRewards(acct, shillingBFRewardsPid).call()
           holdings = await shillingContract.methods.balanceOf(acct).call()
           nextClaimDate = await shillingContract.methods.nextAvailableClaimDate(acct).call()
+          bnbToClaim = await shillingContract.methods.calculateBNBReward(acct).call()
         }
 
         // get BNB Claim date
@@ -153,7 +157,8 @@ export const ShillingRewardsCard = () => {
           earnings,
           holdings,
           formattedClaimDate,
-          claimBnbAvailable
+          claimBnbAvailable,
+          bnbToClaim
         }))
       }
     }
@@ -161,13 +166,14 @@ export const ShillingRewardsCard = () => {
   }, [account, battlefieldContract, shillingLaunched, shillingContract, shillingBFRewardsPid])
 
   const { onReward } = useBattlefieldHarvest(shillingBFRewardsPid)
+  const { onBnbReward } = useShillingBnbHarvest()
 
-  if(shillingLaunched){
+  if(shillingLaunched && account){
     return (
       <FCard>
         <StyledCardAccent />
           <Heading mb="12px">
-            SHILLING
+            SHILLING Token
           </Heading>
           <Heading>  <img src="images/battlefield/shilling.svg" alt="Shilling Logo" style={{
               height: '48px'
@@ -188,19 +194,22 @@ export const ShillingRewardsCard = () => {
           Harvest Shilling
         </Button>
         <Divider />
-        <Heading mb="12px">Next BNB Claim Date </Heading>
+        <Heading mb="12px">Next BNB Claim: {(state.bnbToClaim/1e18).toFixed(4)} </Heading>
         <Text mb="12px">{state.formattedClaimDate}</Text>
         {state.claimBnbAvailable
         ?
-        <Button variant="secondary"onClick={onReward}>
+        <Button variant="secondary" onClick={onBnbReward}>
           Claim BNB
         </Button> :
-        <Text />
+        <Button variant="tertiary">
+          Cannot Claim BNB Until Claim Date
+        </Button>
         }
       </FCard>
         
     )
   }
+  if(!shillingLaunched){
   return (
   <FCard>
       <StyledCardAccent />
@@ -208,6 +217,20 @@ export const ShillingRewardsCard = () => {
       <Heading size='lg' mb="12px">{formattedShillingLaunchDate}</Heading>
       <Heading>{timeToLaunch.days} Days {timeToLaunch.hours} Hours {timeToLaunch.minutes} Minutes {timeToLaunch.seconds} Seconds</Heading>
   </FCard>
+  )
+  }
+  return (
+    <FCard>
+      <StyledCardAccent />
+          <Heading mb="12px">
+            SHILLING
+          </Heading>
+          <Heading mb="12px">  <img src="images/battlefield/shilling.svg" alt="Shilling Logo" style={{
+              height: '48px'
+            }}/>
+          </Heading>
+      <UnlockButton />
+    </FCard>
   )
 }
 

@@ -33,6 +33,20 @@ export const useBattlefieldHarvest = (battlefieldPid: number) => {
   return { onReward: handleHarvest }
 }
 
+export const useShillingBnbHarvest = () => {
+  const dispatch = useDispatch()
+  const { account } = useWallet()
+  const shillingContract = useShilling()
+
+  const handleHarvest = useCallback(async () => {
+    const txHash = await shillingContract.methods.claimBNBReward().send({from: account})
+    dispatch(fetchFarmUserDataAsync(account))
+    return txHash
+  }, [account, dispatch, shillingContract])
+
+  return { onBnbReward: handleHarvest }
+}
+
 export const useBattlefieldHarvestAll = () => {
   const dispatch = useDispatch()
   const { account } = useWallet()
