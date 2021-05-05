@@ -134,6 +134,10 @@ const config: MenuEntry[] = [
         label: 'Reddit',
         href: 'https://www.reddit.com/r/KnightsDeFi',
       },
+      {
+        label: 'Vfat Tools',
+        href: 'https://vfat.tools/bsc/knight/',
+      },
     ],
   },
   {
