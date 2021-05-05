@@ -1,16 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
 import { Text, Button, Heading } from '@pancakeswap-libs/uikit'
-import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import useRefresh from 'hooks/useRefresh'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import UnlockButton from 'components/UnlockButton'
 import { useBattlefieldHarvest, useShillingBnbHarvest } from 'hooks/useHarvest'
-import { fetchFarmUserDataAsync } from 'state/actions'
-import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
-import { getBalanceNumber } from 'utils/formatBalance'
 import { getBattlefieldContract, getShillingContract } from 'utils/contractHelpers'
 import { getShillingAddress } from 'utils/addressHelpers'
 
@@ -195,7 +189,7 @@ export const ShillingRewardsCard = () => {
         <Divider />
         <Heading mb="12px">Next BNB Claim: {(state.bnbToClaim/1e18).toFixed(4)} </Heading>
         <Text mb="12px">{state.formattedClaimDate}</Text>
-        {state.claimBnbAvailable
+        {state.claimBnbAvailable 
         ?
         <Button variant="secondary" onClick={onBnbReward}>
           Claim BNB

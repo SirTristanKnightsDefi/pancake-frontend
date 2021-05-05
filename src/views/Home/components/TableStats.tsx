@@ -28,6 +28,7 @@ const Row = styled.div`
 const TableStats = () => {
   const totalSupply = useTotalSupplyTable()
   const burnedBalance = useBurnedBalance(getTableAddress())
+  const tablePrice = usePriceTableBusd().toNumber()
   const tableSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
   const tableMarketCap = usePriceTableBusd().toNumber() * tableSupply 
 
@@ -35,11 +36,23 @@ const TableStats = () => {
     <StyledCakeStats>
       <CardBodyExtended>
         <Heading size="lg" mb="12px">
-          TABLE Stats
+        <img
+              src="https://ipfs.io/ipfs/QmXv83F1Qp1kv812msr2QfcHh8Uh5S1Gb1XeH5qZFS8EVV?filename=table.png"
+              alt="TABLE Logo"
+              style={{
+                width: "48px",
+                marginRight: "8px",
+              }}
+            />
+            TABLE Stats
         </Heading>
         <Button as="a" variant="secondary" mb="12px" href={`https://v1exchange.pancakeswap.finance/#/swap?outputCurrency=${getTableAddress()}`} target="_blank">
             Buy Table
         </Button>
+        <Row>
+          <Text fontSize="14px">TABLE Price</Text>
+          {tablePrice && <CardValue fontSize="14px" decimals={2} value={tablePrice} prefix='$'/>}
+        </Row>
         <Row>
           <Text fontSize="14px">Total TABLE Supply</Text>
           {tableSupply && <CardValue fontSize="14px" decimals={1} value={tableSupply} />}

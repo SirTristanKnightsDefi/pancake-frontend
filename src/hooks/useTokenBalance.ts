@@ -6,9 +6,10 @@ import cakeABI from 'config/abi/cake.json'
 import tableABI from 'config/abi/table.json'
 import legendABI from 'config/abi/legend.json'
 import squireABI from 'config/abi/squire.json'
+import shillingABI from 'config/abi/shilling.json'
 import { getContract } from 'utils/web3'
 import { getTokenBalance } from 'utils/erc20'
-import { getCakeAddress, getTableAddress, getLegendAddress, getSquireAddress } from 'utils/addressHelpers'
+import { getCakeAddress, getTableAddress, getLegendAddress, getSquireAddress, getShillingAddress } from 'utils/addressHelpers'
 import useRefresh from './useRefresh'
 
 const useTokenBalance = (tokenAddress: string) => {
@@ -89,6 +90,23 @@ export const useTotalSupplySquire = () => {
     async function fetchTotalSupply() {
       const squireContract = getContract(squireABI, getSquireAddress())
       const supply = await squireContract.methods.totalSupply().call()
+      setTotalSupply(new BigNumber(supply))
+    }
+
+    fetchTotalSupply()
+  }, [slowRefresh])
+
+  return totalSupply
+}
+
+export const useTotalSupplyShilling = () => {
+  const { slowRefresh } = useRefresh()
+  const [totalSupply, setTotalSupply] = useState<BigNumber>()
+
+  useEffect(() => {
+    async function fetchTotalSupply() {
+      const shillingContract = getContract(shillingABI, getShillingAddress())
+      const supply = await shillingContract.methods.totalSupply().call()
       setTotalSupply(new BigNumber(supply))
     }
 

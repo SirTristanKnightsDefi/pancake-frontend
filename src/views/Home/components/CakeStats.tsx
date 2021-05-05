@@ -29,6 +29,7 @@ const Row = styled.div`
 const CakeStats = () => {
   const totalSupply = useTotalSupply()
   const burnedBalance = useBurnedBalance(getCakeAddress())
+  const cakePrice = usePriceCakeBusd().toNumber()
   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
   const knightMarketCap = usePriceCakeBusd().toNumber() * cakeSupply
   const knightPerBlock = CAKE_PER_BLOCK.toNumber() * 1
@@ -36,11 +37,23 @@ const CakeStats = () => {
     <StyledCakeStats>
       <CardBodyExtended>
         <Heading size="lg" mb="12px">
-          KNIGHT Stats 
+        <img
+              src="https://ipfs.io/ipfs/QmREFZU2mdg1Sv1Q2Ma8sB63uWBN9MsJ1WULWZ1Q1vk2ND?filename=knight.png"
+              alt="KNIGHT Logo"
+              style={{
+                width: "48px",
+                marginRight: "8px",
+              }}
+            />
+            KNIGHT Stats 
         </Heading>
           <Button as="a" variant="secondary" mb="12px" href={`https://v1exchange.pancakeswap.finance/#/swap?outputCurrency=${getCakeAddress()}`} target="_blank">
             Buy Knight
           </Button>
+        <Row>
+          <Text fontSize="14px">KNIGHT Price</Text>
+          {cakeSupply && <CardValue fontSize="14px" decimals={2} value={cakePrice} prefix='$'/>}
+        </Row>
         <Row>
           <Text fontSize="14px">Total KNIGHT Supply</Text>
           {cakeSupply && <CardValue fontSize="14px" decimals={1} value={cakeSupply} />}

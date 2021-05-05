@@ -28,6 +28,7 @@ const Row = styled.div`
 const LegendStats = () => {
   const totalSupply = useTotalSupplyLegend()
   const burnedBalance = useBurnedBalance(getLegendAddress())
+  const legendPrice = usePriceLegendBusd().toNumber()
   const legendSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
   const legendMarketCap = usePriceLegendBusd().toNumber() * legendSupply 
 
@@ -35,11 +36,23 @@ const LegendStats = () => {
     <StyledCakeStats>
       <CardBodyExtended>
         <Heading size="lg" mb="12px">
-          LEGEND Stats
+        <img
+              src="https://ipfs.io/ipfs/QmdUYMd2jcqxAauh9spWr181SN8iguonMaFszWedcuwiD9?filename=legend.png"
+              alt="LEGEND Logo"
+              style={{
+                width: "48px",
+                marginRight: "8px",
+              }}
+            />
+            LEGEND Stats
         </Heading>
         <Button as="a" variant="secondary" mb="12px" href={`https://v1exchange.pancakeswap.finance/#/swap?outputCurrency=${getLegendAddress()}`} target="_blank">
             Buy Legend
         </Button>
+        <Row>
+          <Text fontSize="14px">LEGEND Price</Text>
+          {legendPrice && <CardValue fontSize="14px" decimals={2} value={legendPrice} prefix='$'/>}
+        </Row>
         <Row>
           <Text fontSize="14px">Total LEGEND Supply</Text>
           {legendSupply && <CardValue fontSize="14px" decimals={1} value={legendSupply} />}

@@ -160,6 +160,13 @@ export const usePriceSquireBusd = (): BigNumber => {
   return farm.tokenPriceVsQuote ? bnbPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
 }
 
+export const usePriceShillingBusd = (): BigNumber => {
+  const pid = 0 // SHILLING-BNB LP
+  const bnbPriceUSD = usePriceBnbBusd()
+  const farm = useFarmFromPid(pid)
+  return farm.tokenPriceVsQuote ? bnbPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
+}
+
 // Toasts
 export const useToast = () => {
   const dispatch = useDispatch()
@@ -256,6 +263,7 @@ export const useTotalValue = (): BigNumber => {
   const legendPrice = usePriceLegendBusd()
   const tablePrice = usePriceTableBusd()
   const squirePrice = usePriceSquireBusd()
+  const shillingPrice = usePriceShillingBusd()
 
   // Add Farms
   let value = new BigNumber(0)

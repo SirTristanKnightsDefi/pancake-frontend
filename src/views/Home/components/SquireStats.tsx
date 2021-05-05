@@ -28,6 +28,7 @@ const Row = styled.div`
 const SquireStats = () => {
   const totalSupply = useTotalSupplySquire()
   const burnedBalance = useBurnedBalance(getSquireAddress())
+  const squirePrice = usePriceSquireBusd().toNumber()
   const squireSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
   const squireMarketCap = usePriceSquireBusd().toNumber() * squireSupply 
 
@@ -35,11 +36,22 @@ const SquireStats = () => {
     <StyledCakeStats>
       <CardBodyExtended>
         <Heading size="lg" mb="12px">
-          SQUIRE Stats
+          <img
+              src="https://ipfs.io/ipfs/QmSMJy9D5MXrWsKDuZLrJNoxH5Rp55mSpAUzu48zFhjYfr?filename=squire.png"
+              alt="SQUIRE Logo"
+              style={{
+                width: "48px",
+                marginRight: "8px",
+              }}
+            />SQUIRE Stats
         </Heading>
         <Button as="a" variant="secondary" mb="12px" href={`https://v1exchange.pancakeswap.finance/#/swap?outputCurrency=${getSquireAddress()}`} target="_blank">
             Buy Squire
         </Button>
+        <Row>
+          <Text fontSize="14px">SQUIRE Price</Text>
+          {squireSupply && <CardValue fontSize="14px" decimals={5} value={squirePrice} prefix='$'/>}
+        </Row>
         <Row>
           <Text fontSize="14px">Total SQUIRE Supply</Text>
           {squireSupply && <CardValue fontSize="14px" decimals={1} value={squireSupply} />}
