@@ -10,6 +10,7 @@ import shillingABI from 'config/abi/shilling.json'
 import { getContract } from 'utils/web3'
 import { getTokenBalance } from 'utils/erc20'
 import { getCakeAddress, getTableAddress, getLegendAddress, getSquireAddress, getShillingAddress } from 'utils/addressHelpers'
+import { useSquire, useKnight, useShilling, useLegend, useTable } from 'hooks/useContract'
 import useRefresh from './useRefresh'
 
 const useTokenBalance = (tokenAddress: string) => {
@@ -127,12 +128,98 @@ export const useBurnedBalance = (tokenAddress: string) => {
       setBalance(new BigNumber(res))
     }
 
-    if (account && ethereum) {
+    if (ethereum) {
       fetchBalance()
     }
   }, [account, ethereum, tokenAddress, slowRefresh])
 
   return balance
 }
+
+export const useShillingBurnedBalance = () => {
+  const [balance, setBalance] = useState(new BigNumber(0))
+  const shillingContract = useShilling()
+
+  const { slowRefresh } = useRefresh()
+
+  useEffect(() => {
+    const fetchBalance = async () => {
+      const res = await shillingContract.methods.balanceOf('0x000000000000000000000000000000000000dEaD').call()
+      setBalance(new BigNumber(res))
+    }
+      fetchBalance()
+  }, [shillingContract, slowRefresh])
+
+  return balance
+}
+
+export const useSquireBurnedBalance = () => {
+  const [balance, setBalance] = useState(new BigNumber(0))
+  const squireContract = useSquire()
+
+  const { slowRefresh } = useRefresh()
+
+  useEffect(() => {
+    const fetchBalance = async () => {
+      const res = await squireContract.methods.balanceOf('0x000000000000000000000000000000000000dEaD').call()
+      setBalance(new BigNumber(res))
+    }
+      fetchBalance()
+  }, [squireContract, slowRefresh])
+
+  return balance
+}
+
+export const useKnightBurnedBalance = () => {
+  const [balance, setBalance] = useState(new BigNumber(0))
+  const knightContract = useKnight()
+
+  const { slowRefresh } = useRefresh()
+
+  useEffect(() => {
+    const fetchBalance = async () => {
+      const res = await knightContract.methods.balanceOf('0x000000000000000000000000000000000000dEaD').call()
+      setBalance(new BigNumber(res))
+    }
+      fetchBalance()
+  }, [knightContract, slowRefresh])
+
+  return balance
+}
+
+export const useLegendBurnedBalance = () => {
+  const [balance, setBalance] = useState(new BigNumber(0))
+  const legendContract = useLegend()
+
+  const { slowRefresh } = useRefresh()
+
+  useEffect(() => {
+    const fetchBalance = async () => {
+      const res = await legendContract.methods.balanceOf('0x000000000000000000000000000000000000dEaD').call()
+      setBalance(new BigNumber(res))
+    }
+      fetchBalance()
+  }, [legendContract, slowRefresh])
+
+  return balance
+}
+
+export const useTableBurnedBalance = () => {
+  const [balance, setBalance] = useState(new BigNumber(0))
+  const tableContract = useTable()
+
+  const { slowRefresh } = useRefresh()
+
+  useEffect(() => {
+    const fetchBalance = async () => {
+      const res = await tableContract.methods.balanceOf('0x000000000000000000000000000000000000dEaD').call()
+      setBalance(new BigNumber(res))
+    }
+      fetchBalance()
+  }, [tableContract, slowRefresh])
+
+  return balance
+}
+
 
 export default useTokenBalance

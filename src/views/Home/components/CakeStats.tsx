@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, CardBody, Heading, Text, Button } from '@pancakeswap-libs/uikit'
 import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
+import { useTotalSupply, useKnightBurnedBalance } from 'hooks/useTokenBalance'
 import { getCakeAddress } from 'utils/addressHelpers'
 import { usePriceCakeBusd } from 'state/hooks'
 import { CAKE_PER_BLOCK } from 'config'
@@ -28,7 +28,7 @@ const Row = styled.div`
 
 const CakeStats = () => {
   const totalSupply = useTotalSupply()
-  const burnedBalance = useBurnedBalance(getCakeAddress())
+  const burnedBalance = useKnightBurnedBalance()
   const cakePrice = usePriceCakeBusd().toNumber()
   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
   const knightMarketCap = usePriceCakeBusd().toNumber() * cakeSupply
@@ -52,15 +52,15 @@ const CakeStats = () => {
           </Button>
         <Row>
           <Text fontSize="14px">KNIGHT Price</Text>
-          {cakeSupply && <CardValue fontSize="14px" decimals={2} value={cakePrice} prefix='$'/>}
+          {cakeSupply && <CardValue fontSize="14px" decimals={3} value={cakePrice} prefix='$'/>}
         </Row>
         <Row>
           <Text fontSize="14px">Total KNIGHT Supply</Text>
-          {cakeSupply && <CardValue fontSize="14px" decimals={1} value={cakeSupply} />}
+          {cakeSupply && <CardValue fontSize="14px" decimals={0} value={cakeSupply} />}
         </Row>
         <Row>
           <Text fontSize="14px">Total KNIGHT Burned</Text>
-          <CardValue fontSize="14px" decimals={1}value={getBalanceNumber(burnedBalance)} />
+          <CardValue fontSize="14px" decimals={0}value={getBalanceNumber(burnedBalance)} />
         </Row>
         <Row>
           <Text fontSize="14px">New KNIGHT/block</Text>

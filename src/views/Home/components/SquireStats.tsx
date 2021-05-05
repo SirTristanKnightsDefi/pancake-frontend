@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, CardBody, Heading, Text, Button } from '@pancakeswap-libs/uikit'
 import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useTotalSupplySquire, useBurnedBalance } from 'hooks/useTokenBalance'
+import { useTotalSupplySquire, useSquireBurnedBalance } from 'hooks/useTokenBalance'
 import { getSquireAddress } from 'utils/addressHelpers'
 import { usePriceSquireBusd } from 'state/hooks'
 import CardValue from './CardValue'
@@ -27,7 +27,7 @@ const Row = styled.div`
 
 const SquireStats = () => {
   const totalSupply = useTotalSupplySquire()
-  const burnedBalance = useBurnedBalance(getSquireAddress())
+  const burnedBalance = useSquireBurnedBalance()
   const squirePrice = usePriceSquireBusd().toNumber()
   const squireSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
   const squireMarketCap = usePriceSquireBusd().toNumber() * squireSupply 
@@ -54,7 +54,7 @@ const SquireStats = () => {
         </Row>
         <Row>
           <Text fontSize="14px">Total SQUIRE Supply</Text>
-          {squireSupply && <CardValue fontSize="14px" decimals={1} value={squireSupply} />}
+          {squireSupply && <CardValue fontSize="14px" decimals={0} value={squireSupply} />}
         </Row>
         <Row>
           <Text fontSize="14px">Total SQUIRE Burned</Text>

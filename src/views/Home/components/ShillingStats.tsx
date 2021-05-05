@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, CardBody, Heading, Text, Button } from '@pancakeswap-libs/uikit'
 import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useTotalSupplyShilling, useBurnedBalance } from 'hooks/useTokenBalance'
+import { useTotalSupplyShilling, useShillingBurnedBalance } from 'hooks/useTokenBalance'
 import { getShillingAddress } from 'utils/addressHelpers'
 import { usePriceShillingBusd } from 'state/hooks'
 import CardValue from './CardValue'
@@ -27,7 +27,7 @@ const Row = styled.div`
 
 const ShillingStats = () => {
   const totalSupply = useTotalSupplyShilling()
-  const burnedBalance = useBurnedBalance(getShillingAddress())
+  const burnedBalance = useShillingBurnedBalance()
   const shillingPrice = usePriceShillingBusd().toNumber()
   const shillingSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
   const shillingMarketCap = usePriceShillingBusd().toNumber() * shillingSupply 
@@ -55,7 +55,7 @@ const ShillingStats = () => {
         </Row>
         <Row>
           <Text fontSize="14px">Total SHILLING Supply</Text>
-          {shillingSupply && <CardValue fontSize="14px" decimals={1} value={shillingSupply} />}
+          {shillingSupply && <CardValue fontSize="14px" decimals={0} value={shillingSupply} />}
         </Row>
         <Row>
           <Text fontSize="14px">Total SHILLING Burned</Text>

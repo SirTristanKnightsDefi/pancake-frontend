@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, CardBody, Heading, Text, Button } from '@pancakeswap-libs/uikit'
 import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useTotalSupplyTable, useBurnedBalance } from 'hooks/useTokenBalance'
+import { useTotalSupplyTable, useTableBurnedBalance } from 'hooks/useTokenBalance'
 import { getTableAddress } from 'utils/addressHelpers'
 import { usePriceTableBusd } from 'state/hooks'
 import CardValue from './CardValue'
@@ -27,7 +27,7 @@ const Row = styled.div`
 
 const TableStats = () => {
   const totalSupply = useTotalSupplyTable()
-  const burnedBalance = useBurnedBalance(getTableAddress())
+  const burnedBalance = useTableBurnedBalance()
   const tablePrice = usePriceTableBusd().toNumber()
   const tableSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
   const tableMarketCap = usePriceTableBusd().toNumber() * tableSupply 
@@ -55,11 +55,11 @@ const TableStats = () => {
         </Row>
         <Row>
           <Text fontSize="14px">Total TABLE Supply</Text>
-          {tableSupply && <CardValue fontSize="14px" decimals={1} value={tableSupply} />}
+          {tableSupply && <CardValue fontSize="14px" decimals={3} value={tableSupply} />}
         </Row>
         <Row>
           <Text fontSize="14px">Total TABLE Burned</Text>
-          <CardValue fontSize="14px" decimals={1}value={getBalanceNumber(burnedBalance)} />
+          <CardValue fontSize="14px" decimals={3}value={getBalanceNumber(burnedBalance)} />
         </Row>
         <Row>
           <Text fontSize="14px">TABLE Market Cap</Text>

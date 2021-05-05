@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, CardBody, Heading, Text, Button } from '@pancakeswap-libs/uikit'
 import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useTotalSupplyLegend, useBurnedBalance } from 'hooks/useTokenBalance'
+import { useTotalSupplyLegend, useLegendBurnedBalance } from 'hooks/useTokenBalance'
 import { getLegendAddress } from 'utils/addressHelpers'
 import { usePriceLegendBusd } from 'state/hooks'
 import CardValue from './CardValue'
@@ -27,7 +27,7 @@ const Row = styled.div`
 
 const LegendStats = () => {
   const totalSupply = useTotalSupplyLegend()
-  const burnedBalance = useBurnedBalance(getLegendAddress())
+  const burnedBalance = useLegendBurnedBalance()
   const legendPrice = usePriceLegendBusd().toNumber()
   const legendSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
   const legendMarketCap = usePriceLegendBusd().toNumber() * legendSupply 
@@ -55,11 +55,11 @@ const LegendStats = () => {
         </Row>
         <Row>
           <Text fontSize="14px">Total LEGEND Supply</Text>
-          {legendSupply && <CardValue fontSize="14px" decimals={1} value={legendSupply} />}
+          {legendSupply && <CardValue fontSize="14px" decimals={2} value={legendSupply} />}
         </Row>
         <Row>
           <Text fontSize="14px">Total LEGEND Burned</Text>
-          <CardValue fontSize="14px" decimals={1}value={getBalanceNumber(burnedBalance)} />
+          <CardValue fontSize="14px" decimals={2}value={getBalanceNumber(burnedBalance)} />
         </Row>
         <Row>
           <Text fontSize="14px">LEGEND Market Cap</Text>
