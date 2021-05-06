@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import styled, { keyframes } from 'styled-components'
 import { Text, Button, Heading } from '@pancakeswap-libs/uikit'
+import BigNumber from 'bignumber.js'
 import useRefresh from 'hooks/useRefresh'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import UnlockButton from 'components/UnlockButton'
-import { useBattlefieldHarvest, useShillingBnbHarvest } from 'hooks/useHarvest'
+import { useBattlefieldShillingWithdraw } from 'hooks/useUnstake'
+import { useShillingBnbHarvest } from 'hooks/useHarvest'
 import { getBattlefieldContract, getShillingContract } from 'utils/contractHelpers'
 import { getShillingAddress } from 'utils/addressHelpers'
+import { usePriceShillingBusd } from 'state/hooks'
+
 
 type State = {
   earnings: number
@@ -14,6 +18,7 @@ type State = {
   formattedClaimDate: string
   claimBnbAvailable: boolean
   bnbToClaim: number
+  bfStaking: number
 }
 
 const RainbowLight = keyframes`
@@ -76,7 +81,8 @@ export const ShillingRewardsCard = () => {
   const battlefieldContract = getBattlefieldContract()
   const shillingContract = getShillingContract()
   const shillingAddress = getShillingAddress()
-  const shillingBFRewardsPid = 0
+  const shillingPrice = usePriceShillingBusd().toNumber()
+  const shillingBFRewardsPid = 4 // Change to Battlefield PID for Shilling Rewards after launch.
   const { fastRefresh, slowRefresh } = useRefresh()
   const { account }: { account: string } = useWallet()
   const [state, setState] = useState<State>({
@@ -84,7 +90,8 @@ export const ShillingRewardsCard = () => {
     holdings: 0,
     formattedClaimDate: "",
     claimBnbAvailable: false,
-    bnbToClaim: 0
+    bnbToClaim: 0,
+    bfStaking: 0
     })
 
   const timeConverter = (timestamp: number) =>{
@@ -119,7 +126,13 @@ export const ShillingRewardsCard = () => {
     shillingLaunched = true
   }
 
+  
+  const totalRewards = (new BigNumber(state.earnings).plus(new BigNumber(state.bfStaking))).toNumber()
 
+  useEffect(() => {
+    console.log("clean up")
+  }, [])
+  
   useEffect(() => {
       const fetchShillingDetails = async (acct: string) => {
       if(shillingLaunched){
@@ -128,9 +141,11 @@ export const ShillingRewardsCard = () => {
         let nextClaimDate = 0
         let claimBnbAvailable = false
         let bnbToClaim = 0
+        let bfStaking = 0
 
         if(acct){
           earnings = await battlefieldContract.methods.getUserCurrentRewards(acct, shillingBFRewardsPid).call()
+          bfStaking = await battlefieldContract.methods.userHoldings(acct, shillingBFRewardsPid).call()
           holdings = await shillingContract.methods.balanceOf(acct).call()
           nextClaimDate = await shillingContract.methods.nextAvailableClaimDate(acct).call()
           bnbToClaim = await shillingContract.methods.calculateBNBReward(acct).call()
@@ -151,14 +166,15 @@ export const ShillingRewardsCard = () => {
           holdings,
           formattedClaimDate,
           claimBnbAvailable,
-          bnbToClaim
+          bnbToClaim,
+          bfStaking
         }))
       }
     }
     fetchShillingDetails(account)
   }, [fastRefresh, account, battlefieldContract, shillingLaunched, shillingContract, shillingBFRewardsPid])
 
-  const { onReward } = useBattlefieldHarvest(shillingBFRewardsPid)
+  const { onUnstake } = useBattlefieldShillingWithdraw(shillingBFRewardsPid, state.bfStaking)
   const { onBnbReward } = useShillingBnbHarvest()
 
   if(shillingLaunched && account){
@@ -174,16 +190,16 @@ export const ShillingRewardsCard = () => {
           </Heading>
         <Divider />
         <Text mb="2px">Your Holdings </Text>
-        <Text mb="2px">{(state.holdings/1e18).toFixed()} SHILLING</Text>
-        <Text mb="12px">~($ {"Value Coming Soon".toLocaleString()})</Text>
+        <Text mb="2px">{(state.holdings/1e18).toFixed(0)} SHILLING</Text>
+        <Text mb="12px">~($ {((state.holdings/1e18)*(shillingPrice)).toFixed(2)})</Text>
         <Button as="a" variant="secondary" href={`https://exchange.pancakeswap.finance/#/swap?outputCurrency=${shillingAddress}`} target="_blank">
             Buy Shilling
         </Button>
         <Divider />
         <Text mb="2px">Earned SHILLING from Battlefield</Text>
-        <Text mb="2px">{(state.earnings/1e18).toLocaleString()} SHILLING</Text>
-        <Text mb="12px">~($ {"Value Coming Soon".toLocaleString()})</Text>
-        <Button variant="secondary" onClick={onReward}> 
+        <Text mb="2px">{((totalRewards)/1e18).toFixed(0)} SHILLING</Text>
+        <Text mb="12px">~($ {((totalRewards/1e18)*(shillingPrice)).toFixed(2)})</Text>
+        <Button variant="secondary" onClick={onUnstake}>
           Harvest Shilling
         </Button>
         <Divider />

@@ -161,10 +161,13 @@ export const usePriceSquireBusd = (): BigNumber => {
 }
 
 export const usePriceShillingBusd = (): BigNumber => {
-  const pid = 0 // SHILLING-BNB LP
+  const pid = 9 // SHILLING-BNB LP
   const bnbPriceUSD = usePriceBnbBusd()
   const farm = useFarmFromPid(pid)
-  return farm.tokenPriceVsQuote ? bnbPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
+  if (farm){
+    return farm.tokenPriceVsQuote ? bnbPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
+  } 
+  return ZERO
 }
 
 // Toasts

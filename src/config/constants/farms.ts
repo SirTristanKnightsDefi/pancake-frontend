@@ -139,6 +139,21 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
   },
+ /*  {
+    pid: 9,
+    lpSymbol: 'SHILLING-BNB LP',
+    lpAddresses: {
+      97: '0x1624c1d56905b8092b5984a07b0dc61a5a1e809f', // SHILLING-BNB LP
+      56: '0x1624c1d56905b8092b5984a07b0dc61a5a1e809f', // SHILLING-BNB LP
+    },
+    tokenSymbol: 'SHILLING',
+    tokenAddresses: {
+      97: '0x9D3733E196C8e73F9120E5A41D6b52f4dD3a00C1', // SHILLING
+      56: '0x9D3733E196C8e73F9120E5A41D6b52f4dD3a00C1', // SHILLING
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  }, */
   
 ]
 

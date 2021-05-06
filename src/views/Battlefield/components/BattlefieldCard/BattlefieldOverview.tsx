@@ -96,11 +96,11 @@ const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
 
   // Hardcoded values on rewards per day, update these.  It beats making a separate call to each Battlefield for an overview card... maybe.
-  const squireRewards = new BigNumber(getBalanceNumber(new BigNumber(rawArmyPercent).dividedBy(100).multipliedBy(2304000).multipliedBy(1e18))).toFixed(1);
-  const knightRewards = new BigNumber(getBalanceNumber(new BigNumber(rawArmyPercent).dividedBy(100).multipliedBy(7200).multipliedBy(1e18))).toFixed(2);
+  const squireRewards = new BigNumber(getBalanceNumber(new BigNumber(rawArmyPercent).dividedBy(100).multipliedBy(2304000).multipliedBy(1e18))).toFixed(0);
+  const knightRewards = new BigNumber(getBalanceNumber(new BigNumber(rawArmyPercent).dividedBy(100).multipliedBy(7200).multipliedBy(1e18))).toFixed(1);
   const legendRewards = new BigNumber(getBalanceNumber(new BigNumber(rawArmyPercent).dividedBy(100).multipliedBy(.5).multipliedBy(1e18))).toFixed(4);
   const tableRewards = new BigNumber(getBalanceNumber(new BigNumber(rawArmyPercent).dividedBy(100).multipliedBy(.0288).multipliedBy(1e18))).toFixed(6);
-  const shillingRewards = new BigNumber(getBalanceNumber(new BigNumber(rawArmyPercent).dividedBy(100).multipliedBy(100000).multipliedBy(1e18))).toFixed(1);
+  const shillingRewards = new BigNumber(getBalanceNumber(new BigNumber(rawArmyPercent).dividedBy(100).multipliedBy(2880000000).multipliedBy(1e18))).toFixed(0);
 
   const squireRewardValue = new BigNumber(squireRewards).multipliedBy(squirePrice).toFixed(2);
   const knightRewardValue = new BigNumber(knightRewards).multipliedBy(knightPrice).toFixed(2);
@@ -124,7 +124,7 @@ const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }
       <Text> Your Army Percent: {rawArmyPercent}% </Text>
       <Divider/> 
       <Text> Your <b>Estimated</b> Daily Spoils:</Text>
-      <Text> SHILLING: COMING SOON</Text>
+      <Text> SHILLING: {shillingRewards} - ${shillingRewardValue}</Text>
       <Text> SQUIRE: {squireRewards} - ${squireRewardValue}</Text>
       <Text> KNIGHT: {knightRewards} - ${knightRewardValue}</Text>
       <Text> LEGEND: {legendRewards} - ${legendRewardValue}</Text>
