@@ -153,7 +153,7 @@ const Battlefield: React.FC = () => {
         </FlexLayout>
         <Divider/>
         <Text>*Army Strength is calculated as follows:</Text>
-      <Text>(SQUIRE + (KNIGHT * 100)) * e^(log10((TABLE * 5) * LEGEND))</Text>
+      <Text>(SQUIRE*1e18 + (KNIGHT*1e18 * 500)) * 2^(floor(log10((TABLE*1e18 * LEGEND*1e18 * 5)))</Text>
       </div>
     </Page>
   )

@@ -1,7 +1,7 @@
 import React from 'react'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
-import { Text,} from '@pancakeswap-libs/uikit'
+import { Text, Button} from '@pancakeswap-libs/uikit'
 import { Battlefield } from 'state/types'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
@@ -114,6 +114,9 @@ const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }
     <FCard>
       <StyledCardAccent />
       <Text> Battle for rewards by sending SQUIRE, KNIGHT, LEGEND, and TABLE to war!</Text>
+      <Button as="a" variant="secondary" mt="12px" ml="12px" href="https://docs.knightsdefi.com/battlefield" target="_blank">
+            Read More
+      </Button>
       <Divider/> 
       <Text> Total Army Strength: {battlefield.totalArmyStrength} </Text>
       <Divider/> 
