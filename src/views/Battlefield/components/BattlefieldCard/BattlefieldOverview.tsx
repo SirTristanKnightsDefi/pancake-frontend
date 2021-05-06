@@ -5,7 +5,7 @@ import { Text,} from '@pancakeswap-libs/uikit'
 import { Battlefield } from 'state/types'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
-import { useBattlefieldUser, useBattlefieldFromSymbol, usePriceCakeBusd, usePriceSquireBusd, usePriceLegendBusd, usePriceTableBusd } from 'state/hooks'
+import { useBattlefieldUser, useBattlefieldFromSymbol, usePriceCakeBusd, usePriceSquireBusd, usePriceLegendBusd, usePriceTableBusd, usePriceShillingBusd } from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 
 
@@ -76,10 +76,11 @@ interface BattlefieldOverviewProps {
 }
 
 const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }) => {
-  const knightPrice = usePriceCakeBusd();
-  const squirePrice = usePriceSquireBusd();
-  const legendPrice = usePriceLegendBusd();
-  const tablePrice = usePriceTableBusd();
+  const knightPrice = usePriceCakeBusd()
+  const squirePrice = usePriceSquireBusd()
+  const legendPrice = usePriceLegendBusd()
+  const tablePrice = usePriceTableBusd()
+  const shillingPrice = usePriceShillingBusd()
   
   const { pid, lpAddresses } = useBattlefieldFromSymbol(battlefield.lpSymbol)
   const { allowance, tokenBalance, stakedBalance, earnings, userArmyStrength, userArmyPercent } = useBattlefieldUser(pid)
@@ -99,12 +100,15 @@ const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }
   const knightRewards = new BigNumber(getBalanceNumber(new BigNumber(rawArmyPercent).dividedBy(100).multipliedBy(7200).multipliedBy(1e18))).toFixed(2);
   const legendRewards = new BigNumber(getBalanceNumber(new BigNumber(rawArmyPercent).dividedBy(100).multipliedBy(.5).multipliedBy(1e18))).toFixed(4);
   const tableRewards = new BigNumber(getBalanceNumber(new BigNumber(rawArmyPercent).dividedBy(100).multipliedBy(.0288).multipliedBy(1e18))).toFixed(6);
+  const shillingRewards = new BigNumber(getBalanceNumber(new BigNumber(rawArmyPercent).dividedBy(100).multipliedBy(100000).multipliedBy(1e18))).toFixed(1);
 
   const squireRewardValue = new BigNumber(squireRewards).multipliedBy(squirePrice).toFixed(2);
   const knightRewardValue = new BigNumber(knightRewards).multipliedBy(knightPrice).toFixed(2);
   const legendRewardValue = new BigNumber(legendRewards).multipliedBy(legendPrice).toFixed(2);
   const tableRewardValue = new BigNumber(tableRewards).multipliedBy(tablePrice).toFixed(2);
-  const totalRewardValue = (Number(squireRewardValue)+Number(knightRewardValue)+Number(legendRewardValue)+Number(tableRewardValue)).toFixed(2);
+  const shillingRewardValue = ((shillingPrice.isGreaterThan(0)) ? (new BigNumber(shillingRewards).multipliedBy(shillingPrice).toFixed(2)) : 0)
+
+  const totalRewardValue = (Number(squireRewardValue)+Number(knightRewardValue)+Number(legendRewardValue)+Number(tableRewardValue)+Number(shillingRewardValue)).toFixed(2);
 
   return (
     <FCard>
@@ -117,6 +121,7 @@ const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }
       <Text> Your Army Percent: {rawArmyPercent}% </Text>
       <Divider/> 
       <Text> Your <b>Estimated</b> Daily Spoils:</Text>
+      <Text> SHILLING: COMING SOON</Text>
       <Text> SQUIRE: {squireRewards} - ${squireRewardValue}</Text>
       <Text> KNIGHT: {knightRewards} - ${knightRewardValue}</Text>
       <Text> LEGEND: {legendRewards} - ${legendRewardValue}</Text>
