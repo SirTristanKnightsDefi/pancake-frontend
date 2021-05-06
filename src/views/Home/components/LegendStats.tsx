@@ -49,6 +49,9 @@ const LegendStats = () => {
         <Button as="a" variant="secondary" mb="12px" href={`https://v1exchange.pancakeswap.finance/#/swap?outputCurrency=${getLegendAddress()}`} target="_blank">
             Buy Legend
         </Button>
+        <Button as="a" variant="secondary" mb="12px" ml="12px" href={`https://dex.guru/token/${getLegendAddress()}`} target="_blank">
+            Legend Chart
+        </Button>
         <Row>
           <Text fontSize="14px">LEGEND Price</Text>
           {legendPrice && <CardValue fontSize="14px" decimals={2} value={legendPrice} prefix='$'/>}

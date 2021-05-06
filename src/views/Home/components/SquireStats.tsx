@@ -48,6 +48,9 @@ const SquireStats = () => {
         <Button as="a" variant="secondary" mb="12px" href={`https://v1exchange.pancakeswap.finance/#/swap?outputCurrency=${getSquireAddress()}`} target="_blank">
             Buy Squire
         </Button>
+        <Button as="a" variant="secondary" mb="12px" ml="12px" href={`https://dex.guru/token/${getSquireAddress()}`} target="_blank">
+            Squire Chart
+        </Button>
         <Row>
           <Text fontSize="14px">SQUIRE Price</Text>
           {squireSupply && <CardValue fontSize="14px" decimals={5} value={squirePrice} prefix='$'/>}
