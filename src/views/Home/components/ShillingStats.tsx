@@ -46,7 +46,7 @@ const ShillingStats = () => {
             />
           SHILLING Stats
         </Heading>
-        <Button as="a" variant="secondary" mb="12px" href={`https://v1exchange.pancakeswap.finance/#/swap?outputCurrency=${getShillingAddress()}`} target="_blank">
+        <Button as="a" variant="secondary" mb="12px" href={`https://exchange.pancakeswap.finance/#/swap?outputCurrency=${getShillingAddress()}`} target="_blank">
             Buy Shilling
         </Button>
         <Button as="a" variant="secondary" mb="12px" ml="12px" href={`https://dex.guru/token/${getShillingAddress()}`} target="_blank">
