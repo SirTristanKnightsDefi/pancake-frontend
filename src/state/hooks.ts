@@ -266,7 +266,6 @@ export const useTotalValue = (): BigNumber => {
   const legendPrice = usePriceLegendBusd()
   const tablePrice = usePriceTableBusd()
   const squirePrice = usePriceSquireBusd()
-  const shillingPrice = usePriceShillingBusd()
 
   // Add Farms
   let value = new BigNumber(0)

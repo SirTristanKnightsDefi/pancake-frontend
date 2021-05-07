@@ -91,7 +91,7 @@ const Home: React.FC = () => {
         <FarmStakingCard />
         <LotteryCard />
         {isDark ? <TwitterCardDark /> : <TwitterCard />}
-        {/* <ShillingStats /> */}
+        <ShillingStats />
         <SquireStats />
         <CakeStats />
         <LegendStats />
