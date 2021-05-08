@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled, { keyframes } from 'styled-components'
 import { Text, Button, Heading } from '@pancakeswap-libs/uikit'
 import BigNumber from 'bignumber.js'
+import useWeb3 from 'hooks/useWeb3'
 import useRefresh from 'hooks/useRefresh'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import UnlockButton from 'components/UnlockButton'
@@ -20,6 +21,7 @@ type State = {
   bnbToClaim: number
   bfStaking: number
   totalRewards: number
+  bnbPool: number
 }
 
 const RainbowLight = keyframes`
@@ -86,6 +88,7 @@ export const ShillingRewardsCard = () => {
   const shillingBFRewardsPid = 4 // Change to Battlefield PID for Shilling Rewards after launch.
   const { fastRefresh, slowRefresh } = useRefresh()
   const { account }: { account: string } = useWallet()
+  const web3 = useWeb3()
   const [state, setState] = useState<State>({
     earnings: 0,
     holdings: 0,
@@ -93,7 +96,8 @@ export const ShillingRewardsCard = () => {
     claimBnbAvailable: false,
     bnbToClaim: 0,
     bfStaking: 0,
-    totalRewards: 0
+    totalRewards: 0,
+    bnbPool: 0
     })
 
 /*   
@@ -138,15 +142,19 @@ export const ShillingRewardsCard = () => {
           let claimBnbAvailable = false
           let bnbToClaim = 0
           let bfStaking = 0
+          let bnbPoolString = ""
+          let bnbPool = 0
           const bfContract = getBattlefieldContract()
           const shillContract = getShillingContract()
           const shillBFRewardsPid = 4 // Change to Battlefield PID for Shilling Rewards after launch.
+         
 
           earnings = await bfContract.methods.getUserCurrentRewards(account, shillBFRewardsPid).call()
           bfStaking = await bfContract.methods.userHoldings(account, shillBFRewardsPid).call()
           holdings = await shillContract.methods.balanceOf(account).call()
           nextClaimDate = await shillContract.methods.nextAvailableClaimDate(account).call()
           bnbToClaim = await shillContract.methods.calculateBNBReward(account).call()
+          bnbPoolString = await web3.eth.getBalance(getShillingAddress())
           
           const timeConverter = (timestamp: number) =>{
             const a = new Date(timestamp * 1000)
@@ -162,7 +170,11 @@ export const ShillingRewardsCard = () => {
           if(unformattedClaimDate <= new Date() && nextClaimDate > 0){
             claimBnbAvailable = true
           }
-        
+          
+          if(bnbPoolString !== ""){
+            bnbPool = parseInt(bnbPoolString)
+          }
+
           const formattedClaimDate = unformattedClaimDate.toString()
 
           setState((prevState) => ({
@@ -173,12 +185,13 @@ export const ShillingRewardsCard = () => {
             claimBnbAvailable,
             bnbToClaim,
             bfStaking,
-            totalRewards
+            totalRewards,
+            bnbPool
           }))
         }
       }
     fetchShillingDetails()
-  }, [fastRefresh, account])
+  }, [fastRefresh, account, web3])
 
   const { onUnstake } = useBattlefieldShillingWithdraw(shillingBFRewardsPid, state.bfStaking)
   const { onBnbReward } = useShillingBnbHarvest()
@@ -209,6 +222,7 @@ export const ShillingRewardsCard = () => {
           Harvest Shilling
         </Button>
         <Divider />
+        <Heading mb="12px">Total BNB in Pool: {(state.bnbPool/1e18).toFixed(2)} </Heading>
         <Heading mb="12px">Next BNB Claim: {(state.bnbToClaim/1e18).toFixed(4)} </Heading>
         <Text mb="12px">{state.formattedClaimDate}</Text>
         {state.claimBnbAvailable 
