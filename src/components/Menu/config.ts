@@ -51,8 +51,8 @@ const config: MenuEntry[] = [
     icon: 'InfoIcon',
     items: [
       {
-        label: 'Buy SHILLING - Coming Soon',
-        href: '',
+        label: 'Buy SHILLING',
+        href: 'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x643B6ef6306417A0b3FA2813eb5BAf30F5dd8736',
       },
       {
         label: 'Buy SQUIRE',
@@ -77,12 +77,12 @@ const config: MenuEntry[] = [
     icon: 'InfoIcon',
     items: [
       {
-        label: 'SHILLING Contract - Coming Soon',
-        href: '',
+        label: 'SHILLING Contract',
+        href: 'https://bscscan.com/address/0x643b6ef6306417a0b3fa2813eb5baf30f5dd8736',
       },
       {
-        label: 'SHILLING Chart - Coming Soon',
-        href: '',
+        label: 'SHILLING Chart',
+        href: 'https://poocoin.app/tokens/0x643b6ef6306417a0b3fa2813eb5baf30f5dd8736',
       },
       {
         label: 'SQUIRE Contract',
@@ -90,7 +90,7 @@ const config: MenuEntry[] = [
       },
       {
         label: 'SQUIRE Chart',
-        href: 'https://dex.guru/token/0x2F0D21f1B84F03fB9D60004fc206C86Be6902a32',
+        href: 'https://poocoin.app/tokens/0x2F0D21f1B84F03fB9D60004fc206C86Be6902a32',
       },
       {
         label: 'KNIGHT Contract',
@@ -98,7 +98,7 @@ const config: MenuEntry[] = [
       },
       {
         label: 'KNIGHT Chart',
-        href: 'https://dex.guru/token/0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30',
+        href: 'https://poocoin.app/tokens/0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30',
       },
       {
         label: 'LEGEND Contract',
@@ -106,7 +106,7 @@ const config: MenuEntry[] = [
       },
       {
         label: 'LEGEND Chart',
-        href: 'https://dex.guru/token/0xDc661984735b535210CB1f52f86cc58616024192',
+        href: 'https://poocoin.app/tokens/0xDc661984735b535210CB1f52f86cc58616024192',
       },
       {
         label: 'TABLE Contract',
@@ -114,7 +114,7 @@ const config: MenuEntry[] = [
       },
       {
         label: 'TABLE Chart',
-        href: 'https://dex.guru/token/0xf5a2f7418035ce76967f515f39d65719bb0453b6',
+        href: 'https://poocoin.app/tokens/0xf5a2f7418035ce76967f515f39d65719bb0453b6',
       },
     ],
   },

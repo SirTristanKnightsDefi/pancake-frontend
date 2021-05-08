@@ -49,12 +49,12 @@ const ShillingStats = () => {
         <Button as="a" variant="secondary" mb="12px" href={`https://exchange.pancakeswap.finance/#/swap?outputCurrency=${getShillingAddress()}`} target="_blank">
             Buy Shilling
         </Button>
-        <Button as="a" variant="secondary" mb="12px" ml="12px" href={`https://dex.guru/token/${getShillingAddress()}`} target="_blank">
+        <Button as="a" variant="secondary" mb="12px" ml="12px" href={`https://poocoin.app/tokens/${getShillingAddress()}`} target="_blank">
             Shilling Chart
           </Button>
         <Row>
           <Text fontSize="14px">SHILLING Price</Text>
-          {shillingPrice && <CardValue fontSize="14px" decimals={5} value={shillingPrice} prefix='$'/>}
+          {shillingPrice && <CardValue fontSize="14px" decimals={8} value={shillingPrice} prefix='$'/>}
         </Row>
         <Row>
           <Text fontSize="14px">Total SHILLING Supply</Text>

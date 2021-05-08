@@ -48,7 +48,7 @@ const SquireStats = () => {
         <Button as="a" variant="secondary" mb="12px" href={`https://v1exchange.pancakeswap.finance/#/swap?outputCurrency=${getSquireAddress()}`} target="_blank">
             Buy Squire
         </Button>
-        <Button as="a" variant="secondary" mb="12px" ml="12px" href={`https://dex.guru/token/${getSquireAddress()}`} target="_blank">
+        <Button as="a" variant="secondary" mb="12px" ml="12px" href={`https://poocoin.app/tokens/${getSquireAddress()}`} target="_blank">
             Squire Chart
         </Button>
         <Row>

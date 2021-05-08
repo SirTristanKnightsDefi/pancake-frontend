@@ -50,7 +50,7 @@ const CakeStats = () => {
           <Button as="a" variant="secondary" mb="12px" href={`https://v1exchange.pancakeswap.finance/#/swap?outputCurrency=${getCakeAddress()}`} target="_blank">
             Buy Knight
           </Button>
-          <Button as="a" variant="secondary" mb="12px" ml="12px" href={`https://dex.guru/token/${getCakeAddress()}`} target="_blank">
+          <Button as="a" variant="secondary" mb="12px" ml="12px" href={`https://poocoin.app/tokens/${getCakeAddress()}`} target="_blank">
             Knight Chart
           </Button>
         <Row>

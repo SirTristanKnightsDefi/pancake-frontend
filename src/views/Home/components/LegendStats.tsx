@@ -49,7 +49,7 @@ const LegendStats = () => {
         <Button as="a" variant="secondary" mb="12px" href={`https://v1exchange.pancakeswap.finance/#/swap?outputCurrency=${getLegendAddress()}`} target="_blank">
             Buy Legend
         </Button>
-        <Button as="a" variant="secondary" mb="12px" ml="12px" href={`https://dex.guru/token/${getLegendAddress()}`} target="_blank">
+        <Button as="a" variant="secondary" mb="12px" ml="12px" href={`https://poocoin.app/tokens/${getLegendAddress()}`} target="_blank">
             Legend Chart
         </Button>
         <Row>
