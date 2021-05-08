@@ -19,6 +19,7 @@ type State = {
   claimBnbAvailable: boolean
   bnbToClaim: number
   bfStaking: number
+  totalRewards: number
 }
 
 const RainbowLight = keyframes`
@@ -91,15 +92,11 @@ export const ShillingRewardsCard = () => {
     formattedClaimDate: "",
     claimBnbAvailable: false,
     bnbToClaim: 0,
-    bfStaking: 0
+    bfStaking: 0,
+    totalRewards: 0
     })
 
-  const timeConverter = (timestamp: number) =>{
-    const a = new Date(timestamp * 1000)
-    const time = a
-    return time;
-  }
-
+/*   
   const calculateTimeLeft = (date, now) => {
     const difference = +date - +now;
     let timeLeft = {days: 0, hours: 0, minutes: 0, seconds: 0}
@@ -115,9 +112,9 @@ export const ShillingRewardsCard = () => {
 
     return timeLeft;
 
-  }
+  } */
 
-  const unformattedShillingLaunchDate = timeConverter(1620428400) // 7PM EDT on 5/7/2021
+  /* const unformattedShillingLaunchDate = timeConverter(1620428400) // 7PM EDT on 5/7/2021
   const formattedShillingLaunchDate = unformattedShillingLaunchDate.toString()
   const timeToLaunch = calculateTimeLeft(unformattedShillingLaunchDate, new Date())
   
@@ -125,59 +122,68 @@ export const ShillingRewardsCard = () => {
   if(unformattedShillingLaunchDate <= new Date()){
     shillingLaunched = true
   }
-
+ */
   
-  const totalRewards = (new BigNumber(state.earnings).plus(new BigNumber(state.bfStaking))).toNumber()
-
+  
   useEffect(() => {
     console.log("clean up")
   }, [])
   
   useEffect(() => {
-      const fetchShillingDetails = async (acct: string) => {
-      if(shillingLaunched){
-        let earnings = 0
-        let holdings = 0
-        let nextClaimDate = 0
-        let claimBnbAvailable = false
-        let bnbToClaim = 0
-        let bfStaking = 0
+      const fetchShillingDetails = async () => {
+        if(account){
+          let earnings = 0
+          let holdings = 0
+          let nextClaimDate = 0
+          let claimBnbAvailable = false
+          let bnbToClaim = 0
+          let bfStaking = 0
+          const bfContract = getBattlefieldContract()
+          const shillContract = getShillingContract()
+          const shillBFRewardsPid = 4 // Change to Battlefield PID for Shilling Rewards after launch.
 
-        if(acct){
-          earnings = await battlefieldContract.methods.getUserCurrentRewards(acct, shillingBFRewardsPid).call()
-          bfStaking = await battlefieldContract.methods.userHoldings(acct, shillingBFRewardsPid).call()
-          holdings = await shillingContract.methods.balanceOf(acct).call()
-          nextClaimDate = await shillingContract.methods.nextAvailableClaimDate(acct).call()
-          bnbToClaim = await shillingContract.methods.calculateBNBReward(acct).call()
+          earnings = await bfContract.methods.getUserCurrentRewards(account, shillBFRewardsPid).call()
+          bfStaking = await bfContract.methods.userHoldings(account, shillBFRewardsPid).call()
+          holdings = await shillContract.methods.balanceOf(account).call()
+          nextClaimDate = await shillContract.methods.nextAvailableClaimDate(account).call()
+          bnbToClaim = await shillContract.methods.calculateBNBReward(account).call()
+          
+          const timeConverter = (timestamp: number) =>{
+            const a = new Date(timestamp * 1000)
+            const time = a
+            return time;
+          }
+        
+          const totalRewards = (new BigNumber(earnings).plus(new BigNumber(bfStaking))).toNumber()
+
+          // get BNB Claim date
+          const unformattedClaimDate = timeConverter(nextClaimDate)
+
+          if(unformattedClaimDate <= new Date() && nextClaimDate > 0){
+            claimBnbAvailable = true
+          }
+        
+          const formattedClaimDate = unformattedClaimDate.toString()
+
+          setState((prevState) => ({
+            ...prevState,
+            earnings,
+            holdings,
+            formattedClaimDate,
+            claimBnbAvailable,
+            bnbToClaim,
+            bfStaking,
+            totalRewards
+          }))
         }
-
-        // get BNB Claim date
-        const unformattedClaimDate = timeConverter(nextClaimDate)
-
-        if(unformattedClaimDate <= new Date() && nextClaimDate > 0){
-          claimBnbAvailable = true
-        }
-      
-        const formattedClaimDate = unformattedClaimDate.toString()
-
-        setState((prevState) => ({
-          ...prevState,
-          earnings,
-          holdings,
-          formattedClaimDate,
-          claimBnbAvailable,
-          bnbToClaim,
-          bfStaking
-        }))
       }
-    }
-    fetchShillingDetails(account)
-  }, [fastRefresh, account, battlefieldContract, shillingLaunched, shillingContract, shillingBFRewardsPid])
+    fetchShillingDetails()
+  }, [fastRefresh, account])
 
   const { onUnstake } = useBattlefieldShillingWithdraw(shillingBFRewardsPid, state.bfStaking)
   const { onBnbReward } = useShillingBnbHarvest()
 
-  if(shillingLaunched && account){
+  if(account){
     return (
       <FCard>
         <StyledCardAccent />
@@ -197,8 +203,8 @@ export const ShillingRewardsCard = () => {
         </Button>
         <Divider />
         <Text mb="2px">Earned SHILLING from Battlefield</Text>
-        <Text mb="2px">{((totalRewards)/1e18).toFixed(0)} SHILLING</Text>
-        <Text mb="12px">~($ {((totalRewards/1e18)*(shillingPrice)).toFixed(2)})</Text>
+        <Text mb="2px">{((state.totalRewards)/1e18).toFixed(0)} SHILLING</Text>
+        <Text mb="12px">~($ {((state.totalRewards/1e18)*(shillingPrice)).toFixed(2)})</Text>
         <Button variant="secondary" onClick={onUnstake}>
           Harvest Shilling
         </Button>
@@ -222,7 +228,7 @@ export const ShillingRewardsCard = () => {
         
     )
   }
-  if(!shillingLaunched){
+ /*  if(!shillingLaunched){
   return (
   <FCard>
       <StyledCardAccent />
@@ -235,7 +241,8 @@ export const ShillingRewardsCard = () => {
       </Button>
   </FCard>
   )
-  }
+  } */
+  
   return (
     <FCard>
       <StyledCardAccent />
