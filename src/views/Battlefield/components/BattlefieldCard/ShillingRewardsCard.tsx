@@ -166,7 +166,7 @@ export const ShillingRewardsCard = () => {
 
           // get BNB Claim date
           const unformattedClaimDate = timeConverter(nextClaimDate)
-
+          
           if(unformattedClaimDate <= new Date() && nextClaimDate > 0){
             claimBnbAvailable = true
           }
@@ -175,7 +175,15 @@ export const ShillingRewardsCard = () => {
             bnbPool = parseInt(bnbPoolString)
           }
 
-          const formattedClaimDate = unformattedClaimDate.toString()
+          let formattedClaimDate = unformattedClaimDate.toString()
+
+          if(!claimBnbAvailable && nextClaimDate> 0){
+            formattedClaimDate = unformattedClaimDate.toString()
+          } else if (nextClaimDate < 1){
+            formattedClaimDate = "You have not purchased any SHILLING.  Please purchase to be able to claim."
+          } else {
+            formattedClaimDate = (new Date()).toString()
+          }
 
           setState((prevState) => ({
             ...prevState,
