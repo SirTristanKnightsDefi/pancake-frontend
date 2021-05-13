@@ -62,7 +62,7 @@ const ShillingStats = () => {
         </Row>
         <Row>
           <Text fontSize="14px">Total SHILLING Burned</Text>
-          <CardValue fontSize="14px" decimals={1}value={getBalanceNumber(burnedBalance)} />
+          <CardValue fontSize="14px" decimals={0}value={getBalanceNumber(burnedBalance)} />
         </Row>
         <Row>
           <Text fontSize="14px">SHILLING Market Cap</Text>

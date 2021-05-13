@@ -12,12 +12,20 @@ const config: MenuEntry[] = [
     icon: "TradeIcon",
     items: [
       {
-        label: "Exchange",
+        label: "Exchange (PCS V1)",
         href: "https://exchange.alchemistdefi.com",
       },
       {
-        label: "Liquidity",
+        label: "Exchange (PCS V2)",
+        href: "https://exchange.pancakeswap.finance/#/swap",
+      },
+      {
+        label: "Liquidity (PCS V1)",
         href: "https://exchange.alchemistdefi.com/#/pool",
+      },
+      {
+        label: "Liquidity (PCS V2)",
+        href: "https://exchange.pancakeswap.finance/#/pool",
       },
     ],
   },
@@ -145,9 +153,13 @@ const config: MenuEntry[] = [
     icon: 'AuditIcon',
     items: [
       {
-        label: 'TechRate',
+        label: 'TechRate (LEGEND, TABLE, KNIGHT)',
         href: 'https://www.knightsdefi.com/Knights%20Defi%20TechRate%20Audit.pdf',
       },
+      {
+        label: 'TechRate (SHILLING)',
+        href: 'https://github.com/TechRate/Smart-Contract-Audits/blob/main/Shilling%20Token%20Token%20Smart%20Contract%20Security%20Audit.pdf'
+      }
     ],
   },
 ]
