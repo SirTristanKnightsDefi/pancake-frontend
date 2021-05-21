@@ -46,7 +46,7 @@ const TableStats = () => {
             />
             TABLE Stats
         </Heading>
-        <Button as="a" variant="secondary" mb="12px" href={`https://v1exchange.pancakeswap.finance/#/swap?outputCurrency=${getTableAddress()}`} target="_blank">
+        <Button as="a" variant="secondary" mb="12px" href={`https://exchange.alchemistdefi.com/#/swap?outputCurrency=${getTableAddress()}`} target="_blank">
             Buy Table
         </Button>
         <Button as="a" variant="secondary" mb="12px" ml="12px" href={`https://poocoin.app/tokens/${getTableAddress()}`} target="_blank">
