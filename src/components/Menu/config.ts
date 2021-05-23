@@ -8,20 +8,6 @@ const config: MenuEntry[] = [
     href: '/',
   },
   {
-    label: "Trade",
-    icon: "TradeIcon",
-    items: [
-      {
-        label: "Liquidity (PCS V1)",
-        href: "https://exchange.alchemistdefi.com/#/pool",
-      },
-      {
-        label: "Liquidity (PCS V2)",
-        href: "https://exchange.pancakeswap.finance/#/pool",
-      },
-    ],
-  },
-  {
     label: 'Buy Tokens',
     icon: 'InfoIcon',
     items: [
@@ -44,6 +30,20 @@ const config: MenuEntry[] = [
       {
         label: 'Buy TABLE',
         href: 'https://exchange.alchemistdefi.com/#/swap?outputCurrency=0xf5a2f7418035ce76967f515f39d65719bb0453b6',
+      },
+    ],
+  },
+  {
+    label: "Trade",
+    icon: "TradeIcon",
+    items: [
+      {
+        label: "Liquidity (PCS V1)",
+        href: "https://exchange.alchemistdefi.com/#/pool",
+      },
+      {
+        label: "Liquidity (PCS V2)",
+        href: "https://exchange.pancakeswap.finance/#/pool",
       },
     ],
   },
