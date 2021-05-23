@@ -12,20 +12,38 @@ const config: MenuEntry[] = [
     icon: "TradeIcon",
     items: [
       {
-        label: "Exchange (PCS V1)",
-        href: "https://exchange.alchemistdefi.com",
-      },
-      {
-        label: "Exchange (PCS V2)",
-        href: "https://exchange.pancakeswap.finance/#/swap",
-      },
-      {
         label: "Liquidity (PCS V1)",
         href: "https://exchange.alchemistdefi.com/#/pool",
       },
       {
         label: "Liquidity (PCS V2)",
         href: "https://exchange.pancakeswap.finance/#/pool",
+      },
+    ],
+  },
+  {
+    label: 'Buy Tokens',
+    icon: 'InfoIcon',
+    items: [
+      {
+        label: 'Buy SHILLING',
+        href: 'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x643B6ef6306417A0b3FA2813eb5BAf30F5dd8736',
+      },
+      {
+        label: 'Buy SQUIRE',
+        href: 'https://exchange.alchemistdefi.com/#/swap?outputCurrency=0x2F0D21f1B84F03fB9D60004fc206C86Be6902a32',
+      },
+      {
+        label: 'Buy KNIGHT',
+        href: 'https://exchange.alchemistdefi.com/#/swap?outputCurrency=0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30',
+      },  
+      {
+        label: 'Buy LEGEND',
+        href: 'https://exchange.alchemistdefi.com/#/swap?outputCurrency=0xDc661984735b535210CB1f52f86cc58616024192',
+      },
+      {
+        label: 'Buy TABLE',
+        href: 'https://exchange.alchemistdefi.com/#/swap?outputCurrency=0xf5a2f7418035ce76967f515f39d65719bb0453b6',
       },
     ],
   },
@@ -54,32 +72,7 @@ const config: MenuEntry[] = [
     icon: 'NftIcon',
     href: '/nft',
   },
-  {
-    label: 'Buy Tokens',
-    icon: 'InfoIcon',
-    items: [
-      {
-        label: 'Buy SHILLING',
-        href: 'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x643B6ef6306417A0b3FA2813eb5BAf30F5dd8736',
-      },
-      {
-        label: 'Buy SQUIRE',
-        href: 'https://exchange.alchemistdefi.com/#/swap?outputCurrency=0x2F0D21f1B84F03fB9D60004fc206C86Be6902a32',
-      },
-      {
-        label: 'Buy KNIGHT',
-        href: 'https://exchange.alchemistdefi.com/#/swap?outputCurrency=0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30',
-      },  
-      {
-        label: 'Buy LEGEND',
-        href: 'https://exchange.alchemistdefi.com/#/swap?outputCurrency=0xDc661984735b535210CB1f52f86cc58616024192',
-      },
-      {
-        label: 'Buy TABLE',
-        href: 'https://exchange.alchemistdefi.com/#/swap?outputCurrency=0xf5a2f7418035ce76967f515f39d65719bb0453b6',
-      },
-    ],
-  },
+  
   {
     label: 'Contracts / Charts',
     icon: 'InfoIcon',
