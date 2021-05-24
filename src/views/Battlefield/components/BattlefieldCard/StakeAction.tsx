@@ -39,7 +39,25 @@ const StakeAction: React.FC<BattlefieldCardActionsProps> = ({
   const { onCompound } = useBattlefieldCompound(pid)
 
   const rawStakedBalance = getBalanceNumber(stakedBalance)
-  const displayBalance = rawStakedBalance.toLocaleString()
+
+  let precision = 0
+  if(rawStakedBalance < 1000 && rawStakedBalance >= 100){
+    precision = 2
+  }
+  if(rawStakedBalance < 100 && rawStakedBalance >= 1){
+    precision = 3
+  }
+  if(rawStakedBalance < 1 && rawStakedBalance >= .01){
+    precision = 5
+  }
+  if(rawStakedBalance < .01 && rawStakedBalance >= 0){
+    precision = 6
+  } 
+  if(rawStakedBalance === 0){
+      precision = 0
+  }
+
+  const displayBalance =  new BigNumber(rawStakedBalance.toFixed(precision)).toNumber().toLocaleString()
 
   const [onPresentDeposit] = useModal(
     <DepositModal max={tokenBalance} onConfirm={onStake} tokenName={tokenName} addLiquidityUrl={addLiquidityUrl} />,

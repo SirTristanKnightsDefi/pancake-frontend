@@ -71,7 +71,8 @@ const CardActions: React.FC<BattlefieldCardActionsProps> = ({ battlefield, ether
 
   return (
     <Action>
-      
+    {account ?
+      <Action>
       <Flex>
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="3px">
           {lpName}
@@ -89,11 +90,21 @@ const CardActions: React.FC<BattlefieldCardActionsProps> = ({ battlefield, ether
           {TranslateString(1074, 'Staked')}
         </Text>
       </Flex>
-      {!account ? <UnlockButton mt="8px"  /> : renderApprovalOrStakeButton()}
+      <StakeAction
+        stakedBalance={stakedBalance}
+        tokenBalance={tokenBalance}
+        tokenName={lpName}
+        pid={pid}
+        addLiquidityUrl={addLiquidityUrl}
+      />
       <Flex mt='8px' flexDirection="column-reverse">
         <CompoundAction earnings={earnings} pid={pid} />
       </Flex>
-    </Action>
+      </Action>
+      : <UnlockButton mt="8px"  />
+  }
+  </Action>
+    
   )
 }
 

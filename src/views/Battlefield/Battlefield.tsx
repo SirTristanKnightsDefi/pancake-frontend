@@ -9,7 +9,7 @@ import { Heading, Text } from '@pancakeswap-libs/uikit'
 import { BLOCKS_PER_YEAR, CAKE_PER_BLOCK, CAKE_POOL_PID } from 'config'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
-import { useBattlefield, usePriceBnbBusd, usePriceCakeBusd, usePriceEthBusd } from 'state/hooks'
+import { useBattlefield, usePriceBnbBusd, usePriceCakeBusd, usePriceEthBusd, usePriceLegendBusd, usePriceTableBusd, usePriceSquireBusd, usePriceShillingBusd } from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
 import { fetchBattlefieldUserDataAsync } from 'state/actions'
 import { QuoteToken } from 'config/constants/types'
@@ -25,6 +25,10 @@ const Battlefield: React.FC = () => {
   const { path } = useRouteMatch()
   const battlefieldLP = useBattlefield()
   const cakePrice = usePriceCakeBusd()
+  const legendPrice = usePriceLegendBusd()
+  const squirePrice = usePriceSquireBusd()
+  const tablePrice = usePriceTableBusd()
+  const shillingPrice = usePriceShillingBusd()
   const bnbPrice = usePriceBnbBusd()
   const { account, ethereum }: { account: string; ethereum: provider } = useWallet()
   const ethPriceUsd = usePriceEthBusd()
@@ -98,13 +102,17 @@ const Battlefield: React.FC = () => {
           removed={removed}
           bnbPrice={bnbPrice}
           cakePrice={cakePrice}
+          legendPrice={legendPrice}
+          tablePrice={tablePrice}
+          squirePrice={squirePrice}
+          shillingPrice={shillingPrice}
           ethPrice={ethPriceUsd}
           ethereum={ethereum}
           account={account}
         />
       ))
     },
-    [battlefieldLP, bnbPrice, ethPriceUsd, cakePrice, ethereum, account],
+    [battlefieldLP, bnbPrice, legendPrice, tablePrice, squirePrice, shillingPrice, ethPriceUsd, cakePrice, ethereum, account],
   )
 
   return (

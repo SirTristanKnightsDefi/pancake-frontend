@@ -217,14 +217,14 @@ export const ShillingRewardsCard = () => {
           </Heading>
         <Divider />
         <Text mb="2px">Your Holdings </Text>
-        <Text mb="2px">{(state.holdings/1e18).toFixed(0)} SHILLING</Text>
+        <Text mb="2px">{new BigNumber((state.holdings/1e18).toFixed(0)).toNumber().toLocaleString()} SHILLING</Text>
         <Text mb="12px">~($ {((state.holdings/1e18)*(shillingPrice)).toFixed(2)})</Text>
         <Button as="a" variant="secondary" href={`https://exchange.pancakeswap.finance/#/swap?outputCurrency=${shillingAddress}`} target="_blank">
             Buy Shilling
         </Button>
         <Divider />
         <Text mb="2px">Earned SHILLING from Battlefield</Text>
-        <Text mb="2px">{((state.totalRewards)/1e18).toFixed(0)} SHILLING</Text>
+        <Text mb="2px">{new BigNumber(((state.totalRewards)/1e18).toFixed(0)).toNumber().toLocaleString()} SHILLING</Text>
         <Text mb="12px">~($ {((state.totalRewards/1e18)*(shillingPrice)).toFixed(2)})</Text>
         <Button variant="secondary" onClick={onUnstake}>
           Harvest Shilling

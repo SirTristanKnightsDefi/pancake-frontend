@@ -9,7 +9,9 @@ import useI18n from 'hooks/useI18n'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
 import { QuoteToken } from 'config/constants/types'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
+import { getBalanceNumber } from 'utils/formatBalance'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
+import { useBattlefieldFromSymbol, useBattlefieldUser } from 'state/hooks'
 import { fetchBattlefieldUserArmyStrength } from 'state/battlefield/fetchBattlefieldUser'
 import {fetchBattlefieldPublicDataAsync} from 'state/battlefield'
 import DetailsSection from './DetailsSection'
@@ -85,13 +87,17 @@ interface BattlefieldCardProps {
   battlefield: BattlefieldWithStakedValue
   removed: boolean
   cakePrice?: BigNumber
+  legendPrice?: BigNumber
+  tablePrice?: BigNumber
+  squirePrice?: BigNumber
+  shillingPrice?: BigNumber
   bnbPrice?: BigNumber
   ethPrice?: BigNumber
   ethereum?: provider
   account?: string
 }
 
-const BattlefieldCard: React.FC<BattlefieldCardProps> = ({ battlefield, removed, cakePrice, bnbPrice, ethPrice, ethereum, account }) => {
+const BattlefieldCard: React.FC<BattlefieldCardProps> = ({ battlefield, removed, cakePrice, legendPrice, tablePrice, squirePrice, shillingPrice, bnbPrice, ethPrice, ethereum, account }) => {
   const TranslateString = useI18n()
 
   const [showExpandableSection, setShowExpandableSection] = useState(false)
@@ -100,43 +106,120 @@ const BattlefieldCard: React.FC<BattlefieldCardProps> = ({ battlefield, removed,
   // We assume the token name is coin pair + lp e.g. CAKE-BNB LP, LINK-BNB LP,
   // NAR-CAKE LP. The images should be cake-bnb.svg, link-bnb.svg, nar-cake.svg
   const battlefieldImage = battlefield.lpSymbol.split(' ')[0].toLocaleLowerCase()
-  
+  const { stakedBalance } = useBattlefieldUser(battlefield.pid)
+
+  const rewardsBalance = battlefield.rewardsBalance
+  const formattedRewardsBalance = new BigNumber(rewardsBalance).toNumber().toLocaleString()
+  const formattedTotalAtWarBalance = new BigNumber(battlefield.quoteTokenAmount).toNumber().toLocaleString()
+
   // const userArmyStrength = fetchBattlefieldUserArmyStrength(account)
 
-  const totalValue: BigNumber = useMemo(() => {
-    if (!battlefield.lpTotalInQuoteToken) {
+  const stakedValue: BigNumber = useMemo(() => {
+    if (!stakedBalance) {
       return null
     }
-    if (battlefield.quoteTokenSymbol === QuoteToken.BNB) {
-      return bnbPrice.times(battlefield.lpTotalInQuoteToken)
+    if (battlefield.tokenSymbol === QuoteToken.BNB) {
+      return bnbPrice.times(stakedBalance)
     }
-    if (battlefield.quoteTokenSymbol === QuoteToken.CAKE) {
-      return cakePrice.times(battlefield.lpTotalInQuoteToken)
+    if (battlefield.tokenSymbol === QuoteToken.CAKE) {
+      return cakePrice.times(stakedBalance)
     }
-    if (battlefield.quoteTokenSymbol === QuoteToken.KNIGHT) {
-      return cakePrice.times(battlefield.lpTotalInQuoteToken)
+    if (battlefield.tokenSymbol === QuoteToken.KNIGHT) {
+      return cakePrice.times(stakedBalance)
     }
-    if (battlefield.quoteTokenSymbol === QuoteToken.ETH) {
-      return ethPrice.times(battlefield.lpTotalInQuoteToken)
+    if (battlefield.tokenSymbol === QuoteToken.ETH) {
+      return ethPrice.times(stakedBalance)
     }
-    return battlefield.lpTotalInQuoteToken
-  }, [bnbPrice, cakePrice, ethPrice, battlefield.lpTotalInQuoteToken, battlefield.quoteTokenSymbol])
+    if (battlefield.tokenSymbol === QuoteToken.LEGEND) {
+      return legendPrice.times(stakedBalance)
+    }
+    if (battlefield.tokenSymbol === QuoteToken.TABLE) {
+      return tablePrice.times(stakedBalance)
+    }
+    if (battlefield.tokenSymbol === QuoteToken.SQUIRE) {
+      return squirePrice.times(stakedBalance)
+    }
+    if (battlefield.tokenSymbol === QuoteToken.SHILLING) {
+      return shillingPrice.times(stakedBalance)
+    }
+    return new BigNumber(0)
+  }, [bnbPrice, cakePrice, ethPrice, legendPrice, tablePrice, squirePrice, shillingPrice, stakedBalance, battlefield.tokenSymbol])
 
-  const totalBalanceFormatted = totalValue
-    ? `$${Number(totalValue).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
-    : '-'
+  const rewardValue: BigNumber = useMemo(() => {
+    if (!rewardsBalance) {
+      return null
+    }
+    if (battlefield.tokenSymbol === QuoteToken.BNB) {
+      return bnbPrice.times(rewardsBalance).times(1e18)
+    }
+    if (battlefield.tokenSymbol === QuoteToken.CAKE) {
+      return cakePrice.times(rewardsBalance).times(1e18)
+    }
+    if (battlefield.tokenSymbol === QuoteToken.KNIGHT) {
+      return cakePrice.times(rewardsBalance).times(1e18)
+    }
+    if (battlefield.tokenSymbol === QuoteToken.ETH) {
+      return ethPrice.times(rewardsBalance).times(1e18)
+    }
+    if (battlefield.tokenSymbol === QuoteToken.LEGEND) {
+      return legendPrice.times(rewardsBalance).times(1e18)
+    }
+    if (battlefield.tokenSymbol === QuoteToken.TABLE) {
+      return tablePrice.times(rewardsBalance).times(1e18)
+    }
+    if (battlefield.tokenSymbol === QuoteToken.SQUIRE) {
+      return squirePrice.times(rewardsBalance).times(1e18)
+    }
+    if (battlefield.tokenSymbol === QuoteToken.SHILLING) {
+      return shillingPrice.times(rewardsBalance).times(1e18)
+    }
+    return new BigNumber(0)
+  }, [bnbPrice, cakePrice, ethPrice, legendPrice, tablePrice, squirePrice, shillingPrice, battlefield.tokenSymbol, rewardsBalance])
+
+  const tvlValue: BigNumber = useMemo(() => {
+    if (!battlefield.quoteTokenAmount) {
+      return null
+    }
+    if (battlefield.tokenSymbol === QuoteToken.BNB) {
+      return bnbPrice.times(battlefield.quoteTokenAmount).times(1e18)
+    }
+    if (battlefield.tokenSymbol === QuoteToken.CAKE) {
+      return cakePrice.times(battlefield.quoteTokenAmount).times(1e18)
+    }
+    if (battlefield.tokenSymbol === QuoteToken.KNIGHT) {
+      return cakePrice.times(battlefield.quoteTokenAmount).times(1e18)
+    }
+    if (battlefield.tokenSymbol === QuoteToken.ETH) {
+      return ethPrice.times(battlefield.quoteTokenAmount).times(1e18)
+    }
+    if (battlefield.tokenSymbol === QuoteToken.LEGEND) {
+      return legendPrice.times(battlefield.quoteTokenAmount).times(1e18)
+    }
+    if (battlefield.tokenSymbol === QuoteToken.TABLE) {
+      return tablePrice.times(battlefield.quoteTokenAmount).times(1e18)
+    }
+    if (battlefield.tokenSymbol === QuoteToken.SQUIRE) {
+      return squirePrice.times(battlefield.quoteTokenAmount).times(1e18)
+    }
+    if (battlefield.tokenSymbol === QuoteToken.SHILLING) {
+      return shillingPrice.times(battlefield.quoteTokenAmount).times(1e18)
+    }
+    return new BigNumber(0)
+  }, [bnbPrice, cakePrice, ethPrice, legendPrice, tablePrice, squirePrice, shillingPrice, battlefield.tokenSymbol, battlefield.quoteTokenAmount])
+
+  const stakedBalanceFormatted = getBalanceNumber(stakedValue).toLocaleString()
+  const rewardBalanceFormatted = getBalanceNumber(rewardValue).toLocaleString()
+  const tvlBalanceFormatted = getBalanceNumber(tvlValue).toLocaleString()
 
   const lpLabel = battlefield.lpSymbol && battlefield.lpSymbol.toUpperCase().replace('PANCAKE', '')
   const battlefieldAPY = battlefield.apy && battlefield.apy.times(new BigNumber(100)).toNumber().toLocaleString('en-US').slice(0, -1)
-
+  
   const { quoteTokenAdresses, quoteTokenSymbol, tokenAddresses } = battlefield
   const liquidityUrlPathParts = getLiquidityUrlPathParts({ quoteTokenAdresses, quoteTokenSymbol, tokenAddresses })
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
 
   return (
     <FCard>
-      {battlefield.tokenSymbol === 'KNIGHT' && <StyledCardAccent />}
-
       <CardHeading
         lpLabel={lpLabel}
         multiplier={battlefield.multiplier}
@@ -149,11 +232,12 @@ const BattlefieldCard: React.FC<BattlefieldCardProps> = ({ battlefield, removed,
         rewardRate = {battlefield.rewardRate}
       />
       <CardActionsContainer battlefield={battlefield} ethereum={ethereum} account={account} addLiquidityUrl={addLiquidityUrl} />
+      <Text mt="16px">Your Holdings: ~${stakedBalanceFormatted}</Text>
       <Divider />
-      <Text>Total at War:</Text> 
-      <Text>{battlefield.quoteTokenAmount}</Text>
+      <Text >Total at War:</Text> 
+      <Text fontSize="14px">{formattedTotalAtWarBalance} (~${tvlBalanceFormatted})</Text>
       <Text>Total Rewards Remaining:</Text> 
-      <Text>{battlefield.rewardsBalance}</Text>
+      <Text fontSize="14px">{formattedRewardsBalance} (~${rewardBalanceFormatted})</Text>
     </FCard>
   )
 }

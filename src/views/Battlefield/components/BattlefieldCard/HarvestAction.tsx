@@ -15,8 +15,34 @@ const HarvestAction: React.FC<BattlefieldCardActionsProps> = ({ earnings, pid })
   const [pendingTx, setPendingTx] = useState(false)
   const { onReward } = useBattlefieldHarvest(pid)
 
+  let precision = 0
   const rawEarningsBalance = getBalanceNumber(earnings)
-  const displayBalance = rawEarningsBalance.toFixed(6)
+  if(rawEarningsBalance < 1000 && rawEarningsBalance >= 100){
+    precision = 1
+  }
+  if(rawEarningsBalance < 100 && rawEarningsBalance >= 1){
+    precision = 2
+  }
+  if(rawEarningsBalance < 1 && rawEarningsBalance >= .01){
+    precision = 3
+  }
+  if(rawEarningsBalance < .01 && rawEarningsBalance >= 0.001){
+    precision = 4
+  } 
+  if(rawEarningsBalance < 0.001 && rawEarningsBalance >= 0){
+    precision = 5
+  }
+  if(rawEarningsBalance === 0){
+      precision = 0
+  }
+
+  const displayBalance = new BigNumber(rawEarningsBalance.toFixed(precision)).toNumber()
+  let newDisplayBalance = "0"
+  if(displayBalance > .001){
+    newDisplayBalance = displayBalance.toLocaleString()
+  } else {
+    newDisplayBalance = displayBalance.toFixed(precision)
+  }
 
   return (
     <Flex mb="8px" justifyContent="space-between" alignItems="center">

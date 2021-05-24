@@ -70,6 +70,14 @@ const CakeStats = () => {
           <CardValue fontSize="14px" decimals={0} value={knightPerBlock} />
         </Row>
         <Row>
+          <Text fontSize="14px">Total KNIGHT Left to Mint</Text>
+          <CardValue fontSize="14px" decimals={0}value={10000000 - getBalanceNumber(burnedBalance) - cakeSupply} />
+        </Row>
+        <Row>
+          <Text fontSize="14px">KNIGHT Minting Days Left (at current rate)</Text>
+          <CardValue fontSize="14px" decimals={0}value={(10000000 - getBalanceNumber(burnedBalance) - cakeSupply)/28800} />
+        </Row>
+        <Row>
           <Text fontSize="14px">KNIGHT Market Cap</Text>
           <CardValue fontSize="14px" decimals={0} value={knightMarketCap} prefix='$'/>
         </Row>
