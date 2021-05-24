@@ -12,6 +12,10 @@ const config: MenuEntry[] = [
     icon: 'InfoIcon',
     items: [
       {
+        label: 'Tokens Guide',
+        href: 'https://gateway.pinata.cloud/ipfs/QmPSY65Ksy61eGqqEE2XR8ewU6HVct15jgLXtMQEAzHhzD/Token%20Guide.jpg',
+      },
+      {
         label: 'Buy SHILLING',
         href: 'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x643B6ef6306417A0b3FA2813eb5BAf30F5dd8736',
       },
@@ -34,18 +38,9 @@ const config: MenuEntry[] = [
     ],
   },
   {
-    label: "Trade",
+    label: "Add Liquidity",
     icon: "TradeIcon",
-    items: [
-      {
-        label: "Liquidity (PCS V1)",
-        href: "https://exchange.alchemistdefi.com/#/pool",
-      },
-      {
-        label: "Liquidity (PCS V2)",
-        href: "https://exchange.pancakeswap.finance/#/pool",
-      },
-    ],
+    href: "https://exchange.alchemistdefi.com/#/pool"
   },
   {
     label: 'Battlefield',
