@@ -17,7 +17,7 @@ const CompoundAction: React.FC<BattlefieldCardActionsProps> = ({ earnings, pid }
   const rawEarningsBalance = getBalanceNumber(earnings)
 
   return (
-    <Flex justifyContent="space-between" alignItems="center" flexDirection="column-reverse">
+    <Flex justifyContent="space-between" alignItems="right" flexDirection="column-reverse">
       <Button
         variant="secondary"
         disabled={rawEarningsBalance === 0 || pendingTx}
