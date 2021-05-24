@@ -12,6 +12,7 @@ import UnlockButton from 'components/UnlockButton'
 import { useBattlefieldApprove } from 'hooks/useApprove'
 import StakeAction from './StakeAction'
 import HarvestAction from './HarvestAction'
+import CompoundAction from './CompoundAction'
 
 const Action = styled.div`
   padding-top: 16px;
@@ -70,6 +71,7 @@ const CardActions: React.FC<BattlefieldCardActionsProps> = ({ battlefield, ether
 
   return (
     <Action>
+      
       <Flex>
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="3px">
           {lpName}
@@ -88,6 +90,9 @@ const CardActions: React.FC<BattlefieldCardActionsProps> = ({ battlefield, ether
         </Text>
       </Flex>
       {!account ? <UnlockButton mt="8px"  /> : renderApprovalOrStakeButton()}
+      <Flex mt='8px' flexDirection="column-reverse">
+        <CompoundAction earnings={earnings} pid={pid} />
+      </Flex>
     </Action>
   )
 }
