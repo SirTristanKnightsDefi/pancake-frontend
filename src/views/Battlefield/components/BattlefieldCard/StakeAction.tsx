@@ -78,7 +78,7 @@ const StakeAction: React.FC<BattlefieldCardActionsProps> = ({
       <Flex justifyContent="space-between" alignItems="center">
         <Heading color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>{displayBalance}</Heading>
         {rawStakedBalance === 0 ? (
-           <Button onClick={onPresentDeposit}><Text color="tertiary">Stake</Text></Button>
+           <HarvestButton onClick={onPresentDeposit}><Text fontSize="14px">Stake (+)</Text></HarvestButton>
         ) : (
           <Flex mb="2px">
               <HarvestButton variant="tertiary" onClick={onPresentDeposit}>
@@ -89,9 +89,16 @@ const StakeAction: React.FC<BattlefieldCardActionsProps> = ({
       </Flex>
       <Flex justifyContent="space-between" alignItems="center" >
         <Text fontSize="14px"> (~${stakedBalanceFormatted})</Text>
-        <HarvestButton variant="tertiary" onClick={onPresentWithdraw}>
+        {rawStakedBalance === 0 ? (
+           <Text />
+        ) : (
+          <Flex mb="2px">
+              <HarvestButton variant="tertiary" onClick={onPresentWithdraw}>
                 <Text fontSize="14px">Unstake (-)</Text>
-        </HarvestButton>
+          </HarvestButton>
+          </Flex>
+        )}
+        
       </Flex>
     </Heading>
   )
