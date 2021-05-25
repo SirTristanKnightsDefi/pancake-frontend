@@ -26,9 +26,11 @@ interface BattlefieldCardActionsProps {
   ethereum?: provider
   account?: string
   addLiquidityUrl?: string
+  earnedValue?: BigNumber
+  stakedBalanceFormatted?: string
 }
 
-const CardActions: React.FC<BattlefieldCardActionsProps> = ({ battlefield, ethereum, account, addLiquidityUrl }) => {
+const CardActions: React.FC<BattlefieldCardActionsProps> = ({ battlefield, ethereum, account, addLiquidityUrl, earnedValue, stakedBalanceFormatted }) => {
   const TranslateString = useI18n()
   const [requestedApproval, setRequestedApproval] = useState(false)
   const { pid, lpAddresses } = useBattlefieldFromSymbol(battlefield.lpSymbol)
@@ -61,6 +63,7 @@ const CardActions: React.FC<BattlefieldCardActionsProps> = ({ battlefield, ether
         tokenName={lpName}
         pid={pid}
         addLiquidityUrl={addLiquidityUrl}
+        stakedBalanceFormatted={stakedBalanceFormatted}
       />
     ) : (
       <Button mt="8px" disabled={requestedApproval} onClick={handleApprove}>
@@ -81,7 +84,7 @@ const CardActions: React.FC<BattlefieldCardActionsProps> = ({ battlefield, ether
           {TranslateString(1072, 'Earned')}
         </Text>
       </Flex>
-      <HarvestAction earnings={earnings} pid={pid} />
+      <HarvestAction earnings={earnings} pid={pid} earnedValue={earnedValue}/>
       <Flex>
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="3px">
           {lpName}
@@ -96,10 +99,8 @@ const CardActions: React.FC<BattlefieldCardActionsProps> = ({ battlefield, ether
         tokenName={lpName}
         pid={pid}
         addLiquidityUrl={addLiquidityUrl}
+        stakedBalanceFormatted={stakedBalanceFormatted}
       />
-      <Flex mt='8px' flexDirection="column-reverse">
-        <CompoundAction earnings={earnings} pid={pid} />
-      </Flex>
       </Action>
       : <UnlockButton mt="8px"  />
   }

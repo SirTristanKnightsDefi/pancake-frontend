@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import BigNumber from 'bignumber.js'
 import { Tag, Flex, Heading, Image, Text} from '@pancakeswap-libs/uikit'
 import { CommunityTag, CoreTag } from 'components/Tags'
 
@@ -13,6 +14,7 @@ export interface ExpandableSectionProps {
   rewardPoolPct?:number
   externalFeePct?:number
   rewardRate?:number
+  earnedValue?: BigNumber
 }
 
 const Wrapper = styled(Flex)`
@@ -34,7 +36,8 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   burnPct,
   rewardPoolPct,
   externalFeePct,
-  rewardRate
+  rewardRate,
+  earnedValue
 }) => {
   return (
     <Wrapper justifyContent="space-between" alignItems="center" mb="12px">

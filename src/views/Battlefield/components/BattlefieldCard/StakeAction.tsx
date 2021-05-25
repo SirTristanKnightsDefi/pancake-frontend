@@ -10,6 +10,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import DepositModal from '../DepositModal'
 import WithdrawModal from '../WithdrawModal'
 import CompoundModal from '../CompoundModal'
+import HarvestButton from './HarvestButton'
 
 interface BattlefieldCardActionsProps {
   stakedBalance?: BigNumber
@@ -17,6 +18,7 @@ interface BattlefieldCardActionsProps {
   tokenName?: string
   pid?: number
   addLiquidityUrl?: string
+  stakedBalanceFormatted?: string
 }
 
 const IconButtonWrapper = styled.div`
@@ -32,6 +34,7 @@ const StakeAction: React.FC<BattlefieldCardActionsProps> = ({
   tokenName,
   pid,
   addLiquidityUrl,
+  stakedBalanceFormatted
 }) => {
   const TranslateString = useI18n()
   const { onStake } = useBattlefieldStake(pid)
@@ -70,26 +73,27 @@ const StakeAction: React.FC<BattlefieldCardActionsProps> = ({
     <CompoundModal max={stakedBalance} onConfirm={onCompound} tokenName={tokenName} />,
   )
 
-  const renderStakingButtons = () => {
-    return rawStakedBalance === 0 ? (
-      <Button onClick={onPresentDeposit}><Text color="tertiary">Stake</Text></Button>
-    ) : (
-      <IconButtonWrapper>
-        <IconButton variant="tertiary" onClick={onPresentWithdraw} mr="6px">
-          <MinusIcon color="primary" />
-        </IconButton>
-        <IconButton variant="tertiary" onClick={onPresentDeposit} mr="6px">
-          <AddIcon color="primary" />
-        </IconButton>
-      </IconButtonWrapper>
-    )
-  }
-
   return (
-    <Flex justifyContent="space-between" alignItems="center">
-      <Heading color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>{displayBalance}</Heading>
-      {renderStakingButtons()}
-    </Flex>
+    <Heading>
+      <Flex justifyContent="space-between" alignItems="center">
+        <Heading color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>{displayBalance}</Heading>
+        {rawStakedBalance === 0 ? (
+           <Button onClick={onPresentDeposit}><Text color="tertiary">Stake</Text></Button>
+        ) : (
+          <Flex mb="2px">
+              <HarvestButton variant="tertiary" onClick={onPresentDeposit}>
+                <Text fontSize="14px">Stake (+)</Text>
+              </HarvestButton>
+          </Flex>
+        )}
+      </Flex>
+      <Flex justifyContent="space-between" alignItems="center" >
+        <Text fontSize="14px"> (~${stakedBalanceFormatted})</Text>
+        <HarvestButton variant="tertiary" onClick={onPresentWithdraw}>
+                <Text fontSize="14px">Unstake (-)</Text>
+        </HarvestButton>
+      </Flex>
+    </Heading>
   )
 }
 

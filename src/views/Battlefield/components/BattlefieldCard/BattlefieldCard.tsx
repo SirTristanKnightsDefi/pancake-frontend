@@ -106,7 +106,7 @@ const BattlefieldCard: React.FC<BattlefieldCardProps> = ({ battlefield, removed,
   // We assume the token name is coin pair + lp e.g. CAKE-BNB LP, LINK-BNB LP,
   // NAR-CAKE LP. The images should be cake-bnb.svg, link-bnb.svg, nar-cake.svg
   const battlefieldImage = battlefield.lpSymbol.split(' ')[0].toLocaleLowerCase()
-  const { stakedBalance } = useBattlefieldUser(battlefield.pid)
+  const { stakedBalance, earnings } = useBattlefieldUser(battlefield.pid)
 
   const rewardsBalance = battlefield.rewardsBalance
   const formattedRewardsBalance = new BigNumber(rewardsBalance).toNumber().toLocaleString()
@@ -144,6 +144,37 @@ const BattlefieldCard: React.FC<BattlefieldCardProps> = ({ battlefield, removed,
     }
     return new BigNumber(0)
   }, [bnbPrice, cakePrice, ethPrice, legendPrice, tablePrice, squirePrice, shillingPrice, stakedBalance, battlefield.tokenSymbol])
+
+  const holderRewardValue: BigNumber = useMemo(() => {
+    if (!earnings) {
+      return null
+    }
+    if (battlefield.tokenSymbol === QuoteToken.BNB) {
+      return bnbPrice.times(earnings)
+    }
+    if (battlefield.tokenSymbol === QuoteToken.CAKE) {
+      return cakePrice.times(earnings)
+    }
+    if (battlefield.tokenSymbol === QuoteToken.KNIGHT) {
+      return cakePrice.times(earnings)
+    }
+    if (battlefield.tokenSymbol === QuoteToken.ETH) {
+      return ethPrice.times(earnings)
+    }
+    if (battlefield.tokenSymbol === QuoteToken.LEGEND) {
+      return legendPrice.times(earnings)
+    }
+    if (battlefield.tokenSymbol === QuoteToken.TABLE) {
+      return tablePrice.times(earnings)
+    }
+    if (battlefield.tokenSymbol === QuoteToken.SQUIRE) {
+      return squirePrice.times(earnings)
+    }
+    if (battlefield.tokenSymbol === QuoteToken.SHILLING) {
+      return shillingPrice.times(earnings)
+    }
+    return new BigNumber(0)
+  }, [bnbPrice, cakePrice, ethPrice, legendPrice, tablePrice, squirePrice, shillingPrice, earnings, battlefield.tokenSymbol])
 
   const rewardValue: BigNumber = useMemo(() => {
     if (!rewardsBalance) {
@@ -210,6 +241,8 @@ const BattlefieldCard: React.FC<BattlefieldCardProps> = ({ battlefield, removed,
   const stakedBalanceFormatted = getBalanceNumber(stakedValue).toLocaleString()
   const rewardBalanceFormatted = getBalanceNumber(rewardValue).toLocaleString()
   const tvlBalanceFormatted = getBalanceNumber(tvlValue).toLocaleString()
+  const holderRewardValueFormatted = getBalanceNumber(holderRewardValue).toLocaleString()
+  const earnedValue = holderRewardValue
 
   const lpLabel = battlefield.lpSymbol && battlefield.lpSymbol.toUpperCase().replace('PANCAKE', '')
   const battlefieldAPY = battlefield.apy && battlefield.apy.times(new BigNumber(100)).toNumber().toLocaleString('en-US').slice(0, -1)
@@ -230,9 +263,9 @@ const BattlefieldCard: React.FC<BattlefieldCardProps> = ({ battlefield, removed,
         rewardPoolPct = {battlefield.rewardPoolPct}
         externalFeePct = {battlefield.externalFeePct}
         rewardRate = {battlefield.rewardRate}
+        earnedValue = {earnedValue}
       />
-      <CardActionsContainer battlefield={battlefield} ethereum={ethereum} account={account} addLiquidityUrl={addLiquidityUrl} />
-      <Text mt="16px">Your Holdings: ~${stakedBalanceFormatted}</Text>
+      <CardActionsContainer battlefield={battlefield} ethereum={ethereum} account={account} addLiquidityUrl={addLiquidityUrl} earnedValue = {earnedValue} stakedBalanceFormatted={stakedBalanceFormatted} />
       <Divider />
       <Text >Total at War:</Text> 
       <Text fontSize="14px">{formattedTotalAtWarBalance} (~${tvlBalanceFormatted})</Text>

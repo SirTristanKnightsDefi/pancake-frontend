@@ -4,13 +4,16 @@ import { Button, Flex, Heading, Text } from '@pancakeswap-libs/uikit'
 import useI18n from 'hooks/useI18n'
 import { useBattlefieldHarvest } from 'hooks/useHarvest'
 import { getBalanceNumber } from 'utils/formatBalance'
+import CompoundAction from './CompoundAction'
+import HarvestButton from './HarvestButton'
 
 interface BattlefieldCardActionsProps {
   earnings?: BigNumber
   pid?: number
+  earnedValue?: BigNumber
 }
 
-const HarvestAction: React.FC<BattlefieldCardActionsProps> = ({ earnings, pid }) => {
+const HarvestAction: React.FC<BattlefieldCardActionsProps> = ({ earnings, pid, earnedValue }) => {
   const TranslateString = useI18n()
   const [pendingTx, setPendingTx] = useState(false)
   const { onReward } = useBattlefieldHarvest(pid)
@@ -43,21 +46,28 @@ const HarvestAction: React.FC<BattlefieldCardActionsProps> = ({ earnings, pid })
   } else {
     newDisplayBalance = displayBalance.toFixed(precision)
   }
+  const formattedEarnedValue = getBalanceNumber(earnedValue).toLocaleString()
 
   return (
-    <Flex mb="8px" justifyContent="space-between" alignItems="center">
-      <Heading color={rawEarningsBalance === 0 ? 'textDisabled' : 'text'}>{displayBalance}</Heading>
-      <Button
-        disabled={rawEarningsBalance === 0 || pendingTx}
-        onClick={async () => {
-          setPendingTx(true)
-          await onReward()
-          setPendingTx(false)
-        }}
-      >
-        <Text color="tertiary">Harvest</Text>
-      </Button>
-    </Flex>
+    <Heading>
+      <Flex mb="2px" justifyContent="space-between" alignItems="center">
+        <Heading color={rawEarningsBalance === 0 ? 'textDisabled' : 'text'}>{newDisplayBalance}</Heading>
+        <HarvestButton
+          onClick={async () => {
+            setPendingTx(true)
+            await onReward()
+            setPendingTx(false)
+          }}
+        >
+          <Text fontSize="14px">Harvest</Text>
+        </HarvestButton>
+      </Flex>
+      <Flex mb="8px" justifyContent="space-between" alignItems="center">
+        <Text fontSize="14px"> (~${formattedEarnedValue})</Text>
+        <CompoundAction earnings={earnings} pid={pid}/>
+      </Flex>
+
+    </Heading>
   )
 }
 

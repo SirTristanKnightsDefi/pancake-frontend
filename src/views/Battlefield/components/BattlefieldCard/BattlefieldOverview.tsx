@@ -84,7 +84,7 @@ const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }
   
   const { pid, lpAddresses } = useBattlefieldFromSymbol(battlefield.lpSymbol)
   const { allowance, tokenBalance, stakedBalance, earnings, userArmyStrength, userArmyPercent } = useBattlefieldUser(pid)
-  const rawArmyStrength = getBalanceNumber(userArmyStrength).toLocaleString
+  const rawArmyStrength = getBalanceNumber(userArmyStrength).toLocaleString()
   const rawArmyPercent = new BigNumber(getBalanceNumber(userArmyPercent)).multipliedBy(100).toFixed(6)
   const rawTotalArmyStrength = new BigNumber(battlefield.totalArmyStrength).toNumber().toLocaleString()
 
