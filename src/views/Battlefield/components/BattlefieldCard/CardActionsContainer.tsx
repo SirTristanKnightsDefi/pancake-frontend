@@ -92,15 +92,21 @@ const CardActions: React.FC<BattlefieldCardActionsProps> = ({ battlefield, ether
         <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
           {TranslateString(1074, 'Staked')}
         </Text>
-      </Flex>
-      <StakeAction
-        stakedBalance={stakedBalance}
-        tokenBalance={tokenBalance}
-        tokenName={lpName}
-        pid={pid}
-        addLiquidityUrl={addLiquidityUrl}
-        stakedBalanceFormatted={stakedBalanceFormatted}
-      />
+      </Flex>{
+        isApproved ? (
+          <StakeAction
+            stakedBalance={stakedBalance}
+            tokenBalance={tokenBalance}
+            tokenName={lpName}
+            pid={pid}
+            addLiquidityUrl={addLiquidityUrl}
+            stakedBalanceFormatted={stakedBalanceFormatted}
+          />
+        ) : (
+          <Button mt="8px" disabled={requestedApproval} onClick={handleApprove}>
+            {TranslateString(758, 'Approve Contract')}
+          </Button>
+        )}
       </Action>
       : <UnlockButton mt="8px"  />
   }
