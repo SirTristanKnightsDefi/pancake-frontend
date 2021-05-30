@@ -5,7 +5,7 @@ import useI18n from 'hooks/useI18n'
 import { useGetStats } from 'hooks/api'
 
 import {
-  useTotalValue,
+  useTotalValue, useTotalRewards
 } from 'state/hooks'
 
 const StyledTotalValueLockedCard = styled(Card)`
@@ -17,7 +17,8 @@ const StyledTotalValueLockedCard = styled(Card)`
 const TotalValueLockedCard = () => {
   const TranslateString = useI18n()
   // const tvl = data ? data.total_value_locked_all.toLocaleString('en-US', { maximumFractionDigits: 0 }) : null
-  const tvl = useTotalValue();
+  const tvl = useTotalValue()
+  const totalRewards = useTotalRewards()
 
   return (
     <StyledTotalValueLockedCard>
@@ -29,6 +30,20 @@ const TotalValueLockedCard = () => {
           <>
             <Heading size="xl">${tvl.toNumber().toLocaleString('en-US', { maximumFractionDigits: 0 })}</Heading>
             <Text color="textSubtle">{TranslateString(764, 'Across all Farms, Pools, and Battlefield')}</Text>
+          </>
+        ) : (
+          <>
+            <Skeleton height={66} />
+          </>
+        )}
+
+        <Heading mt="12px"  size="lg" mb="24px">
+          {TranslateString(762, 'Total Battlefield Rewards Remaining')}
+        </Heading>
+        {tvl ? (
+          <>
+            <Heading size="xl">${totalRewards.toNumber().toLocaleString('en-US', { maximumFractionDigits: 0 })}</Heading>
+            <Text color="textSubtle">{TranslateString(764, 'In Battlefield')}</Text>
           </>
         ) : (
           <>

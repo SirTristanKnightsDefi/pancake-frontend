@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from 'react'
 import BigNumber from 'bignumber.js'
-import { kebabCase } from 'lodash'
+import { kebabCase, toNumber } from 'lodash'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { Toast, toastTypes } from '@pancakeswap-libs/uikit'
 import { useSelector, useDispatch } from 'react-redux'
@@ -277,6 +277,8 @@ export const useTotalValue = (): BigNumber => {
         val = bnbPrice.times(farm.lpTotalInQuoteToken)
       } else if (farm.quoteTokenSymbol === QuoteToken.CAKE) {
         val = cakePrice.times(farm.lpTotalInQuoteToken)
+      } else if (farm.quoteTokenSymbol === QuoteToken.SQUIRE) {
+        val = squirePrice.times(farm.lpTotalInQuoteToken)
       } else if (farm.quoteTokenSymbol === QuoteToken.ETH) {
         val = ethPrice.times(farm.lpTotalInQuoteToken)
       } else {
@@ -285,20 +287,22 @@ export const useTotalValue = (): BigNumber => {
       value = value.plus(val)
     }
   }
+  
   for (let i = 0; i < battlefield.length; i++) {
     const bf = battlefield[i]
     if (bf.quoteTokenAmount) {
+      const bfStaking = new BigNumber(bf.quoteTokenAmount).toNumber() - new BigNumber(bf.rewardsBalance).toNumber()
       if (bf.tokenSymbol === QuoteToken.KNIGHT){
-        value = value.plus(cakePrice.times(bf.quoteTokenAmount))
+        value = value.plus(cakePrice.times(bfStaking))
       }
       if (bf.tokenSymbol === QuoteToken.LEGEND){
-        value = value.plus(legendPrice.times(bf.quoteTokenAmount))
+        value = value.plus(legendPrice.times(bfStaking))
       }
       if (bf.tokenSymbol === QuoteToken.TABLE){
-        value = value.plus(tablePrice.times(bf.quoteTokenAmount))
+        value = value.plus(tablePrice.times(bfStaking))
       }
       if (bf.tokenSymbol === QuoteToken.SQUIRE){
-        value = value.plus(squirePrice.times(bf.quoteTokenAmount))
+        value = value.plus(squirePrice.times(bfStaking))
       }
     }
   }
@@ -309,3 +313,41 @@ export const useTotalValue = (): BigNumber => {
 
   return value
 }
+
+export const useTotalRewards = (): BigNumber => {
+  const farms = useFarms()
+  const battlefield = useBattlefield()
+  const pool = usePoolFromPid(0)
+  const cakePrice = usePriceCakeBusd()
+  const legendPrice = usePriceLegendBusd()
+  const tablePrice = usePriceTableBusd()
+  const squirePrice = usePriceSquireBusd()
+
+  // Add Farms
+  let value = new BigNumber(0)
+  
+  for (let i = 0; i < battlefield.length; i++) {
+    const bf = battlefield[i]
+    if (bf.rewardsBalance) {
+      if (bf.tokenSymbol === QuoteToken.KNIGHT){
+        value = value.plus(cakePrice.times(bf.rewardsBalance))
+      }
+      if (bf.tokenSymbol === QuoteToken.LEGEND){
+        value = value.plus(legendPrice.times(bf.rewardsBalance))
+      }
+      if (bf.tokenSymbol === QuoteToken.TABLE){
+        value = value.plus(tablePrice.times(bf.rewardsBalance))
+      }
+      if (bf.tokenSymbol === QuoteToken.SQUIRE){
+        value = value.plus(squirePrice.times(bf.rewardsBalance))
+      }
+    }
+  }
+
+  // Add pool as well! -- Sir Tris
+  const val = cakePrice.times(pool.totalStaked).div(1e18)
+  value = value.plus(val)
+
+  return value
+}
+

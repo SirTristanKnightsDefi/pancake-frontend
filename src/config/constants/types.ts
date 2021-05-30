@@ -60,6 +60,7 @@ export interface FarmConfig {
   quoteTokenAdresses: Address
   multiplier?: string
   isCommunity?: boolean
+  lpVersion?: number // 1 for PCS V1, 2 for PCS v2, other numbers can be used for other purposes if ever needed.
   dual?: {
     rewardPerBlock: number
     earnLabel: string

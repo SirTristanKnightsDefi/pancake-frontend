@@ -9,7 +9,7 @@ import useI18n from 'hooks/useI18n'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
 import { QuoteToken } from 'config/constants/types'
 import { usePriceSquireBusd } from 'state/hooks'
-import { BASE_ADD_LIQUIDITY_URL } from 'config'
+import { BASE_ADD_LIQUIDITY_URL, V2_BASE_ADD_LIQUIDITY_URL} from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
@@ -125,6 +125,8 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
     return farm.lpTotalInQuoteToken
   }, [bnbPrice, cakePrice, ethPrice, squirePrice, farm.lpTotalInQuoteToken, farm.quoteTokenSymbol])
 
+  
+
   const totalValueFormated = totalValue
     ? `$${Number(totalValue).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
     : '-'
@@ -135,7 +137,13 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
 
   const { quoteTokenAdresses, quoteTokenSymbol, tokenAddresses } = farm
   const liquidityUrlPathParts = getLiquidityUrlPathParts({ quoteTokenAdresses, quoteTokenSymbol, tokenAddresses })
-  const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+  let addLiquidityUrl = ""
+  if(farm.lpVersion === 1){
+    addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+  } else if (farm.lpVersion === 2){
+    addLiquidityUrl = `${V2_BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+  }
+  
 
   return (
     <FCard>

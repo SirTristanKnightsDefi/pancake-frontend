@@ -52,6 +52,8 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account, 
     }
   }, [onApprove])
 
+  
+
   const renderApprovalOrStakeButton = () => {
     return isApproved ? (
       <StakeAction

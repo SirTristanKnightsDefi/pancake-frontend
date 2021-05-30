@@ -16,10 +16,75 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    lpVersion: 1
+  },
+  {
+    pid: 10,
+    lpSymbol: 'KNIGHT-BNB V2 LP',
+    lpAddresses: {
+      97: '0x8e53470B95d52A3D83637BF9E42891b17E785Ba4', // KNIGHT-BNB V2 LP
+      56: '0x8e53470B95d52A3D83637BF9E42891b17E785Ba4', // KNIGHT-BNB V2 LP
+    },
+    tokenSymbol: 'KNIGHT',
+    tokenAddresses: {
+      97: '0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30', // KNIGHT
+      56: '0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30', // KNIGHT
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    lpVersion: 2
+  },
+  {
+    pid: 11,
+    lpSymbol: 'KNIGHT-BUSD V2 LP',
+    lpAddresses: {
+      97: '0x7789d441D4a32084A4484023424dc5F916dEde3f', // KNIGHT-BUSD V2 LP
+      56: '0x7789d441D4a32084A4484023424dc5F916dEde3f', // KNIGHT-BUSD V2 LP
+    },
+    tokenSymbol: 'KNIGHT',
+    tokenAddresses: {
+      97: '0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30', // KNIGHT
+      56: '0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30', // KNIGHT
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    lpVersion: 2
+  },
+  {
+    pid: 12,
+    lpSymbol: 'TABLE-BNB V2 LP',
+    lpAddresses: {
+      97: '0xd54ED4F02B3Ce38267AF6f39599dDaAc87435BbA', // TABLE-BNB V2 LP
+      56: '0xd54ED4F02B3Ce38267AF6f39599dDaAc87435BbA', // TABLE-BNB V2 LP
+    },
+    tokenSymbol: 'TABLE',
+    tokenAddresses: {
+      97: '0xf5a2f7418035ce76967f515f39d65719bb0453b6', // TABLE
+      56: '0xf5a2f7418035ce76967f515f39d65719bb0453b6', // TABLE
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    lpVersion: 2
+  },
+  {
+    pid: 13,
+    lpSymbol: 'TABLE-BUSD V2 LP',
+    lpAddresses: {
+      97: '0x6Bba8AD77F7E777Cbe28a01Dd13670025765090C', // TABLE-BUSD V2 LP
+      56: '0x6Bba8AD77F7E777Cbe28a01Dd13670025765090C', // TABLE-BUSD V2 LP
+    },
+    tokenSymbol: 'TABLE',
+    tokenAddresses: {
+      97: '0xf5a2f7418035ce76967f515f39d65719bb0453b6', // TABLE
+      56: '0xf5a2f7418035ce76967f515f39d65719bb0453b6', // TABLE
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    lpVersion: 2
   },
   {
     pid: 1,
-    lpSymbol: 'KNIGHT-BNB LP',
+    lpSymbol: 'KNIGHT-BNB V1 LP',
     lpAddresses: {
       97: '0xe13CB5bcff475065e1Eea1c9fbd1a4f621eAe21D', // KNIGHT-BNB LP
       56: '0xe13CB5bcff475065e1Eea1c9fbd1a4f621eAe21D', // KNIGHT-BNB LP
@@ -31,10 +96,11 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    lpVersion: 1
   },
   {
     pid: 2,
-    lpSymbol: 'TABLE-BNB LP',
+    lpSymbol: 'TABLE-BNB V1 LP',
     lpAddresses: {
       97: '0x3468eac4eFB3e1FCeB3229Bc86F35da7749b0bCa', // TABLE-BNB LP
       56: '0x3468eac4eFB3e1FCeB3229Bc86F35da7749b0bCa', // TABLE-BNB LP
@@ -46,10 +112,11 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    lpVersion: 1
   },
   {
     pid: 5,
-    lpSymbol: 'LEGEND-BNB LP',
+    lpSymbol: 'LEGEND-BNB V1 LP',
     lpAddresses: {
       97: '0x3d2bb5e65eb6d54f36791e242d726db1d5041f59', // LEGEND-BNB LP
       56: '0x3d2bb5e65eb6d54f36791e242d726db1d5041f59', // LEGEND-BNB LP
@@ -61,10 +128,11 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    lpVersion: 1
   },
   {
     pid: 6,
-    lpSymbol: 'SQUIRE-BNB LP',
+    lpSymbol: 'SQUIRE-BNB V1 LP',
     lpAddresses: {
       97: '0x1ef4674486e066515fa57e9c75e372e7e4f10fdc', // SQUIRE-BNB LP
       56: '0x1ef4674486e066515fa57e9c75e372e7e4f10fdc', // SQUIRE-BNB LP
@@ -76,10 +144,11 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    lpVersion: 1
   },
   {
     pid: 3,
-    lpSymbol: 'TABLE-KNIGHT LP',
+    lpSymbol: 'TABLE-KNIGHT V1 LP',
     lpAddresses: {
       97: '0x646272497f5618d98c0364535A17E2fbAe933C71', // TABLE-KNIGHT LP
       56: '0x646272497f5618d98c0364535A17E2fbAe933C71', // TABLE-KNIGHT LP
@@ -91,10 +160,11 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.CAKE,
     quoteTokenAdresses: contracts.cake,
+    lpVersion: 1
   },
   {
     pid: 7,
-    lpSymbol: 'SQUIRE-RBT LP',
+    lpSymbol: 'SQUIRE-RBT V1 LP',
     lpAddresses: {
       97: '0xf61525267c93265d8573fb5a57b9f2cfea817214', // SQUIRE-RBT LP
       56: '0xf61525267c93265d8573fb5a57b9f2cfea817214', // SQUIRE-RBT LP
@@ -107,10 +177,11 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.SQUIRE,
     quoteTokenAdresses: contracts.squire,
     isCommunity: true,
+    lpVersion: 1
   },
   {
     pid: 8,
-    lpSymbol: 'SQUIRE-MIST LP',
+    lpSymbol: 'SQUIRE-MIST V1 LP',
     lpAddresses: {
       97: '0x73b46497e9992fab410dd25b3785aded4f8ccb47', // SQUIRE-MIST LP
       56: '0x73b46497e9992fab410dd25b3785aded4f8ccb47', // SQUIRE-MIST LP
@@ -123,10 +194,11 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.SQUIRE,
     quoteTokenAdresses: contracts.squire,
     isCommunity: true,
+    lpVersion: 1
   },
   {
     pid: 4,
-    lpSymbol: 'BUSD-BNB LP',
+    lpSymbol: 'BUSD-BNB V1 LP',
     lpAddresses: {
       97: '0x1b96b92314c44b159149f7e0303511fb2fc4774f', // BUSD-BNB LP
       56: '0x1b96b92314c44b159149f7e0303511fb2fc4774f', // BUSD-BNB LP
@@ -138,10 +210,11 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    lpVersion: 1
   },
   {
     pid: 9,
-    lpSymbol: 'SHILLING-BNB LP',
+    lpSymbol: 'SHILLING-BNB V1 LP',
     lpAddresses: {
       97: '0xa4695E76Be7583eD69f397D45c3A1cd70B956397', // SHILLING-BNB LP
       56: '0xa4695E76Be7583eD69f397D45c3A1cd70B956397', // SHILLING-BNB LP
@@ -153,6 +226,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    lpVersion: 1
   },
   
 ]
