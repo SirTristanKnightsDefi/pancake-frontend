@@ -120,7 +120,7 @@ export const usePriceBnbBusd = (): BigNumber => {
 }
 
 export const usePriceCakeBusd = (): BigNumber => {
-  const pid = 1 // KNIGHT-BNB LP
+  const pid = 10 // KNIGHT-BNB LP
   const bnbPriceUSD = usePriceBnbBusd()
   const farm = useFarmFromPid(pid)
   return farm.tokenPriceVsQuote ? bnbPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
@@ -140,7 +140,7 @@ export const usePriceEthBnb = (): BigNumber => {
 }
 
 export const usePriceTableBusd = (): BigNumber => {
-  const pid = 2 // TABLE-BNB LP
+  const pid = 12 // TABLE-BNB LP
   const bnbPriceUSD = usePriceBnbBusd()
   const farm = useFarmFromPid(pid)
   return farm.tokenPriceVsQuote ? bnbPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
