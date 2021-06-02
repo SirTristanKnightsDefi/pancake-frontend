@@ -223,16 +223,10 @@ export const ShillingRewardsCard = () => {
             Buy Shilling
         </Button>
         <Divider />
-        <Text mb="2px">Earned SHILLING from Battlefield</Text>
-        <Text mb="2px">{new BigNumber(((state.totalRewards)/1e18).toFixed(0)).toNumber().toLocaleString()} SHILLING</Text>
-        <Text mb="12px">~($ {((state.totalRewards/1e18)*(shillingPrice)).toFixed(2)})</Text>
-        <Button variant="secondary" onClick={onUnstake}>
-          Harvest Shilling
-        </Button>
-        <Divider />
         <Heading mb="12px">Total BNB in Pool: {(state.bnbPool/1e18).toFixed(2)} </Heading>
-        <Heading mb="12px">Next BNB Claim: {(state.bnbToClaim/1e18).toFixed(4)} </Heading>
-        <Text mb="12px">{state.formattedClaimDate}</Text>
+        <Heading mb="12px">Your Next BNB Claim: {(state.bnbToClaim/1e18).toFixed(4)} </Heading>
+        <Text mb="12px">Estimated Annual BNB: {(state.bnbToClaim/1e18*(365/3)).toFixed(4)} </Text>
+        <Text mb="12px">Your Next Claim Date: {state.formattedClaimDate}</Text>
         {state.claimBnbAvailable 
         ?
         <Button variant="secondary" onClick={onBnbReward}>
@@ -243,6 +237,21 @@ export const ShillingRewardsCard = () => {
         </Button>
         }
         <Divider />
+        <Text mb="2px">Earned SHILLING from Battlefield</Text>
+        <Text mb="2px">{new BigNumber(((state.totalRewards)/1e18).toFixed(0)).toNumber().toLocaleString()} SHILLING</Text>
+        <Text mb="12px">~($ {((state.totalRewards/1e18)*(shillingPrice)).toFixed(2)})</Text>
+        {state.earnings > 0
+        ?
+        <Button variant="secondary" onClick={onUnstake}>
+          Harvest Shilling
+        </Button> :
+        <Button variant="tertiary">
+          No Shilling to Harvest from Battlefield
+        </Button>
+        }
+
+        <Divider />
+        
         <Button as="a" variant="secondary" href="https://docs.knightsdefi.com/shilling" target="_blank">
             Read More
         </Button>
