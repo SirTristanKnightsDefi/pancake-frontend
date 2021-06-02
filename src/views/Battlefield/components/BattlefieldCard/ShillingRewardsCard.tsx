@@ -167,7 +167,7 @@ export const ShillingRewardsCard = () => {
           // get BNB Claim date
           const unformattedClaimDate = timeConverter(nextClaimDate)
           
-          if(unformattedClaimDate <= new Date() && nextClaimDate > 0){
+          if(unformattedClaimDate < new Date() && nextClaimDate > 0){
             claimBnbAvailable = true
           }
           
