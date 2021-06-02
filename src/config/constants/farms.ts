@@ -214,7 +214,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 9,
-    lpSymbol: 'SHILLING-BNB V1 LP',
+    lpSymbol: 'SHILLING-BNB V2 LP',
     lpAddresses: {
       97: '0xa4695E76Be7583eD69f397D45c3A1cd70B956397', // SHILLING-BNB LP
       56: '0xa4695E76Be7583eD69f397D45c3A1cd70B956397', // SHILLING-BNB LP

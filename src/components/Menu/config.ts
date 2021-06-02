@@ -25,7 +25,7 @@ const config: MenuEntry[] = [
       },
       {
         label: 'Buy KNIGHT',
-        href: 'https://exchange.alchemistdefi.com/#/swap?outputCurrency=0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30&inputCurrency=BNB',
+        href: 'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30&inputCurrency=BNB',
       },  
       {
         label: 'Buy LEGEND',
@@ -33,7 +33,7 @@ const config: MenuEntry[] = [
       },
       {
         label: 'Buy TABLE',
-        href: 'https://exchange.alchemistdefi.com/#/swap?outputCurrency=0xf5a2f7418035ce76967f515f39d65719bb0453b6&inputCurrency=BNB',
+        href: 'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0xf5a2f7418035ce76967f515f39d65719bb0453b6&inputCurrency=BNB',
       },
     ],
   },
