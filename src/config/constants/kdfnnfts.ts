@@ -76,6 +76,21 @@ const KdfnNfts: Nft[] = [
     nftId: 4,
     purchaseTokenName: "SQUIRE",
   },
+  {
+    name: 'Shilling to the Moon',
+    description: 'Shilling to the Moon',
+    images: {
+      lg: 'Shilling to the Moon Small.gif',
+      md: 'Shilling to the Moon Small.gif',
+      sm: 'Shilling to the Moon Small.gif',
+      ipfs: 'https://gateway.pinata.cloud/ipfs/QmWSnwv27kqh8N5f8v9UiXbY2uroKsQZrYjdKpzAPBrrkL?image=shilling_to_the_moon.gif',
+      blur: 'Shilling to the Moon Small.gif',
+    },
+    sortOrder: 999,
+    tokenId: 0,
+    nftId: 5,
+    purchaseTokenName: "KNIGHT",
+  },
 ]
 
 export default KdfnNfts
