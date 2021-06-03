@@ -10,7 +10,7 @@ import { useBattlefieldShillingWithdraw } from 'hooks/useUnstake'
 import { useShillingBnbHarvest } from 'hooks/useHarvest'
 import { getBattlefieldContract, getShillingContract } from 'utils/contractHelpers'
 import { getShillingAddress } from 'utils/addressHelpers'
-import { usePriceShillingBusd } from 'state/hooks'
+import { usePriceShillingBusd, usePriceBnbBusd } from 'state/hooks'
 
 
 type State = {
@@ -85,6 +85,7 @@ export const ShillingRewardsCard = () => {
   const shillingContract = getShillingContract()
   const shillingAddress = getShillingAddress()
   const shillingPrice = usePriceShillingBusd().toNumber()
+  const bnbPrice = usePriceBnbBusd().toNumber()
   const shillingBFRewardsPid = 4 // Change to Battlefield PID for Shilling Rewards after launch.
   const { fastRefresh, slowRefresh } = useRefresh()
   const { account }: { account: string } = useWallet()
@@ -223,9 +224,9 @@ export const ShillingRewardsCard = () => {
             Buy Shilling
         </Button>
         <Divider />
-        <Heading mb="12px">Total BNB in Pool: {(state.bnbPool/1e18).toFixed(2)} </Heading>
-        <Heading mb="12px">Your Next BNB Claim: {(state.bnbToClaim/1e18).toFixed(4)} </Heading>
-        <Text mb="12px">Estimated Annual BNB: {(state.bnbToClaim/1e18*(365/3)).toFixed(4)} </Text>
+        <Heading mb="12px">Total BNB in Pool: {(state.bnbPool/1e18).toFixed(2)} (~${(bnbPrice*state.bnbPool/1e18).toLocaleString()})</Heading>
+        <Heading mb="12px">Your Next BNB Claim: {(state.bnbToClaim/1e18).toFixed(4)} (~${(bnbPrice*state.bnbToClaim/1e18).toLocaleString()})</Heading>
+        <Text mb="12px">Estimated Annual BNB: {(state.bnbToClaim/1e18*(365/3)).toFixed(4)} (~${(bnbPrice*(state.bnbToClaim/1e18*(365/3))).toLocaleString()})</Text>
         <Text mb="12px">Your Next Claim Date: {state.formattedClaimDate}</Text>
         {state.claimBnbAvailable 
         ?
