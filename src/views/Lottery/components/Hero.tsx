@@ -75,7 +75,7 @@ const Hero = () => {
           <Blurb>{TranslateString(712, 'Win if 2, 3, or 4 of your ticket numbers match!')}</Blurb>
         </LeftWrapper>
         <RightWrapper>
-          <Text fontSize="18px">Drawings @ 7PM Kingdom Time (2300 UTC) on Sundays</Text> 
+          <Blurb>Drawings @ 7PM Kingdom Time (2300 UTC) on Sundays</Blurb> 
         </RightWrapper>
       </StyledContainer>
     </StyledHero>
