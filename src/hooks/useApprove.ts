@@ -1,11 +1,12 @@
 import { useCallback } from 'react'
+import BigNumber from 'bignumber.js'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { Contract } from 'web3-eth-contract'
 import { ethers } from 'ethers'
 import { useDispatch } from 'react-redux'
 import { updateUserAllowance, fetchFarmUserDataAsync, fetchBattlefieldUserDataAsync } from 'state/actions'
-import { approve } from 'utils/callHelpers'
-import { useMasterchef, useCake, useSousChef, useLottery, useBattlefield, useKnightsDefiNFTs, useSquire, useKnight, useLegend, useTable } from './useContract'
+import { approve, approveWithLimit } from 'utils/callHelpers'
+import { useMasterchef, useCake, useSousChef, useLottery, useBattlefield, useKnightsDefiNFTs, useSquire, useKnight, useLegend, useTable, useMilfNFTs, useWbnb } from './useContract'
 
 // Approve a Battlefield
 export const useBattlefieldApprove = (lpContract: Contract) => {
@@ -108,6 +109,32 @@ export const useKdfnNftPurchaseApprove = (contract: Contract) => {
   }, [account, contract, kdfnContract])
 
   return { onApprove: handleApprove }
+}
+
+export const useMilfNftWbnbPurchaseApprove = (amount) => {
+  const { account }: { account: string } = useWallet()
+  const milfContract = useMilfNFTs()
+  const contract = useWbnb()
+
+  const handleApprove = useCallback(async () => {
+      const tx = await approveWithLimit(contract, milfContract, amount, account)
+      return tx
+  }, [account, contract, amount, milfContract])
+
+  return { onApprove: handleApprove }
+}
+
+export const useMilfNftWbnbPurchaseApproveUnlimited = () => {
+  const { account }: { account: string } = useWallet()
+  const milfContract = useMilfNFTs()
+  const contract = useWbnb()
+
+  const handleApprove = useCallback(async () => {
+      const tx = await approve(contract, milfContract, account)
+      return tx
+  }, [account, contract, milfContract])
+
+  return { onApproveUnlimited: handleApprove }
 }
 
 // Approve a Farm

@@ -23,6 +23,9 @@ export interface BattlefieldWithStakedValue extends Battlefield {
   apy?: BigNumber
 }
 
+const Wrapper = styled.div`
+  margin-top: 24px;
+`
 const RainbowLight = keyframes`
 	0% {
 		background-position: 0% 50%;
@@ -267,10 +270,20 @@ const BattlefieldCard: React.FC<BattlefieldCardProps> = ({ battlefield, removed,
       />
       <CardActionsContainer battlefield={battlefield} ethereum={ethereum} account={account} addLiquidityUrl={addLiquidityUrl} earnedValue = {earnedValue} stakedBalanceFormatted={stakedBalanceFormatted} />
       <Divider />
-      <Text >Total at War:</Text> 
-      <Text fontSize="14px">{formattedTotalAtWarBalance} (~${tvlBalanceFormatted})</Text>
-      <Text>Total Rewards Remaining:</Text> 
-      <Text fontSize="14px">{formattedRewardsBalance} (~${rewardBalanceFormatted})</Text>
+      <ExpandableSectionButton
+        onClick={() => setShowExpandableSection(!showExpandableSection)}
+        expanded={showExpandableSection}
+        showText="Details"
+        hideText="Hide"
+      />
+      <ExpandingWrapper expanded={showExpandableSection}>
+        <Wrapper>
+          <Text >Total at War:</Text> 
+          <Text fontSize="14px">{formattedTotalAtWarBalance} (~${tvlBalanceFormatted})</Text>
+          <Text>Total Rewards Remaining:</Text> 
+          <Text fontSize="14px">{formattedRewardsBalance} (~${rewardBalanceFormatted})</Text>
+        </Wrapper>
+      </ExpandingWrapper>
     </FCard>
   )
 }

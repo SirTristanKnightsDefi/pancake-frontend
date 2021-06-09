@@ -6,18 +6,20 @@ import { useWallet } from '@binance-chain/bsc-use-wallet'
 import useI18n from 'hooks/useI18n'
 import Page from 'components/layout/Page'
 import useRefresh from 'hooks/useRefresh'
-import {getKdfnNFTsAddress, getKotrtNFTsAddress, getKdfnNFTsBetaAddress, getTheGrailNFTsAddress} from 'utils/addressHelpers'
+import {getKdfnNFTsAddress, getKotrtNFTsAddress, getKdfnNFTsBetaAddress, getTheGrailNFTsAddress, getMilfNFTsAddress} from 'utils/addressHelpers'
 import NftList from './components/NftList'
-import NftProvider, {KotrtNftProvider, KdfnNftProvider, KdfnNftBetaProvider} from './contexts/NftProvider'
+import NftProvider, {KotrtNftProvider, KdfnNftProvider, KdfnNftBetaProvider, MilfNftProvider} from './contexts/NftProvider'
 import KotrtNftList from './components/KotrtNftList'
 import KdfnNftList from './components/KdfnNftList'
 import KdfnNftBetaList from './components/KdfnNftBetaList'
+import MilfNftList from './components/MilfNftList'
 
 type State = {
   kdfnCopied: boolean
   kdfnBetaCopied: boolean
   kotrtCopied: boolean
   theGrailCopied: boolean
+  milfCopied: boolean
 }
 
 const StyledHero = styled.div`
@@ -34,7 +36,8 @@ const Nft = () => {
     kdfnCopied: false,
     kdfnBetaCopied: false,
     kotrtCopied: false,
-    theGrailCopied: false
+    theGrailCopied: false,
+    milfCopied: false
   })
   
   const { account} = useWallet()
@@ -46,13 +49,15 @@ const Nft = () => {
     const kdfnBetaCopied = false
     const kotrtCopied = false
     const theGrailCopied = false
+    const milfCopied = false
 
     setState((prevState) => ({
       ...prevState, 
       kdfnCopied,
       kdfnBetaCopied,
       kotrtCopied,
-      theGrailCopied
+      theGrailCopied,
+      milfCopied
     }))
   }
   const copyKDFNBeta = () => {
@@ -64,13 +69,36 @@ const Nft = () => {
     const kdfnBetaCopied = true
     const kotrtCopied = false
     const theGrailCopied = false
+    const milfCopied = false
 
     setState((prevState) => ({
       ...prevState, 
       kdfnCopied,
       kdfnBetaCopied,
       kotrtCopied,
-      theGrailCopied
+      theGrailCopied,
+      milfCopied
+    }))
+  } 
+
+  const copyMilf = () => {
+    
+    const address = getMilfNFTsAddress()
+    navigator.clipboard.writeText(address)
+
+    const kdfnCopied = false
+    const kdfnBetaCopied = false
+    const kotrtCopied = false
+    const theGrailCopied = false
+    const milfCopied = true
+
+    setState((prevState) => ({
+      ...prevState, 
+      kdfnCopied,
+      kdfnBetaCopied,
+      kotrtCopied,
+      theGrailCopied,
+      milfCopied
     }))
   } 
   const copyKOTRT = () => {
@@ -81,6 +109,7 @@ const Nft = () => {
     const kdfnBetaCopied = false
     const kotrtCopied = true
     const theGrailCopied = false
+    const milfCopied = false
 
 
     setState((prevState) => ({
@@ -88,7 +117,8 @@ const Nft = () => {
       kdfnCopied,
       kdfnBetaCopied,
       kotrtCopied,
-      theGrailCopied
+      theGrailCopied,
+      milfCopied
     }))
   } 
   const copyTheGrail = () => {
@@ -99,13 +129,15 @@ const Nft = () => {
     const kdfnBetaCopied = false
     const kotrtCopied = false
     const theGrailCopied = true
+    const milfCopied = false
 
     setState((prevState) => ({
       ...prevState, 
       kdfnCopied,
       kdfnBetaCopied,
       kotrtCopied,
-      theGrailCopied
+      theGrailCopied,
+      milfCopied
     }))
   } 
 
@@ -136,6 +168,27 @@ const Nft = () => {
           <KdfnNftList />
         </Page>
       </KdfnNftProvider>
+      <MilfNftProvider>
+        <Page>
+          <StyledHero>
+            <Heading as="h1" size="xxl" color="secondary" mb="24px">
+              MILF Collectibles 
+            </Heading>
+            <Heading as="h2" size="lg" color="primary" mb="24px">
+              NFTs for Purchase
+            </Heading>
+            {state.milfCopied ?
+            (<Button>
+              Copied ✔
+              </Button>): 
+            (<Button onClick={copyMilf}>
+              Copy Contract
+            </Button>)
+            }
+          </StyledHero>
+          <MilfNftList />
+        </Page>
+      </MilfNftProvider>
       <KdfnNftBetaProvider>
         <Page>
           <StyledHero>

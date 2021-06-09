@@ -226,7 +226,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
-    lpVersion: 1
+    lpVersion: 2
   },
   
 ]

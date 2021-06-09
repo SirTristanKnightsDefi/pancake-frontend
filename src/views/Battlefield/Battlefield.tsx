@@ -118,15 +118,9 @@ const Battlefield: React.FC = () => {
   return (
     <Page>
       <Hero>
-        <img
-          src={isDark ? battleFieldDarkImage : battleFieldLightImage}
-          alt="Battlefield icon"
-          style={{
-            height: '240px',
-            marginRight: '0px',
-          }}
-        />
-
+        <Heading>
+          Battlefield
+        </Heading>
       </Hero>
       <div>
       <FlexLayout>

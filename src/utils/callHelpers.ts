@@ -1,9 +1,15 @@
 import BigNumber from 'bignumber.js'
 import { ethers } from 'ethers'
 
-export const approve = async (lpContract, masterChefContract, account) => {
-  return lpContract.methods
-    .approve(masterChefContract.options.address, ethers.constants.MaxUint256)
+export const approve = async (contract, spender, account) => {
+  return contract.methods
+    .approve(spender.options.address, ethers.constants.MaxUint256)
+    .send({ from: account })
+}
+
+export const approveWithLimit = async (contract, spender, amount, account) => {
+  return contract.methods
+    .approve(spender.options.address, "500000000000000000")
     .send({ from: account })
 }
 
@@ -127,6 +133,16 @@ export const battlefieldCompoundAll = async (battlefieldContract, account) => {
 export const purchaseNft = async (kdfnContract, nftId, account) => {
   return kdfnContract.methods
     .purchaseNft(nftId)
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+// Milf NFT Methods - added purchaseAmount safety check.
+export const purchaseMilfNft = async (milfContract, nftId, purchaseAmount, account) => {
+  return milfContract.methods
+    .purchaseNft(nftId, purchaseAmount)
     .send({ from: account })
     .on('transactionHash', (tx) => {
       return tx.transactionHash

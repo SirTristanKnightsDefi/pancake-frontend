@@ -34,6 +34,11 @@ export const getTheGrailNFTsAddress = () => {
 export const getKotrtNFTsAddress = () => {
   return getAddress(addresses.kotrtnfts) // Returns KOTRT NFTs
 }
+
+export const getMilfNFTsAddress = () => {
+  return getAddress(addresses.milfnfts) // Returns KOTRT NFTs
+}
+
 export const getKdfnNFTsAddress = () => {
   return getAddress(addresses.kdfnnfts) // Returns Knights Defi NFTs
 }

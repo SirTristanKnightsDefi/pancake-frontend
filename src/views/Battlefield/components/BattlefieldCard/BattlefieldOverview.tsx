@@ -1,9 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
-import { Text, Button} from '@pancakeswap-libs/uikit'
+import { Text, Button, Heading} from '@pancakeswap-libs/uikit'
 import { Battlefield } from 'state/types'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
+import ExpandableSectionButton from 'components/ExpandableSectionButton'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { useBattlefieldUser, useBattlefieldFromSymbol, usePriceCakeBusd, usePriceSquireBusd, usePriceLegendBusd, usePriceTableBusd, usePriceShillingBusd } from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -15,6 +16,10 @@ export interface BattlefieldOverviewWithStakedValue extends Battlefield {
   userArmyStrength?: BigNumber
   userArmyPercent?: BigNumber
 }
+
+const Wrapper = styled.div`
+  margin-top: 24px;
+`
 
 const RainbowLight = keyframes`
 	0% {
@@ -71,6 +76,11 @@ const Divider = styled.div`
   width: 100%;
 `
 
+const ExpandingWrapper = styled.div<{ expanded: boolean }>`
+  height: ${(props) => (props.expanded ? '100%' : '0px')};
+  overflow: hidden;
+`
+
 interface BattlefieldOverviewProps {
   battlefield: BattlefieldOverviewWithStakedValue
 }
@@ -81,6 +91,7 @@ const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }
   const legendPrice = usePriceLegendBusd()
   const tablePrice = usePriceTableBusd()
   const shillingPrice = usePriceShillingBusd()
+  const [showExpandableSection, setShowExpandableSection] = useState(false)
   
   const { pid, lpAddresses } = useBattlefieldFromSymbol(battlefield.lpSymbol)
   const { allowance, tokenBalance, stakedBalance, earnings, userArmyStrength, userArmyPercent } = useBattlefieldUser(pid)
@@ -118,23 +129,35 @@ const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }
   return (
     <FCard>
       <StyledCardAccent />
-      <Text> Battle for rewards by sending SQUIRE, KNIGHT, LEGEND, and TABLE to war!</Text>
+      <Heading mb="8px"> The Battlefield </Heading>
+      <Text> Earn multiple reward tokens at the same time by sending SQUIRE, KNIGHT, LEGEND, and TABLE to war!</Text>
+      <Divider />
       <Button as="a" variant="secondary" mt="12px" ml="12px" href="https://docs.knightsdefi.com/battlefield" target="_blank">
             Read More
       </Button>
-      <Divider/> 
-      <Text> Total Army Strength: {rawTotalArmyStrength} </Text>
-      <Divider/> 
-      <Text> Your Army Strength: {rawArmyStrength} </Text>
-      <Text> Your Army Percent: {rawArmyPercent}% </Text>
-      <Divider/> 
-      <Text> Your <b>Estimated</b> Daily Spoils:</Text>
-      <Text> SHILLING: {formattedShillingRewards} - ${shillingRewardValue}</Text>
-      <Text> SQUIRE: {formattedSquireRewards} - ${squireRewardValue}</Text>
-      <Text> KNIGHT: {knightRewards} - ${knightRewardValue}</Text>
-      <Text> LEGEND: {legendRewards} - ${legendRewardValue}</Text>
-      <Text> TABLE: {tableRewards} - ${tableRewardValue}</Text>
-      <Text> Total: ${totalRewardValue} </Text>
+      <Divider/>
+      <ExpandableSectionButton
+        onClick={() => setShowExpandableSection(!showExpandableSection)}
+        expanded={showExpandableSection}
+        showText="Details"
+        hideText="Hide"
+      />
+      <ExpandingWrapper expanded={showExpandableSection}>
+        <Wrapper>
+          <Text> Total Army Strength: {rawTotalArmyStrength} </Text>
+          <Divider/> 
+          <Text> Your Army Strength: {rawArmyStrength} </Text>
+          <Text> Your Army Percent: {rawArmyPercent}% </Text>
+          <Divider/> 
+          <Text> Your <b>Estimated</b> Daily Spoils:</Text>
+          <Text> SHILLING: {formattedShillingRewards} - ${shillingRewardValue}</Text>
+          <Text> SQUIRE: {formattedSquireRewards} - ${squireRewardValue}</Text>
+          <Text> KNIGHT: {knightRewards} - ${knightRewardValue}</Text>
+          <Text> LEGEND: {legendRewards} - ${legendRewardValue}</Text>
+          <Text> TABLE: {tableRewards} - ${tableRewardValue}</Text>
+          <Text> Total: ${totalRewardValue} </Text>
+        </Wrapper>
+      </ExpandingWrapper>
     </FCard>
   )
 }

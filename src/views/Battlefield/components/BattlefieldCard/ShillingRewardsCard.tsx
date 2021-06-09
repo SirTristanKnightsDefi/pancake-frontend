@@ -5,6 +5,7 @@ import BigNumber from 'bignumber.js'
 import useWeb3 from 'hooks/useWeb3'
 import useRefresh from 'hooks/useRefresh'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
+import ExpandableSectionButton from 'components/ExpandableSectionButton'
 import UnlockButton from 'components/UnlockButton'
 import { useBattlefieldShillingWithdraw } from 'hooks/useUnstake'
 import { useShillingBnbHarvest } from 'hooks/useHarvest'
@@ -23,6 +24,10 @@ type State = {
   totalRewards: number
   bnbPool: number
 }
+
+const Wrapper = styled.div`
+  margin-top: 24px;
+`
 
 const RainbowLight = keyframes`
 	0% {
@@ -78,6 +83,10 @@ const Divider = styled.div`
   margin: 28px auto;
   width: 100%;
 `
+const ExpandingWrapper = styled.div<{ expanded: boolean }>`
+  height: ${(props) => (props.expanded ? '100%' : '0px')};
+  overflow: hidden;
+`
 
 
 export const ShillingRewardsCard = () => {
@@ -90,6 +99,7 @@ export const ShillingRewardsCard = () => {
   const { fastRefresh, slowRefresh } = useRefresh()
   const { account }: { account: string } = useWallet()
   const web3 = useWeb3()
+  const [showExpandableSection, setShowExpandableSection] = useState(false)
   const [state, setState] = useState<State>({
     earnings: 0,
     holdings: 0,
@@ -216,46 +226,58 @@ export const ShillingRewardsCard = () => {
               height: '48px'
             }}/>
           </Heading>
+          <Divider />
+            
+            <Button as="a" variant="secondary" href="https://docs.knightsdefi.com/shilling" target="_blank">
+                Read More
+            </Button>
+            <Heading mt="12px">Your Next BNB Claim: {(state.bnbToClaim/1e18).toFixed(4)} (~${(bnbPrice*state.bnbToClaim/1e18).toLocaleString()})</Heading>
+            <Text mb="12px">Your Next Claim Date: {state.formattedClaimDate}</Text>
+            {state.claimBnbAvailable 
+            ?
+            <Button variant="secondary" onClick={onBnbReward}>
+              Claim BNB
+            </Button> :
+            <Button variant="tertiary">
+              Cannot Claim BNB Until Claim Date
+            </Button>
+            }
         <Divider />
-        <Text mb="2px">Your Holdings </Text>
-        <Text mb="2px">{new BigNumber((state.holdings/1e18).toFixed(0)).toNumber().toLocaleString()} SHILLING</Text>
-        <Text mb="12px">~($ {((state.holdings/1e18)*(shillingPrice)).toFixed(2)})</Text>
-        <Button as="a" variant="secondary" href={`https://exchange.pancakeswap.finance/#/swap?outputCurrency=${shillingAddress}`} target="_blank">
-            Buy Shilling
-        </Button>
-        <Divider />
-        <Heading mb="12px">Total BNB in Pool: {(state.bnbPool/1e18).toFixed(2)} (~${(bnbPrice*state.bnbPool/1e18).toLocaleString()})</Heading>
-        <Heading mb="12px">Your Next BNB Claim: {(state.bnbToClaim/1e18).toFixed(4)} (~${(bnbPrice*state.bnbToClaim/1e18).toLocaleString()})</Heading>
-        <Text mb="12px">Estimated Annual BNB: {(state.bnbToClaim/1e18*(365/3)).toFixed(4)} (~${(bnbPrice*(state.bnbToClaim/1e18*(365/3))).toLocaleString()})</Text>
-        <Text mb="12px">Your Next Claim Date: {state.formattedClaimDate}</Text>
-        {state.claimBnbAvailable 
-        ?
-        <Button variant="secondary" onClick={onBnbReward}>
-          Claim BNB
-        </Button> :
-        <Button variant="tertiary">
-          Cannot Claim BNB Until Claim Date
-        </Button>
-        }
-        <Divider />
-        <Text mb="2px">Earned SHILLING from Battlefield</Text>
-        <Text mb="2px">{new BigNumber(((state.totalRewards)/1e18).toFixed(0)).toNumber().toLocaleString()} SHILLING</Text>
-        <Text mb="12px">~($ {((state.totalRewards/1e18)*(shillingPrice)).toFixed(2)})</Text>
-        {state.earnings > 0
-        ?
-        <Button variant="secondary" onClick={onUnstake}>
-          Harvest Shilling
-        </Button> :
-        <Button variant="tertiary">
-          No Shilling to Harvest from Battlefield
-        </Button>
-        }
+        <ExpandableSectionButton
+          onClick={() => setShowExpandableSection(!showExpandableSection)}
+          expanded={showExpandableSection}
+          showText='Details'
+          hideText='Hide'
+        />
+        <ExpandingWrapper expanded={showExpandableSection}>
+          <Wrapper>
+            <Text mb="2px">Your Holdings </Text>
+            <Text mb="2px">{new BigNumber((state.holdings/1e18).toFixed(0)).toNumber().toLocaleString()} SHILLING</Text>
+            <Text mb="12px">~($ {((state.holdings/1e18)*(shillingPrice)).toFixed(2)})</Text>
+            <Button as="a" variant="secondary" href={`https://exchange.pancakeswap.finance/#/swap?outputCurrency=${shillingAddress}`} target="_blank">
+                Buy Shilling
+            </Button>
+            <Divider />
+            <Heading mb="12px">Total BNB in Pool: {(state.bnbPool/1e18).toFixed(2)} (~${(bnbPrice*state.bnbPool/1e18).toLocaleString()})</Heading>
+            <Heading mb="12px">Your Next BNB Claim: {(state.bnbToClaim/1e18).toFixed(4)} (~${(bnbPrice*state.bnbToClaim/1e18).toLocaleString()})</Heading>
+            <Text mb="12px">Your Estimated Annual BNB: {(state.bnbToClaim/1e18*(365/3)).toFixed(4)} (~${(bnbPrice*(state.bnbToClaim/1e18*(365/3))).toLocaleString()})</Text>
+            <Divider />
+            <Text mb="2px">Earned SHILLING from Battlefield</Text>
+            <Text mb="2px">{new BigNumber(((state.totalRewards)/1e18).toFixed(0)).toNumber().toLocaleString()} SHILLING</Text>
+            <Text mb="12px">~($ {((state.totalRewards/1e18)*(shillingPrice)).toFixed(2)})</Text>
+            {state.earnings > 0
+            ?
+            <Button variant="secondary" onClick={onUnstake}>
+              Harvest Shilling
+            </Button> :
+            <Button variant="tertiary">
+              No Shilling to Harvest from Battlefield
+            </Button>
+            }
 
-        <Divider />
-        
-        <Button as="a" variant="secondary" href="https://docs.knightsdefi.com/shilling" target="_blank">
-            Read More
-        </Button>
+            
+            </Wrapper>
+        </ExpandingWrapper>
       </FCard>
         
     )

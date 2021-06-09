@@ -179,6 +179,8 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
       <ExpandableSectionButton
         onClick={() => setShowExpandableSection(!showExpandableSection)}
         expanded={showExpandableSection}
+        showText="Details"
+        hideText="Hide"
       />
       <ExpandingWrapper expanded={showExpandableSection}>
         <DetailsSection

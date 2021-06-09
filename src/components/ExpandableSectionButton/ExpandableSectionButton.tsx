@@ -5,6 +5,8 @@ import { ChevronDownIcon, ChevronUpIcon, Text } from '@pancakeswap-libs/uikit'
 export interface ExpandableSectionButtonProps {
   onClick?: () => void
   expanded?: boolean
+  showText?: string
+  hideText?: string
 }
 
 const Wrapper = styled.div`
@@ -18,11 +20,13 @@ const Wrapper = styled.div`
   }
 `
 
-const ExpandableSectionButton: React.FC<ExpandableSectionButtonProps> = ({ onClick, expanded }) => {
+
+
+const ExpandableSectionButton: React.FC<ExpandableSectionButtonProps> = ({ onClick, expanded, showText, hideText }) => {
   return (
     <Wrapper aria-label="Hide or show expandable content" role="button" onClick={() => onClick()}>
       <Text color="primary" bold>
-        {expanded ? 'Hide' : 'Details'}
+        {expanded ? hideText : showText}
       </Text>
       {expanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
     </Wrapper>

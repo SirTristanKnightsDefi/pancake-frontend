@@ -17,7 +17,9 @@ import {
   getSquireAddress,
   getTableAddress,
   getLegendAddress,
-  getShillingAddress
+  getShillingAddress,
+  getMilfNFTsAddress,
+  getWbnbAddress
 } from 'utils/addressHelpers'
 import { poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
@@ -32,8 +34,10 @@ import battlefield from 'config/abi/battlefield.json'
 import sousChef from 'config/abi/sousChef.json'
 import sousChefBnb from 'config/abi/sousChefBnb.json'
 import profile from 'config/abi/pancakeProfile.json'
+import wbnbAbi from 'config/abi/weth.json'
 import pointCenterIfo from 'config/abi/pointCenterIfo.json'
 import kdfnNFTsAbi from 'config/abi/kdfnnfts.json'
+import milfNftsAbi from 'config/abi/milfnfts.json'
 import squireAbi from 'config/abi/squire.json'
 import legendAbi from 'config/abi/legend.json'
 import tableAbi from 'config/abi/table.json'
@@ -83,6 +87,10 @@ export const useKnightsDefiNFTs = () => {
   const kdfnNFTAbi = (kdfnNFTsAbi as unknown) as AbiItem
   return useContract(kdfnNFTAbi, getKdfnNFTsAddress())
 }
+export const useMilfNFTs = () => {
+  const milfNFTAbi = (milfNftsAbi as unknown) as AbiItem
+  return useContract(milfNFTAbi, getMilfNFTsAddress())
+}
 
 export const useSquire = () => {
   const abi = (squireAbi as unknown) as AbiItem
@@ -102,6 +110,11 @@ export const useTable = () => {
 export const useKnight = () => {
   const abi = (knightAbi as unknown) as AbiItem
   return useContract(abi, getCakeAddress())
+}
+
+export const useWbnb = () => {
+  const abi = (wbnbAbi as unknown) as AbiItem
+  return useContract(abi, getWbnbAddress())
 }
 
 export const useProfile = () => {
