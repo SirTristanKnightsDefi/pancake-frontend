@@ -228,9 +228,7 @@ export const ShillingRewardsCard = () => {
           </Heading>
           <Divider />
             
-            <Button as="a" variant="secondary" href="https://docs.knightsdefi.com/shilling" target="_blank">
-                Read More
-            </Button>
+            
             <Heading mt="12px">Your Next BNB Claim: {(state.bnbToClaim/1e18).toFixed(4)} (~${(bnbPrice*state.bnbToClaim/1e18).toLocaleString()})</Heading>
             <Text mb="12px">Your Next Claim Date: {state.formattedClaimDate}</Text>
             {state.claimBnbAvailable 
@@ -242,7 +240,12 @@ export const ShillingRewardsCard = () => {
               Cannot Claim BNB Until Claim Date
             </Button>
             }
+            <Divider />
+            <Button mt="8px" as="a" variant="secondary" href="https://docs.knightsdefi.com/shilling" target="_blank">
+                Read More
+            </Button>
         <Divider />
+        
         <ExpandableSectionButton
           onClick={() => setShowExpandableSection(!showExpandableSection)}
           expanded={showExpandableSection}
