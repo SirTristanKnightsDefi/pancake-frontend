@@ -175,7 +175,7 @@ const Nft = () => {
               MILF Collectibles 
             </Heading>
             <Heading as="h2" size="lg" color="primary" mb="24px">
-              NFTs for Purchase
+              NFTs in Partnership with MILF Finance and Knights DeFi to Support Charity
             </Heading>
             {state.milfCopied ?
             (<Button>

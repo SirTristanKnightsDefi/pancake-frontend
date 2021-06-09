@@ -41,6 +41,7 @@ type State = {
   purchaseTokenAmount: number
   purchaseTokenID: number
   adminCut: number
+  charityPercent: number
   mintable: boolean
   rawSquireBalance: number
   rawKnightBalance: number
@@ -109,7 +110,8 @@ const MilfNftCard: React.FC<NftCardProps> = ({ nft }) => {
     tableAllowance: 0,
     rawWbnbBalance: 0,
     wbnbBalance: '0',
-    wbnbAllowance: 0
+    wbnbAllowance: 0,
+    charityPercent: 0
   })
   const TranslateString = useI18n()
   const { isInitialized, getTokenIds, getNftIds, reInitialize } = useContext(KdfnNftProviderContext)
@@ -138,7 +140,7 @@ const MilfNftCard: React.FC<NftCardProps> = ({ nft }) => {
     const fetchNftData = async (id: number) => {
       const kdfnNFTsContract = getMilfNFTsContract()
     
-      const {mintCap, numberMinted, description, purchaseTokenAmount, purchaseTokenID, adminCut, mintable} = await kdfnNFTsContract.methods.nfts(id).call()
+      const {mintCap, numberMinted, description, purchaseTokenAmount, purchaseTokenID, adminCut, charityPercent, mintable} = await kdfnNFTsContract.methods.nfts(id).call()
     
     setState((prevState) => ({
       ...prevState, 
@@ -148,6 +150,7 @@ const MilfNftCard: React.FC<NftCardProps> = ({ nft }) => {
       purchaseTokenAmount,
       purchaseTokenID,
       adminCut,
+      charityPercent,
       mintable
     }))
     }
@@ -284,7 +287,7 @@ const MilfNftCard: React.FC<NftCardProps> = ({ nft }) => {
           ) : (
             <Text/>
         )}
-        {state.mintable ? (<Text>Artist Earnings: {state.adminCut}%</Text>) : (<Text />)}
+        {state.mintable ? (<Text>Amount for Charity: {state.charityPercent}%</Text>) : (<Text />)}
         <Text>Total Sold: {state.numberMinted}/{state.mintCap}</Text>
         {/* {isInitialized && walletOwnsNft (
           <Button  variant="secondary" mt="24px" onClick={onPresentTransferModal}>
