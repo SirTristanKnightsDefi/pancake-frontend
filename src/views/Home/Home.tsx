@@ -14,6 +14,7 @@ import useTheme from 'hooks/useTheme'
 import LotteryCard from 'views/Home/components/LotteryCard'
 import TwitterCard from './components/TwitterCard'
 import TwitterCardDark from './components/TwitterCardDark'
+import EarnAPYCard from './components/EarnAPYCard'
 
 
 
@@ -91,6 +92,7 @@ const Home: React.FC = () => {
         <FarmStakingCard />
         <LotteryCard />
         {isDark ? <TwitterCardDark /> : <TwitterCard />}
+        <EarnAPYCard />
         <ShillingStats />
         <SquireStats />
         <CakeStats />
