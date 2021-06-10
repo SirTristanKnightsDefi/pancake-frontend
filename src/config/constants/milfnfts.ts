@@ -16,7 +16,7 @@ const MilfNfts: Nft[] = [
     tokenId: 0,
     nftId: 0,
     purchaseTokenName: "WBNB",
-    storyUri: "https://www.google.com"
+    storyUri: "https://gateway.pinata.cloud/ipfs/QmPAJmLHmetdh2d8KsB4zWinoArZW3ZbUS83M1poz3fkCv/dame_celestina/"
   },
 ]
 
