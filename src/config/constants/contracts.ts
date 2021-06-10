@@ -16,8 +16,8 @@ export default {
     56: '0xfA0f28c684C2F19dA7de2b065d35a367cABF8500',
   },
   milfnfts:{
-    97: '0x2FBb1e562973495dC94E33E35085CE4dB4F2e496', // Milf NFTs
-    56: '0x2FBb1e562973495dC94E33E35085CE4dB4F2e496',
+    97: '0xf4c41591aca6c009cf5a9756f79f58f699c956dd', // Milf NFTs
+    56: '0xf4c41591aca6c009cf5a9756f79f58f699c956dd',
   },
   donateaddress:{
     97: '0xb017c481575318017DC2122b59759B25d21f6721',
