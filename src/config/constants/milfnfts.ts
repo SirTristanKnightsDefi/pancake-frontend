@@ -2,8 +2,9 @@ import { Nft } from './types'
 
 const MilfNfts: Nft[] = [
   {
-    name: 'The Lady, Slayer of Bears',
-    description: 'The Lady, Slayer of Bears - In Partnership with Knights DeFi and MILF Finance',
+    name: 'Dame Celestina, from the House of Milf, Slayer of Bears',
+    description: 'The third daughter of Lord Milf, Celestina was married off to Duke Norman’s second son, Sir Thomelin to forge an alliance. Living happily in her husband’s domain, Celestina gave birth to three healthy children. Her life was upturned when her castle was attacked by the invading Barbarian Bears. The attack was brutal and bloody, the knights successfully pushed back the Bears, and the Castle remained standing, but Celestina’s husband had fallen defending his family.',
+    description2: 'Without any period of mourning and without consulting her father or her father in law, Celestina took up arms, vowing that her husband’s death would not be in vain. She led a speedy charge against the retreating Bears, who were caught unprepared for an attack. The slaughter of the Barbarians gave her the title of “Slayer of Bears”.',
     images: {
       lg: 'milf knight 1 thumbnail.png',
       md: 'milf knight 1 thumbnail.png',

@@ -10,11 +10,13 @@ import {
   ChevronDownIcon,
   Text,
   CardFooter,
-  useModal,
+  useModal
 } from '@pancakeswap-libs/uikit'
 import { getMilfNFTsContract } from 'utils/contractHelpers'
+import { getBalanceNumber } from 'utils/formatBalance'
 import { getMilfNFTsAddress } from 'utils/addressHelpers'
 import { BigNumber } from 'bignumber.js'
+import Balance from 'components/Balance'
 import { useProfile } from 'state/hooks'
 import useI18n from 'hooks/useI18n'
 import { Nft } from 'config/constants/types'
@@ -33,6 +35,8 @@ import { KdfnNftProviderContext } from '../../contexts/NftProvider'
 import TransferNftModal from '../TransferNftModal'
 import PurchaseNftModal from '../PurchaseNftModal'
 import PurchaseNftWithAmountModal from '../PurchaseNftWithAmountModal'
+
+
 
 type State = {
   mintCap: number
@@ -83,6 +87,12 @@ const DetailsButton = styled(Button).attrs({ variant: 'text', fullWidth: true })
 
 const InfoBlock = styled.div`
   padding: 24px;
+`
+const Divider = styled.div`
+  background-color: ${({ theme }) => theme.colors.borderColor};
+  height: 1px;
+  margin: 28px auto;
+  width: 100%;
 `
 
 const MilfNftCard: React.FC<NftCardProps> = ({ nft }) => {
@@ -254,7 +264,7 @@ const MilfNftCard: React.FC<NftCardProps> = ({ nft }) => {
       <Image src={`/images/milfnfts/${images.lg}`} alt={name} originalLink={walletOwnsNft ? images.ipfs : null} />
       <CardBody>
         <Header>
-          <Heading>{state.description}</Heading>
+          <Heading>{nft.name}</Heading>
           {isInitialized && walletOwnsNft && (
             <Tag outline variant="secondary">
               {TranslateString(999, 'In Wallet')}
@@ -321,7 +331,7 @@ const MilfNftCard: React.FC<NftCardProps> = ({ nft }) => {
             <Text/>
         )}
 
-        {account && state.mintable && nft.purchaseTokenName === "WBNB" && state.wbnbAllowance < 1 ? (
+        {account && state.mintable && nft.purchaseTokenName === "WBNB" && state.wbnbAllowance < getBalanceNumber(new BigNumber(state.purchaseTokenAmount)) ? (
             <ApproveWbnbButton amount={state.purchaseTokenAmount.toString()} />      
           ) : (
             <Text/>
@@ -375,12 +385,16 @@ const MilfNftCard: React.FC<NftCardProps> = ({ nft }) => {
       </CardBody>
       <CardFooter p="0">
         <DetailsButton endIcon={<Icon width="24px" color="primary" />} onClick={handleClick}>
-          {TranslateString(658, 'Details')}
+          {TranslateString(658, 'Story')}
         </DetailsButton>
         {isOpen && (
           <InfoBlock>
             <Text as="p" color="textSubtle" style={{ textAlign: 'center' }}>
-              {state.description}
+              {nft.description}
+            </Text>
+            <Divider />
+            <Text as="p" color="textSubtle" style={{ textAlign: 'center' }}>
+              {nft.description2}
             </Text>
           </InfoBlock>
         )}
