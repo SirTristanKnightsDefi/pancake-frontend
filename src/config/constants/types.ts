@@ -124,6 +124,7 @@ export type Nft = {
   description: string
   description2?: string
   images: NftImages
+  storyUri?: string
   sortOrder: number
   tokenId: number
   nftId?: number

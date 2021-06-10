@@ -10,7 +10,9 @@ import {
   ChevronDownIcon,
   Text,
   CardFooter,
-  useModal
+  useModal,
+  Link,
+  Flex
 } from '@pancakeswap-libs/uikit'
 import { getMilfNFTsContract } from 'utils/contractHelpers'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -385,7 +387,7 @@ const MilfNftCard: React.FC<NftCardProps> = ({ nft }) => {
       </CardBody>
       <CardFooter p="0">
         <DetailsButton endIcon={<Icon width="24px" color="primary" />} onClick={handleClick}>
-          {TranslateString(658, 'Story')}
+          {TranslateString(658, 'Character Description')}
         </DetailsButton>
         {isOpen && (
           <InfoBlock>
@@ -396,6 +398,10 @@ const MilfNftCard: React.FC<NftCardProps> = ({ nft }) => {
             <Text as="p" color="textSubtle" style={{ textAlign: 'center' }}>
               {nft.description2}
             </Text>
+            <Divider />
+            <Flex alignContent="flex-end">
+              <Button as="a" href={nft.storyUri} target="_blank">Full Story</Button>
+            </Flex>
           </InfoBlock>
         )}
       </CardFooter>

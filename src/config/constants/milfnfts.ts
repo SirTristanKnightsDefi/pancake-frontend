@@ -9,13 +9,14 @@ const MilfNfts: Nft[] = [
       lg: 'milf knight 1 thumbnail.png',
       md: 'milf knight 1 thumbnail.png',
       sm: 'milf knight 1 thumbnail.png',
-      ipfs: '',
+      ipfs: 'https://gateway.pinata.cloud/ipfs/QmXkDin3E6nKXjCTdhEoW4x5H4pbtYezV4piejcMAkKMxr',
       blur: 'milf knight 1 thumbnail.png',
     },
     sortOrder: 999,
     tokenId: 0,
     nftId: 0,
     purchaseTokenName: "WBNB",
+    storyUri: "https://www.google.com"
   },
 ]
 
