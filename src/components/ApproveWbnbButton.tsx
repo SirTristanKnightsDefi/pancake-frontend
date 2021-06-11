@@ -13,7 +13,7 @@ const ApproveWbnbButton = (amount) => {
   return (
     <Flex>
       <Button height="128px" variant="secondary" mt="24px" mr="4px" onClick={onApprove}>
-              <Text>Approve 0.5 WBNB</Text>
+              <Text>Approve WBNB</Text>
       </Button>
     </Flex>
   )
