@@ -79,6 +79,19 @@ const Nfts: Nft[] = [
     sortOrder: 999,
     tokenId: 7,
   },
+  {
+    name: 'Lady Beatrice',
+    description: 'Community Manager and Content Specialist',
+    images: {
+      lg: 'LadyBeatrice.png',
+      md: 'LadyBeatrice.png',
+      sm: 'LadyBeatrice.png',
+      ipfs: 'https://gateway.pinata.cloud/ipfs/Qma85RgAJZuR7wpwm6VbKaFP7QfAjuoGmCGpBSQkxcQu6b/LadyBeatrice.png',
+      blur: 'LadyBeatrice.png',
+    },
+    sortOrder: 999,
+    tokenId: 9,
+  },
 ]
 
 export default Nfts
