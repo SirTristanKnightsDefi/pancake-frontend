@@ -173,19 +173,19 @@ const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }
       />
       <ExpandingWrapper expanded={showExpandableSection}>
         <Wrapper>
-          <Text mb="8px"><b>Total Army Strength:</b> {rawTotalArmyStrength} </Text>
-          <Text mb="8px"><b>Your Army Strength:</b> {rawArmyStrength} </Text>
-          <Text> <b>Your Army Percent:</b> {rawArmyPercent}% </Text>
+          <Text mb="8px">Total Army Strength: {rawTotalArmyStrength} </Text>
+          <Text mb="8px">Your Army Strength: {rawArmyStrength} </Text>
+          <Text> Your Army Percent: {rawArmyPercent}% </Text>
           <Divider/>
-          <Text> <b>Est.</b> Daily Rewards: ${totalRewardValue}</Text>
+          <Text> Your Estimated Daily Rewards: ${totalRewardValue}</Text>
           <Text> SHILLING: {formattedShillingRewards} - ${shillingRewardValue}</Text>
           <Text> SQUIRE: {formattedSquireRewards} - ${squireRewardValue}</Text>
           <Text> KNIGHT: {knightRewards} - ${knightRewardValue}</Text>
           <Text> LEGEND: {legendRewards} - ${legendRewardValue}</Text>
           <Text mb="8px"> TABLE: {tableRewards} - ${tableRewardValue}</Text>
-          <Text mb="8px"> <b>Current Rewards:</b> ${userTotalEarningsValue}</Text>
-          <Text mb="8px"><b>Your Total Stake:</b> ${userTotalDollarValue} </Text>
-          <Text><b>Estimated APR:</b> {apr.toFixed(2)}% </Text>
+          <Text mb="8px"> Current Rewards: ${userTotalEarningsValue}</Text>
+          <Text mb="8px">Your Total Stake: ${userTotalDollarValue} </Text>
+          <Text>Estimated APR: {apr.toFixed(2)}% </Text>
         </Wrapper>
       </ExpandingWrapper>
     </FCard>
