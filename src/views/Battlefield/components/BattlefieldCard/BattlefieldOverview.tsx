@@ -6,7 +6,7 @@ import { Battlefield } from 'state/types'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
-import { useBattlefieldUser, useBattlefieldFromSymbol, usePriceCakeBusd, usePriceSquireBusd, usePriceLegendBusd, usePriceTableBusd, usePriceShillingBusd } from 'state/hooks'
+import { useBattlefield, useBattlefieldUser, useBattlefieldFromSymbol, usePriceCakeBusd, usePriceSquireBusd, usePriceLegendBusd, usePriceTableBusd, usePriceShillingBusd } from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 
 
@@ -91,15 +91,31 @@ const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }
   const legendPrice = usePriceLegendBusd()
   const tablePrice = usePriceTableBusd()
   const shillingPrice = usePriceShillingBusd()
+  let { stakedBalance } = useBattlefieldUser(0)
+  const knightStakingBalance = stakedBalance;
+  ({ stakedBalance } = useBattlefieldUser(1))
+  const tableStakingBalance = stakedBalance;
+  ({ stakedBalance } = useBattlefieldUser(2))
+  const legendStakingBalance = stakedBalance;
+  ({ stakedBalance } = useBattlefieldUser(3))
+  const squireStakingBalance = stakedBalance
   const [showExpandableSection, setShowExpandableSection] = useState(false)
-  
+  const bfs = useBattlefield()
+  let userTotalValue = new BigNumber(0)
+  const {userArmyStrength, userArmyPercent } = useBattlefieldUser(0)
+
+
+  userTotalValue = knightStakingBalance.dividedBy(1e18).multipliedBy(knightPrice).plus(userTotalValue)
+  userTotalValue = squireStakingBalance.dividedBy(1e18).multipliedBy(squirePrice).plus(userTotalValue)
+  userTotalValue = tableStakingBalance.dividedBy(1e18).multipliedBy(tablePrice).plus(userTotalValue)
+  userTotalValue = legendStakingBalance.dividedBy(1e18).multipliedBy(legendPrice).plus(userTotalValue)
+
+
   const { pid, lpAddresses } = useBattlefieldFromSymbol(battlefield.lpSymbol)
-  const { allowance, tokenBalance, stakedBalance, earnings, userArmyStrength, userArmyPercent } = useBattlefieldUser(pid)
   const rawArmyStrength = getBalanceNumber(userArmyStrength).toLocaleString()
   const rawArmyPercent = new BigNumber(getBalanceNumber(userArmyPercent)).multipliedBy(100).toFixed(6)
   const rawTotalArmyStrength = new BigNumber(battlefield.totalArmyStrength).toNumber().toLocaleString()
 
-  const lpLabel = battlefield.lpSymbol && battlefield.lpSymbol.toUpperCase().replace('PANCAKE', '')
   const battlefieldAPY = battlefield.apy && battlefield.apy.times(new BigNumber(100)).toNumber().toLocaleString('en-US').slice(0, -1)
 
   const { quoteTokenAdresses, quoteTokenSymbol, tokenAddresses } = battlefield
@@ -125,6 +141,8 @@ const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }
   const shillingRewardValue = ((shillingPrice.isGreaterThan(0)) ? (new BigNumber(shillingRewards).multipliedBy(shillingPrice).toFixed(2)) : 0)
 
   const totalRewardValue = (Number(squireRewardValue)+Number(knightRewardValue)+Number(legendRewardValue)+Number(tableRewardValue)+Number(shillingRewardValue)).toFixed(2);
+  const userTotalDollarValue = userTotalValue.toNumber().toLocaleString()
+  const apr = (((Number(squireRewardValue)+Number(knightRewardValue)+Number(legendRewardValue)+Number(tableRewardValue)+Number(shillingRewardValue))*365)/(userTotalValue.toNumber()))*100
 
   return (
     <FCard>
@@ -145,7 +163,8 @@ const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }
       <ExpandingWrapper expanded={showExpandableSection}>
         <Wrapper>
           <Text> Total Army Strength: {rawTotalArmyStrength} </Text>
-          <Divider/> 
+          <Divider/>
+          <Text>Estimated APR: {apr.toFixed(2)}% </Text> 
           <Text> Your Army Strength: {rawArmyStrength} </Text>
           <Text> Your Army Percent: {rawArmyPercent}% </Text>
           <Divider/> 
