@@ -82,6 +82,7 @@ export interface BattlefieldConfig {
   rewardPoolPct: number
   externalFeePct: number
   rewardRate: number
+  visible: boolean
   dual?: {
     rewardPerBlock: number
     earnLabel: string

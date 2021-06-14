@@ -19,7 +19,8 @@ const battlefield: BattlefieldConfig[] = [
     burnPct:0,
     rewardPoolPct:0,
     externalFeePct:2,
-    rewardRate: 80
+    rewardRate: 80,
+    visible: true
   },
   {
     pid: 0,
@@ -38,7 +39,8 @@ const battlefield: BattlefieldConfig[] = [
     burnPct:0,
     rewardPoolPct:0,
     externalFeePct:0,
-    rewardRate: .25
+    rewardRate: .25,
+    visible: true
   },
   {
     pid: 2,
@@ -57,7 +59,8 @@ const battlefield: BattlefieldConfig[] = [
     burnPct:0,
     rewardPoolPct:0,
     externalFeePct:3,
-    rewardRate: .000017
+    rewardRate: .000017,
+    visible: true
   },
   {
     pid: 1,
@@ -76,7 +79,28 @@ const battlefield: BattlefieldConfig[] = [
     burnPct:0,
     rewardPoolPct:0,
     externalFeePct:2,
-    rewardRate: .000001
+    rewardRate: .000001,
+    visible: true
+  },
+  {
+    pid: 4,
+    lpSymbol: 'SHILLING',
+    lpAddresses: {
+      97: '0xf5a2F7418035ce76967F515f39d65719bB0453B6', // SHILLING
+      56: '0xf5a2F7418035ce76967F515f39d65719bB0453B6', // SHILLING
+    },
+    tokenSymbol: 'SHILLING',
+    tokenAddresses: {
+      97: '0xf5a2F7418035ce76967F515f39d65719bB0453B6', // SHILLING
+      56: '0xf5a2F7418035ce76967F515f39d65719bB0453B6', // SHILLING
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    burnPct:0,
+    rewardPoolPct:0,
+    externalFeePct:10,
+    rewardRate: 100000,
+    visible: false
   },
 ]
 

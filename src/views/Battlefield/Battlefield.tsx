@@ -46,7 +46,7 @@ const Battlefield: React.FC = () => {
   padding-top: 16px;
 `
 
-  const activeBattlefields = battlefieldLP.filter((battlefield) => battlefield.multiplier !== '0X')
+  const activeBattlefields = battlefieldLP.filter((battlefield) => battlefield.visible === true)
   const inactiveBattlefields = battlefieldLP.filter((battlefield) => battlefield.multiplier === '0X')
   const stackedOnlyBattlefields = activeBattlefields.filter(
     (battlefield) => battlefield.userData && new BigNumber(battlefield.userData.stakedBalance).isGreaterThan(0),
