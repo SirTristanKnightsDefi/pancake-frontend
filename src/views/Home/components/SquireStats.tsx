@@ -45,7 +45,7 @@ const SquireStats = () => {
               }}
             />SQUIRE Stats
         </Heading>
-        <Button as="a" variant="secondary" mb="12px" href={`https://exchange.alchemistdefi.com/#/swap?outputCurrency=${getSquireAddress()}`} target="_blank">
+        <Button as="a" variant="secondary" mb="12px" href={`https://psidex.passive-income.io/#/swap?outputCurrency=${getSquireAddress()}`} target="_blank">
             Buy Squire
         </Button>
         <Button as="a" variant="secondary" mb="12px" ml="12px" href={`https://poocoin.app/tokens/${getSquireAddress()}`} target="_blank">

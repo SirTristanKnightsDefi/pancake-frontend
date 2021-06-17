@@ -9,7 +9,7 @@ import useI18n from 'hooks/useI18n'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
 import { QuoteToken } from 'config/constants/types'
 import { usePriceSquireBusd } from 'state/hooks'
-import { BASE_ADD_LIQUIDITY_URL, V2_BASE_ADD_LIQUIDITY_URL} from 'config'
+import { BASE_ADD_LIQUIDITY_URL, V2_BASE_ADD_LIQUIDITY_URL, PSI_BASE_ADD_LIQUIDITY_URL} from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
@@ -142,6 +142,8 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
     addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   } else if (farm.lpVersion === 2){
     addLiquidityUrl = `${V2_BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+  } else if (farm.lpVersion === 3){
+    addLiquidityUrl = `${PSI_BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   }
   
 

@@ -210,7 +210,7 @@ export const ShillingRewardsCard = () => {
         }
       }
     fetchShillingDetails()
-  }, [fastRefresh, account, web3])
+  }, [slowRefresh, account, web3])
 
   const { onUnstake } = useBattlefieldShillingWithdraw(shillingBFRewardsPid, state.bfStaking)
   const { onBnbReward } = useShillingBnbHarvest()
@@ -257,7 +257,7 @@ export const ShillingRewardsCard = () => {
             <Text mb="2px">Your Holdings </Text>
             <Text mb="2px">{new BigNumber((state.holdings/1e18).toFixed(0)).toNumber().toLocaleString()} SHILLING</Text>
             <Text mb="12px">~($ {((state.holdings/1e18)*(shillingPrice)).toFixed(2)})</Text>
-            <Button as="a" variant="secondary" href={`https://exchange.pancakeswap.finance/#/swap?outputCurrency=${shillingAddress}`} target="_blank">
+            <Button as="a" variant="secondary" href={`https://psidex.passive-income.io/#/swap?outputCurrency=${shillingAddress}`} target="_blank">
                 Buy Shilling
             </Button>
             <Divider />

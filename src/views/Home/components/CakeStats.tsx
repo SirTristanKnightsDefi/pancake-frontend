@@ -47,7 +47,7 @@ const CakeStats = () => {
             />
             KNIGHT Stats 
         </Heading>
-          <Button as="a" variant="secondary" mb="12px" href={`https://exchange.pancakeswap.finance/#/swap?outputCurrency=${getCakeAddress()}`} target="_blank">
+          <Button as="a" variant="secondary" mb="12px" href={`https://psidex.passive-income.io/#/swap?outputCurrency=${getCakeAddress()}`} target="_blank">
             Buy Knight
           </Button>
           <Button as="a" variant="secondary" mb="12px" ml="12px" href={`https://poocoin.app/tokens/${getCakeAddress()}`} target="_blank">

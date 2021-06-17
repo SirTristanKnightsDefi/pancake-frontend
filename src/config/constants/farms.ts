@@ -197,6 +197,23 @@ const farms: FarmConfig[] = [
     lpVersion: 1
   },
   {
+    pid: 14,
+    lpSymbol: 'KNIGHT-PSI PSI LP',
+    lpAddresses: {
+      97: '0xa28Ee996C03CB10ad740c50D0F4Db03aD5691F5E', // KNIGHT-PSI LP
+      56: '0xa28Ee996C03CB10ad740c50D0F4Db03aD5691F5E', // KNIGHT-PSI LP
+    },
+    tokenSymbol: 'PSI',
+    tokenAddresses: {
+      97: '0x9A5d9c681Db43D9863e9279c800A39449B7e1d6f', // PSI
+      56: '0x9A5d9c681Db43D9863e9279c800A39449B7e1d6f', // PSI
+    },
+    quoteTokenSymbol: QuoteToken.CAKE,
+    quoteTokenAdresses: contracts.cake,
+    isCommunity: true,
+    lpVersion: 3
+  },
+  {
     pid: 4,
     lpSymbol: 'BUSD-BNB V1 LP',
     lpAddresses: {
