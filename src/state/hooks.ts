@@ -114,7 +114,7 @@ export const usePoolFromPid = (sousId): Pool => {
 // Prices
 
 export const usePriceBnbBusd = (): BigNumber => {
-  const pid = 4 // BUSD-BNB LP
+  const pid = 10 // BUSD-BNB LP
   const farm = useFarmFromPid(pid)
   return farm.tokenPriceVsQuote ? new BigNumber(1).div(farm.tokenPriceVsQuote) : ZERO
 }
@@ -127,7 +127,7 @@ export const usePriceCakeBusd = (): BigNumber => {
 }
 
 export const usePriceEthBusd = (): BigNumber => {
-  const pid = 14 // ETH-BNB LP
+  const pid = 10 // ETH-BNB LP
   const bnbPriceUSD = usePriceBnbBusd()
   const farm = useFarmFromPid(pid)
   return ZERO
@@ -140,28 +140,28 @@ export const usePriceEthBnb = (): BigNumber => {
 }
 
 export const usePriceTableBusd = (): BigNumber => {
-  const pid = 12 // TABLE-BNB LP
+  const pid = 10 // TABLE-BNB LP
   const bnbPriceUSD = usePriceBnbBusd()
   const farm = useFarmFromPid(pid)
   return farm.tokenPriceVsQuote ? bnbPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
 }
 
 export const usePriceLegendBusd = (): BigNumber => {
-  const pid = 5 // LEGEND-BNB LP
+  const pid = 10 // LEGEND-BNB LP
   const bnbPriceUSD = usePriceBnbBusd()
   const farm = useFarmFromPid(pid)
   return farm.tokenPriceVsQuote ? bnbPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
 }
 
 export const usePriceSquireBusd = (): BigNumber => {
-  const pid = 6 // SQUIRE-BNB LP
+  const pid = 10 // SQUIRE-BNB LP
   const bnbPriceUSD = usePriceBnbBusd()
   const farm = useFarmFromPid(pid)
   return farm.tokenPriceVsQuote ? bnbPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
 }
 
 export const usePriceShillingBusd = (): BigNumber => {
-  const pid = 9 // SHILLING-BNB LP
+  const pid = 10 // SHILLING-BNB LP
   const bnbPriceUSD = usePriceBnbBusd()
   const farm = useFarmFromPid(pid)
   if (farm){

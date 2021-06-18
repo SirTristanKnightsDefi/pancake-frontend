@@ -24,8 +24,8 @@ export default {
     56: '0xb017c481575318017DC2122b59759B25d21f6721',
   },
   cake: {
-    97: '0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30', // Same as KNIGHT to ensure all internal calculations work
-    56: '0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30',
+    97: '0x27ae27110350b98d564b9a3eed31baebc82d878d', // Same as CUMMIES to ensure all internal calculations work
+    56: '0x27ae27110350b98d564b9a3eed31baebc82d878d',
   },
   battlefield: {
     97: '0x8c0A7C89C46d1793b70BC197B69324408c78eBA8',
@@ -34,6 +34,10 @@ export default {
   knight: {
     97: '0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30',
     56: '0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30',
+  },
+  cummies: {
+    97: '0x27ae27110350b98d564b9a3eed31baebc82d878d',
+    56: '0x27ae27110350b98d564b9a3eed31baebc82d878d',
   },
   syrup: {
     97: '0xB02cD9CEBD3c9a5e1EFAe855Acb991B3143C021c', // Same as HONOR to ensure all internal calculations work

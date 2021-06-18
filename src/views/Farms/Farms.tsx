@@ -113,11 +113,10 @@ const Farms: React.FC = () => {
             Farms
           </Heading>
           <Text>
-            Stake LP tokens to earn KNIGHT.
+            Stake CUMMIES-BNB LP V2 tokens to earn CUMMIES.
           </Text>
         </div>
       </Hero>
-      <FarmTabButtons stackedOnly={stackedOnly} setStackedOnly={setStackedOnly}/>
       <div>
         <FlexLayout>
           <Route exact path={`${path}`}>
