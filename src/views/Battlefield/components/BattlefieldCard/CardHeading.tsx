@@ -15,6 +15,7 @@ export interface ExpandableSectionProps {
   externalFeePct?:number
   rewardRate?:number
   earnedValue?: BigNumber
+  userArmyPercent?: BigNumber
 }
 
 const Wrapper = styled(Flex)`
@@ -37,17 +38,16 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   rewardPoolPct,
   externalFeePct,
   rewardRate,
-  earnedValue
+  earnedValue,
+  userArmyPercent
 }) => {
   return (
     <Wrapper justifyContent="space-between" alignItems="center" mb="12px">
-      <Image src={`/images/battlefield/${battlefieldImage}.svg`} alt={tokenSymbol} width={64} height={64} />
+      <Image src={`/images/battlefield/${battlefieldImage}.png`} alt={tokenSymbol} width={64} height={64} />
       <Flex flexDirection="column" alignItems="flex-end">
         <Heading mb="0px">{lpLabel}</Heading>
-        <Text mb="0px">Burn: {burnPct}%</Text>
-        <Text mb="0px">Reward Pool: {rewardPoolPct}%</Text>
-        <Text mb="0px">External Fees: {externalFeePct}%</Text>
-        <Text mb="0px">Rate: {rewardRate} / Blk.</Text>
+        <Text mb="0px">Rate: {rewardRate*1200} / hr.</Text>
+        <Text mb="0px">You Earn: {rewardRate*1200*(userArmyPercent.dividedBy(1e18).toNumber())} / hr.</Text>
       </Flex>
     </Wrapper>
   )

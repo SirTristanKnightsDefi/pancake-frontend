@@ -62,10 +62,6 @@ const HarvestAction: React.FC<BattlefieldCardActionsProps> = ({ earnings, pid, e
           <Text fontSize="14px">Harvest</Text>
         </HarvestButton>
       </Flex>
-      <Flex mb="8px" justifyContent="space-between" alignItems="center">
-        <Text fontSize="14px"> (~${formattedEarnedValue})</Text>
-        <CompoundAction earnings={earnings} pid={pid}/>
-      </Flex>
 
     </Heading>
   )

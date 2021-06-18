@@ -14,6 +14,7 @@ import useRefresh from 'hooks/useRefresh'
 import { fetchFarmUserDataAsync } from 'state/actions'
 import { QuoteToken } from 'config/constants/types'
 import FarmCard, { FarmWithStakedValue } from './components/FarmCard/FarmCard'
+import CummiesLPStakingCard from './components/FarmCard/CummiesLPStakingCard'
 import FarmTabButtons from './components/FarmTabButtons'
 import Divider from './components/Divider'
 
@@ -119,6 +120,7 @@ const Farms: React.FC = () => {
       </Hero>
       <div>
         <FlexLayout>
+          <CummiesLPStakingCard />
           <Route exact path={`${path}`}>
             {stackedOnly ? farmsList(stackedOnlyFarms, false) : farmsList(activeFarms, false)}
           </Route>

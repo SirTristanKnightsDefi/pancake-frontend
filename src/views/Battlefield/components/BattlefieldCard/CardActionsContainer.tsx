@@ -35,15 +35,11 @@ const CardActions: React.FC<BattlefieldCardActionsProps> = ({ battlefield, ether
   const [requestedApproval, setRequestedApproval] = useState(false)
   const { pid, lpAddresses } = useBattlefieldFromSymbol(battlefield.lpSymbol)
   const { allowance, tokenBalance, stakedBalance, earnings } = useBattlefieldUser(pid)
-  const lpAddress = getAddress(lpAddresses)
   const lpName = battlefield.lpSymbol.toUpperCase()
   const isApproved = account && allowance && allowance.isGreaterThan(0)
 
-  const lpContract = useMemo(() => {
-    return getContract(ethereum as provider, lpAddress)
-  }, [ethereum, lpAddress])
 
-  const { onApprove } = useBattlefieldApprove(lpContract)
+  const { onApprove } = useBattlefieldApprove()
 
   const handleApprove = useCallback(async () => {
     try {
@@ -85,7 +81,7 @@ const CardActions: React.FC<BattlefieldCardActionsProps> = ({ battlefield, ether
         </Text>
       </Flex>
       <HarvestAction earnings={earnings} pid={pid} earnedValue={earnedValue}/>
-      <Flex>
+      {/* <Flex>
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="3px">
           {lpName}
         </Text>
@@ -106,7 +102,7 @@ const CardActions: React.FC<BattlefieldCardActionsProps> = ({ battlefield, ether
           <Button mt="8px" disabled={requestedApproval} onClick={handleApprove}>
             {TranslateString(758, 'Approve Contract')}
           </Button>
-        )}
+        )} */}
       </Action>
       : <UnlockButton mt="8px"  />
   }

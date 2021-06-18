@@ -3,8 +3,8 @@ import { BattlefieldConfig, QuoteToken } from './types'
 
 const battlefield: BattlefieldConfig[] = [
   {
-    pid: 10,
-    lpSymbol: 'CUMMIES-BNB LP V2',
+    pid: 0,
+    lpSymbol: 'CUMMIES',
     lpAddresses: {
       97: '0x02bFf262b10B7Ae1d2E4455ad4CAE2d0A6ECF086', // CUMMIES CUMMIES-BNB LP V2
       56: '0x02bFf262b10B7Ae1d2E4455ad4CAE2d0A6ECF086', // CUMMIES CUMMIES-BNB LP V2
@@ -19,7 +19,7 @@ const battlefield: BattlefieldConfig[] = [
     burnPct:0,
     rewardPoolPct:0,
     externalFeePct:2,
-    rewardRate: 80,
+    rewardRate: 20,
     visible: true
   }
 ]
