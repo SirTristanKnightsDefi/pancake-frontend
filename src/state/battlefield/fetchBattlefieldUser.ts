@@ -61,7 +61,7 @@ export const fetchBattlefieldUserArmyStrength = async (account: string) => {
   const calls = battlefieldsConfig.map((battlefield) => {
     return {
       address: battlefieldAddress,
-      name: 'getHolderStrength',
+      name: 'getHolderArmyStrength',
       params: [account],
     }
   })
@@ -77,7 +77,7 @@ export const fetchBattlefieldUserArmyPercent = async (account: string) => {
   const calls = battlefieldsConfig.map((battlefield) => {
     return {
       address: battlefieldAddress,
-      name: 'getHolderPercentage',
+      name: 'getHolderArmyPercentage',
       params: [account],
     }
   })

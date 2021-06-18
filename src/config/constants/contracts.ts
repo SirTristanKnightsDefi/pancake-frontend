@@ -28,8 +28,8 @@ export default {
     56: '0x27ae27110350b98d564b9a3eed31baebc82d878d',
   },
   battlefield: {
-    97: '0xD31E1eD22d862a191008f8585026D7376758A999', 
-    56: '0xD31E1eD22d862a191008f8585026D7376758A999', // Set this to the BF staking contract (for CUMMIES it is the Cum Farm Contract)
+    97: '0x8c0A7C89C46d1793b70BC197B69324408c78eBA8',
+    56: '0x8c0A7C89C46d1793b70BC197B69324408c78eBA8',
   },
   knight: {
     97: '0x16C0e0936E1B38Ff1F9b8a1e75d8ba29aDf87d30',
@@ -38,10 +38,6 @@ export default {
   cummies: {
     97: '0x27ae27110350b98d564b9a3eed31baebc82d878d',
     56: '0x27ae27110350b98d564b9a3eed31baebc82d878d',
-  },
-  cummiesV2LP: {
-    97: '0x02bFf262b10B7Ae1d2E4455ad4CAE2d0A6ECF086',
-    56: '0x02bFf262b10B7Ae1d2E4455ad4CAE2d0A6ECF086',
   },
   syrup: {
     97: '0xB02cD9CEBD3c9a5e1EFAe855Acb991B3143C021c', // Same as HONOR to ensure all internal calculations work

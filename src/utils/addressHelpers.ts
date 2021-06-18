@@ -19,10 +19,6 @@ export const getShillingAddress = () => {
   return getAddress(addresses.shilling) // Returns SHILLING
 }
 
-export const getCummiesV2LPAddress = () => {
-  return getAddress(addresses.cummiesV2LP) // Returns CUMMIES-BNB V2 LP
-}
-
 export const getTableAddress = () => {
   return getAddress(addresses.table) // Returns TABLE
 }

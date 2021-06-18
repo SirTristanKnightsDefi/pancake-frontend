@@ -6,14 +6,13 @@ import { ethers } from 'ethers'
 import { useDispatch } from 'react-redux'
 import { updateUserAllowance, fetchFarmUserDataAsync, fetchBattlefieldUserDataAsync } from 'state/actions'
 import { approve, approveWithLimit } from 'utils/callHelpers'
-import { useMasterchef, useCake, useSousChef, useLottery, useBattlefield, useKnightsDefiNFTs, useSquire, useKnight, useLegend, useTable, useMilfNFTs, useWbnb,useCummiesBNBLP } from './useContract'
+import { useMasterchef, useCake, useSousChef, useLottery, useBattlefield, useKnightsDefiNFTs, useSquire, useKnight, useLegend, useTable, useMilfNFTs, useWbnb } from './useContract'
 
-// Approve CUMMIES-BNB V2 LP for staking in BF
-export const useBattlefieldApprove = () => {
+// Approve a Battlefield
+export const useBattlefieldApprove = (lpContract: Contract) => {
   const dispatch = useDispatch()
   const { account }: { account: string } = useWallet()
   const battlefieldContract = useBattlefield()
-  const lpContract = useCummiesBNBLP()
 
   const handleApprove = useCallback(async () => {
     try {
@@ -24,6 +23,7 @@ export const useBattlefieldApprove = () => {
       return false
     }
   }, [account, dispatch, lpContract, battlefieldContract])
+
   return { onApprove: handleApprove }
 }
 

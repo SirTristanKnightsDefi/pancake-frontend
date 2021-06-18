@@ -51,7 +51,7 @@ export const useBattlefieldFromSymbol = (lpSymbol: string): Battlefield => {
 }
 
 export const useBattlefieldUser = (pid) => {
-  const battlefield = useBattlefieldFromPid(0) // TODO: By default uses the pid argument.
+  const battlefield = useBattlefieldFromPid(10) // TODO: By default uses the pid argument.
 
   return {
     allowance: battlefield.userData ? new BigNumber(battlefield.userData.allowance) : new BigNumber(0),

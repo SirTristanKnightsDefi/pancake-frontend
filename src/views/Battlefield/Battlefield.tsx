@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import BigNumber from 'bignumber.js'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { provider } from 'web3-core'
-import { Heading, Text, Link, Flex } from '@pancakeswap-libs/uikit'
+import { Heading, Text } from '@pancakeswap-libs/uikit'
 import { BLOCKS_PER_YEAR, CAKE_PER_BLOCK, CAKE_POOL_PID } from 'config'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
@@ -15,27 +15,11 @@ import { fetchBattlefieldUserDataAsync } from 'state/actions'
 import { QuoteToken } from 'config/constants/types'
 import useTheme from 'hooks/useTheme'
 import BattlefieldCard, { BattlefieldWithStakedValue } from './components/BattlefieldCard/BattlefieldCard'
-import {CummiesLPStakingCard} from './components/BattlefieldCard/CummiesLPStakingCard'
 import { ShillingRewardsCard } from './components/BattlefieldCard/ShillingRewardsCard'
 import BattlefieldOverview from './components/BattlefieldCard/BattlefieldOverview'
 import Divider from './components/Divider'
 import AllAction from './components/AllAction'
 
-
-const AddressLink = styled(Link)`
-  display: inline-block;
-  font-weight: 400;
-  font-size: 12px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 80px;
-  white-space: nowrap;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    font-size: 16px;
-    width: auto;
-  }
-`
 
 const Battlefield: React.FC = () => {
   const { path } = useRouteMatch()
@@ -63,6 +47,14 @@ const Battlefield: React.FC = () => {
 `
 
   const activeBattlefields = battlefieldLP.filter((battlefield) => battlefield.visible === true)
+  const inactiveBattlefields = battlefieldLP.filter((battlefield) => battlefield.multiplier === '0X')
+  const stackedOnlyBattlefields = activeBattlefields.filter(
+    (battlefield) => battlefield.userData && new BigNumber(battlefield.userData.stakedBalance).isGreaterThan(0),
+  )
+  
+  const { isDark } = useTheme();
+  const battleFieldDarkImage = "https://ipfs.io/ipfs/QmPxSu2ABG4Z3mZkYb4kHwc8RqYwZVKwXoaz8isAPxpF1x?filename=BattlefieldDark.png";
+  const battleFieldLightImage = "https://ipfs.io/ipfs/QmVfZmVEcSs5LYfRGc3BcCpNZu48eC2dVXAg6PPyqsWc4T?filename=BattlefieldLogo.PNG";
 
   // /!\ This function will be removed soon
   // This function compute the APY for each battlefield and will be replaced when we have a reliable API
@@ -126,20 +118,34 @@ const Battlefield: React.FC = () => {
   return (
     <Page>
       <Hero>
-          <CummiesLPStakingCard />
+        <img
+          src="/images/excalibur.png"
+          alt="Excalibur icon"
+          style={{
+            height: '190px',
+            marginRight: '48px',
+          }}
+        />
+        <div>
+          <Heading as="h1" size="xxl" mb="16px">
+            Farms
+          </Heading>
+          <Text>
+            Stake CUMMIES-BNB LP V2 tokens to earn CUMMIES.
+          </Text>
+        </div>
       </Hero>
-      
       <div>
         <FlexLayout>
-            {battlefieldList(activeBattlefields, true)}
+        
+          <Route exact path={`${path}`}>
+            {stackedOnly ? battlefieldList(stackedOnlyBattlefields, false) : battlefieldList(activeBattlefields, false)}
+          </Route>
+          <Route exact path={`${path}/history`}>
+            {battlefieldList(inactiveBattlefields, true)}
+          </Route>
         </FlexLayout>
         <Divider/>
-        <FlexLayout>
-          <Flex>
-            <Text>In collaboration with <Link href="https://www.knightsdefi.com">Knights Defi</Link></Text>
-          </Flex>
-        </FlexLayout>
-        
       </div>
     </Page>
   )

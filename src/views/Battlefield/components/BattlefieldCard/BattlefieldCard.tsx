@@ -1,7 +1,5 @@
-import React, { useMemo, useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useMemo, useState } from 'react'
 import BigNumber from 'bignumber.js'
-
 import styled, { keyframes } from 'styled-components'
 import { Flex, Text, Skeleton } from '@pancakeswap-libs/uikit'
 import { communityBattlefields } from 'config/constants'
@@ -10,13 +8,12 @@ import { provider } from 'web3-core'
 import useI18n from 'hooks/useI18n'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
 import { QuoteToken } from 'config/constants/types'
-import useRefresh from 'hooks/useRefresh'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import { getBalanceNumber } from 'utils/formatBalance'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { useBattlefieldFromSymbol, useBattlefieldUser } from 'state/hooks'
-import { fetchBattlefieldUserArmyPercent } from 'state/battlefield/fetchBattlefieldUser'
-import {fetchBattlefieldUserDataAsync} from 'state/battlefield'
+import { fetchBattlefieldUserArmyStrength } from 'state/battlefield/fetchBattlefieldUser'
+import {fetchBattlefieldPublicDataAsync} from 'state/battlefield'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import CardActionsContainer from './CardActionsContainer'
@@ -103,7 +100,8 @@ interface BattlefieldCardProps {
   account?: string
 }
 
-const BattlefieldCard: React.FC<BattlefieldCardProps> = ({ battlefield, cakePrice, legendPrice, tablePrice, squirePrice, shillingPrice, bnbPrice, ethPrice, ethereum, account }) => {
+const BattlefieldCard: React.FC<BattlefieldCardProps> = ({ battlefield, removed, cakePrice, legendPrice, tablePrice, squirePrice, shillingPrice, bnbPrice, ethPrice, ethereum, account }) => {
+  const TranslateString = useI18n()
 
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
@@ -112,13 +110,12 @@ const BattlefieldCard: React.FC<BattlefieldCardProps> = ({ battlefield, cakePric
   // NAR-CAKE LP. The images should be cake-bnb.svg, link-bnb.svg, nar-cake.svg
   const battlefieldImage = battlefield.lpSymbol.split(' ')[0].toLocaleLowerCase()
   const { stakedBalance, earnings } = useBattlefieldUser(battlefield.pid)
-  const dispatch = useDispatch()
-  const { fastRefresh } = useRefresh()
-
-  const {userArmyStrength, userArmyPercent } = useBattlefieldUser(0)
 
   const rewardsBalance = battlefield.rewardsBalance
   const formattedRewardsBalance = new BigNumber(rewardsBalance).toNumber().toLocaleString()
+  const formattedTotalAtWarBalance = new BigNumber(battlefield.quoteTokenAmount).toNumber().toLocaleString()
+
+  // const userArmyStrength = fetchBattlefieldUserArmyStrength(account)
 
   const stakedValue: BigNumber = useMemo(() => {
     if (!stakedBalance) {
@@ -161,14 +158,26 @@ const BattlefieldCard: React.FC<BattlefieldCardProps> = ({ battlefield, cakePric
     if (battlefield.tokenSymbol === QuoteToken.CAKE) {
       return cakePrice.times(earnings)
     }
-    if (battlefield.tokenSymbol === QuoteToken.CUMMIES) {
+    if (battlefield.tokenSymbol === QuoteToken.KNIGHT) {
       return cakePrice.times(earnings)
     }
     if (battlefield.tokenSymbol === QuoteToken.ETH) {
       return ethPrice.times(earnings)
     }
+    if (battlefield.tokenSymbol === QuoteToken.LEGEND) {
+      return legendPrice.times(earnings)
+    }
+    if (battlefield.tokenSymbol === QuoteToken.TABLE) {
+      return tablePrice.times(earnings)
+    }
+    if (battlefield.tokenSymbol === QuoteToken.SQUIRE) {
+      return squirePrice.times(earnings)
+    }
+    if (battlefield.tokenSymbol === QuoteToken.SHILLING) {
+      return shillingPrice.times(earnings)
+    }
     return new BigNumber(0)
-  }, [bnbPrice, cakePrice, ethPrice, earnings, battlefield.tokenSymbol])
+  }, [bnbPrice, cakePrice, ethPrice, legendPrice, tablePrice, squirePrice, shillingPrice, earnings, battlefield.tokenSymbol])
 
   const rewardValue: BigNumber = useMemo(() => {
     if (!rewardsBalance) {
@@ -180,14 +189,26 @@ const BattlefieldCard: React.FC<BattlefieldCardProps> = ({ battlefield, cakePric
     if (battlefield.tokenSymbol === QuoteToken.CAKE) {
       return cakePrice.times(rewardsBalance).times(1e18)
     }
-    if (battlefield.tokenSymbol === QuoteToken.CUMMIES) {
+    if (battlefield.tokenSymbol === QuoteToken.KNIGHT) {
       return cakePrice.times(rewardsBalance).times(1e18)
     }
     if (battlefield.tokenSymbol === QuoteToken.ETH) {
       return ethPrice.times(rewardsBalance).times(1e18)
     }
+    if (battlefield.tokenSymbol === QuoteToken.LEGEND) {
+      return legendPrice.times(rewardsBalance).times(1e18)
+    }
+    if (battlefield.tokenSymbol === QuoteToken.TABLE) {
+      return tablePrice.times(rewardsBalance).times(1e18)
+    }
+    if (battlefield.tokenSymbol === QuoteToken.SQUIRE) {
+      return squirePrice.times(rewardsBalance).times(1e18)
+    }
+    if (battlefield.tokenSymbol === QuoteToken.SHILLING) {
+      return shillingPrice.times(rewardsBalance).times(1e18)
+    }
     return new BigNumber(0)
-  }, [bnbPrice, cakePrice, ethPrice, battlefield.tokenSymbol, rewardsBalance])
+  }, [bnbPrice, cakePrice, ethPrice, legendPrice, tablePrice, squirePrice, shillingPrice, battlefield.tokenSymbol, rewardsBalance])
 
   const tvlValue: BigNumber = useMemo(() => {
     if (!battlefield.quoteTokenAmount) {
@@ -199,7 +220,7 @@ const BattlefieldCard: React.FC<BattlefieldCardProps> = ({ battlefield, cakePric
     if (battlefield.tokenSymbol === QuoteToken.CAKE) {
       return cakePrice.times(battlefield.quoteTokenAmount).times(1e18)
     }
-    if (battlefield.tokenSymbol === QuoteToken.CUMMIES) {
+    if (battlefield.tokenSymbol === QuoteToken.KNIGHT) {
       return cakePrice.times(battlefield.quoteTokenAmount).times(1e18)
     }
     if (battlefield.tokenSymbol === QuoteToken.ETH) {
@@ -246,10 +267,9 @@ const BattlefieldCard: React.FC<BattlefieldCardProps> = ({ battlefield, cakePric
         externalFeePct = {battlefield.externalFeePct}
         rewardRate = {battlefield.rewardRate}
         earnedValue = {earnedValue}
-        userArmyPercent = {userArmyPercent}
       />
       <CardActionsContainer battlefield={battlefield} ethereum={ethereum} account={account} addLiquidityUrl={addLiquidityUrl} earnedValue = {earnedValue} stakedBalanceFormatted={stakedBalanceFormatted} />
-      {/* <Divider />
+      <Divider />
       <ExpandableSectionButton
         onClick={() => setShowExpandableSection(!showExpandableSection)}
         expanded={showExpandableSection}
@@ -258,10 +278,12 @@ const BattlefieldCard: React.FC<BattlefieldCardProps> = ({ battlefield, cakePric
       />
       <ExpandingWrapper expanded={showExpandableSection}>
         <Wrapper>
+          <Text >Total at War:</Text> 
+          <Text fontSize="14px">{formattedTotalAtWarBalance} (~${tvlBalanceFormatted})</Text>
           <Text>Total Rewards Remaining:</Text> 
           <Text fontSize="14px">{formattedRewardsBalance} (~${rewardBalanceFormatted})</Text>
         </Wrapper>
-      </ExpandingWrapper> */}
+      </ExpandingWrapper>
     </FCard>
   )
 }

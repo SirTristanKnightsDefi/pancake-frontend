@@ -19,8 +19,7 @@ import {
   getLegendAddress,
   getShillingAddress,
   getMilfNFTsAddress,
-  getWbnbAddress,
-  getCummiesV2LPAddress
+  getWbnbAddress
 } from 'utils/addressHelpers'
 import { poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
@@ -72,10 +71,6 @@ export const useERC20 = (address: string) => {
 
 export const useCake = () => {
   return useERC20(getCakeAddress())
-}
-
-export const useCummiesBNBLP = () => {
-  return useERC20(getCummiesV2LPAddress())
 }
 
 export const useBunnyFactory = () => {
