@@ -118,36 +118,23 @@ const Battlefield: React.FC = () => {
   return (
     <Page>
       <Hero>
-      <img
-          src={isDark ? battleFieldDarkImage : battleFieldLightImage}
-          alt="Battlefield icon"
+        <img
+          src="/images/excalibur.png"
+          alt="Excalibur icon"
           style={{
-            height: '240px',
-            marginRight: '0px',
+            height: '190px',
+            marginRight: '48px',
           }}
         />
-      </Hero>
-      <div>
-      <FlexLayout>
-        <Route exact path={`${path}`}>
-          <Heading as="h1" size="xl">
-            <BattlefieldOverview
-              battlefield={
-                activeBattlefields[0]
-              }
-            />
+        <div>
+          <Heading as="h1" size="xxl" mb="16px">
+            Farms
           </Heading>
-          <ShillingRewardsCard />
-              
-        </Route>
-        </FlexLayout>
-        
-      </div>
-      <div>
-        <FlexLayout>
-          <AllAction />
-        </FlexLayout>
-      </div>
+          <Text>
+            Stake CUMMIES-BNB LP V2 tokens to earn CUMMIES.
+          </Text>
+        </div>
+      </Hero>
       <div>
         <FlexLayout>
         
@@ -159,8 +146,6 @@ const Battlefield: React.FC = () => {
           </Route>
         </FlexLayout>
         <Divider/>
-        <Text>*Army Strength is calculated as follows:</Text>
-      <Text>(SQUIRE*1e18 + (KNIGHT*1e18 * 500)) * 2^(floor(log10((TABLE*1e18 * LEGEND*1e18 * 5)))</Text>
       </div>
     </Page>
   )
