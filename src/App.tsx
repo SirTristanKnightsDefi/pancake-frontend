@@ -1,5 +1,5 @@
 import React, { useEffect, Suspense, lazy } from 'react'
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { ResetCSS } from '@pancakeswap-libs/uikit'
 import BigNumber from 'bignumber.js'
@@ -8,16 +8,11 @@ import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import ToastListener from './components/ToastListener'
 import PageLoader from './components/PageLoader'
-import Pools from './views/Pools'
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page'
-const Home = lazy(() => import('./views/Home'))
-const Farms = lazy(() => import('./views/Farms'))
 const Battlefield = lazy(() => import('./views/Battlefield'))
 const NotFound = lazy(() => import('./views/NotFound'))
-const NFT = lazy(() => import('./views/Nft'))
-const Lottery = lazy(() => import('./views/Lottery'))
 
 // This config is required for number formating
 BigNumber.config({
@@ -51,25 +46,11 @@ const App: React.FC = () => {
         <Suspense fallback={<PageLoader />}>
           <Switch>
             <Route path="/" exact>
-              <Home />
-            </Route>
-            <Route path="/lottery" exact>
-              <Lottery />
+              <Battlefield />
             </Route>
             <Route path="/battlefield">
               <Battlefield />
             </Route>
-            <Route path="/farms">
-              <Farms />
-            </Route>
-            <Route path="/nft">
-              <NFT />
-            </Route>
-            <Route path="/pools">
-              <Pools />
-            </Route>
-            {/* Redirect */}
-            {/* 404 */}
             <Route component={NotFound} />
           </Switch>
         </Suspense>
