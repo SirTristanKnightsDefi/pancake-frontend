@@ -206,17 +206,17 @@ const BattlefieldRewards: React.FC<BattlefieldRewardsProps> = ({ battlefield, ac
         <Heading mb="8px"><u>Current Rewards</u></Heading>
         <Text><img src="\images\battlefield\shilling.svg" alt="Shilling" height="24px" width="24px"/> SHILLING <img src="\images\battlefield\shilling.svg" alt="Shilling" height="24px" width="24px"/></Text>
         <HarvestOnlyAction earnings={shillingEarnings} pid={4} earnedValue={shillingEarnings.multipliedBy(shillingPrice)} stakingBalance={state.bfStaking}>Harvest Shilling</HarvestOnlyAction>
-        <Text mt="4px"><img src="\images\battlefield\squire.svg" alt="Squire" height="24px" width="24px"/> SQUIRE <img src="\images\battlefield\squire.svg" alt="Squire" height="24px" width="24px"/></Text>
+        <Text mt="4px"><img src="\images\battlefield\squire.svg" alt="Squire" height="32px" width="32px"/> SQUIRE <img src="\images\battlefield\squire.svg" alt="Squire" height="32px" width="32px"/></Text>
         <HarvestAction earnings={squireEarnings} pid={3} earnedValue={squireEarnings.multipliedBy(squirePrice)}>Harvest Squire</HarvestAction>
-        <Text mt="4px"><img src="\images\battlefield\knight.svg" alt="Knight" height="24px" width="24px"/> KNIGHT <img src="\images\battlefield\knight.svg" alt="Knight" height="24px" width="24px"/></Text>
+        <Text mt="4px"><img src="\images\battlefield\knight.svg" alt="Knight" height="32px" width="32px"/> KNIGHT <img src="\images\battlefield\knight.svg" alt="Knight" height="32px" width="32px"/></Text>
         <HarvestAction earnings={knightEarnings} pid={0} earnedValue={knightEarnings.multipliedBy(knightPrice)}>Harvest Knight</HarvestAction>
-        <Text mt="4px"><img src="\images\battlefield\legend.svg" alt="Legend" height="24px" width="24px"/> LEGEND <img src="\images\battlefield\legend.svg" alt="Legend" height="24px" width="24px"/></Text>
+        <Text mt="4px"><img src="\images\battlefield\legend.svg" alt="Legend" height="32px" width="32px"/> LEGEND <img src="\images\battlefield\legend.svg" alt="Legend" height="32px" width="32px"/></Text>
         <HarvestAction earnings={legendEarnings} pid={2} earnedValue={legendEarnings.multipliedBy(legendPrice)}>Harvest Legend</HarvestAction>
-        <Text mt="4px"><img src="\images\battlefield\table.svg" alt="Table" height="24px" width="24px"/> TABLE <img src="\images\battlefield\table.svg" alt="Table" height="24px" width="24px"/></Text>
+        <Text mt="4px"><img src="\images\battlefield\table.svg" alt="Table" height="32px" width="32px"/> TABLE <img src="\images\battlefield\table.svg" alt="Table" height="32px" width="32px"/></Text>
         <HarvestAction earnings={tableEarnings} pid={1} earnedValue={tableEarnings.multipliedBy(tablePrice)}>Harvest Table</HarvestAction>
         <Divider />
         <Heading mb="8px"><u>Guest Rewards</u></Heading>
-        <Text><img src="\images\battlefield\mist.png" alt="Mist" height="24px" width="24px"/> MIST <img src="\images\battlefield\Mist.png" alt="MIST" height="24px" width="24px"/></Text>
+        <Text><img src="\images\battlefield\mist.png" alt="Mist" height="32px" width="32px"/> MIST <img src="\images\battlefield\Mist.png" alt="MIST" height="32px" width="32px"/></Text>
         <HarvestOnlyAction earnings={shillingEarnings} pid={4} earnedValue={shillingEarnings.multipliedBy(shillingPrice)} stakingBalance={state.bfStaking}>Harvest Shilling</HarvestOnlyAction>
         <Divider />
         <ExpandableSectionButton

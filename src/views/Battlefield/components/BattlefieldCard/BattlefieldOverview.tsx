@@ -159,7 +159,7 @@ const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }
     <FCard>
       <StyledCardAccent />
       <Heading mb="8px">⚔️ The Battlefield ⚔️</Heading>
-      <Text> Earn multiple reward tokens at the same time by sending SQUIRE, KNIGHT, LEGEND, and TABLE to war!</Text>
+      <Text> Earn all rewards at once by staking SQUIRE, KNIGHT, LEGEND, and TABLE!</Text>
       <Divider />
       <Button as="a" variant="secondary" mt="12px" ml="12px" href="https://docs.knightsdefi.com/battlefield" target="_blank">
             Read More
