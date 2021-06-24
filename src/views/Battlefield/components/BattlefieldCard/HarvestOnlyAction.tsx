@@ -3,6 +3,7 @@ import BigNumber from 'bignumber.js'
 import { Button, Flex, Heading, Text } from '@pancakeswap-libs/uikit'
 import useI18n from 'hooks/useI18n'
 import { useBattlefieldHarvest } from 'hooks/useHarvest'
+import { useBattlefieldShillingWithdraw } from 'hooks/useUnstake'
 import { getBalanceNumber } from 'utils/formatBalance'
 import CompoundAction from './CompoundAction'
 import HarvestButton from './HarvestButton'
@@ -11,12 +12,14 @@ interface BattlefieldCardActionsProps {
   earnings?: BigNumber
   pid?: number
   earnedValue?: BigNumber
+  showCompound?: boolean
+  stakingBalance?: number
 }
 
-const HarvestAction: React.FC<BattlefieldCardActionsProps> = ({ earnings, pid, earnedValue }) => {
+const HarvestOnlyAction: React.FC<BattlefieldCardActionsProps> = ({ earnings, pid, earnedValue, stakingBalance}) => {
   const TranslateString = useI18n()
   const [pendingTx, setPendingTx] = useState(false)
-  const { onReward } = useBattlefieldHarvest(pid)
+  const { onUnstake } = useBattlefieldShillingWithdraw(pid, stakingBalance)
 
 
   let precision = 0
@@ -56,7 +59,7 @@ const HarvestAction: React.FC<BattlefieldCardActionsProps> = ({ earnings, pid, e
         <HarvestButton
           onClick={async () => {
             setPendingTx(true)
-            await onReward()
+            await onUnstake()
             setPendingTx(false)
           }}
         >
@@ -65,11 +68,10 @@ const HarvestAction: React.FC<BattlefieldCardActionsProps> = ({ earnings, pid, e
       </Flex>
       <Flex mb="8px" justifyContent="space-between" alignItems="center">
         <Text fontSize="14px"> (~${formattedEarnedValue})</Text>
-        <CompoundAction earnings={earnings} pid={pid}/>
       </Flex>
 
     </Heading>
   )
 }
 
-export default HarvestAction
+export default HarvestOnlyAction

@@ -15,7 +15,7 @@ import { fetchBattlefieldUserDataAsync } from 'state/actions'
 import { QuoteToken } from 'config/constants/types'
 import useTheme from 'hooks/useTheme'
 import BattlefieldCard, { BattlefieldWithStakedValue } from './components/BattlefieldCard/BattlefieldCard'
-import { ShillingRewardsCard } from './components/BattlefieldCard/ShillingRewardsCard'
+import BattlefieldRewards from './components/BattlefieldCard/BattlefieldRewards'
 import BattlefieldOverview from './components/BattlefieldCard/BattlefieldOverview'
 import Divider from './components/Divider'
 import AllAction from './components/AllAction'
@@ -117,16 +117,6 @@ const Battlefield: React.FC = () => {
 
   return (
     <Page>
-      <Hero>
-      <img
-          src={isDark ? battleFieldDarkImage : battleFieldLightImage}
-          alt="Battlefield icon"
-          style={{
-            height: '240px',
-            marginRight: '0px',
-          }}
-        />
-      </Hero>
       <div>
       <FlexLayout>
         <Route exact path={`${path}`}>
@@ -137,7 +127,13 @@ const Battlefield: React.FC = () => {
               }
             />
           </Heading>
-          <ShillingRewardsCard />
+          <BattlefieldRewards
+            
+            battlefield={
+              activeBattlefields[0]
+            } 
+            account={account} 
+            />
               
         </Route>
         </FlexLayout>

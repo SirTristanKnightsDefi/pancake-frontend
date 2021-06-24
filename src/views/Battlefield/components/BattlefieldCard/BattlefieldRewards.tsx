@@ -1,17 +1,30 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
 import { Text, Button, Heading} from '@pancakeswap-libs/uikit'
 import { Battlefield } from 'state/types'
+import useWeb3 from 'hooks/useWeb3'
+import useRefresh from 'hooks/useRefresh'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
+import { useBattlefieldShillingWithdraw } from 'hooks/useUnstake'
+import { getBattlefieldContract, getShillingContract } from 'utils/contractHelpers'
+import UnlockButton from 'components/UnlockButton'
 import { useBattlefield, useBattlefieldUser, useBattlefieldFromSymbol, usePriceCakeBusd, usePriceSquireBusd, usePriceLegendBusd, usePriceTableBusd, usePriceShillingBusd } from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
+import useBattlefieldWithBalance from 'hooks/useBattlefieldWithBalance'
+import HarvestAction from './HarvestAction'
+import HarvestOnlyAction from './HarvestOnlyAction'
+
+type State = {
+  shillEarnings: number
+  bfStaking: number
+  totalRewards: number
+}
 
 
-
-export interface BattlefieldOverviewWithStakedValue extends Battlefield {
+export interface BattlefieldRewardsWithStakedValue extends Battlefield {
   apy?: BigNumber
   userArmyStrength?: BigNumber
   userArmyPercent?: BigNumber
@@ -81,11 +94,15 @@ const ExpandingWrapper = styled.div<{ expanded: boolean }>`
   overflow: hidden;
 `
 
-interface BattlefieldOverviewProps {
-  battlefield: BattlefieldOverviewWithStakedValue
+interface BattlefieldRewardsProps {
+  battlefield: BattlefieldRewardsWithStakedValue,
+  account: string
 }
 
-const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }) => {
+const BattlefieldRewards: React.FC<BattlefieldRewardsProps> = ({ battlefield, account }) => {
+  const battlefieldContract = getBattlefieldContract()
+  const web3 = useWeb3()
+  const { fastRefresh, slowRefresh } = useRefresh()
   const knightPrice = usePriceCakeBusd()
   const squirePrice = usePriceSquireBusd()
   const legendPrice = usePriceLegendBusd()
@@ -103,12 +120,43 @@ const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }
   ({ stakedBalance, earnings } = useBattlefieldUser(3))
   const squireStakingBalance = stakedBalance
   const squireEarnings = earnings;
-  ({ earnings } = useBattlefieldUser(4))
-  const shillingEarnings = earnings;
+  ({ stakedBalance, earnings } = useBattlefieldUser(4))
+  const shillingEarnings = earnings.plus(stakedBalance);
+  const shillingStakingBalance = stakedBalance;
   const [showExpandableSection, setShowExpandableSection] = useState(false)
   let userTotalValue = new BigNumber(0)
   let userTotalEarnings = new BigNumber(0)
   const {userArmyStrength, userArmyPercent } = useBattlefieldUser(0)
+  const [state, setState] = useState<State>({
+    shillEarnings: 0,
+    bfStaking: 0,
+    totalRewards: 0
+    })
+
+  useEffect(() => {
+    const fetchShillingDetails = async () => {
+      if(account){
+        let bfStaking = 0
+        let shillEarnings = 0
+        const bfContract = getBattlefieldContract()
+        const shillBFRewardsPid = 4 // Change to Battlefield PID for Shilling Rewards after launch.
+
+        shillEarnings = await bfContract.methods.getUserCurrentRewards(account, shillBFRewardsPid).call()
+        bfStaking = await bfContract.methods.userHoldings(account, shillBFRewardsPid).call()
+        
+      
+        const totalRewards = (new BigNumber(shillEarnings).plus(new BigNumber(bfStaking))).toNumber()
+
+        setState((prevState) => ({
+          ...prevState,
+          shillEarnings,
+          bfStaking,
+          totalRewards
+        }))
+      }
+    }
+  fetchShillingDetails()
+}, [slowRefresh, account, web3])
 
   userTotalValue = knightStakingBalance.dividedBy(1e18).multipliedBy(knightPrice).plus(userTotalValue)
   userTotalValue = squireStakingBalance.dividedBy(1e18).multipliedBy(squirePrice).plus(userTotalValue)
@@ -121,16 +169,10 @@ const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }
   userTotalEarnings = legendEarnings.dividedBy(1e18).multipliedBy(legendPrice).plus(userTotalEarnings)
   userTotalEarnings = shillingEarnings.dividedBy(1e18).multipliedBy(shillingPrice).plus(userTotalEarnings)
 
-  const { pid, lpAddresses } = useBattlefieldFromSymbol(battlefield.lpSymbol)
-  const rawArmyStrength = getBalanceNumber(userArmyStrength).toLocaleString()
   const rawArmyPercent = new BigNumber(getBalanceNumber(userArmyPercent)).multipliedBy(100).toFixed(6)
-  const rawTotalArmyStrength = new BigNumber(battlefield.totalArmyStrength).toNumber().toLocaleString()
-
-  const battlefieldAPY = battlefield.apy && battlefield.apy.times(new BigNumber(100)).toNumber().toLocaleString('en-US').slice(0, -1)
 
   const { quoteTokenAdresses, quoteTokenSymbol, tokenAddresses } = battlefield
   const liquidityUrlPathParts = getLiquidityUrlPathParts({ quoteTokenAdresses, quoteTokenSymbol, tokenAddresses })
-  const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
 
   // Hardcoded values on rewards per day, update these.  It beats making a separate call to each Battlefield for an overview card... maybe.
   const squireRewards = new BigNumber(getBalanceNumber(new BigNumber(rawArmyPercent).dividedBy(100).multipliedBy(2304000).multipliedBy(1e18))).toFixed(0);
@@ -154,33 +196,61 @@ const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }
   const userTotalDollarValue = userTotalValue.toNumber().toLocaleString()
   const userTotalEarningsValue = userTotalEarnings.toNumber().toLocaleString()
   const apr = (((Number(squireRewardValue)+Number(knightRewardValue)+Number(legendRewardValue)+Number(tableRewardValue)+Number(shillingRewardValue))*365)/(userTotalValue.toNumber()))*100
+  
+  if(account){
+    return (
+      
+      <FCard>
+        <StyledCardAccent />
+        <Heading mb="8px">💰 Rewards 💰</Heading>
+        <Heading mb="8px"><u>Current Rewards</u></Heading>
+        <Text><img src="\images\battlefield\shilling.svg" alt="Shilling" height="24px" width="24px"/> SHILLING <img src="\images\battlefield\shilling.svg" alt="Shilling" height="24px" width="24px"/></Text>
+        <HarvestOnlyAction earnings={shillingEarnings} pid={4} earnedValue={shillingEarnings.multipliedBy(shillingPrice)} stakingBalance={state.bfStaking}>Harvest Shilling</HarvestOnlyAction>
+        <Text mt="4px"><img src="\images\battlefield\squire.svg" alt="Squire" height="24px" width="24px"/> SQUIRE <img src="\images\battlefield\squire.svg" alt="Squire" height="24px" width="24px"/></Text>
+        <HarvestAction earnings={squireEarnings} pid={3} earnedValue={squireEarnings.multipliedBy(squirePrice)}>Harvest Squire</HarvestAction>
+        <Text mt="4px"><img src="\images\battlefield\knight.svg" alt="Knight" height="24px" width="24px"/> KNIGHT <img src="\images\battlefield\knight.svg" alt="Knight" height="24px" width="24px"/></Text>
+        <HarvestAction earnings={knightEarnings} pid={0} earnedValue={knightEarnings.multipliedBy(knightPrice)}>Harvest Knight</HarvestAction>
+        <Text mt="4px"><img src="\images\battlefield\legend.svg" alt="Legend" height="24px" width="24px"/> LEGEND <img src="\images\battlefield\legend.svg" alt="Legend" height="24px" width="24px"/></Text>
+        <HarvestAction earnings={legendEarnings} pid={2} earnedValue={legendEarnings.multipliedBy(legendPrice)}>Harvest Legend</HarvestAction>
+        <Text mt="4px"><img src="\images\battlefield\table.svg" alt="Table" height="24px" width="24px"/> TABLE <img src="\images\battlefield\table.svg" alt="Table" height="24px" width="24px"/></Text>
+        <HarvestAction earnings={tableEarnings} pid={1} earnedValue={tableEarnings.multipliedBy(tablePrice)}>Harvest Table</HarvestAction>
+        <Divider />
+        <Heading mb="8px"><u>Guest Rewards</u></Heading>
+        <Text><img src="\images\battlefield\mist.png" alt="Mist" height="24px" width="24px"/> MIST <img src="\images\battlefield\Mist.png" alt="MIST" height="24px" width="24px"/></Text>
+        <HarvestOnlyAction earnings={shillingEarnings} pid={4} earnedValue={shillingEarnings.multipliedBy(shillingPrice)} stakingBalance={state.bfStaking}>Harvest Shilling</HarvestOnlyAction>
+        <Divider />
+        <ExpandableSectionButton
+          onClick={() => setShowExpandableSection(!showExpandableSection)}
+          expanded={showExpandableSection}
+          showText="Details"
+          hideText="Hide"
+        />
+        
+        <ExpandingWrapper expanded={showExpandableSection}>
+          <Wrapper>
+            <Text> Your Estimated Daily Rewards: ${totalRewardValue}</Text>
+            <Text> SHILLING: {formattedShillingRewards} - ${shillingRewardValue}</Text>
+            <Text> SQUIRE: {formattedSquireRewards} - ${squireRewardValue}</Text>
+            <Text> KNIGHT: {knightRewards} - ${knightRewardValue}</Text>
+            <Text> LEGEND: {legendRewards} - ${legendRewardValue}</Text>
+            <Text mb="8px"> TABLE: {tableRewards} - ${tableRewardValue}</Text>
+            <Text mb="8px"> Current Rewards: ${userTotalEarningsValue}</Text>
+            <Text mb="8px">Your Total Stake: ${userTotalDollarValue} </Text>
+            <Text>Estimated APR: {apr.toFixed(2)}% </Text>
+          </Wrapper>
+        </ExpandingWrapper>
 
+      </FCard>
+    )
+  }
+  
   return (
-    <FCard>
+      <FCard>
       <StyledCardAccent />
-      <Heading mb="8px">⚔️ The Battlefield ⚔️</Heading>
-      <Text> Earn multiple reward tokens at the same time by sending SQUIRE, KNIGHT, LEGEND, and TABLE to war!</Text>
-      <Divider />
-      <Button as="a" variant="secondary" mt="12px" ml="12px" href="https://docs.knightsdefi.com/battlefield" target="_blank">
-            Read More
-      </Button>
-      <Divider/>
-      <ExpandableSectionButton
-        onClick={() => setShowExpandableSection(!showExpandableSection)}
-        expanded={showExpandableSection}
-        showText="Details"
-        hideText="Hide"
-      />
-      <ExpandingWrapper expanded={showExpandableSection}>
-        <Wrapper>
-          <Text mb="8px">Total Army Strength: {rawTotalArmyStrength} </Text>
-          <Text mb="8px">Your Army Strength: {rawArmyStrength} </Text>
-          <Text> Your Army Percent: {rawArmyPercent}% </Text>
-          <Text mb="8px">Your Total Stake: ${userTotalDollarValue} </Text>
-        </Wrapper>
-      </ExpandingWrapper>
-    </FCard>
-  )
+      <Heading mb="8px">💰 Rewards 💰</Heading>
+      <UnlockButton/>
+      </FCard>
+    )
 }
 
-export default BattlefieldOverview
+export default BattlefieldRewards
