@@ -21,6 +21,7 @@ type State = {
   shillEarnings: number
   bfStaking: number
   totalRewards: number
+  totalGuestRewards: BigNumber
 }
 
 
@@ -130,7 +131,8 @@ const BattlefieldRewards: React.FC<BattlefieldRewardsProps> = ({ battlefield, ac
   const [state, setState] = useState<State>({
     shillEarnings: 0,
     bfStaking: 0,
-    totalRewards: 0
+    totalRewards: 0,
+    totalGuestRewards: new BigNumber(0)
     })
 
   useEffect(() => {
@@ -138,20 +140,25 @@ const BattlefieldRewards: React.FC<BattlefieldRewardsProps> = ({ battlefield, ac
       if(account){
         let bfStaking = 0
         let shillEarnings = 0
+        let guestRewards = 0
         const bfContract = getBattlefieldContract()
         const shillBFRewardsPid = 4 // Change to Battlefield PID for Shilling Rewards after launch.
+        const guestRewardsPid = 5
 
         shillEarnings = await bfContract.methods.getUserCurrentRewards(account, shillBFRewardsPid).call()
         bfStaking = await bfContract.methods.userHoldings(account, shillBFRewardsPid).call()
+        guestRewards = await bfContract.methods.getUserCurrentRewards(account, guestRewardsPid).call()
         
       
         const totalRewards = (new BigNumber(shillEarnings).plus(new BigNumber(bfStaking))).toNumber()
+        const totalGuestRewards = (new BigNumber(guestRewards))
 
         setState((prevState) => ({
           ...prevState,
           shillEarnings,
           bfStaking,
-          totalRewards
+          totalRewards,
+          totalGuestRewards
         }))
       }
     }
@@ -217,7 +224,7 @@ const BattlefieldRewards: React.FC<BattlefieldRewardsProps> = ({ battlefield, ac
         <Divider />
         <Heading mb="8px"><u>Guest Rewards</u></Heading>
         <Text><img src="\images\battlefield\mist.png" alt="Mist" height="32px" width="32px"/> MIST <img src="\images\battlefield\Mist.png" alt="MIST" height="32px" width="32px"/></Text>
-        <HarvestOnlyAction earnings={shillingEarnings} pid={4} earnedValue={shillingEarnings.multipliedBy(shillingPrice)} stakingBalance={state.bfStaking}>Harvest Shilling</HarvestOnlyAction>
+        <HarvestOnlyAction earnings={state.totalGuestRewards} pid={5} earnedValue={new BigNumber(0)} stakingBalance={0}>Harvest Shilling</HarvestOnlyAction>
         <Divider />
         <ExpandableSectionButton
           onClick={() => setShowExpandableSection(!showExpandableSection)}
