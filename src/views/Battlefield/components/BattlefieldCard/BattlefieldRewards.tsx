@@ -187,6 +187,7 @@ const BattlefieldRewards: React.FC<BattlefieldRewardsProps> = ({ battlefield, ac
   const legendRewards = new BigNumber(getBalanceNumber(new BigNumber(rawArmyPercent).dividedBy(100).multipliedBy(.5).multipliedBy(1e18))).toFixed(4);
   const tableRewards = new BigNumber(getBalanceNumber(new BigNumber(rawArmyPercent).dividedBy(100).multipliedBy(.0288).multipliedBy(1e18))).toFixed(6);
   const shillingRewards = new BigNumber(getBalanceNumber(new BigNumber(rawArmyPercent).dividedBy(100).multipliedBy(2880000000).multipliedBy(1e18))).toFixed(0);
+  const guestRewards = new BigNumber(getBalanceNumber(new BigNumber(rawArmyPercent).dividedBy(100).multipliedBy(1001).multipliedBy(1e18))).toFixed(3);
   const formattedSquireRewards = new BigNumber(squireRewards).toNumber().toLocaleString()
   const formattedKnightRewards = new BigNumber(knightRewards).toNumber().toLocaleString()
   const formattedTableRewards = new BigNumber(tableRewards).toNumber().toLocaleString()
@@ -198,11 +199,12 @@ const BattlefieldRewards: React.FC<BattlefieldRewardsProps> = ({ battlefield, ac
   const legendRewardValue = new BigNumber(legendRewards).multipliedBy(legendPrice).toFixed(2);
   const tableRewardValue = new BigNumber(tableRewards).multipliedBy(tablePrice).toFixed(2);
   const shillingRewardValue = ((shillingPrice.isGreaterThan(0)) ? (new BigNumber(shillingRewards).multipliedBy(shillingPrice).toFixed(2)) : 0)
+  const guestRewardValue = new BigNumber(guestRewards).multipliedBy(0.102).toFixed(2);
 
-  const totalRewardValue = (Number(squireRewardValue)+Number(knightRewardValue)+Number(legendRewardValue)+Number(tableRewardValue)+Number(shillingRewardValue)).toFixed(2);
+  const totalRewardValue = (Number(squireRewardValue)+Number(guestRewardValue)+Number(knightRewardValue)+Number(legendRewardValue)+Number(tableRewardValue)+Number(shillingRewardValue)).toFixed(2);
   const userTotalDollarValue = userTotalValue.toNumber().toLocaleString()
   const userTotalEarningsValue = userTotalEarnings.toNumber().toLocaleString()
-  const apr = (((Number(squireRewardValue)+Number(knightRewardValue)+Number(legendRewardValue)+Number(tableRewardValue)+Number(shillingRewardValue))*365)/(userTotalValue.toNumber()))*100
+  const apr = (((Number(squireRewardValue)+Number(guestRewardValue)+Number(knightRewardValue)+Number(legendRewardValue)+Number(tableRewardValue)+Number(shillingRewardValue))*365)/(userTotalValue.toNumber()))*100
   
   if(account){
     return (
@@ -240,7 +242,8 @@ const BattlefieldRewards: React.FC<BattlefieldRewardsProps> = ({ battlefield, ac
             <Text> SQUIRE: {formattedSquireRewards} - ${squireRewardValue}</Text>
             <Text> KNIGHT: {knightRewards} - ${knightRewardValue}</Text>
             <Text> LEGEND: {legendRewards} - ${legendRewardValue}</Text>
-            <Text mb="8px"> TABLE: {tableRewards} - ${tableRewardValue}</Text>
+            <Text> TABLE: {tableRewards} - ${tableRewardValue}</Text>
+            <Text  mb="8px"> MIST (Guest): {guestRewards.toLocaleString()} - ${guestRewardValue}</Text>
             <Text mb="8px"> Current Rewards: ${userTotalEarningsValue}</Text>
             <Text mb="8px">Your Total Stake: ${userTotalDollarValue} </Text>
             <Text>Estimated APR: {apr.toFixed(2)}% </Text>
