@@ -7,6 +7,7 @@ import useWeb3 from 'hooks/useWeb3'
 import useRefresh from 'hooks/useRefresh'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
+import FlexLayout from 'components/layout/Flex'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { useBattlefieldShillingWithdraw } from 'hooks/useUnstake'
 import { getBattlefieldContract, getShillingContract } from 'utils/contractHelpers'
@@ -16,6 +17,8 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import useBattlefieldWithBalance from 'hooks/useBattlefieldWithBalance'
 import HarvestAction from './HarvestAction'
 import HarvestOnlyAction from './HarvestOnlyAction'
+import AllAction from '../AllAction'
+
 
 type State = {
   shillEarnings: number
@@ -213,6 +216,9 @@ const BattlefieldRewards: React.FC<BattlefieldRewardsProps> = ({ battlefield, ac
         <StyledCardAccent />
         <Heading mb="8px">💰 Rewards 💰</Heading>
         <Heading mb="8px"><u>Current Rewards</u></Heading>
+        <FlexLayout>
+          <AllAction />
+        </FlexLayout>
         <Text><img src="\images\battlefield\shilling.svg" alt="Shilling" height="24px" width="24px"/> SHILLING <img src="\images\battlefield\shilling.svg" alt="Shilling" height="24px" width="24px"/></Text>
         <HarvestOnlyAction earnings={shillingEarnings} pid={4} earnedValue={shillingEarnings.multipliedBy(shillingPrice)} stakingBalance={state.bfStaking}>Harvest Shilling</HarvestOnlyAction>
         <Text mt="4px"><img src="\images\battlefield\squire.svg" alt="Squire" height="32px" width="32px"/> SQUIRE <img src="\images\battlefield\squire.svg" alt="Squire" height="32px" width="32px"/></Text>
@@ -225,7 +231,7 @@ const BattlefieldRewards: React.FC<BattlefieldRewardsProps> = ({ battlefield, ac
         <HarvestAction earnings={tableEarnings} pid={1} earnedValue={tableEarnings.multipliedBy(tablePrice)}>Harvest Table</HarvestAction>
         <Divider />
         <Heading mb="8px"><u>Guest Rewards</u></Heading>
-        <Text><img src="\images\battlefield\mist.png" alt="Mist" height="32px" width="32px"/> MIST <img src="\images\battlefield\Mist.png" alt="MIST" height="32px" width="32px"/></Text>
+        <Text><img src="\images\battlefield\mist.png" alt="Mist" height="32px" width="32px"/> MIST <img src="\images\battlefield\mist.png" alt="MIST" height="32px" width="32px"/></Text>
         <HarvestOnlyAction earnings={state.totalGuestRewards} pid={5} earnedValue={new BigNumber(0)} stakingBalance={0}>Harvest Shilling</HarvestOnlyAction>
         <Divider />
         <ExpandableSectionButton
