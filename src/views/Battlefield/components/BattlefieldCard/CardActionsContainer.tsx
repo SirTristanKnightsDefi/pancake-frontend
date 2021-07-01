@@ -81,15 +81,6 @@ const CardActions: React.FC<BattlefieldCardActionsProps> = ({ battlefield, ether
           {lpName}
         </Text>
         <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
-          {TranslateString(1072, 'Earned')}
-        </Text>
-      </Flex>
-      <HarvestAction earnings={earnings} pid={pid} earnedValue={earnedValue}/>
-      <Flex>
-        <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="3px">
-          {lpName}
-        </Text>
-        <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
           {TranslateString(1074, 'Staked')}
         </Text>
       </Flex>{
