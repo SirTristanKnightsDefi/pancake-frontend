@@ -1,10 +1,12 @@
 import React, {useState} from 'react'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
+import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { Text, Button, Heading} from '@pancakeswap-libs/uikit'
 import { Battlefield } from 'state/types'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
+import useTheme from 'hooks/useTheme'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { useBattlefield, useBattlefieldUser, useBattlefieldFromSymbol, usePriceCakeBusd, usePriceSquireBusd, usePriceLegendBusd, usePriceTableBusd, usePriceShillingBusd } from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -86,11 +88,13 @@ interface BattlefieldOverviewProps {
 }
 
 const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }) => {
+  const { isDark } = useTheme();
   const knightPrice = usePriceCakeBusd()
   const squirePrice = usePriceSquireBusd()
   const legendPrice = usePriceLegendBusd()
   const tablePrice = usePriceTableBusd()
   const shillingPrice = usePriceShillingBusd()
+  const { account } = useWallet()
   let { stakedBalance, earnings } = useBattlefieldUser(0)
   const knightStakingBalance = stakedBalance;
   const knightEarnings = earnings;
@@ -125,6 +129,23 @@ const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }
   const rawArmyStrength = getBalanceNumber(userArmyStrength).toLocaleString()
   const rawArmyPercent = new BigNumber(getBalanceNumber(userArmyPercent)).multipliedBy(100).toFixed(6)
   const rawTotalArmyStrength = new BigNumber(battlefield.totalArmyStrength).toNumber().toLocaleString()
+
+  let rank = "Squire"
+  let image = "images/battlefield/squire.svg"
+  const armyRankPerc = (getBalanceNumber(userArmyPercent.multipliedBy(100)))
+  if (armyRankPerc >= 5){
+    rank = "Lord"
+    image = "images/battlefield/Lord.png"
+  } else if (armyRankPerc >= 1){
+    rank = "Baron"
+    image = "images/battlefield/Baron.png"
+  } else if (armyRankPerc >= 0.1){
+    rank = "General"
+    image = "images/battlefield/General.png"
+  } else if (armyRankPerc >= 0.001){
+    rank = "Soldier"
+    image = "images/battlefield/Soldier.png"
+  }
 
   const battlefieldAPY = battlefield.apy && battlefield.apy.times(new BigNumber(100)).toNumber().toLocaleString('en-US').slice(0, -1)
 
@@ -161,6 +182,14 @@ const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }
       <Heading mb="8px">⚔️ The Battlefield ⚔️</Heading>
       <Text> Earn all rewards at once by staking SQUIRE, KNIGHT, LEGEND, and TABLE!</Text>
       <Divider />
+      {account ?
+      <Wrapper>
+        <Heading mb="8px"> Your Rank: {rank}</Heading>
+        <img src={image} alt={rank} />
+        <Divider/>
+      </Wrapper>
+      :
+      <Text />}
       <Button as="a" variant="secondary" mt="12px" ml="12px" href="https://docs.knightsdefi.com/battlefield" target="_blank">
             Read More
       </Button>
@@ -177,6 +206,7 @@ const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }
           <Text mb="8px">Your Army Strength: {rawArmyStrength} </Text>
           <Text> Your Army Percent: {rawArmyPercent}% </Text>
           <Text mb="8px">Your Total Stake: ${userTotalDollarValue} </Text>
+          {isDark ? <img src="images/battlefield/BFLegendDark.PNG" alt="Battlefield Rank Legend" /> : <img src="images/battlefield/BFLegendLight.PNG" alt="Battlefield Rank Legend"/> }
         </Wrapper>
       </ExpandingWrapper>
     </FCard>
