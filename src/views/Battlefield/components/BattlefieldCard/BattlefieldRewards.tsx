@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
-import { Text, Button, Heading} from '@pancakeswap-libs/uikit'
+import { Text, Button, Heading, Link} from '@pancakeswap-libs/uikit'
 import { Battlefield } from 'state/types'
 import useWeb3 from 'hooks/useWeb3'
 import useRefresh from 'hooks/useRefresh'
@@ -232,6 +232,7 @@ const BattlefieldRewards: React.FC<BattlefieldRewardsProps> = ({ battlefield, ac
         <Divider />
         <Heading mb="8px"><u>Guest Rewards</u></Heading>
         <Text><img src="\images\battlefield\mist.png" alt="Mist" height="32px" width="32px"/> MIST <img src="\images\battlefield\mist.png" alt="MIST" height="32px" width="32px"/></Text>
+        <a href="https://www.alchemistdefi.com" target="_newwindow"><Text color="gold">Link to Alchemist DeFi</Text></a>
         <HarvestOnlyAction earnings={state.totalGuestRewards} pid={5} earnedValue={state.totalGuestRewards.multipliedBy(.102)} stakingBalance={0}>Harvest Shilling</HarvestOnlyAction>
         <Divider />
         <ExpandableSectionButton
