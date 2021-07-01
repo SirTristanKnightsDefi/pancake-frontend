@@ -182,14 +182,7 @@ const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }
       <Heading mb="8px">⚔️ The Battlefield ⚔️</Heading>
       <Text> Earn all rewards at once by staking SQUIRE, KNIGHT, LEGEND, and TABLE!</Text>
       <Divider />
-      {account ?
-      <Wrapper>
-        <Heading mb="8px"> Your Rank: {rank}</Heading>
-        <img src={image} alt={rank} />
-        <Divider/>
-      </Wrapper>
-      :
-      <Text />}
+      
       <Button as="a" variant="secondary" mt="12px" ml="12px" href="https://docs.knightsdefi.com/battlefield" target="_blank">
             Read More
       </Button>
@@ -206,6 +199,15 @@ const BattlefieldOverview: React.FC<BattlefieldOverviewProps> = ({ battlefield }
           <Text mb="8px">Your Army Strength: {rawArmyStrength} </Text>
           <Text> Your Army Percent: {rawArmyPercent}% </Text>
           <Text mb="8px">Your Total Stake: ${userTotalDollarValue} </Text>
+          {account ?
+          <Wrapper>
+            <Heading mb="8px"> Your Rank: {rank}</Heading>
+            <img src={image} alt={rank} />
+            <Divider/>
+          </Wrapper>
+          :
+          <Text />
+          }
           {isDark ? <img src="images/battlefield/BFLegendDark.PNG" alt="Battlefield Rank Legend" /> : <img src="images/battlefield/BFLegendLight.PNG" alt="Battlefield Rank Legend"/> }
         </Wrapper>
       </ExpandingWrapper>

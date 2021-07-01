@@ -232,7 +232,7 @@ const BattlefieldRewards: React.FC<BattlefieldRewardsProps> = ({ battlefield, ac
         <Divider />
         <Heading mb="8px"><u>Guest Rewards</u></Heading>
         <Text><img src="\images\battlefield\mist.png" alt="Mist" height="32px" width="32px"/> MIST <img src="\images\battlefield\mist.png" alt="MIST" height="32px" width="32px"/></Text>
-        <HarvestOnlyAction earnings={state.totalGuestRewards} pid={5} earnedValue={new BigNumber(0)} stakingBalance={0}>Harvest Shilling</HarvestOnlyAction>
+        <HarvestOnlyAction earnings={state.totalGuestRewards} pid={5} earnedValue={state.totalGuestRewards.multipliedBy(.102)} stakingBalance={0}>Harvest Shilling</HarvestOnlyAction>
         <Divider />
         <ExpandableSectionButton
           onClick={() => setShowExpandableSection(!showExpandableSection)}
