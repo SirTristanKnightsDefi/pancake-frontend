@@ -141,11 +141,6 @@ const Battlefield: React.FC = () => {
       </div>
       <div>
         <FlexLayout>
-          <AllAction />
-        </FlexLayout>
-      </div>
-      <div>
-        <FlexLayout>
         
           <Route exact path={`${path}`}>
             {stackedOnly ? battlefieldList(stackedOnlyBattlefields, false) : battlefieldList(activeBattlefields, false)}
