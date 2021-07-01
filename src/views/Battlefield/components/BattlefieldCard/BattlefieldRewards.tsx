@@ -215,10 +215,10 @@ const BattlefieldRewards: React.FC<BattlefieldRewardsProps> = ({ battlefield, ac
       <FCard>
         <StyledCardAccent />
         <Heading mb="8px">💰 Rewards 💰</Heading>
-        <Heading mb="8px"><u>Current Rewards</u></Heading>
         <FlexLayout>
           <AllAction />
         </FlexLayout>
+        <Heading mb="8px"><u>Current Rewards</u></Heading>        
         <Text><img src="\images\battlefield\shilling.svg" alt="Shilling" height="24px" width="24px"/> SHILLING <img src="\images\battlefield\shilling.svg" alt="Shilling" height="24px" width="24px"/></Text>
         <HarvestOnlyAction earnings={shillingEarnings} pid={4} earnedValue={shillingEarnings.multipliedBy(shillingPrice)} stakingBalance={state.bfStaking}>Harvest Shilling</HarvestOnlyAction>
         <Text mt="4px"><img src="\images\battlefield\squire.svg" alt="Squire" height="32px" width="32px"/> SQUIRE <img src="\images\battlefield\squire.svg" alt="Squire" height="32px" width="32px"/></Text>
