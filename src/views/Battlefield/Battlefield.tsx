@@ -17,6 +17,7 @@ import useTheme from 'hooks/useTheme'
 import BattlefieldCard, { BattlefieldWithStakedValue } from './components/BattlefieldCard/BattlefieldCard'
 import BattlefieldRewards from './components/BattlefieldCard/BattlefieldRewards'
 import BattlefieldOverview from './components/BattlefieldCard/BattlefieldOverview'
+import {ShillingRewardsCard} from './components/BattlefieldCard/ShillingRewardsCard'
 import Divider from './components/Divider'
 import AllAction from './components/AllAction'
 
@@ -153,6 +154,7 @@ const Battlefield: React.FC = () => {
         <Text>*Army Strength is calculated as follows:</Text>
       <Text>(SQUIRE*1e18 + (KNIGHT*1e18 * 500)) * 2^(floor(log10((TABLE*1e18 * LEGEND*1e18 * 5)))</Text>
       </div>
+      <Hero><ShillingRewardsCard/></Hero>
     </Page>
   )
 }
