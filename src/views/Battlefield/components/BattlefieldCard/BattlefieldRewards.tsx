@@ -231,7 +231,7 @@ const BattlefieldRewards: React.FC<BattlefieldRewardsProps> = ({ battlefield, ac
         <HarvestAction earnings={tableEarnings} pid={1} earnedValue={tableEarnings.multipliedBy(tablePrice)}>Harvest Table</HarvestAction>
         <Divider />
         <Heading mb="8px"><u>Guest Rewards</u></Heading>
-        <Text><img src="\images\battlefield\cake.png" alt="CAKE" height="32px" width="32px"/> CAKE <img src="\images\battlefield\cake.png" alt="CAKE" height="32px" width="32px"/></Text>
+        <Text><img src="\images\battlefield\CAKE.png" alt="CAKE" height="32px" width="32px"/> CAKE <img src="\images\battlefield\CAKE.png" alt="CAKE" height="32px" width="32px"/></Text>
         <a href="https://www.pancakeswap.finance" target="_newwindow"><Text color="gold">Link to PancakeSwap</Text></a>
         <HarvestOnlyAction earnings={state.totalGuestRewards} pid={6} earnedValue={state.totalGuestRewards.multipliedBy(16.429)} stakingBalance={0}>Harvest Shilling</HarvestOnlyAction>
         <Divider />
