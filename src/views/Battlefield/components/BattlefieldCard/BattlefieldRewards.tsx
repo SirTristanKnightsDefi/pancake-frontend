@@ -146,7 +146,7 @@ const BattlefieldRewards: React.FC<BattlefieldRewardsProps> = ({ battlefield, ac
         let guestRewards = 0
         const bfContract = getBattlefieldContract()
         const shillBFRewardsPid = 4 // Change to Battlefield PID for Shilling Rewards after launch.
-        const guestRewardsPid = 5
+        const guestRewardsPid = 6
 
         shillEarnings = await bfContract.methods.getUserCurrentRewards(account, shillBFRewardsPid).call()
         bfStaking = await bfContract.methods.userHoldings(account, shillBFRewardsPid).call()
@@ -190,7 +190,7 @@ const BattlefieldRewards: React.FC<BattlefieldRewardsProps> = ({ battlefield, ac
   const legendRewards = new BigNumber(getBalanceNumber(new BigNumber(rawArmyPercent).dividedBy(100).multipliedBy(.5).multipliedBy(1e18))).toFixed(4);
   const tableRewards = new BigNumber(getBalanceNumber(new BigNumber(rawArmyPercent).dividedBy(100).multipliedBy(.0288).multipliedBy(1e18))).toFixed(6);
   const shillingRewards = new BigNumber(getBalanceNumber(new BigNumber(rawArmyPercent).dividedBy(100).multipliedBy(2880000000).multipliedBy(1e18))).toFixed(0);
-  const guestRewards = new BigNumber(getBalanceNumber(new BigNumber(rawArmyPercent).dividedBy(100).multipliedBy(1001).multipliedBy(1e18))).toFixed(3);
+  const guestRewards = new BigNumber(getBalanceNumber(new BigNumber(rawArmyPercent).dividedBy(100).multipliedBy(3).multipliedBy(1e18))).toFixed(3);
   const formattedSquireRewards = new BigNumber(squireRewards).toNumber().toLocaleString()
   const formattedKnightRewards = new BigNumber(knightRewards).toNumber().toLocaleString()
   const formattedTableRewards = new BigNumber(tableRewards).toNumber().toLocaleString()
@@ -202,7 +202,7 @@ const BattlefieldRewards: React.FC<BattlefieldRewardsProps> = ({ battlefield, ac
   const legendRewardValue = new BigNumber(legendRewards).multipliedBy(legendPrice).toFixed(2);
   const tableRewardValue = new BigNumber(tableRewards).multipliedBy(tablePrice).toFixed(2);
   const shillingRewardValue = ((shillingPrice.isGreaterThan(0)) ? (new BigNumber(shillingRewards).multipliedBy(shillingPrice).toFixed(2)) : 0)
-  const guestRewardValue = new BigNumber(guestRewards).multipliedBy(0.102).toFixed(2);
+  const guestRewardValue = new BigNumber(guestRewards).multipliedBy(16).toFixed(2);
 
   const totalRewardValue = (Number(squireRewardValue)+Number(guestRewardValue)+Number(knightRewardValue)+Number(legendRewardValue)+Number(tableRewardValue)+Number(shillingRewardValue)).toFixed(2);
   const userTotalDollarValue = userTotalValue.toNumber().toLocaleString()
@@ -231,9 +231,9 @@ const BattlefieldRewards: React.FC<BattlefieldRewardsProps> = ({ battlefield, ac
         <HarvestAction earnings={tableEarnings} pid={1} earnedValue={tableEarnings.multipliedBy(tablePrice)}>Harvest Table</HarvestAction>
         <Divider />
         <Heading mb="8px"><u>Guest Rewards</u></Heading>
-        <Text><img src="\images\battlefield\mist.png" alt="Mist" height="32px" width="32px"/> MIST <img src="\images\battlefield\mist.png" alt="MIST" height="32px" width="32px"/></Text>
-        <a href="https://www.alchemistdefi.com" target="_newwindow"><Text color="gold">Link to Alchemist DeFi</Text></a>
-        <HarvestOnlyAction earnings={state.totalGuestRewards} pid={5} earnedValue={state.totalGuestRewards.multipliedBy(.102)} stakingBalance={0}>Harvest Shilling</HarvestOnlyAction>
+        <Text><img src="\images\battlefield\cake.png" alt="CAKE" height="32px" width="32px"/> CAKE <img src="\images\battlefield\cake.png" alt="CAKE" height="32px" width="32px"/></Text>
+        <a href="https://www.pancakeswap.finance" target="_newwindow"><Text color="gold">Link to PancakeSwap</Text></a>
+        <HarvestOnlyAction earnings={state.totalGuestRewards} pid={6} earnedValue={state.totalGuestRewards.multipliedBy(16.429)} stakingBalance={0}>Harvest Shilling</HarvestOnlyAction>
         <Divider />
         <ExpandableSectionButton
           onClick={() => setShowExpandableSection(!showExpandableSection)}
@@ -250,7 +250,7 @@ const BattlefieldRewards: React.FC<BattlefieldRewardsProps> = ({ battlefield, ac
             <Text> KNIGHT: {knightRewards} - ${knightRewardValue}</Text>
             <Text> LEGEND: {legendRewards} - ${legendRewardValue}</Text>
             <Text> TABLE: {tableRewards} - ${tableRewardValue}</Text>
-            <Text  mb="8px"> MIST (Guest): {guestRewards.toLocaleString()} - ${guestRewardValue}</Text>
+            <Text  mb="8px"> CAKE (Guest): {guestRewards.toLocaleString()} - ${guestRewardValue}</Text>
             <Text mb="8px"> Current Rewards: ${userTotalEarningsValue}</Text>
             <Text mb="8px">Your Total Stake: ${userTotalDollarValue} </Text>
             <Text>Estimated APR: {apr.toFixed(2)}% </Text>
