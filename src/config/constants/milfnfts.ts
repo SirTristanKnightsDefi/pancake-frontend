@@ -18,6 +18,21 @@ const MilfNfts: Nft[] = [
     purchaseTokenName: "WBNB",
     storyUri: "https://gateway.pinata.cloud/ipfs/QmPAJmLHmetdh2d8KsB4zWinoArZW3ZbUS83M1poz3fkCv/dame_celestina/"
   },
+  {
+    name: 'The Alchemist',
+    description: 'The Alchemist',
+    images: {
+      lg: 'Milf2.png',
+      md: 'Milf2.png',
+      sm: 'Milf2.png',
+      ipfs: 'https://gateway.pinata.cloud/ipfs/QmUVCQjaZYBnLBiKp8LStniuuUA6zb6dSJyJyLevaTNs9C/MILFv2.gif',
+      blur: 'Milf2.png',
+    },
+    sortOrder: 999,
+    tokenId: 0,
+    nftId: 1,
+    purchaseTokenName: "WBNB",
+  },
 ]
 
 export default MilfNfts
