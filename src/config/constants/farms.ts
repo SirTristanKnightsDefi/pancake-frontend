@@ -83,6 +83,70 @@ const farms: FarmConfig[] = [
     lpVersion: 2
   },
   {
+    pid: 15,
+    lpSymbol: 'KNIGHT-LINK V2 LP',
+    lpAddresses: {
+      97: '0x86a2543E421133e93FD187099d505220BC7b8986', // KNIGHT-LINK V2 LP
+      56: '0x86a2543E421133e93FD187099d505220BC7b8986', // KNIGHT-LINK V2 LP
+    },
+    tokenSymbol: 'LINK',
+    tokenAddresses: {
+      97: '0xF8A0BF9cF54Bb92F17374d9e9A321E6a111a51bD', // LINK
+      56: '0xF8A0BF9cF54Bb92F17374d9e9A321E6a111a51bD', // LINK
+    },
+    quoteTokenSymbol: QuoteToken.CAKE,
+    quoteTokenAdresses: contracts.cake,
+    lpVersion: 2
+  },
+  {
+    pid: 16,
+    lpSymbol: 'KNIGHT-ADA V2 LP',
+    lpAddresses: {
+      97: '0xBBb09d7AF04a71AAaD3AA57335178c3fceF11659', // KNIGHT-ADA V2 LP
+      56: '0xBBb09d7AF04a71AAaD3AA57335178c3fceF11659', // KNIGHT-ADA V2 LP
+    },
+    tokenSymbol: 'ADA',
+    tokenAddresses: {
+      97: '0x3EE2200Efb3400fAbB9AacF31297cBdD1d435D47', // ADA
+      56: '0x3EE2200Efb3400fAbB9AacF31297cBdD1d435D47', // ADA
+    },
+    quoteTokenSymbol: QuoteToken.CAKE,
+    quoteTokenAdresses: contracts.cake,
+    lpVersion: 2
+  },
+  {
+    pid: 17,
+    lpSymbol: 'KNIGHT-CAKE V2 LP',
+    lpAddresses: {
+      97: '0xb0f78971d22812FcA20D27D6C726365E3279d40c', // KNIGHT-CAKE V2 LP
+      56: '0xb0f78971d22812FcA20D27D6C726365E3279d40c', // KNIGHT-CAKE V2 LP
+    },
+    tokenSymbol: 'CAKE',
+    tokenAddresses: {
+      97: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82', // CAKE
+      56: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82', // CAKE
+    },
+    quoteTokenSymbol: QuoteToken.CAKE,
+    quoteTokenAdresses: contracts.cake,
+    lpVersion: 2
+  },
+  {
+    pid: 18,
+    lpSymbol: 'KNIGHT-DARA V2 LP',
+    lpAddresses: {
+      97: '0x977e13a2efd3f5945864c9bd636f949cbe358ab0', // KNIGHT-DARA V2 LP
+      56: '0x977e13a2efd3f5945864c9bd636f949cbe358ab0', // KNIGHT-DARA V2 LP
+    },
+    tokenSymbol: 'DARA',
+    tokenAddresses: {
+      97: '0x0255af6c9f86f6b0543357bacefa262a2664f80f', // DARA
+      56: '0x0255af6c9f86f6b0543357bacefa262a2664f80f', // DARA
+    },
+    quoteTokenSymbol: QuoteToken.CAKE,
+    quoteTokenAdresses: contracts.cake,
+    lpVersion: 2
+  },
+  {
     pid: 1,
     lpSymbol: 'KNIGHT-BNB V1 LP',
     lpAddresses: {
