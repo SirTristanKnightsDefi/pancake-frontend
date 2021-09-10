@@ -76,6 +76,16 @@ const config: MenuEntry[] = [
     href: '/lottery',
   },
   {
+    label: 'King\'s Parlor',
+    icon: 'NftIcon',
+    items: [
+      {
+        label: 'Kingmaker (Coming Soon)',
+        href: '',
+      },
+    ],
+  },
+  {
     label: 'The Queen\'s Gallery',
     icon: 'NftIcon',
     href: '/nft',
