@@ -19,7 +19,8 @@ import {
   getLegendAddress,
   getShillingAddress,
   getMilfNFTsAddress,
-  getWbnbAddress
+  getWbnbAddress,
+  getKingmakerAddress
 } from 'utils/addressHelpers'
 import { poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
@@ -43,6 +44,7 @@ import legendAbi from 'config/abi/legend.json'
 import tableAbi from 'config/abi/table.json'
 import knightAbi from 'config/abi/cake.json'
 import shillingAbi from 'config/abi/shilling.json'
+import kingmakerAbi from 'config/abi/kingmaker.json'
 
 const useContract = (abi: AbiItem, address: string, contractOptions?: ContractOptions) => {
   const web3 = useWeb3()
@@ -100,6 +102,11 @@ export const useSquire = () => {
 export const useLegend = () => {
   const abi = (legendAbi as unknown) as AbiItem
   return useContract(abi, getLegendAddress())
+}
+
+export const useKingmaker = () => {
+  const abi = (kingmakerAbi as unknown) as AbiItem
+  return useContract(abi, getKingmakerAddress())
 }
 
 export const useTable = () => {

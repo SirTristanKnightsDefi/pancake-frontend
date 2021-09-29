@@ -18,6 +18,7 @@ const Battlefield = lazy(() => import('./views/Battlefield'))
 const NotFound = lazy(() => import('./views/NotFound'))
 const NFT = lazy(() => import('./views/Nft'))
 const Lottery = lazy(() => import('./views/Lottery'))
+const Kingmaker = lazy(() => import('./views/Kingmaker'))
 
 // This config is required for number formating
 BigNumber.config({
@@ -61,6 +62,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/farms">
               <Farms />
+            </Route>
+            <Route path="/kingmaker">
+              <Kingmaker />
             </Route>
             <Route path="/nft">
               <NFT />

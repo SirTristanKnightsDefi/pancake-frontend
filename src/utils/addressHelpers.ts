@@ -11,6 +11,10 @@ export const getCakeAddress = () => {
   return getAddress(addresses.cake) // Returns KNIGHT
 }
 
+export const getKingmakerAddress = () => {
+  return getAddress(addresses.kingmaker) // Returns Kingmaker
+}
+
 export const getKnightAddress = () => {
   return getAddress(addresses.knight) // Returns KNIGHT
 }
