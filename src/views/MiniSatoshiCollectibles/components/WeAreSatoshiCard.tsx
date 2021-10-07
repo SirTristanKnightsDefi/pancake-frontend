@@ -175,7 +175,7 @@ const WeAreSatoshiCard: React.FC<MiniSatProps> = ({ethereum, account}) => {
     <FCard>
         <Heading mb="8px">We Are Satoshi</Heading>
         <Image src="images/nfts/wearesatoshi.gif" alt=""/>
-        <Text mb="8px" mt="12px">&quot;We are Satoshi&quot; is a collection of 1,000 computer-generated NFT characters. Each one of them is totally unique and tokenised as NFTs on the Binance Smart Chain (BSC) network.</Text>
+        <Text mb="8px" mt="12px">&quot;We are Satoshi&quot; is a collection of 1,000 computer-generated NFT characters. Each one of them is totally unique and tokenised as an NFT on the Binance Smart Chain (BSC) network.</Text>
         <Divider/>
         <Text mb="8px">Minted: {tokensMinted}/{tokensMax}</Text>
         <Text mb="8px">Mint Cost: {(mintPrice/1e18).toFixed(2)} BNB</Text>
