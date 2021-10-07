@@ -116,16 +116,17 @@ const Hero = styled.div`
   }
 `
 
-interface BattlefieldOverviewProps {
+interface MiniSatProps {
   account: string,
   ethereum: provider
 }
 
-const WeAreSatoshiCard: React.FC<BattlefieldOverviewProps> = ({ethereum, account}) => {
+const WeAreSatoshiCard: React.FC<MiniSatProps> = ({ethereum, account}) => {
   const [tokensHeld, setTokensHeld] = React.useState(0);
   const [mintPrice, setMintPrice] = React.useState(0);
   const [tokensMinted, setTokensMinted] = React.useState(0);
   const [tokensMax, setTokensMax] = React.useState(0);
+  const [mintActive, setMintActive] = React.useState(0);
   const [totalStakedPerc, setTotalStakedPerc] = React.useState(0.00000);
   const [stakedBalanceFormatted, setStakedBalanceFormatted] = React.useState(0.0000);
   const [numToMint, setNumToMint] = React.useState(1);
@@ -137,7 +138,7 @@ const WeAreSatoshiCard: React.FC<BattlefieldOverviewProps> = ({ethereum, account
 
   const mint = async () =>
     weAreSatoshiContract.methods
-        .purchaseNfts(numToMint).send({ value: (numToMint*(5*1e16)).toString(), from: account, to: weAreSatoshiContract.options.address })
+        .purchaseNfts(numToMint).send({ value: (numToMint*mintPrice).toString(), from: account, to: weAreSatoshiContract.options.address })
         .on('transactionHash', (tx) => {
             console.log("method bypassed")
             return tx.transactionHash
@@ -156,6 +157,8 @@ const WeAreSatoshiCard: React.FC<BattlefieldOverviewProps> = ({ethereum, account
         setTokensMinted(minted)
         total = await weAreSatoshiContract.methods.totalAvailable().call()
         setTokensMax(total)
+        total = await weAreSatoshiContract.methods.mintingActive().call()
+        setMintActive(total)
         if(account){
           let held = 0
           held = await weAreSatoshiContract.methods.balanceOf(account).call()
@@ -177,7 +180,7 @@ const WeAreSatoshiCard: React.FC<BattlefieldOverviewProps> = ({ethereum, account
         <Text mb="8px">Minted: {tokensMinted}/{tokensMax}</Text>
         <Text mb="8px">Mint Cost: {(mintPrice/1e18).toFixed(2)} BNB</Text>
         
-        {account && mintable ?
+        {account && mintable && mintActive ?
             <div>
             <Hero>
                 <Text mb="8px"># to Mint: </Text>
@@ -194,7 +197,7 @@ const WeAreSatoshiCard: React.FC<BattlefieldOverviewProps> = ({ethereum, account
             :
             <Text />
         }
-        {account && !mintable ?
+        {account && !mintable && mintActive ?
             <div>
             <Button mt="8px" mb="8px" variant="tertiary">
                 <Text color="primary">Sold Out</Text>
@@ -203,6 +206,17 @@ const WeAreSatoshiCard: React.FC<BattlefieldOverviewProps> = ({ethereum, account
             </div>
             :
             <Text />
+        }
+        {
+            account && !mintActive ?
+            <div>
+            <Button mt="8px" mb="8px" variant="tertiary">
+                <Text color="primary">Mint Not Started</Text>
+            </Button>
+            </div>
+            :
+            <Text />
+
         }
         {!account?
             <UnlockButton/>
