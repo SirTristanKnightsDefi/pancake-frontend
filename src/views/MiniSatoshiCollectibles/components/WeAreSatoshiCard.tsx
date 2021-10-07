@@ -104,7 +104,7 @@ const Hero = styled.div`
   margin-right: auto;
   width: 100%;
   justify-content: center;
-  padding: 48px 0;
+  padding: 8px 0;
   ul {
     margin: 0;
     padding: 0;
@@ -179,13 +179,13 @@ const WeAreSatoshiCard: React.FC<BattlefieldOverviewProps> = ({ethereum, account
         
         {account && mintable ?
             <div>
-            <Flex>
+            <Hero>
                 <Text mb="8px"># to Mint: </Text>
                 <StyledInput id='number' min='1' max='15' type='number' value={numToMint} onChange={async (e) => {
                     const value = e.target.valueAsNumber;
                     setNumToMint(value);
                 }}/>
-            </Flex>
+            </Hero>
             <Button mt="8px" mb="8px" variant="primary" onClick={mint}>
                 <Text color="tertiary">Mint NFTs</Text>
             </Button>
