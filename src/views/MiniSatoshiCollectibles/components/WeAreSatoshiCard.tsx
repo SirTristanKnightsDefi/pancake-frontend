@@ -23,16 +23,16 @@ const Wrapper = styled.div`
 
 const StyledInput = styled(Input)`
   box-shadow: none;
-  width: 60px;
+  width: 64px;
   margin: 0 8px;
   padding: 0 8px;
 
   ${({ theme }) => theme.mediaQueries.xs} {
-    width: 80px;
+    width: 64px;
   }
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    width: auto;
+    width: 64px;
   }
 `
 
@@ -170,7 +170,6 @@ const WeAreSatoshiCard: React.FC<BattlefieldOverviewProps> = ({ethereum, account
 
   return (
     <FCard>
-        <StyledCardAccent />
         <Heading mb="8px">We Are Satoshi</Heading>
         <Image src="images/nfts/wearesatoshi.gif" alt=""/>
         <Text mb="8px" mt="12px">&quot;We are Satoshi&quot; is a collection of 1,000 computer-generated NFT characters. Each one of them is totally unique and tokenised as NFTs on the Binance Smart Chain (BSC) network.</Text>
@@ -181,11 +180,11 @@ const WeAreSatoshiCard: React.FC<BattlefieldOverviewProps> = ({ethereum, account
         {account && mintable ?
             <div>
             <Flex>
-            <Text mb="8px"># to Mint: </Text>
-            <StyledInput id='number' min='1' max='15' type='number' value={numToMint} onChange={async (e) => {
-                const value = e.target.valueAsNumber;
-                setNumToMint(value);
-            }}/>
+                <Text mb="8px"># to Mint: </Text>
+                <StyledInput id='number' min='1' max='15' type='number' value={numToMint} onChange={async (e) => {
+                    const value = e.target.valueAsNumber;
+                    setNumToMint(value);
+                }}/>
             </Flex>
             <Button mt="8px" mb="8px" variant="primary" onClick={mint}>
                 <Text color="tertiary">Mint NFTs</Text>
