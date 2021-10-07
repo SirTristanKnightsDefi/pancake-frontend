@@ -223,7 +223,11 @@ const WeAreSatoshiCard: React.FC<MiniSatProps> = ({ethereum, account}) => {
             :
             <Text />
         }
-        
+        <Divider />
+        <Text><u>Links</u></Text>
+        <Text><a href="https://t.me/MINISATOSHIBSC" target="_blank" rel="noreferrer">Telegram</a></Text>
+        <Text><a href="https://lootex.io/stores/we-are-satoshi" target="_blank" rel="noreferrer">Lootex</a></Text>
+        <Text><a href="https://bscscan.com/address/0xe027a1b8140b8af8a13765a31c5bb952bf5ea8b2#code" target="_blank" rel="noreferrer">NFT Contract</a></Text>        
     </FCard>
   )
 }
