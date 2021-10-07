@@ -20,7 +20,8 @@ import {
   getShillingAddress,
   getMilfNFTsAddress,
   getWbnbAddress,
-  getKingmakerAddress
+  getKingmakerAddress,
+  getWeAreSatoshiAddress
 } from 'utils/addressHelpers'
 import { poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
@@ -45,6 +46,7 @@ import tableAbi from 'config/abi/table.json'
 import knightAbi from 'config/abi/cake.json'
 import shillingAbi from 'config/abi/shilling.json'
 import kingmakerAbi from 'config/abi/kingmaker.json'
+import wearesatoshiAbi from 'config/abi/wearesatoshi.json'
 
 const useContract = (abi: AbiItem, address: string, contractOptions?: ContractOptions) => {
   const web3 = useWeb3()
@@ -55,6 +57,11 @@ const useContract = (abi: AbiItem, address: string, contractOptions?: ContractOp
   }, [abi, address, contractOptions, web3])
 
   return contract
+}
+
+export const useWeAreSatoshiContract = () => {
+  const abi = (wearesatoshiAbi as unknown) as AbiItem
+  return useContract(abi, getWeAreSatoshiAddress())
 }
 
 /**

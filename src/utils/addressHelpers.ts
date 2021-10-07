@@ -7,6 +7,10 @@ export const getAddress = (address: Address): string => {
   return address[chainId] ? address[chainId] : address[mainNetChainId]
 }
 
+export const getWeAreSatoshiAddress = () => {
+  return getAddress(addresses.wearesatoshi) // Returns WeAreSatoshi
+}
+
 export const getCakeAddress = () => {
   return getAddress(addresses.cake) // Returns KNIGHT
 }

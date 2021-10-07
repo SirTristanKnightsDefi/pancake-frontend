@@ -1,4 +1,8 @@
 export default {
+  wearesatoshi:{
+    97: '0xe7FFF4b15C365EA7C59ab3bC97A11491a620c9f8', // Satoshi NFTs
+    56: '0xe7FFF4b15C365EA7C59ab3bC97A11491a620c9f8',
+  },
   thegrailnfts:{
     97: '0x420C845C207D5cbEd4CbBB95b6E53342c451D427',
     56: '0x420C845C207D5cbEd4CbBB95b6E53342c451D427',
