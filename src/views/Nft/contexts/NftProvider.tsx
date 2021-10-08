@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useRef, useState } from 'react'
 import BigNumber from 'bignumber.js'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { useWallet } from 'use-wallet'
 import useRefresh from 'hooks/useRefresh'
 import useBlock from 'hooks/useBlock'
 import useGetWalletNfts, { NftMap, useGetWalletKotrtNfts, useGetWalletKdfnNfts, useGetWalletKdfnBetaNfts, useGetWalletMilfNfts } from 'hooks/useGetWalletNfts'

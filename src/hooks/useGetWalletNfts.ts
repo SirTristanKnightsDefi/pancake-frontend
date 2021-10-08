@@ -1,4 +1,4 @@
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { useWallet } from 'use-wallet'
 import { useEffect, useReducer } from 'react'
 import { getTheGrailNFTsContract, getKotrtNFTsContract, getKdfnNFTsContract, getKdfnNFTsBetaContract, getMilfNFTsContract } from 'utils/contractHelpers'
 

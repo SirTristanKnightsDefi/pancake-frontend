@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { useWallet } from 'use-wallet'
 import { useDispatch } from 'react-redux'
 import {
   fetchFarmUserDataAsync,

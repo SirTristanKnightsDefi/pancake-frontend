@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useMemo, useReducer } from 'react'
 import BigNumber from 'bignumber.js'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { useWallet } from 'use-wallet'
 import { getBunnyFactoryContract } from 'utils/contractHelpers'
 import { Actions, State, ContextType } from './types'
 

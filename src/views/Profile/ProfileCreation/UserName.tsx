@@ -17,7 +17,7 @@ import {
   Checkbox,
 } from '@pancakeswap-libs/uikit'
 import { parseISO, formatDistance } from 'date-fns'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { useWallet } from 'use-wallet'
 import { useToast } from 'state/hooks'
 import useWeb3 from 'hooks/useWeb3'
 import useI18n from 'hooks/useI18n'

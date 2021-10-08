@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Menu as UikitMenu } from '@pancakeswap-libs/uikit'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { useWallet } from 'use-wallet'
 import { allLanguages } from 'config/localisation/languageCodes'
 import { LanguageContext } from 'contexts/Localisation/languageContext'
 import { usePriceCakeBusd, usePriceTableBusd, usePriceLegendBusd, usePriceSquireBusd, usePriceShillingBusd } from 'state/hooks'

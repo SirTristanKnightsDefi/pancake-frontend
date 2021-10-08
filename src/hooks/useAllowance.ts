@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import BigNumber from 'bignumber.js'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { useWallet } from 'use-wallet'
 import { Contract } from 'web3-eth-contract'
 import { useCake, useLottery } from './useContract'
 import { getAllowance } from '../utils/erc20'
