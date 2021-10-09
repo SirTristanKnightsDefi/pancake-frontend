@@ -126,15 +126,15 @@ const WeAreSatoshiCard: React.FC<MiniSatProps> = ({ethereum, account}) => {
   const [mintPrice, setMintPrice] = React.useState(0);
   const [tokensMinted, setTokensMinted] = React.useState(0);
   const [tokensMax, setTokensMax] = React.useState(0);
-  const [mintActive, setMintActive] = React.useState(0);
+  const [mintActive, setMintActive] = React.useState(false);
   const [totalStakedPerc, setTotalStakedPerc] = React.useState(0.00000);
   const [stakedBalanceFormatted, setStakedBalanceFormatted] = React.useState(0.0000);
   const [numToMint, setNumToMint] = React.useState(1);
+  const [mintable, setMintable] = React.useState(false)
   const weAreSatoshiContract = useWeAreSatoshiContract();
   const dispatch = useDispatch()
   const web3 = useWeb3()
   const { slowRefresh } = useRefresh()
-  const mintable = tokensMax > tokensMinted
 
   const mint = async () =>
     weAreSatoshiContract.methods
@@ -151,14 +151,16 @@ const WeAreSatoshiCard: React.FC<MiniSatProps> = ({ethereum, account}) => {
         let price = 0
         let minted = 0
         let total = 0
+        let mintingActive = false;
         price = await weAreSatoshiContract.methods.mintCost().call()
         setMintPrice(price)
         minted = await weAreSatoshiContract.methods.totalSupply().call()
         setTokensMinted(minted)
         total = await weAreSatoshiContract.methods.totalAvailable().call()
         setTokensMax(total)
-        total = await weAreSatoshiContract.methods.mintingActive().call()
-        setMintActive(total)
+        mintingActive = await weAreSatoshiContract.methods.mintingActive().call()
+        setMintActive(mintingActive)
+        setMintable(total > minted)
         if(account){
           let held = 0
           held = await weAreSatoshiContract.methods.balanceOf(account).call()
@@ -180,7 +182,7 @@ const WeAreSatoshiCard: React.FC<MiniSatProps> = ({ethereum, account}) => {
         <Text mb="8px">Minted: {tokensMinted}/{tokensMax}</Text>
         <Text mb="8px">Mint Cost: {(mintPrice/1e18).toFixed(2)} BNB</Text>
         
-        {account && mintable && mintActive ?
+        {account && mintActive ?
             <div>
             <Hero>
                 <Text mb="8px"># to Mint: </Text>
@@ -197,7 +199,7 @@ const WeAreSatoshiCard: React.FC<MiniSatProps> = ({ethereum, account}) => {
             :
             <Text />
         }
-        {account && !mintable && mintActive ?
+        {/* {account && !mintable && mintActive ?
             <div>
             <Button mt="8px" mb="8px" variant="tertiary">
                 <Text color="primary">Sold Out</Text>
@@ -206,7 +208,7 @@ const WeAreSatoshiCard: React.FC<MiniSatProps> = ({ethereum, account}) => {
             </div>
             :
             <Text />
-        }
+        } */}
         {
             account && !mintActive ?
             <div>
