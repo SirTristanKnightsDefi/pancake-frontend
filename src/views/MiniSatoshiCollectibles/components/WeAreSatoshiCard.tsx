@@ -182,7 +182,7 @@ const WeAreSatoshiCard: React.FC<MiniSatProps> = ({ethereum, account}) => {
         <Text mb="8px">Minted: {tokensMinted}/{tokensMax}</Text>
         <Text mb="8px">Mint Cost: {(mintPrice/1e18).toFixed(2)} BNB</Text>
         
-        {account && mintActive ?
+        {/* {account && mintActive ?
             <div>
             <Hero>
                 <Text mb="8px"># to Mint: </Text>
@@ -198,8 +198,8 @@ const WeAreSatoshiCard: React.FC<MiniSatProps> = ({ethereum, account}) => {
             </div>
             :
             <Text />
-        }
-        {/* {account && !mintable && mintActive ?
+        } */}
+        {account && mintActive ?
             <div>
             <Button mt="8px" mb="8px" variant="tertiary">
                 <Text color="primary">Sold Out</Text>
@@ -208,7 +208,7 @@ const WeAreSatoshiCard: React.FC<MiniSatProps> = ({ethereum, account}) => {
             </div>
             :
             <Text />
-        } */}
+        }
         {
             account && !mintActive ?
             <div>
