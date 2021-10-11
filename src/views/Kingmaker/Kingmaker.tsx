@@ -249,7 +249,7 @@ const KingmakerView = () => {
             <Heading mb="12px">Peasants: {peasants}</Heading>
             <Heading>Farmers: {farmers}</Heading>
             <Hero>
-              <Text># Farmers to Buy (10 Peasants per Farmer):</Text>
+              <Text># Farmers to Buy (10 Peasants / Farmer):</Text>
               <StyledInput type='number' value={farmerBuyAmt} onChange={async (e) => {
                 const value = e.target.valueAsNumber;
                 setFarmerBuyAmt(value);
@@ -265,7 +265,7 @@ const KingmakerView = () => {
             </div>
             <Heading mt="12px">Knights: {knights}</Heading>
             <Hero>
-              <Text># of Knights to Buy (1,000 Farmers per Knight):</Text>
+              <Text># of Knights to Buy (1,000 Farmers / Knight):</Text>
               <StyledInput type='number' value={knightBuyAmt} onChange={async (e) => {
                 const value = e.target.valueAsNumber;
                 setKnightBuyAmt(value);
@@ -281,7 +281,7 @@ const KingmakerView = () => {
             </div>
             <Heading>Nobles: {nobles}</Heading>
             <Hero>
-              <Text>Amount of Nobles to Buy (100,000 Knights per Noble):</Text>
+              <Text># of Nobles to Buy (100,000 Knights / Noble):</Text>
               <StyledInput type='number' value={nobleBuyAmt} onChange={async (e) => {
                 const value = e.target.valueAsNumber;
                 setNobleBuyAmt(value);
@@ -297,7 +297,7 @@ const KingmakerView = () => {
             </div>
             <Heading>Kings: {kings}</Heading>
             <Hero>
-              <Text>Amount of Kings to Buy (10,000,000 Nobles per King):</Text>
+              <Text># of Kings to Buy (10,000,000 Nobles / King):</Text>
               <StyledInput type='number' value={kingBuyAmt} onChange={async (e) => {
                 const value = e.target.valueAsNumber;
                 setKingBuyAmt(value);
