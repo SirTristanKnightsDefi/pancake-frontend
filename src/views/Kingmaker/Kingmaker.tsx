@@ -237,7 +237,7 @@ const KingmakerView = () => {
           <FCard>
             <StyledCardAccent />
             <Heading mb="8px">⚔️ Kingmaker ⚔️</Heading>
-            <Text> Develop your army over time.  Boost speed by holding KNIGHT and/or buying boosts in the marketplace.  Requires holding 1000 KNIGHT to start. Top 3 places win KNIGHT after each play cycle.</Text>
+            <Text> Develop your army over time.  Boost speed by holding KNIGHT and/or buying boosts in the marketplace.  Requires holding 1000 KNIGHT to start. No tokens are required to play, only BNB for gas. Top 3 places win KNIGHT after each play cycle.</Text>
             <br />
             <Heading> Score: {score}</Heading>
             <Heading> Multiplier Based on Knight Holdings: {multiplier.toFixed(2)}x</Heading>
