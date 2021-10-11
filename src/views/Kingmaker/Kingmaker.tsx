@@ -112,11 +112,6 @@ const KingmakerView = () => {
   const [kingBuyAmt, setKingBuyAmt] = React.useState(1);
   const [multiplier, setMultiplier] = React.useState(1);
   const { fastRefresh } = useRefresh()
-  useEffect(() => {
-    if (account) {
-      console.log(account)
-    }
-  }, [account, dispatch, fastRefresh])
 
   useEffect(() => {
     
@@ -145,7 +140,7 @@ const KingmakerView = () => {
     }
     updateUnits();
     
-  }, [account, dispatch, fastRefresh, kingmakerContract])
+  }, [account, fastRefresh, kingmakerContract])
 
   const handleBuyFarmers = async () =>
     kingmakerContract.methods
