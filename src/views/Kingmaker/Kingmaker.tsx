@@ -79,16 +79,16 @@ const ExpandingWrapper = styled.div<{ expanded: boolean }>`
 `
 const StyledInput = styled(Input)`
   box-shadow: none;
-  width: 60px;
+  width: 96px;
   margin: 0 8px;
   padding: 0 8px;
 
   ${({ theme }) => theme.mediaQueries.xs} {
-    width: 80px;
+    width: 64px;
   }
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    width: auto;
+    width: 96px;
   }
 `
 
@@ -242,7 +242,7 @@ const KingmakerView = () => {
           <FCard>
             <StyledCardAccent />
             <Heading mb="8px">⚔️ Kingmaker ⚔️</Heading>
-            <Text> Develop your army over time.  Boost speed by holding KNIGHT and/or buying boosts in the marketplace.</Text>
+            <Text> Develop your army over time.  Boost speed by holding KNIGHT and/or buying boosts in the marketplace.  Requires holding 1000 KNIGHT to start. Top 3 places win KNIGHT after each play cycle.</Text>
             <br />
             <Heading> Score: {score}</Heading>
             <Heading> Multiplier Based on Knight Holdings: {multiplier.toFixed(2)}x</Heading>
@@ -251,63 +251,71 @@ const KingmakerView = () => {
               <Text color="tertiary">Start Game</Text>
             </Button>
             <Divider />
-            <Heading>Peasants: {peasants}</Heading>
+            <Heading mb="12px">Peasants: {peasants}</Heading>
             <Heading>Farmers: {farmers}</Heading>
-            <Text>Amount of Farmers to Buy (10 Peasants per Farmer)</Text>
-            <StyledInput type='number' onChange={async (e) => {
-              const value = e.target.valueAsNumber;
-              setFarmerBuyAmt(value);
-            }}/>
-            <Flex alignItems="center">
-              <Button variant="primary" onClick={handleBuyFarmers} mt="8px" mb="8px">
+            <Hero>
+              <Text># Farmers to Buy (10 Peasants per Farmer):</Text>
+              <StyledInput type='number' value={farmerBuyAmt} onChange={async (e) => {
+                const value = e.target.valueAsNumber;
+                setFarmerBuyAmt(value);
+              }}/>
+            </Hero>
+            <div>
+              <Button variant="primary" onClick={handleBuyFarmers} mt="8px" mb="8px" mr="8px">
                 <Text color="tertiary">Buy Farmers</Text>
               </Button>
               <Button variant="primary" onClick={handleBuyMaxFarmers} mt="8px" mb="8px">
                 <Text color="tertiary">Buy Max Farmers</Text>
               </Button>
-            </Flex>
-            <Heading>Knights: {knights}</Heading>
-            <Text>Amount of Knights to Buy (1,000 Farmers per Knight)</Text>
-            <StyledInput type='number' onChange={async (e) => {
-              const value = e.target.valueAsNumber;
-              setKnightBuyAmt(value);
-            }}/>
-            <Flex>
-              <Button variant="primary" onClick={handleBuyKnights} mt="8px" mb="8px">
+            </div>
+            <Heading mt="12px">Knights: {knights}</Heading>
+            <Hero>
+              <Text># of Knights to Buy (1,000 Farmers per Knight):</Text>
+              <StyledInput type='number' value={knightBuyAmt} onChange={async (e) => {
+                const value = e.target.valueAsNumber;
+                setKnightBuyAmt(value);
+              }}/>
+            </Hero>
+            <div>
+              <Button variant="primary" onClick={handleBuyKnights} mt="8px" mb="8px" mr="8px">
                 <Text color="tertiary">Buy Knights</Text>
               </Button>
               <Button variant="primary" onClick={handleBuyMaxKnights} mt="8px" mb="8px">
                 <Text color="tertiary">Buy Max Knights</Text>
               </Button>
-            </Flex>
+            </div>
             <Heading>Nobles: {nobles}</Heading>
-            <Text>Amount of Nobles to Buy (100,000 Knights per Noble)</Text>
-            <StyledInput type='number' onChange={async (e) => {
-              const value = e.target.valueAsNumber;
-              setNobleBuyAmt(value);
-            }}/>
-            <Flex>
-              <Button variant="primary" onClick={handleBuyNobles} mt="8px" mb="8px">
+            <Hero>
+              <Text>Amount of Nobles to Buy (100,000 Knights per Noble):</Text>
+              <StyledInput type='number' value={nobleBuyAmt} onChange={async (e) => {
+                const value = e.target.valueAsNumber;
+                setNobleBuyAmt(value);
+              }}/>
+            </Hero>
+            <div>
+              <Button variant="primary" onClick={handleBuyNobles} mt="8px" mb="8px" mr="8px">
                 <Text color="tertiary">Buy Nobles</Text>
               </Button>
               <Button variant="primary" onClick={handleBuyMaxNobles} mt="8px" mb="8px">
                 <Text color="tertiary">Buy Max Nobles</Text>
               </Button>
-            </Flex>
+            </div>
             <Heading>Kings: {kings}</Heading>
-            <Text>Amount of Kings to Buy (10,000,000 Nobles per King)</Text>
-            <StyledInput type='number' onChange={async (e) => {
-              const value = e.target.valueAsNumber;
-              setKingBuyAmt(value);
-            }}/>
-            <Flex>
-              <Button variant="primary" onClick={handleBuyKings} mt="8px" mb="8px">
+            <Hero>
+              <Text>Amount of Kings to Buy (10,000,000 Nobles per King):</Text>
+              <StyledInput type='number' value={kingBuyAmt} onChange={async (e) => {
+                const value = e.target.valueAsNumber;
+                setKingBuyAmt(value);
+              }}/>
+            </Hero>
+            <div>
+              <Button variant="primary" onClick={handleBuyKings} mt="8px" mb="8px" mr="8px">
                 <Text color="tertiary">Buy Kings</Text>
               </Button>
               <Button variant="primary" onClick={handleBuyMaxKings} mt="8px" mb="8px">
                 <Text color="tertiary">Buy Max Kings</Text>
               </Button>
-            </Flex>
+            </div>
             <Divider/>
             <ExpandableSectionButton
               onClick={() => setShowExpandableSection(!showExpandableSection)}
@@ -348,7 +356,7 @@ const Hero = styled.div`
   margin-right: auto;
   width: 100%;
   justify-content: center;
-  padding: 48px 0;
+  padding: 12px 0;
   ul {
     margin: 0;
     padding: 0;
