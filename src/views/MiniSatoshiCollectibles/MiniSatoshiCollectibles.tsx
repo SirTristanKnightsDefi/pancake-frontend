@@ -10,6 +10,7 @@ import Page from 'components/layout/Page'
 import useRefresh from 'hooks/useRefresh'
 import { fetchBattlefieldUserDataAsync } from 'state/actions'
 import WeAreSatoshiCard from './components/WeAreSatoshiCard'
+import WeAreSatoshiFreaksCard from './components/WeAreSatoshiFreaksCard'
 
 
 const MiniSatoshiCollectibles: React.FC = () => {
@@ -26,6 +27,7 @@ const MiniSatoshiCollectibles: React.FC = () => {
       <Hero><img src="images/nfts/minisatoshi.png" alt="" height="120px" width="120px"/><Heading>&nbsp;&nbsp;Mini Satoshi Collectibles&nbsp;&nbsp;</Heading><img src="images/nfts/wearesatoshi.png" alt="" height="120px" width="120px"/></Hero>
       <FlexLayout>
         <Route exact path={`${path}`}>
+          <WeAreSatoshiFreaksCard account={account} ethereum={ethereum} />
           <WeAreSatoshiCard account={account} ethereum={ethereum} />
         </Route>
         </FlexLayout>
