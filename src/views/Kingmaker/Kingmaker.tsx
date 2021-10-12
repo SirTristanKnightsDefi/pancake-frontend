@@ -111,6 +111,12 @@ const KingmakerView = () => {
   const [nobleBuyAmt, setNobleBuyAmt] = React.useState(1);
   const [kingBuyAmt, setKingBuyAmt] = React.useState(1);
   const [multiplier, setMultiplier] = React.useState(1);
+  const [firstAccount, setFirstPlaceAccount] = React.useState('');
+  const [firstPlaceScore, setFirstPlaceScore] = React.useState('');
+  const [secondAccount, setSecondPlaceAccount] = React.useState('');
+  const [secondPlaceScore, setSecondPlaceScore] = React.useState('');
+  const [thirdAccount, setThirdPlaceAccount] = React.useState('');
+  const [thirdPlaceScore, setThirdPlaceScore] = React.useState('');
   const { fastRefresh } = useRefresh()
 
   useEffect(() => {
@@ -132,6 +138,15 @@ const KingmakerView = () => {
           setScore(newScore);
           const newMultiplier = await kingmakerContract.methods.getMultiplier(account).call();
           setMultiplier(newMultiplier/1e18);
+          const firstPlaceData = await kingmakerContract.methods.leaderboardLeaders(1).call();
+          setFirstPlaceAccount(firstPlaceData[0])
+          setFirstPlaceScore(firstPlaceData[1])
+          const secondPlaceData = await kingmakerContract.methods.leaderboardLeaders(2).call();
+          setSecondPlaceAccount(secondPlaceData[0])
+          setSecondPlaceScore(secondPlaceData[1])
+          const thirdPlaceData = await kingmakerContract.methods.leaderboardLeaders(3).call();
+          setThirdPlaceAccount(thirdPlaceData[0])
+          setThirdPlaceScore(thirdPlaceData[1])
         }
       }
       catch (err) {
@@ -223,9 +238,6 @@ const KingmakerView = () => {
     [account, dispatch, kingmakerContract]
   )
 
-  // /!\ This function will be removed soon
-  // This function compute the APY for each battlefield and will be replaced when we have a reliable API
-  // to retrieve assets prices against USD
 
   return (
     <Page>
@@ -237,14 +249,18 @@ const KingmakerView = () => {
           <FCard>
             <StyledCardAccent />
             <Heading mb="8px">⚔️ Kingmaker ⚔️</Heading>
-            <Text> Develop your army over time.  Boost speed by holding KNIGHT and/or buying boosts in the marketplace.  Requires holding 1000 KNIGHT to start. No tokens are required to play, only BNB for gas. Top 3 places win KNIGHT after each play cycle.</Text>
+            <Text> Develop your army over time.  Boost speed by holding KNIGHT and/or buying boosts in the marketplace.  Requires holding 1000 KNIGHT to start. No tokens are required to play, only BNB for gas. Top 3 places win KNIGHT after each play cycle. High Scores are only recorded during a transaction.</Text>
             <br />
             <Heading> Score: {score}</Heading>
             <Heading> Multiplier Based on Knight Holdings: {multiplier.toFixed(2)}x</Heading>
             <br />
-            <Button variant="primary" onClick={startGame} >
-              <Text color="tertiary">Start Game</Text>
-            </Button>
+            {peasants > 0 ?
+              <Text />
+              :
+              <Button variant="primary" onClick={startGame} >
+                <Text color="tertiary">Start Game</Text>
+              </Button>
+            }
             <Divider />
             <Heading mb="12px">Peasants: {peasants}</Heading>
             <Heading>Farmers: {farmers}</Heading>
@@ -322,9 +338,10 @@ const KingmakerView = () => {
               <Wrapper>
                 {account ?
                 <Wrapper>
-                  <Heading mb="8px"> 1st Place: </Heading>
-                  <Heading mb="8px"> 2nd Place: </Heading>
-                  <Heading mb="8px"> 3rd Place: </Heading>
+                  <Heading mb="8px"><u> High Scores </u> </Heading>
+                  <Heading mb="8px">🥇 1st Place: {firstAccount.substring(0,5)} ...  {firstAccount.substring(38,44)} : {firstPlaceScore} </Heading>
+                  <Heading mb="8px">🥈 2nd Place: {secondAccount.substring(0,5)} ...  {secondAccount.substring(38,44)} : {secondPlaceScore} </Heading>
+                  <Heading mb="8px">🥉 3rd Place: {thirdAccount.substring(0,5)} ...  {thirdAccount.substring(38,44)} : {thirdPlaceScore} </Heading>
                   <Divider/>
                 </Wrapper>
                 :
