@@ -24,7 +24,8 @@ const MiniSatoshiCollectibles: React.FC = () => {
   return (
     <Page>
       <div>
-      <Hero><img src="images/nfts/minisatoshi.png" alt="" height="120px" width="120px"/><Heading>&nbsp;&nbsp;Mini Satoshi Collectibles&nbsp;&nbsp;</Heading><img src="images/nfts/wearesatoshi.png" alt="" height="120px" width="120px"/></Hero>
+      <Hero><img src="images/nfts/minisatoshi.png" alt="" height="120px" width="120px"/></Hero>
+      <Hero><img src="images/nfts/wearesatoshi.png" alt="" height="120px" width="120px"/><Heading>&nbsp;&nbsp;Mini Satoshi Collectibles&nbsp;&nbsp;</Heading><img src="images/nfts/wearesatoshifreaks.png" alt="" height="120px" width="120px"/></Hero>
       <FlexLayout>
         <Route exact path={`${path}`}>
           <WeAreSatoshiFreaksCard account={account} ethereum={ethereum} />
@@ -44,7 +45,7 @@ const Hero = styled.div`
   margin-right: auto;
   width: 100%;
   justify-content: center;
-  padding: 48px 0;
+  padding: 24px 0;
   ul {
     margin: 0;
     padding: 0;

@@ -179,7 +179,7 @@ const WeAreSatoshiFreaksCard: React.FC<MiniSatProps> = ({ethereum, account}) => 
     <FCard>
         <Heading mb="8px">We Are Satoshi Freaks</Heading>
         <Image src="images/nfts/wearesatoshifreaks.gif" alt=""/>
-        <Text mb="8px" mt="12px">&quot;We are Satoshi Freaks&quot; is a collection of 1,000 computer-generated NFT characters. Each one of them is totally unique and tokenised as an NFT on the Binance Smart Chain (BSC) network.</Text>
+        <Text mb="8px" mt="12px">&quot;We Are Satoshi Freaks&quot; is the 2nd NFT drop by the MiniSatoshiBsc (SBSC) community. A collection of 1000 computer generated freaks existing on the BSC network.</Text>
         <Divider/>
         <Text mb="8px">Minted: {tokensMinted}/{tokensMax}</Text>
         <Text mb="8px">Mint Cost: {(mintPrice/1e18).toFixed(2)} BNB</Text>
