@@ -248,11 +248,11 @@ const KingmakerView = () => {
           
           <FCard>
             <StyledCardAccent />
-            <Heading mb="8px">⚔️ Kingmaker ⚔️</Heading>
-            <Text> Develop your army over time.  Boost speed by holding KNIGHT and/or buying boosts in the marketplace.  Requires holding 1000 KNIGHT to start. No tokens are required to play, only BNB for gas. Top 3 places win KNIGHT after each play cycle. High Scores are only recorded during a transaction.</Text>
+            <Heading mb="8px">⚔️ <img src="/images/kingmaker/banner1.jpg" height="128px" width="128px" alt="Nobles"/> ⚔️</Heading>            
+            <Text> &nbsp;Develop your army over time.  Boost speed by holding KNIGHT and/or buying boosts in the marketplace.  Requires holding 1000 KNIGHT to start. No tokens are required to play, only BNB for gas. Top 3 places win KNIGHT after each play cycle. High Scores are only recorded during a transaction.</Text>
             <br />
             <Heading> Score: {score}</Heading>
-            <Heading> Multiplier Based on Knight Holdings: {multiplier.toFixed(2)}x</Heading>
+            <Heading> Multiplier: {multiplier.toFixed(2)}x</Heading>
             <br />
             {peasants > 0 ?
               <Text />
@@ -262,8 +262,8 @@ const KingmakerView = () => {
               </Button>
             }
             <Divider />
-            <Heading mb="12px">Peasants: {peasants}</Heading>
-            <Heading>Farmers: {farmers}</Heading>
+            <Heading mb="12px">Peasants: {peasants}</Heading> <br/>
+            <Heading><img src="/images/kingmaker/peasants.jpg" height="64px" width="64px" alt="Farmers"/>&nbsp;Farmers: {farmers}</Heading>
             <Hero>
               <Text># Farmers to Buy (10 Peasants / Farmer):</Text>
               <StyledInput type='number' value={farmerBuyAmt} onChange={async (e) => {
@@ -279,9 +279,9 @@ const KingmakerView = () => {
                 <Text color="tertiary">Buy Max Farmers</Text>
               </Button>
             </div>
-            <Heading mt="12px">Knights: {knights}</Heading>
+            <Heading mt="12px"><img src="/images/kingmaker/soldiers.jpg" height="64px" width="64px" alt="Soldiers"/>&nbsp;Soldiers: {knights}</Heading>
             <Hero>
-              <Text># of Knights to Buy (1,000 Farmers / Knight):</Text>
+              <Text># of Soldiers to Buy (1,000 Farmers / Soldiers):</Text>
               <StyledInput type='number' value={knightBuyAmt} onChange={async (e) => {
                 const value = e.target.valueAsNumber;
                 setKnightBuyAmt(value);
@@ -295,7 +295,7 @@ const KingmakerView = () => {
                 <Text color="tertiary">Buy Max Knights</Text>
               </Button>
             </div>
-            <Heading>Nobles: {nobles}</Heading>
+            <Heading><img src="/images/kingmaker/nobles.jpg" height="64px" width="64px" alt="Nobles"/>&nbsp;Nobles: {nobles}</Heading>
             <Hero>
               <Text># of Nobles to Buy (100,000 Knights / Noble):</Text>
               <StyledInput type='number' value={nobleBuyAmt} onChange={async (e) => {
@@ -311,7 +311,7 @@ const KingmakerView = () => {
                 <Text color="tertiary">Buy Max Nobles</Text>
               </Button>
             </div>
-            <Heading>Kings: {kings}</Heading>
+            <Heading><img src="/images/kingmaker/king.jpg" height="64px" width="64px" alt="Kings"/>&nbsp;Kings: {kings}</Heading>
             <Hero>
               <Text># of Kings to Buy (10,000,000 Nobles / King):</Text>
               <StyledInput type='number' value={kingBuyAmt} onChange={async (e) => {
@@ -343,6 +343,9 @@ const KingmakerView = () => {
                   <Heading mb="8px">🥈 2nd Place: {secondAccount.substring(0,5)} ...  {secondAccount.substring(38,44)} : {secondPlaceScore} </Heading>
                   <Heading mb="8px">🥉 3rd Place: {thirdAccount.substring(0,5)} ...  {thirdAccount.substring(38,44)} : {thirdPlaceScore} </Heading>
                   <Divider/>
+                  
+                  <Text>Multiplier is Based on NFT, KNIGHT, and KNIGHT-BNB Holdings</Text>
+                  <Text>Multiplier = (NFT Balance / 5) + (Knight Balance / 100000) + (Knight-BNB LP Balance / 50)</Text>
                 </Wrapper>
                 :
                 <Text />

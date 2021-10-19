@@ -154,7 +154,7 @@ const Nft = () => {
               Knights DeFi Marketplace 
             </Heading>
             <Heading as="h2" size="lg" color="primary" mb="24px">
-              NFTs for Purchase
+              NFTs for Purchase (These NFTS will boost Kingmaker and Future Games)
             </Heading>
             {state.kdfnCopied ?
             (<Button>

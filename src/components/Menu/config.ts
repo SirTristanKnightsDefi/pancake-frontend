@@ -89,13 +89,14 @@ const config: MenuEntry[] = [
     label: 'NFTs',
     icon: 'NftIcon',
     items: [
-        {
-          label: 'Mini Satoshi',
-          href: '/minisatoshicollectibles',
-        },
+      
         {
           label: 'The Queen\'s Gallery',
           href: '/nft',
+        },
+        {
+          label: 'Mini Satoshi (Partnership)',
+          href: '/minisatoshicollectibles',
         },
     ],
   },
