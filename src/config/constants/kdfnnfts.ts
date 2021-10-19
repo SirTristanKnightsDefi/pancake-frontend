@@ -14,7 +14,7 @@ const KdfnNfts: Nft[] = [
     sortOrder: 999,
     tokenId: 0,
     nftId: 0,
-    purchaseTokenName: "SQUIRE",
+    purchaseTokenName: "KNIGHT",
   },
   {
     name: 'The Royal Guard',
@@ -29,7 +29,7 @@ const KdfnNfts: Nft[] = [
     sortOrder: 999,
     tokenId: 0,
     nftId: 1,
-    purchaseTokenName: "SQUIRE",
+    purchaseTokenName: "KNIGHT",
   },
   {
     name: 'The Sentinels',
@@ -44,7 +44,7 @@ const KdfnNfts: Nft[] = [
     sortOrder: 999,
     tokenId: 0,
     nftId: 2,
-    purchaseTokenName: "SQUIRE",
+    purchaseTokenName: "KNIGHT",
   },
   {
     name: 'The Silver Sparrows',
@@ -59,7 +59,7 @@ const KdfnNfts: Nft[] = [
     sortOrder: 999,
     tokenId: 0,
     nftId: 3,
-    purchaseTokenName: "SQUIRE",
+    purchaseTokenName: "KNIGHT",
   },
   {
     name: 'The Mystics',
@@ -74,7 +74,7 @@ const KdfnNfts: Nft[] = [
     sortOrder: 999,
     tokenId: 0,
     nftId: 4,
-    purchaseTokenName: "SQUIRE",
+    purchaseTokenName: "KNIGHT",
   },
   {
     name: 'Shilling to the Moon',

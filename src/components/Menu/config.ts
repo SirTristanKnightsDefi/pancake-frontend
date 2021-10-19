@@ -80,8 +80,8 @@ const config: MenuEntry[] = [
     icon: 'NftIcon',
     items: [
       {
-        label: 'Kingmaker',
-        href: '/kingmaker',
+        label: 'Kingmaker (Coming Soon)',
+        href: '/',
       },
     ],
   },
