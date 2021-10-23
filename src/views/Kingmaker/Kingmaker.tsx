@@ -275,7 +275,7 @@ const KingmakerView = () => {
             }
             <Divider />
             <Heading mb="12px">Peasants: {peasants > 100000 ? (peasants*1).toExponential(3) : peasants}</Heading> <br/>
-            <Heading><img src="/images/kingmaker/peasants.jpg" height="64px" width="64px" alt="Farmers"/>&nbsp;Farmers: {farmers}</Heading>
+            <Heading><img src="/images/kingmaker/peasants.jpg" height="64px" width="64px" alt="Farmers"/>&nbsp;Farmers: {farmers > 100000 ? (farmers*1).toExponential(3) : farmers}</Heading>
             <Hero>
               <Text># Farmers to Buy (10 Peasants / Farmer):</Text>
               <StyledInput type='number' value={farmerBuyAmt} onChange={async (e) => {
