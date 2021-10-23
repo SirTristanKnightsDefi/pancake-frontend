@@ -32,7 +32,6 @@ const CakeStats = () => {
   const cakePrice = usePriceCakeBusd().toNumber()
   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
   const knightMarketCap = usePriceCakeBusd().toNumber() * cakeSupply
-  const knightPerBlock = CAKE_PER_BLOCK.toNumber() * 1
   return (
     <StyledCakeStats>
       <CardBodyExtended>
@@ -64,18 +63,6 @@ const CakeStats = () => {
         <Row>
           <Text fontSize="14px">Total KNIGHT Burned</Text>
           <CardValue fontSize="14px" decimals={0}value={getBalanceNumber(burnedBalance)} />
-        </Row>
-        <Row>
-          <Text fontSize="14px">New KNIGHT/block</Text>
-          <CardValue fontSize="14px" decimals={0} value={knightPerBlock} />
-        </Row>
-        <Row>
-          <Text fontSize="14px">Total KNIGHT Left to Farm</Text>
-          <CardValue fontSize="14px" decimals={0}value={10000000 - getBalanceNumber(burnedBalance) - cakeSupply} />
-        </Row>
-        <Row>
-          <Text fontSize="14px">KNIGHT Farming Days Left (at current rate)</Text>
-          <CardValue fontSize="14px" decimals={0}value={(10000000 - getBalanceNumber(burnedBalance) - cakeSupply)/28800} />
         </Row>
         <Row>
           <Text fontSize="14px">KNIGHT Market Cap</Text>

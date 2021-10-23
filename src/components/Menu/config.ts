@@ -61,12 +61,12 @@ const config: MenuEntry[] = [
     href: '/Battlefield',
   },
   {
-    label: 'Farms',
+    label: 'Farms (Done)',
     icon: 'FarmIcon',
     href: '/farms',
   },
   {
-    label: 'Pools',
+    label: 'Pools (Done)',
     icon: 'PoolIcon',
     href: '/pools',
   },
