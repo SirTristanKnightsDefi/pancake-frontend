@@ -105,18 +105,21 @@ const KingmakerView = () => {
   const [knights, setKnights] = React.useState(0);
   const [nobles, setNobles] = React.useState(0);
   const [kings, setKings] = React.useState(0);
-  const [score, setScore] = React.useState(0);
+  const [score, setScore] = React.useState(0.0);
   const [farmerBuyAmt, setFarmerBuyAmt] = React.useState(1);
   const [knightBuyAmt, setKnightBuyAmt] = React.useState(1);
   const [nobleBuyAmt, setNobleBuyAmt] = React.useState(1);
   const [kingBuyAmt, setKingBuyAmt] = React.useState(1);
   const [multiplier, setMultiplier] = React.useState(1);
   const [firstAccount, setFirstPlaceAccount] = React.useState('');
-  const [firstPlaceScore, setFirstPlaceScore] = React.useState('');
+  const [firstPlaceScore, setFirstPlaceScore] = React.useState(0);
   const [secondAccount, setSecondPlaceAccount] = React.useState('');
-  const [secondPlaceScore, setSecondPlaceScore] = React.useState('');
+  const [secondPlaceScore, setSecondPlaceScore] = React.useState(0);
   const [thirdAccount, setThirdPlaceAccount] = React.useState('');
-  const [thirdPlaceScore, setThirdPlaceScore] = React.useState('');
+  const [thirdPlaceScore, setThirdPlaceScore] = React.useState(0);
+  const [lpHeld, setLpHeld] = React.useState(0);
+  const [knightHeld, setKnightsHeld] = React.useState(0);
+  const [nftsHeld, setNftsHeld] = React.useState(0);
   const { fastRefresh } = useRefresh()
 
   useEffect(() => {
@@ -147,6 +150,12 @@ const KingmakerView = () => {
           const thirdPlaceData = await kingmakerContract.methods.leaderboardLeaders(3).call();
           setThirdPlaceAccount(thirdPlaceData[0])
           setThirdPlaceScore(thirdPlaceData[1])
+          const holderBalance = await kingmakerContract.methods.getHolderKnightBalance(account).call();
+          setKnightsHeld(holderBalance)
+          const lpBalance = await kingmakerContract.methods.getHolderKnightLPBalance(account).call();
+          setLpHeld(lpBalance)
+          const nftBalance = await kingmakerContract.methods.getHolderNFTBalance(account).call();
+          setNftsHeld(nftBalance)
         }
       }
       catch (err) {
@@ -251,8 +260,11 @@ const KingmakerView = () => {
             <Heading mb="8px">⚔️ <img src="/images/kingmaker/banner1.jpg" height="128px" width="128px" alt="Nobles"/> ⚔️</Heading>            
             <Text> &nbsp;Develop your army over time.  Boost speed by holding KNIGHT and/or buying boosts in the marketplace.  Requires holding 1000 KNIGHT to start. No tokens are required to play, only BNB for gas. Top 3 places win KNIGHT after each play cycle. High Scores are only recorded during a transaction.</Text>
             <br />
-            <Heading> Score: {score}</Heading>
+            <Heading> Score: {score > 100000 ? (score*1).toExponential(3) :  score}</Heading>
             <Heading> Multiplier: {multiplier.toFixed(2)}x</Heading>
+            <Heading> Knight Held: {(knightHeld/1e18).toFixed(1)}</Heading>
+            <Heading> Knight-BNB LP Held: {(lpHeld/1e18).toFixed(1)}</Heading>
+            <Heading> NFTs Held: {nftsHeld}</Heading>
             <br />
             {peasants > 0 ?
               <Text />
@@ -262,7 +274,7 @@ const KingmakerView = () => {
               </Button>
             }
             <Divider />
-            <Heading mb="12px">Peasants: {peasants}</Heading> <br/>
+            <Heading mb="12px">Peasants: {peasants > 100000 ? (peasants*1).toExponential(3) : peasants}</Heading> <br/>
             <Heading><img src="/images/kingmaker/peasants.jpg" height="64px" width="64px" alt="Farmers"/>&nbsp;Farmers: {farmers}</Heading>
             <Hero>
               <Text># Farmers to Buy (10 Peasants / Farmer):</Text>
@@ -279,7 +291,7 @@ const KingmakerView = () => {
                 <Text color="tertiary">Buy Max Farmers</Text>
               </Button>
             </div>
-            <Heading mt="12px"><img src="/images/kingmaker/soldiers.jpg" height="64px" width="64px" alt="Soldiers"/>&nbsp;Soldiers: {knights}</Heading>
+            <Heading mt="12px"><img src="/images/kingmaker/soldiers.jpg" height="64px" width="64px" alt="Soldiers"/>&nbsp;Soldiers: {knights > 100000 ? (knights*1).toExponential(3) : knights}</Heading>
             <Hero>
               <Text># of Soldiers to Buy (1,000 Farmers / Soldiers):</Text>
               <StyledInput type='number' value={knightBuyAmt} onChange={async (e) => {
@@ -295,7 +307,7 @@ const KingmakerView = () => {
                 <Text color="tertiary">Buy Max Soldiers</Text>
               </Button>
             </div>
-            <Heading><img src="/images/kingmaker/nobles.jpg" height="64px" width="64px" alt="Nobles"/>&nbsp;Nobles: {nobles}</Heading>
+            <Heading><img src="/images/kingmaker/nobles.jpg" height="64px" width="64px" alt="Nobles"/>&nbsp;Nobles: {nobles > 100000 ? (nobles*1).toExponential(3) : nobles}</Heading>
             <Hero>
               <Text># of Nobles to Buy (100,000 Soldiers / Noble):</Text>
               <StyledInput type='number' value={nobleBuyAmt} onChange={async (e) => {
@@ -311,7 +323,7 @@ const KingmakerView = () => {
                 <Text color="tertiary">Buy Max Nobles</Text>
               </Button>
             </div>
-            <Heading><img src="/images/kingmaker/king.jpg" height="64px" width="64px" alt="Kings"/>&nbsp;Kings: {kings}</Heading>
+            <Heading><img src="/images/kingmaker/king.jpg" height="64px" width="64px" alt="Kings"/>&nbsp;Kings: {kings > 100000 ? (kings*1).toExponential(3) : kings}</Heading>
             <Hero>
               <Text># of Kings to Buy (10,000,000 Nobles / King):</Text>
               <StyledInput type='number' value={kingBuyAmt} onChange={async (e) => {
@@ -339,9 +351,9 @@ const KingmakerView = () => {
                 {account ?
                 <Wrapper>
                   <Heading mb="8px"><u> High Scores </u> </Heading>
-                  <Heading mb="8px">🥇 1st Place: {firstAccount.substring(0,5)} ...  {firstAccount.substring(38,44)} : {firstPlaceScore} </Heading>
-                  <Heading mb="8px">🥈 2nd Place: {secondAccount.substring(0,5)} ...  {secondAccount.substring(38,44)} : {secondPlaceScore} </Heading>
-                  <Heading mb="8px">🥉 3rd Place: {thirdAccount.substring(0,5)} ...  {thirdAccount.substring(38,44)} : {thirdPlaceScore} </Heading>
+                  <Heading mb="8px">🥇 1st Place: {firstAccount.substring(0,5)} ...  {firstAccount.substring(38,44)} : {firstPlaceScore > 100000 ? (firstPlaceScore*1).toExponential(3) : firstPlaceScore} </Heading>
+                  <Heading mb="8px">🥈 2nd Place: {secondAccount.substring(0,5)} ...  {secondAccount.substring(38,44)} : {secondPlaceScore > 100000 ? (secondPlaceScore*1).toExponential(3) : secondPlaceScore} </Heading>
+                  <Heading mb="8px">🥉 3rd Place: {thirdAccount.substring(0,5)} ...  {thirdAccount.substring(38,44)} : {thirdPlaceScore > 100000 ? (thirdPlaceScore*1).toExponential(3) : thirdPlaceScore} </Heading>
                   <Divider/>
                   
                   <Text>Multiplier is Based on NFT, KNIGHT, and KNIGHT-BNB Holdings</Text>
