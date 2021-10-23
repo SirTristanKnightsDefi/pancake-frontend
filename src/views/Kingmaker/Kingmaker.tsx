@@ -289,15 +289,15 @@ const KingmakerView = () => {
             </Hero>
             <div>
               <Button variant="primary" onClick={handleBuyKnights} mt="8px" mb="8px" mr="8px">
-                <Text color="tertiary">Buy Knights</Text>
+                <Text color="tertiary">Buy Soldiers</Text>
               </Button>
               <Button variant="primary" onClick={handleBuyMaxKnights} mt="8px" mb="8px">
-                <Text color="tertiary">Buy Max Knights</Text>
+                <Text color="tertiary">Buy Max Soldiers</Text>
               </Button>
             </div>
             <Heading><img src="/images/kingmaker/nobles.jpg" height="64px" width="64px" alt="Nobles"/>&nbsp;Nobles: {nobles}</Heading>
             <Hero>
-              <Text># of Nobles to Buy (100,000 Knights / Noble):</Text>
+              <Text># of Nobles to Buy (100,000 Soldiers / Noble):</Text>
               <StyledInput type='number' value={nobleBuyAmt} onChange={async (e) => {
                 const value = e.target.valueAsNumber;
                 setNobleBuyAmt(value);
