@@ -262,9 +262,9 @@ const KingmakerView = () => {
             <br />
             <Heading> Score: {score > 100000 ? (score*1).toExponential(3) :  score}</Heading>
             <Heading> Multiplier: {multiplier.toFixed(2)}x</Heading>
-            <Heading> Knight Held: {(knightHeld/1e18).toFixed(1)}</Heading>
-            <Heading> Knight-BNB LP Held: {(lpHeld/1e18).toFixed(1)}</Heading>
-            <Heading> NFTs Held: {nftsHeld}</Heading>
+            <Heading> Knight Held: {(knightHeld/1e18).toFixed(1)} (+{(knightHeld/1e18/100000).toFixed(2)}x)</Heading>
+            <Heading> Knight-BNB LP Held: {(lpHeld/1e18).toFixed(1)} (+{(lpHeld/1e18/50).toFixed(2)}x)</Heading>
+            <Heading> NFTs Held: {nftsHeld} (+{(nftsHeld/5).toFixed(2)}x)</Heading>
             <br />
             {peasants > 0 ?
               <Text />
