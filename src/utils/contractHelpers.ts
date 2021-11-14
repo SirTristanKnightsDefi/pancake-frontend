@@ -1,4 +1,4 @@
-import { getWeAreSatoshiAddress ,getPancakeProfileAddress, getKingmakerAddress, getPancakeRabbitsAddress, getBunnyFactoryAddress, getTheGrailNFTsAddress, getKotrtNFTsAddress, getKdfnNFTsAddress, getKdfnNFTsBetaAddress, getMilfNFTsAddress, getSquireAddress, getLegendAddress, getTableAddress, getKnightAddress, getShillingAddress, getBattlefieldAddress } from 'utils/addressHelpers'
+import { getGhostShibaVIPAddress, getWeAreSatoshiAddress ,getPancakeProfileAddress, getKingmakerAddress, getPancakeRabbitsAddress, getBunnyFactoryAddress, getTheGrailNFTsAddress, getKotrtNFTsAddress, getKdfnNFTsAddress, getKdfnNFTsBetaAddress, getMilfNFTsAddress, getSquireAddress, getLegendAddress, getTableAddress, getKnightAddress, getShillingAddress, getBattlefieldAddress } from 'utils/addressHelpers'
 import { getContract } from 'utils/web3'
 import profileABI from 'config/abi/pancakeProfile.json'
 import pancakeRabbitsAbi from 'config/abi/pancakeRabbits.json'
@@ -24,6 +24,10 @@ export const getProfileContract = () => {
 
 export const getWeAreSatoshiContract = () => {
   return getContract(weAreSatoshiAbi, getWeAreSatoshiAddress())
+}
+
+export const getGhostShibaVIPContract = () => {
+  return getContract(weAreSatoshiAbi, getGhostShibaVIPAddress())
 }
 
 export const getKingmakerContract = () => {

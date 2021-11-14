@@ -15,6 +15,10 @@ export const getWeAreSatoshiFreaksAddress = () => {
   return getAddress(addresses.wearesatoshifreaks) // Returns WeAreSatoshiFreaks
 }
 
+export const getGhostShibaVIPAddress = () => {
+  return getAddress(addresses.ghostshibavip)
+}
+
 export const getCakeAddress = () => {
   return getAddress(addresses.cake) // Returns KNIGHT
 }

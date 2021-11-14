@@ -98,6 +98,11 @@ const config: MenuEntry[] = [
           label: 'Mini Satoshi (Partnership)',
           href: '/minisatoshicollectibles',
         },
+        
+        {
+          label: 'Ghost Shiba (Partnership)',
+          href: '/ghostshibacollectibles',
+        },
     ],
   },
   {

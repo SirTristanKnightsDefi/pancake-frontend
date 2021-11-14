@@ -22,7 +22,8 @@ import {
   getWbnbAddress,
   getKingmakerAddress,
   getWeAreSatoshiAddress,
-  getWeAreSatoshiFreaksAddress
+  getWeAreSatoshiFreaksAddress,
+  getGhostShibaVIPAddress
 } from 'utils/addressHelpers'
 import { poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
@@ -69,6 +70,11 @@ export const useWeAreSatoshiContract = () => {
 export const useWeAreSatoshiFreaksContract = () => {
   const abi = (wearesatoshifreaksAbi as unknown) as AbiItem
   return useContract(abi, getWeAreSatoshiFreaksAddress())
+}
+
+export const useGhostShibaVIPContract = () => {
+  const abi = (wearesatoshifreaksAbi as unknown) as AbiItem
+  return useContract(abi, getGhostShibaVIPAddress())
 }
 
 /**

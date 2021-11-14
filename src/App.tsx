@@ -20,6 +20,7 @@ const NFT = lazy(() => import('./views/Nft'))
 const Lottery = lazy(() => import('./views/Lottery'))
 const Kingmaker = lazy(() => import('./views/Kingmaker'))
 const MiniSatoshiCollectibles = lazy(() => import('./views/MiniSatoshiCollectibles'))
+const GhostShibaCollectibles = lazy(() => import('./views/GhostShiba'))
 
 // This config is required for number formating
 BigNumber.config({
@@ -75,6 +76,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/minisatoshicollectibles">
               <MiniSatoshiCollectibles />
+            </Route>
+            <Route path="/ghostshibacollectibles">
+              <GhostShibaCollectibles />
             </Route>
             {/* Redirect */}
             {/* 404 */}
