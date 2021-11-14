@@ -179,7 +179,7 @@ const GhostShibaVIPCard: React.FC<MiniSatProps> = ({ethereum, account}) => {
     <FCard>
         <Heading mb="8px">Ghost Shiba VIP</Heading>
         <Image src="images/nfts/ghostshibavip.png" alt=""/>
-        <Text mb="8px" mt="12px">&quot;Ghost Shiba VIP&quot; grants access to special Ghost Shiba game and features.  Limited to 550 total NFTs, 50 are reserved for giveaways.</Text>
+        <Text mb="8px" mt="12px">&quot;Ghost Shiba VIP&quot; grants access to special Ghost Shiba perks such as free mints on all future NFTs and Passive BNB income.  Limited to 550 total NFTs, 50 are reserved for giveaways.</Text>
         <Divider/>
         <Text mb="8px">Minted: {tokensMinted}/{tokensMax}</Text>
         <Text mb="8px">Mint Cost: {(mintPrice/1e18).toFixed(2)} BNB</Text>
