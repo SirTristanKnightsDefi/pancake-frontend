@@ -99,12 +99,7 @@ const Home: React.FC = () => {
         <LegendStats />
         <TableStats />
         <TotalValueLockedCard />
-      </Cards>
-      <Hero>
-        <Text>Donate to Community Fund - BSC: 0x97e09Ed54d038295a8D6e6e77524328d7d9D3fca</Text>
-        <Text>Donate to Sir Tris - BSC / ETH: 0xb017c481575318017DC2122b59759B25d21f6721</Text>
-      </Hero>
-        
+      </Cards>        
     </Page>
   )
 }
