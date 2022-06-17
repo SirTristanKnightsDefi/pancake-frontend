@@ -55,26 +55,7 @@ const config: MenuEntry[] = [
       }
     ]
   },
-  {
-    label: 'Battlefield',
-    icon: 'GroupsIcon',
-    href: '/Battlefield',
-  },
-  {
-    label: 'Farms (Done)',
-    icon: 'FarmIcon',
-    href: '/farms',
-  },
-  {
-    label: 'Pools (Done)',
-    icon: 'PoolIcon',
-    href: '/pools',
-  },
-  {
-    label: 'King\'s Chance',
-    icon: 'TicketIcon',
-    href: '/lottery',
-  },
+  
   {
     label: 'King\'s Parlor',
     icon: 'NftIcon',
@@ -93,15 +74,6 @@ const config: MenuEntry[] = [
         {
           label: 'The Queen\'s Gallery',
           href: '/nft',
-        },
-        {
-          label: 'Mini Satoshi (Partnership)',
-          href: '/minisatoshicollectibles',
-        },
-        
-        {
-          label: 'Ghost Shiba (Partnership)',
-          href: '/ghostshibacollectibles',
         },
     ],
   },
@@ -186,6 +158,24 @@ const config: MenuEntry[] = [
         href: 'https://github.com/TechRate/Smart-Contract-Audits/blob/main/Shilling%20Token%20Token%20Smart%20Contract%20Security%20Audit.pdf'
       }
     ],
+  },
+  {
+    label: "Archive",
+    icon: "GroupsIcon",
+    items: [
+      {
+        label: 'Battlefield',
+        href: '/Battlefield',
+      },
+      {
+        label: 'Farms (Done)',
+        href: '/farms',
+      },
+      {
+        label: 'Pools (Done)',
+        href: '/pools',
+      },
+    ]
   },
 ]
 

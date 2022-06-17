@@ -264,19 +264,7 @@ export const ShillingRewardsCard = () => {
             <Heading mb="12px">Total BNB in Pool: {(state.bnbPool/1e18).toFixed(2)} (~${(bnbPrice*state.bnbPool/1e18).toLocaleString()})</Heading>
             <Heading mb="12px">Your Next BNB Claim: {(state.bnbToClaim/1e18).toFixed(4)} (~${(bnbPrice*state.bnbToClaim/1e18).toLocaleString()})</Heading>
             <Text mb="12px">Your Estimated Annual BNB: {(state.bnbToClaim/1e18*(365/3)).toFixed(4)} (~${(bnbPrice*(state.bnbToClaim/1e18*(365/3))).toLocaleString()})</Text>
-            <Divider />
-            <Text mb="2px">Earned SHILLING from Battlefield</Text>
-            <Text mb="2px">{new BigNumber(((state.totalRewards)/1e18).toFixed(0)).toNumber().toLocaleString()} SHILLING</Text>
-            <Text mb="12px">~($ {((state.totalRewards/1e18)*(shillingPrice)).toFixed(2)})</Text>
-            {state.earnings > 0
-            ?
-            <Button variant="secondary" onClick={onUnstake}>
-              Harvest Shilling
-            </Button> :
-            <Button variant="tertiary">
-              No Shilling to Harvest from Battlefield
-            </Button>
-            }
+            
 
             
             </Wrapper>

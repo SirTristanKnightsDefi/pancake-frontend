@@ -89,16 +89,12 @@ const Home: React.FC = () => {
       </Hero>
       <Cards>
         <ShillingRewardsCard />
-        <FarmStakingCard />
-        <LotteryCard />
         {isDark ? <TwitterCardDark /> : <TwitterCard />}
-        <EarnAPYCard />
         <ShillingStats />
         <SquireStats />
         <CakeStats />
         <LegendStats />
         <TableStats />
-        <TotalValueLockedCard />
       </Cards>        
     </Page>
   )

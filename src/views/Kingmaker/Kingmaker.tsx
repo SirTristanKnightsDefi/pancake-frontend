@@ -117,6 +117,8 @@ const KingmakerView = () => {
   const [secondPlaceScore, setSecondPlaceScore] = React.useState(0);
   const [thirdAccount, setThirdPlaceAccount] = React.useState('');
   const [thirdPlaceScore, setThirdPlaceScore] = React.useState(0);
+  const [walletRank, setWalletRank] = React.useState(0);
+  const [totalPlayers, setTotalplayers] = React.useState(0);
   const [lpHeld, setLpHeld] = React.useState(0);
   const [knightHeld, setKnightsHeld] = React.useState(0);
   const [nftsHeld, setNftsHeld] = React.useState(0);
@@ -141,15 +143,15 @@ const KingmakerView = () => {
           setScore(newScore);
           const newMultiplier = await kingmakerContract.methods.getMultiplier(account).call();
           setMultiplier(newMultiplier/1e18);
-          const firstPlaceData = await kingmakerContract.methods.leaderboardLeaders(1).call();
-          setFirstPlaceAccount(firstPlaceData[0])
-          setFirstPlaceScore(firstPlaceData[1])
-          const secondPlaceData = await kingmakerContract.methods.leaderboardLeaders(2).call();
-          setSecondPlaceAccount(secondPlaceData[0])
-          setSecondPlaceScore(secondPlaceData[1])
-          const thirdPlaceData = await kingmakerContract.methods.leaderboardLeaders(3).call();
-          setThirdPlaceAccount(thirdPlaceData[0])
-          setThirdPlaceScore(thirdPlaceData[1])
+          const leaderboardData = await kingmakerContract.methods.returnTop3Scores().call();
+          setFirstPlaceAccount(leaderboardData[0][0])
+          setFirstPlaceScore(leaderboardData[1][0])
+          setSecondPlaceAccount(leaderboardData[0][1])
+          setSecondPlaceScore(leaderboardData[1][1])
+          setThirdPlaceAccount(leaderboardData[0][2])
+          setThirdPlaceScore(leaderboardData[1][2])
+          const accountRank = await kingmakerContract.methods.getAccountRank(account).call();
+          setWalletRank(accountRank[0])
           const holderBalance = await kingmakerContract.methods.getHolderKnightBalance(account).call();
           setKnightsHeld(holderBalance)
           const lpBalance = await kingmakerContract.methods.getHolderKnightLPBalance(account).call();
@@ -238,6 +240,15 @@ const KingmakerView = () => {
     [account, dispatch, kingmakerContract]
   )
 
+  const handleBuyMaxAll = async () =>
+    kingmakerContract.methods
+      .buyMaxAll().send({ from: account })
+      .on('transactionHash', (tx) => {
+        return tx.transactionHash
+      },
+    [account, dispatch, kingmakerContract]
+  )
+
   const startGame = async () =>
     kingmakerContract.methods
       .startGame().send({ from: account })
@@ -260,13 +271,14 @@ const KingmakerView = () => {
             <Heading mb="8px">⚔️ <img src="/images/kingmaker/banner1.jpg" height="128px" width="128px" alt="Nobles"/> ⚔️</Heading>            
             <Text> &nbsp;Develop your army over time.  Boost speed by holding KNIGHT and/or buying boosts in the marketplace.  Requires holding 1000 KNIGHT to start. No tokens are required to play, only BNB for gas. Top 3 places win KNIGHT after each play cycle. High Scores are only recorded during a transaction.</Text>
             <br />
-            <Heading> Score: {score > 100000 ? (score*1).toExponential(3) :  score}</Heading>
-            <Heading> Multiplier: {multiplier.toFixed(2)}x</Heading>
+            <Heading> Score: {score > 1000000 ? (score*1).toExponential(3) :  score}</Heading>
+            <Heading> Your Rank: {walletRank}</Heading>
+            <Heading> Multiplier (Maximum 2000x): {multiplier.toFixed(2)}x</Heading>
             <Heading> Knight Held: {(knightHeld/1e18).toFixed(1)} (+{(knightHeld/1e18/100000).toFixed(2)}x)</Heading>
             <Heading> Knight-BNB LP Held: {(lpHeld/1e18).toFixed(1)} (+{(lpHeld/1e18/50).toFixed(2)}x)</Heading>
             <Heading> NFTs Held: {nftsHeld} (+{(nftsHeld/5).toFixed(2)}x)</Heading>
             <br />
-            {peasants > 0 ?
+            {peasants > 0 || knightHeld/1e18 < 1000 ?
               <Text />
               :
               <Button variant="primary" onClick={startGame} >
@@ -274,10 +286,14 @@ const KingmakerView = () => {
               </Button>
             }
             <Divider />
+              <Button variant="primary" onClick={handleBuyMaxAll} mt="8px" mb="8px">
+                <Text color="tertiary">Buy Max All Units</Text>
+              </Button>
+            <Divider />
             <Heading mb="12px">Peasants: {peasants > 100000 ? (peasants*1).toExponential(3) : peasants}</Heading> <br/>
             <Heading><img src="/images/kingmaker/peasants.jpg" height="64px" width="64px" alt="Farmers"/>&nbsp;Farmers: {farmers > 100000 ? (farmers*1).toExponential(3) : farmers}</Heading>
             <Hero>
-              <Text># Farmers to Buy (10 Peasants / Farmer):</Text>
+              <Text># Farmers to Buy (100 Peasants / Farmer):</Text>
               <StyledInput type='number' value={farmerBuyAmt} onChange={async (e) => {
                 const value = e.target.valueAsNumber;
                 setFarmerBuyAmt(value);
@@ -293,7 +309,7 @@ const KingmakerView = () => {
             </div>
             <Heading mt="12px"><img src="/images/kingmaker/soldiers.jpg" height="64px" width="64px" alt="Soldiers"/>&nbsp;Soldiers: {knights > 100000 ? (knights*1).toExponential(3) : knights}</Heading>
             <Hero>
-              <Text># of Soldiers to Buy (1,000 Farmers / Soldiers):</Text>
+              <Text># of Soldiers to Buy (10,000 Farmers / Soldiers):</Text>
               <StyledInput type='number' value={knightBuyAmt} onChange={async (e) => {
                 const value = e.target.valueAsNumber;
                 setKnightBuyAmt(value);
@@ -309,7 +325,7 @@ const KingmakerView = () => {
             </div>
             <Heading><img src="/images/kingmaker/nobles.jpg" height="64px" width="64px" alt="Nobles"/>&nbsp;Nobles: {nobles > 100000 ? (nobles*1).toExponential(3) : nobles}</Heading>
             <Hero>
-              <Text># of Nobles to Buy (100,000 Soldiers / Noble):</Text>
+              <Text># of Nobles to Buy (1,000,000 Soldiers / Noble):</Text>
               <StyledInput type='number' value={nobleBuyAmt} onChange={async (e) => {
                 const value = e.target.valueAsNumber;
                 setNobleBuyAmt(value);
@@ -325,7 +341,7 @@ const KingmakerView = () => {
             </div>
             <Heading><img src="/images/kingmaker/king.jpg" height="64px" width="64px" alt="Kings"/>&nbsp;Kings: {kings > 100000 ? (kings*1).toExponential(3) : kings}</Heading>
             <Hero>
-              <Text># of Kings to Buy (10,000,000 Nobles / King):</Text>
+              <Text># of Kings to Buy (100,000,000 Nobles / King):</Text>
               <StyledInput type='number' value={kingBuyAmt} onChange={async (e) => {
                 const value = e.target.valueAsNumber;
                 setKingBuyAmt(value);
