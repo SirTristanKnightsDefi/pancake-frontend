@@ -117,6 +117,20 @@ const KingmakerView = () => {
   const [secondPlaceScore, setSecondPlaceScore] = React.useState(0);
   const [thirdAccount, setThirdPlaceAccount] = React.useState('');
   const [thirdPlaceScore, setThirdPlaceScore] = React.useState(0);
+  const [fourthAccount, setFourthPlaceAccount] = React.useState('');
+  const [fourthPlaceScore, setFourthPlaceScore] = React.useState(0);
+  const [fifthAccount, setFifthPlaceAccount] = React.useState('');
+  const [fifthPlaceScore, setFifthPlaceScore] = React.useState(0);
+  const [sixthAccount, setSixthPlaceAccount] = React.useState('');
+  const [sixthPlaceScore, setSixthPlaceScore] = React.useState(0);
+  const [seventhAccount, setSeventhPlaceAccount] = React.useState('');
+  const [seventhPlaceScore, setSeventhPlaceScore] = React.useState(0);
+  const [eighthAccount, setEighthPlaceAccount] = React.useState('');
+  const [eighthPlaceScore, setEighthPlaceScore] = React.useState(0);
+  const [ninethAccount, setNinethPlaceAccount] = React.useState('');
+  const [ninethPlaceScore, setNinethPlaceScore] = React.useState(0);
+  const [tenthAccount, setTenthPlaceAccount] = React.useState('');
+  const [tenthPlaceScore, setTenthPlaceScore] = React.useState(0);
   const [walletRank, setWalletRank] = React.useState(0);
   const [totalPlayers, setTotalplayers] = React.useState(0);
   const [lpHeld, setLpHeld] = React.useState(0);
@@ -143,13 +157,47 @@ const KingmakerView = () => {
           setScore(newScore);
           const newMultiplier = await kingmakerContract.methods.getMultiplier(account).call();
           setMultiplier(newMultiplier/1e18);
-          const leaderboardData = await kingmakerContract.methods.returnTop3Scores().call();
-          setFirstPlaceAccount(leaderboardData[0][0])
-          setFirstPlaceScore(leaderboardData[1][0])
-          setSecondPlaceAccount(leaderboardData[0][1])
-          setSecondPlaceScore(leaderboardData[1][1])
-          setThirdPlaceAccount(leaderboardData[0][2])
-          setThirdPlaceScore(leaderboardData[1][2])
+          const leaderboardData = await kingmakerContract.methods.returnFullyOrderedLeaderboard().call();
+          if(leaderboardData[0].length >= 1){
+            setFirstPlaceAccount(leaderboardData[0][0])
+            setFirstPlaceScore(leaderboardData[1][0])
+          }
+          if(leaderboardData[0].length >= 2){
+            setSecondPlaceAccount(leaderboardData[0][1])
+            setSecondPlaceScore(leaderboardData[1][1])
+          }
+          if(leaderboardData[0].length >= 3){
+            setThirdPlaceAccount(leaderboardData[0][2])
+            setThirdPlaceScore(leaderboardData[1][2])
+          }
+          if(leaderboardData[0].length >= 4){
+            setFourthPlaceAccount(leaderboardData[0][3])
+            setFourthPlaceScore(leaderboardData[1][3])
+          }
+          if(leaderboardData[0].length >= 5){
+            setFifthPlaceAccount(leaderboardData[0][4])
+            setFifthPlaceScore(leaderboardData[1][4])
+          }
+          if(leaderboardData[0].length >= 6){
+            setSixthPlaceAccount(leaderboardData[0][5])
+            setSixthPlaceScore(leaderboardData[1][5])
+          }
+          if(leaderboardData[0].length >= 7){
+            setSeventhPlaceAccount(leaderboardData[0][6])
+            setSeventhPlaceScore(leaderboardData[1][6])
+          }
+          if(leaderboardData[0].length >= 8){
+            setEighthPlaceAccount(leaderboardData[0][7])
+            setEighthPlaceScore(leaderboardData[1][7])
+          }
+          if(leaderboardData[0].length >= 9){
+            setNinethPlaceAccount(leaderboardData[0][8])
+            setNinethPlaceScore(leaderboardData[1][8])
+          }
+          if(leaderboardData[0].length >= 10){
+            setTenthPlaceAccount(leaderboardData[0][9])
+            setTenthPlaceScore(leaderboardData[1][9])
+          }
           const accountRank = await kingmakerContract.methods.getAccountRank(account).call();
           setWalletRank(accountRank[0])
           const holderBalance = await kingmakerContract.methods.getHolderKnightBalance(account).call();
@@ -370,6 +418,13 @@ const KingmakerView = () => {
                   <Heading mb="8px">🥇 1st Place: {firstAccount.substring(0,5)} ...  {firstAccount.substring(38,44)} : {firstPlaceScore > 100000 ? (firstPlaceScore*1).toExponential(3) : firstPlaceScore} </Heading>
                   <Heading mb="8px">🥈 2nd Place: {secondAccount.substring(0,5)} ...  {secondAccount.substring(38,44)} : {secondPlaceScore > 100000 ? (secondPlaceScore*1).toExponential(3) : secondPlaceScore} </Heading>
                   <Heading mb="8px">🥉 3rd Place: {thirdAccount.substring(0,5)} ...  {thirdAccount.substring(38,44)} : {thirdPlaceScore > 100000 ? (thirdPlaceScore*1).toExponential(3) : thirdPlaceScore} </Heading>
+                  <Heading mb="8px">4rd Place: {fourthAccount.substring(0,5)} ...  {fourthAccount.substring(38,44)} : {fourthPlaceScore > 100000 ? (fourthPlaceScore*1).toExponential(3) : fourthPlaceScore} </Heading>
+                  <Heading mb="8px">5th Place: {fifthAccount.substring(0,5)} ...  {fifthAccount.substring(38,44)} : {fifthPlaceScore > 100000 ? (fifthPlaceScore*1).toExponential(3) : fifthPlaceScore} </Heading>
+                  <Heading mb="8px">6th Place: {sixthAccount.substring(0,5)} ...  {sixthAccount.substring(38,44)} : {sixthPlaceScore > 100000 ? (sixthPlaceScore*1).toExponential(3) : sixthPlaceScore} </Heading>
+                  <Heading mb="8px">7th Place: {seventhAccount.substring(0,5)} ...  {seventhAccount.substring(38,44)} : {seventhPlaceScore > 100000 ? (seventhPlaceScore*1).toExponential(3) : seventhPlaceScore} </Heading>
+                  <Heading mb="8px">8th Place: {eighthAccount.substring(0,5)} ...  {eighthAccount.substring(38,44)} : {eighthPlaceScore > 100000 ? (eighthPlaceScore*1).toExponential(3) : eighthPlaceScore} </Heading>
+                  <Heading mb="8px">9th Place: {ninethAccount.substring(0,5)} ...  {ninethAccount.substring(38,44)} : {ninethPlaceScore > 100000 ? (ninethPlaceScore*1).toExponential(3) : ninethPlaceScore} </Heading>
+                  <Heading mb="8px">10th Place: {tenthAccount.substring(0,5)} ...  {tenthAccount.substring(38,44)} : {tenthPlaceScore > 100000 ? (tenthPlaceScore*1).toExponential(3) : tenthPlaceScore} </Heading>
                   <Divider/>
                   
                   <Text>Multiplier is Based on NFT, KNIGHT, and KNIGHT-BNB Holdings</Text>
